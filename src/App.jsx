@@ -214,7 +214,7 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
     // Check if it's a list item
     const isBullet = /^([*-])\s+/.test(trimmed);
     const isNumbered = /^\d+\.\s+/.test(trimmed);
-    const isIndented = line.startsWith('    ') || line.startsWith('\t');
+    const isIndented = /^\s+/.test(line);
     
     if (isBullet || isNumbered) {
       const listType = isBullet ? 'ul' : 'ol';

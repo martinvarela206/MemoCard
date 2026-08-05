@@ -37,7 +37,8 @@
 
 ## Diapositiva 5: Clausura de Kleene de un Alfabeto ($\Sigma^*$)
 
-**Definición:** La **Clausura de Kleene** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\Sigma$, incluyendo la cadena vacía $\epsilon$. Es decir, es la union de todas las potencias del alfabeto.
+**Definición:** La **Clausura de Kleene** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\Sigma$, incluyendo la cadena vacía $\epsilon$. Es decir, es la union de todas las potencias del alfabeto. Y se denota como $\Sigma^*$ (sigma estrella).
+
 - **Fórmula:** 
 $$\Sigma^* = \bigcup_{i=0}^{\infty} \Sigma^i$$
 - **Conjunto resultante:**
@@ -47,7 +48,7 @@ $$\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 \cup \dots$$
 
 ## Diapositiva 6: Clausura Positiva de un Alfabeto ($\Sigma^+$)
 
-**Definición:** La **Clausura Positiva** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\Sigma$, excluyendo la cadena vacía $\epsilon$.
+**Definición:** La **Clausura Positiva** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\Sigma$, excluyendo la cadena vacía $\epsilon$. Y se denota como $\Sigma^+$ (sigma positiva).
 - **Fórmula:** 
 $$\Sigma^+ = \bigcup_{i=1}^{\infty} \Sigma^i$$
 
@@ -260,11 +261,12 @@ $$L_1 \cap L_2 = \{w \in \Sigma^* \mid w \in L_1 \land w \in L_2\}$$
 
 Sea $L$ un lenguaje sobre un alfabeto $\Sigma$:
 **Complemento ($\overline{L}$):** Lenguaje formado por todas las cadenas de $\Sigma^*$ que no pertenecen a $L$:
-$$\overline{L} = \Sigma^* - L$$
+- Notación algebraica: $\overline{L} = \Sigma^* - L$
+- Notación por compresión: $\overline{L} = \{w \in \Sigma^* \mid w \notin L\}$
 
 ---
 
-## Diapositiva 34: Operaciones con Lenguajes: Diferencia
+## Diapositiva 34: Operaciones con Lenguajes: Diferencia (resta)
 
 Sean $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\Sigma$:
 - **Diferencia ($L_1 - L_2$):** Lenguaje cuyas cadenas pertenecen a $L_1$ pero no pertenecen a $L_2$:
@@ -280,72 +282,166 @@ $$L_1 L_2 = \{w \in \Sigma^* \mid \exists w_1 \in L_1, \exists w_2 \in L_2 : w =
 
 ---
 
-## Diapositiva 36: Operaciones con Lenguajes: Potencia $k$-ésima
+## Diapositiva 36: Operaciones con Lenguajes: Potencia $k$-ésima de un Lenguaje
 
-Sea $L$ un lenguaje sobre $\Sigma$ ($L \neq \emptyset$):
+Sea $L$ un lenguaje no vacío sobre $\Sigma$:
 **Potencia $k$-ésima ($L^k$):** Concatenación de $L$ consigo mismo $k$ veces:
 $$L^k = \{w \in \Sigma^* \mid w = w_1 w_2 \dots w_k, \text{ con } w_i \in L \text{ para } 1 \le i \le k\}$$
-**Caso base:** $L^0 = \{\epsilon\}$.
+**Caso base:** $L^0 = \{\epsilon\}$ (la potencia 0 de un lenguaje, es el lenguaje unitario vacío).
 
 ---
+## Diapositiva 37: Operaciones con Lenguajes: Clausuras (2)
 
-## Diapositiva 37: Operaciones con Lenguajes: Clausuras
+Las dos operaciones de clausura de un lenguaje son:
+- **Clausura de Kleene de un Lenguaje ($L^*$)**
+- **Clausura Positiva de un Lenguaje ($L^+$)**
 
-Sea un lenguaje $L \neq \emptyset$ sobre $\Sigma$:
-**Clausura de Kleene ($L^*$):** Unión de todas las potencias del lenguaje:
+---
+## Diapositiva 38: Operaciones con Lenguajes: Clausura de Kleene de un Lenguaje ($L^*$)
+
+Sea un lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$:
+**Clausura de Kleene de un Lenguaje ($L^*$):** Es la unión de todas las potencias del lenguaje:
 $$L^* = \bigcup_{i=0}^{\infty} L^i$$
-**Clausura Positiva ($L^+$):** Unión de las potencias excluyendo la potencia cero:
+
+---
+## Diapositiva 39: Operaciones con Lenguajes: Clausura Positiva de un Lenguaje ($L^+$)
+
+Sea un lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$:
+**Clausura Positiva de un Lenguaje ($L^+$):** Es la unión de todas las potencias del lenguaje excluyendo la potencia cero:
 $$L^+ = \bigcup_{i=1}^{\infty} L^i$$
-**Relaciones:**
-**$L^* = L^+ \cup \{\epsilon\}$**
-**$L^+ = L^* - \{\epsilon\}$**
+
+---
+## Diapositiva 40: Relaciones entre $L^*$, $L^+$ y $\{\epsilon\}$
+
+Para cualquier lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$ se cumplen las siguientes relaciones fundamentales:
+- **$L^* = L^+ \cup \{\epsilon\}$**
+- **$L^+ = L^* - \{\epsilon\}$**
+
+---
+## Diapositiva 41: Propiedades de las Operaciones de Lenguajes (12)
+
+* **Propiedades de la Concatenación de Lenguajes:** Propiedades 1, 2 y 3.
+* **Propiedades de la Concatenación respecto de otras operaciones:** Propiedades 4 y 5.
+* **Propiedades de la Unión e Intersección de Lenguajes:** Propiedad 6.
+* **Propiedades de la Clausura Positiva:** Propiedades 7 y 11.
+* **Propiedades de las Potencias y de la Clausura de Kleene:** Propiedades 8, 9, 10 y 12.
+
+
+---
+## Diapositiva 42: Propiedades de la Concatenación de Lenguajes (3)
+
+- **Propiedad 1 — Elemento neutro:** La cadena vacía $\epsilon$ es el elemento neutro para la concatenación: $L{\epsilon} = {\epsilon}L = L$.
+- **Propiedad 2 — Asociatividad:** La concatenación es asociativa: $L_1(L_2L_3) = (L_1L_2)L_3 = L_1L_2L_3$.
+- **Propiedad 3 — No conmutatividad:** La concatenación no es conmutativa: $L_1L_2 \neq L_2L_1$.
+
+---
+## Diapositiva 43: Propiedades de la Concatenación (distributiva) respecto de la Unión e Intersección (2)
+
+- **Propiedad 4 — Distributividad respecto de la unión:** La concatenación es distributiva respecto de la unión: $L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3$.
+- **Propiedad 5 — No distributividad respecto de la intersección:** La concatenación no es distributiva respecto de la intersección: $L_1(L_2 \cap L_3) \neq L_1L_2 \cap L_1L_3$.
+
+---
+## Diapositiva 44: Propiedades de la Unión e Intersección de Lenguajes (7)
+
+Como los lenguajes son conjuntos, la unión ($\cup$) y la intersección ($\cap$) verifican las siguientes propiedades algebraicas fundamentales:
+- **Asociativa**
+- **Conmutativa**
+- **Distributiva** (de cada una respecto de la otra)
+- **Idempotencia**
+- **Absorción**
+- **Elementos Neutros** (de la unión y de la intersección)
+
+---
+## Diapositiva 45: Propiedades de la Unión e Intersección: Asociativa y Conmutativa
+
+Sean $L_1$, $L_2$ y $L_3$ lenguajes sobre un mismo alfabeto $\Sigma$:
+- **Asociativa:**
+  - Unión: $L_1 \cup (L_2 \cup L_3) = (L_1 \cup L_2) \cup L_3$
+  - Intersección: $L_1 \cap (L_2 \cap L_3) = (L_1 \cap L_2) \cap L_3$
+- **Conmutativa:**
+  - Unión: $L_1 \cup L_2 = L_2 \cup L_1$
+  - Intersección: $L_1 \cap L_2 = L_2 \cap L_1$
+
+---
+## Diapositiva 46: Propiedades de la Unión e Intersección: Distributiva e Idempotencia
+
+Sean $L_1$, $L_2$ y $L_3$ lenguajes sobre un mismo alfabeto $\Sigma$:
+- **Distributiva (de cada una respecto de la otra):**
+  - Unión respecto a intersección: $L_1 \cup (L_2 \cap L_3) = (L_1 \cup L_2) \cap (L_1 \cup L_3)$
+  - Intersección respecto a unión: $L_1 \cap (L_2 \cup L_3) = (L_1 \cap L_2) \cup (L_1 \cap L_3)$
+- **Idempotencia:**
+  - Unión: $L \cup L = L$
+  - Intersección: $L \cap L = L$
+
+---
+## Diapositiva 47: Propiedades de la Unión e Intersección: Absorción y Elementos Neutros
+
+Sean $L$, $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\Sigma$:
+- **Absorción:**
+  - $L_1 \cup (L_1 \cap L_2) = L_1$
+  - $L_1 \cap (L_1 \cup L_2) = L_1$
+- **Elementos Neutros:**
+  - Elemento neutro de la unión ($\emptyset$): $L \cup \emptyset = \emptyset \cup L = L$
+  - Elemento neutro de la intersección ($\Sigma^*$): $L \cap \Sigma^* = \Sigma^* \cap L = L$
+
+---
+## Diapositiva 48: Propiedades de la Clausura Positiva
+
+* **Propiedad 7 — Cadena vacía:**
+  $$\epsilon \in L \iff \epsilon \in L^+$$
+
+*Esto sucede porque $\epsilon \in L^1$, y como $L^1 \subseteq L^+$, entonces $\epsilon \in L^+$.*
+
+---
+## Diapositiva 49: Propiedades de la Clausura de Kleene
+
+* **Propiedad 8 — Las potencias de $L$ son subconjunto de $L^*$:**
+  $$\forall i:\quad L^i \subseteq L^*$$
+
+* **Propiedad 9 — Idempotencia de la clausura de Kleene:**
+  $$(L^*)^* = L^*$$
+
+* **Propiedad 10 — Conmutatividad con la clausura de Kleene:**
+  $$LL^* = L^*L$$
 
 ---
 
-## Diapositiva 38: Propiedades de Operaciones con Lenguajes (1 a 7)
-
-Sean $L, L_1, L_2, L_3$ lenguajes sobre $\Sigma$:
-1.  **Identidad (Neutro):** $L\{\epsilon\} = \{\epsilon\}L = L$.
-2.  **Asociatividad:** $L_1(L_2 L_3) = (L_1 L_2)L_3 = L_1 L_2 L_3$.
-3.  **No conmutatividad:** $L_1 L_2 \neq L_2 L_1$ en general.
-4.  **Distributividad de concatenación respecto a unión:**
-    $$L_1(L_2 \cup L_3) = L_1 L_2 \cup L_1 L_3$$
-5.  **No distributividad:** La concatenación no es distributiva respecto de la intersección.
-6.  **Propiedades de conjuntos:** La unión y la intersección son conmutativas, asociativas, distributivas entre sí, idempotentes y cumplen absorción.
-7.  **Neutro de conjuntos:** $\emptyset$ es neutro para la unión; $\Sigma^*$ es neutro para la intersección.
+## Diapositiva 50: Propiedades entre las Clausuras
+* **Propiedad 11 — Relación entre $L^+$ y $L^*$:**
+  $$L^+ \subseteq L^*$$
+* **Propiedad 12 — Relación con la Clausura de Kleene:**
+  $$L^+ = LL^* = L^*L$$
 
 ---
 
-## Diapositiva 39: Propiedades de Operaciones con Lenguajes (8 a 14)
+## Diapositiva 51: Lenguajes y Problemas
 
-Sean $L, L_1, L_2$ lenguajes sobre $\Sigma$:
-8.  **Pertenencia de vacío:** $\epsilon \in L \iff \epsilon \in L^+$.
-9.  **Inclusión de potencias:** $\forall i : L^i \subseteq L^*$.
-10. **Inclusión de clausura positiva:** $L^+ \subseteq L^*$.
-11. **Conmutación con clausura:** $L L^* = L^* L$.
-12. **Identidad de clausura positiva:** $L^+ = L L^* = L^* L$.
-13. **Idempotencia de clausura:** $(L^*)^* = L^*$.
+**Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\Sigma$.
+$$w \in L ?$$
+
+---
+## Diapositiva 52: Lenguajes infinitos y descripciones finitas
+
+Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.
+
+Una **descripción finita** consiste en definir un lenguaje potencialmente infinito aplicando una cantidad finita de operaciones a un número finito de lenguajes básicos.
 
 ---
 
-## Diapositiva 40: Lenguajes y Problemas
+## Diapositiva 53: Lenguaje Regular (LR)
 
-**Definición de Problema:** En teoría de la computación, un problema se define formalmente como el proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje determinado $L$, sobre un alfabeto $\Sigma$.
-$$w \in L \quad ?$$
+Un lenguaje $L$, sobre un alfabeto $\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\Phi$** (lenguaje vacío), **$\{\epsilon\}$** (lenguaje unitario vacío) y **$\{x \mid x \in \Sigma\}$** (lenguajes unitarios de los símbolos de $\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.
+
+---
+## Diapositiva 54: Lenguajes Regulares finitos o infinitos
+
+El número de operaciones aplicadas debe ser finito, pero el lenguaje regular obtenido puede ser finito o infinito (como en el caso de la clausura de Kleene), estos lenguajes pueden ser reconocidos por los Autómatas Finitos y presentan regularidades o repeticiones de sus componentes.
+
+Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.
 
 ---
 
-## Diapositiva 41: Lenguaje Regular (LR)
-
-**Definición:** Un lenguaje $L$ sobre un alfabeto $\Sigma$ es **regular** si y sólo si se puede generar a partir de los lenguajes básicos:
-1. El lenguaje vacío: $\Phi$
-2. El lenguaje unitario vacío: $\{\epsilon\}$
-3. Los lenguajes unitarios de símbolos: $\{x\}$ para cada $x \in \Sigma$
-**Operaciones permitidas:** Unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.
-
----
-
-## Diapositiva 42: Propiedades de Clausura de Lenguajes Regulares (1 a 6)
+## Diapositiva 55: Propiedades de los Lenguajes Regulares (1 a 6)
 
 Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son regulares:
 1.  **Unión:** $L_1 \cup L_2$
@@ -357,7 +453,7 @@ Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son r
 
 ---
 
-## Diapositiva 43: Clausura de Lenguajes Regulares (Generalizaciones)
+## Diapositiva 56: Propiedades de los Lenguajes Regulares (Generalizaciones)
 
 Se derivan por inducción matemática a partir de las propiedades básicas:
 *   La **unión finita** de lenguajes regulares es un lenguaje regular.
@@ -366,17 +462,30 @@ Se derivan por inducción matemática a partir de las propiedades básicas:
 
 ---
 
-## Diapositiva 44: Expresión Regular (ER)
+## Diapositiva 57: Lenguajes No Regulares: Definición
+
+Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero no ser regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada.
+
+---
+
+## Diapositiva 58: Ejemplos de Lenguajes No Regulares
+
+- $L_1=\{a^i b^i\mid i\in\mathbb{N}\}$, no es regular porque los AF no pueden contar que la cantidad de b's sea igual a la cantidad de a's.
+- Sobre $\Sigma = \{0,1\}$ $L_2=\{\text{las palabras cuyo número de unos es mayor al número de ceros}\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de 1's sea mayor a la cantidad de 0's.
+
+---
+
+## Diapositiva 59: Expresión Regular (ER)
 
 Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente como:
 1.  **Caso Base 1:** El lenguaje vacío $\Phi$ es una ER.
 2.  **Caso Base 2:** La cadena vacía $\epsilon$ es una ER.
 3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \in \Sigma$.
-4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^* y (E_2)^*$ son expresiones regulares.
+4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.
 
 ---
 
-## Diapositiva 45: Lenguajes definidos por Expresiones Regulares
+## Diapositiva 60: Lenguajes definidos por Expresiones Regulares
 
 El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:
 *   $L(\Phi) = \Phi$
@@ -389,7 +498,7 @@ El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define 
 
 ---
 
-## Diapositiva 46: Prioridad de Operaciones en ER
+## Diapositiva 61: Prioridad de Operaciones en ER
 
 Jerarquía de prioridad decreciente establecida para omitir paréntesis en la escritura de expresiones regulares:
 1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)
@@ -398,7 +507,7 @@ Jerarquía de prioridad decreciente establecida para omitir paréntesis en la es
 
 ---
 
-## Diapositiva 47: Expresiones Regulares Equivalentes
+## Diapositiva 62: Expresiones Regulares Equivalentes
 
 **Definición:** Dos expresiones regulares $E_1$ y $E_2$ son equivalentes si y sólo si definen el mismo lenguaje regular.
 **Fórmula:**
@@ -407,7 +516,7 @@ $$E_1 \equiv E_2 \iff L(E_1) = L(E_2)$$
 
 ---
 
-## Diapositiva 48: Gramática ($G$): Definición algebraica
+## Diapositiva 63: Gramática ($G$): Definición algebraica
 
 Una gramática $G$ es una estructura algebraica definida por la 4-tupla:
 $$G = (N, \Sigma, P, S)$$
@@ -419,7 +528,7 @@ Donde:
 
 ---
 
-## Diapositiva 49: Reglas de Producción: Cabeza
+## Diapositiva 64: Reglas de Producción: Cabeza
 
 Cada regla de producción de una gramática $G$ se expresa como un par $(\alpha, \alpha') \in P$, denotado por $\alpha \to \alpha'$:
 **Cabeza ($\alpha$):** Cadena con por lo menos un símbolo no terminal:
@@ -427,7 +536,7 @@ $$\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$$
 
 ---
 
-## Diapositiva 50: Reglas de Producción: Cuerpo
+## Diapositiva 65: Reglas de Producción: Cuerpo
 
 Cada regla de producción de una gramática $G$ se expresa como un par $(\alpha, \alpha') \in P$, denotado por $\alpha \to \alpha'$:
 **Cuerpo ($\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:
@@ -435,7 +544,7 @@ $$\alpha' \in (N \cup \Sigma)^*$$
 
 ---
 
-## Diapositiva 51: Notación de Backus
+## Diapositiva 66: Notación de Backus
 
 **Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.
 **Representación:** Las reglas $\alpha \to \alpha_1, \alpha \to \alpha_2, \dots, \alpha \to \alpha_n$ se abrevian como:
@@ -443,7 +552,7 @@ $$\alpha \to \alpha_1 \mid \alpha_2 \mid \dots \mid \alpha_n$$
 
 ---
 
-## Diapositiva 52: Relación Deriva
+## Diapositiva 67: Relación Deriva
 
 Sean las cadenas $\beta, \delta, \sigma, \mu, \alpha, \alpha' \in (N \cup \Sigma)^*$:
 **Deriva Directa ($\underset{G}{\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:
@@ -453,7 +562,7 @@ $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \
 
 ---
 
-## Diapositiva 53: Forma Sentencial
+## Diapositiva 68: Forma Sentencial
 
 Dada una gramática $G$:
 **Forma Sentencial:** Cualquier cadena de símbolos terminales y/o no terminales que puede derivarse desde el axioma $S$:
@@ -461,7 +570,7 @@ $$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\u
 
 ---
 
-## Diapositiva 54: Sentencia
+## Diapositiva 69: Sentencia
 
 Dada una gramática $G$:
 **Sentencia:** Una forma sentencial compuesta únicamente por símbolos terminales:
@@ -469,14 +578,14 @@ $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarro
 
 ---
 
-## Diapositiva 55: Lenguaje Generado por una Gramática ($L(G)$)
+## Diapositiva 70: Lenguaje Generado por una Gramática ($L(G)$)
 
 **Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w$$
 
 ---
 
-## Diapositiva 56: Gramática de Estructura de Frase
+## Diapositiva 71: Gramática de Estructura de Frase
 
 **Definición:** Gramática cuyas reglas de producción $P$ tienen invariantes a izquierda y derecha del no terminal a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
@@ -486,7 +595,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-## Diapositiva 57: Jerarquía de Chomsky: Clasificación General
+## Diapositiva 72: Jerarquía de Chomsky: Clasificación General
 
 Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
 1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.
@@ -497,14 +606,14 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-## Diapositiva 58: Jerarquía: Gramática Tipo 0 (Irrestrictas)
+## Diapositiva 73: Jerarquía: Gramática Tipo 0 (Irrestrictas)
 
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
 **Restricción:** Ninguna. Producciones de la forma $\alpha \to \beta$ con $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$ y $\beta \in (N \cup \Sigma)^*$
 
 ---
 
-## Diapositiva 59: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
+## Diapositiva 74: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
 **Restricción:** Estructura de frase y no compresora. Sus reglas $\alpha X \beta \to \alpha \delta \beta$ verifican $\delta \neq \epsilon$.
@@ -512,7 +621,7 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-## Diapositiva 60: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
+## Diapositiva 75: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
 **Restricción:** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):
@@ -520,7 +629,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-## Diapositiva 61: Jerarquía: Gramática Tipo 3 (Regulares)
+## Diapositiva 76: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
 **Restricción:** Estructura de frase con producciones de un único tipo de linealidad:
@@ -532,7 +641,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-## Diapositiva 62: Grafo de Gramática Regular Lineal por Derecha
+## Diapositiva 77: Grafo de Gramática Regular Lineal por Derecha
 
 Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$, donde $\epsilon$ representa el nodo de aceptación (doble círculo).
 **Definición de arcos:**
@@ -542,14 +651,14 @@ Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etique
 
 ---
 
-## Diapositiva 63: Grafo de Gramática Regular Lineal por Izquierda
+## Diapositiva 78: Grafo de Gramática Regular Lineal por Izquierda
 
 **Definición:** El grafo asociado a una gramática lineal por izquierda ($G_{LI}$) se define siguiendo los mismos principios estructurales que la lineal por derecha.
 **Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación.
 
 ---
 
-## Diapositiva 64: Árbol de Derivación (Árbol de Parser)
+## Diapositiva 79: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Etiquetados con no terminales ($N$).
@@ -557,13 +666,13 @@ Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etique
 
 ---
 
-## Diapositiva 65: Gramática Ambigua
+## Diapositiva 80: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-## Diapositiva 66: Construcción del Árbol de Derivación
+## Diapositiva 81: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -573,7 +682,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-## Diapositiva 67: Lectura del Árbol de Derivación (Frontera)
+## Diapositiva 82: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
