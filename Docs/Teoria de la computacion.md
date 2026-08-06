@@ -206,9 +206,9 @@ $$L \subseteq \Sigma^*$$
 ## Diapositiva 26: Representaciones de los Lenguajes (3)
 
 Las tres formas clásicas de representar un lenguaje son:
-- **Por Extensión**
-- **Por Comprensión**
-- **Con Parámetros**
+- **Por Extensión** (enumeración)
+- **Por Comprensión** (predicado lógico)
+- **Con Parámetros** (expresión con variables)
 
 ---
 ## Diapositiva 27: Representación de un Lenguaje: Por Extensión

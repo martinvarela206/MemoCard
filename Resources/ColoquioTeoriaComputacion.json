@@ -130,7 +130,7 @@
     {
       "id": 26,
       "title": "Representaciones de los Lenguajes (3)",
-      "content": "Las tres formas clásicas de representar un lenguaje son:\n- **Por Extensión**\n- **Por Comprensión**\n- **Con Parámetros**"
+      "content": "Las tres formas clásicas de representar un lenguaje son:\n- **Por Extensión** (enumeración)\n- **Por Comprensión** (predicado lógico)\n- **Con Parámetros** (expresión con variables)"
     },
     {
       "id": 27,
@@ -619,7 +619,7 @@
       "slide_id": 26,
       "term": "Representaciones de los Lenguajes (3)",
       "front": "Representaciones de los Lenguajes (3)",
-      "back": "Las tres formas clásicas de representar un lenguaje son:\n- **Por Extensión**\n- **Por Comprensión**\n- **Con Parámetros**",
+      "back": "Las tres formas clásicas de representar un lenguaje son:\n- **Por Extensión** (enumeración)\n- **Por Comprensión** (predicado lógico)\n- **Con Parámetros** (expresión con variables)",
       "context": null
     },
     {
