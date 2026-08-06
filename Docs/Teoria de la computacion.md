@@ -414,7 +414,7 @@ Sean $L$, $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\Sigma$:
 
 ---
 
-## Diapositiva 51: Lenguajes y Problemas
+## Diapositiva 51: Definición de Problema
 
 **Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\Sigma$.
 $$w \in L ?$$

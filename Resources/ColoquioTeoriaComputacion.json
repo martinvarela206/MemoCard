@@ -254,7 +254,7 @@
     },
     {
       "id": 51,
-      "title": "Lenguajes y Problemas",
+      "title": "Definición de Problema",
       "content": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$"
     },
     {
@@ -817,8 +817,8 @@
     {
       "id": "card_51",
       "slide_id": 51,
-      "term": "Lenguajes y Problemas",
-      "front": "Lenguajes y Problemas",
+      "term": "Definición de Problema",
+      "front": "Definición de Problema",
       "back": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
       "context": null
     },
