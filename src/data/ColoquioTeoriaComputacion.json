@@ -324,96 +324,91 @@
     },
     {
       "id": 65,
-      "title": "Reglas de Producción: Cabeza",
-      "content": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cabeza ($\\alpha$):** Cadena con por lo menos un símbolo no terminal:\n$$\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$$"
+      "title": "Reglas de Producción: Cabeza y Cuerpo",
+      "content": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cabeza ($\\alpha$):** Cadena con por lo menos un símbolo no terminal:\n$$\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$$\n**Cuerpo ($\\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:\n$$\\alpha' \\in (N \\cup \\Sigma)^*$$"
     },
     {
       "id": 66,
-      "title": "Reglas de Producción: Cuerpo",
-      "content": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cuerpo ($\\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:\n$$\\alpha' \\in (N \\cup \\Sigma)^*$$"
-    },
-    {
-      "id": 67,
       "title": "Notación de Backus",
       "content": "**Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.\n**Representación:** Las reglas $\\alpha \\to \\alpha_1, \\alpha \\to \\alpha_2, \\dots, \\alpha \\to \\alpha_n$ se abrevian como:\n$$\\alpha \\to \\alpha_1 \\mid \\alpha_2 \\mid \\dots \\mid \\alpha_n$$"
     },
     {
-      "id": 68,
+      "id": 67,
       "title": "Relación Deriva",
       "content": "Sean las cadenas $\\beta, \\delta, \\sigma, \\mu, \\alpha, \\alpha' \\in (N \\cup \\Sigma)^*$:\n**Deriva Directa ($\\underset{G}{\\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:\n$$\\beta \\delta \\sigma \\underset{G}{\\Rightarrow} \\beta \\mu \\sigma \\iff (\\delta \\to \\mu) \\in P$$\n**Derivación en Múltiples Pasos ($\\overset{*}{\\underset{G}{\\Rightarrow}}$):** Clausura reflexiva y transitiva de la deriva directa:\n$$\\alpha \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha' \\iff \\alpha = \\alpha_0 \\underset{G}{\\Rightarrow} \\alpha_1 \\underset{G}{\\Rightarrow} \\dots \\underset{G}{\\Rightarrow} \\alpha_n = \\alpha' \\quad (n \\ge 0)$$"
     },
     {
-      "id": 69,
+      "id": 68,
       "title": "Forma Sentencial",
       "content": "Dada una gramática $G$:\n**Forma Sentencial:** Cualquier cadena de símbolos terminales y/o no terminales que puede derivarse desde el axioma $S$:\n$$\\alpha \\in (N \\cup \\Sigma)^* \\text{ es forma sentencial} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha$$"
     },
     {
-      "id": 70,
+      "id": 69,
       "title": "Sentencia",
       "content": "Dada una gramática $G$:\n**Sentencia:** Una forma sentencial compuesta únicamente por símbolos terminales:\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$"
     },
     {
-      "id": 71,
+      "id": 70,
       "title": "Lenguaje Generado por una Gramática ($L(G)$)",
       "content": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$"
     },
     {
-      "id": 72,
+      "id": 71,
       "title": "Gramática de Estructura de Frase",
       "content": "**Definición:** Gramática cuyas reglas de producción $P$ tienen invariantes a izquierda y derecha del no terminal a derivar:\n$$\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$$\n**Casos especiales:**\n*   **Regla no generativa:** $X \\to \\epsilon$ (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n*   **Regla compresora:** $\\alpha X \\beta \\to \\alpha \\beta$ (cuando $\\delta = \\epsilon$)."
     },
     {
-      "id": 73,
+      "id": 72,
       "title": "Jerarquía de Chomsky: Clasificación General",
       "content": "Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:\n1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.\n2.  **Tipo 1:** Gramáticas Dependientes del Contexto.\n3.  **Tipo 2:** Gramáticas Libres de Contexto.\n4.  **Tipo 3:** Gramáticas Regulares.\n**Relación de contención:** $\\text{Tipo } 3 \\subset \\text{Tipo } 2 \\subset \\text{Tipo } 1 \\subset \\text{Tipo } 0$."
     },
     {
-      "id": 74,
+      "id": 73,
       "title": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "content": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Restricción:** Ninguna. Producciones de la forma $\\alpha \\to \\beta$ con $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$ y $\\beta \\in (N \\cup \\Sigma)^*$"
     },
     {
-      "id": 75,
+      "id": 74,
       "title": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Restricción:** Estructura de frase y no compresora. Sus reglas $\\alpha X \\beta \\to \\alpha \\delta \\beta$ verifican $\\delta \\neq \\epsilon$.\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$)."
     },
     {
-      "id": 76,
+      "id": 75,
       "title": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "content": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Restricción:** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):\n$$X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$$"
     },
     {
-      "id": 77,
+      "id": 76,
       "title": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "content": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Restricción:** Estructura de frase con producciones de un único tipo de linealidad:\n- **Lineal por Derecha:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$$\n- **Lineal por Izquierda:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$$\n*(Se admite $S \\to \\epsilon$ en el axioma si el lenguaje contiene a $\\epsilon$).*"
     },
     {
-      "id": 78,
+      "id": 77,
       "title": "Grafo de Gramática Regular Lineal por Derecha",
       "content": "Dada $G_{LD} = (N, \\Sigma, P, S)$, su grafo asociado es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$, donde $\\epsilon$ representa el nodo de aceptación (doble círculo).\n**Definición de arcos:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Arco etiquetado con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Arco etiquetado con $x$ de $X$ al nodo $\\epsilon$.\n3.  Si $X \\to xY \\in P \\implies$ Arco etiquetado con $x$ de $X$ al nodo $Y$."
     },
     {
-      "id": 79,
+      "id": 78,
       "title": "Grafo de Gramática Regular Lineal por Izquierda",
       "content": "**Definición:** El grafo asociado a una gramática lineal por izquierda ($G_{LI}$) se define siguiendo los mismos principios estructurales que la lineal por derecha.\n**Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \\to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación."
     },
     {
-      "id": 80,
+      "id": 79,
       "title": "Árbol de Derivación (Árbol de Parser)",
       "content": "**Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$."
     },
     {
-      "id": 81,
+      "id": 80,
       "title": "Gramática Ambigua",
       "content": "**Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes."
     },
     {
-      "id": 82,
+      "id": 81,
       "title": "Construcción del Árbol de Derivación",
       "content": "Reglas algorítmicas de construcción:\n1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.\n2.  **Expansión de producciones:** Para cada nodo etiquetado con un no terminal $A$, al aplicar la regla $A \\to Y_1 Y_2 \\dots Y_k$, se dibujan $k$ descendientes ordenados de izquierda a derecha etiquetados con $Y_1, \\dots, Y_k$.\n3.  **Hojas:** Los descendientes etiquetados con terminales o la cadena vacía $\\epsilon$ actúan como hojas (nodos terminales sin descendientes).\n4.  **Criterio de finalización:** El proceso concluye cuando todos los nodos hoja pertenecen a $\\Sigma \\cup \\{\\epsilon\\}$."
     },
     {
-      "id": 83,
+      "id": 82,
       "title": "Lectura del Árbol de Derivación (Frontera)",
       "content": "**Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).\n**Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.\n**Pertenencia:** La cadena obtenida representa la sentencia que pertenece al lenguaje $L(G)$."
     }
@@ -934,150 +929,142 @@
     {
       "id": "card_65",
       "slide_id": 65,
-      "term": "Reglas de Producción: Cabeza",
-      "front": "Reglas de Producción: Cabeza",
-      "back": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cabeza ($\\alpha$):** Cadena con por lo menos un símbolo no terminal:\n$$\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$$",
+      "term": "Reglas de Producción: Cabeza y Cuerpo",
+      "front": "Reglas de Producción: Cabeza y Cuerpo",
+      "back": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cabeza ($\\alpha$):** Cadena con por lo menos un símbolo no terminal:\n$$\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$$\n**Cuerpo ($\\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:\n$$\\alpha' \\in (N \\cup \\Sigma)^*$$",
       "context": null
     },
     {
       "id": "card_66",
       "slide_id": 66,
-      "term": "Reglas de Producción: Cuerpo",
-      "front": "Reglas de Producción: Cuerpo",
-      "back": "Cada regla de producción de una gramática $G$ se expresa como un par $(\\alpha, \\alpha') \\in P$, denotado por $\\alpha \\to \\alpha'$:\n**Cuerpo ($\\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:\n$$\\alpha' \\in (N \\cup \\Sigma)^*$$",
-      "context": null
-    },
-    {
-      "id": "card_67",
-      "slide_id": 67,
       "term": "Notación de Backus",
       "front": "Notación de Backus",
       "back": "**Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.\n**Representación:** Las reglas $\\alpha \\to \\alpha_1, \\alpha \\to \\alpha_2, \\dots, \\alpha \\to \\alpha_n$ se abrevian como:\n$$\\alpha \\to \\alpha_1 \\mid \\alpha_2 \\mid \\dots \\mid \\alpha_n$$",
       "context": null
     },
     {
-      "id": "card_68",
-      "slide_id": 68,
+      "id": "card_67",
+      "slide_id": 67,
       "term": "Relación Deriva",
       "front": "Relación Deriva",
       "back": "Sean las cadenas $\\beta, \\delta, \\sigma, \\mu, \\alpha, \\alpha' \\in (N \\cup \\Sigma)^*$:\n**Deriva Directa ($\\underset{G}{\\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:\n$$\\beta \\delta \\sigma \\underset{G}{\\Rightarrow} \\beta \\mu \\sigma \\iff (\\delta \\to \\mu) \\in P$$\n**Derivación en Múltiples Pasos ($\\overset{*}{\\underset{G}{\\Rightarrow}}$):** Clausura reflexiva y transitiva de la deriva directa:\n$$\\alpha \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha' \\iff \\alpha = \\alpha_0 \\underset{G}{\\Rightarrow} \\alpha_1 \\underset{G}{\\Rightarrow} \\dots \\underset{G}{\\Rightarrow} \\alpha_n = \\alpha' \\quad (n \\ge 0)$$",
       "context": null
     },
     {
-      "id": "card_69",
-      "slide_id": 69,
+      "id": "card_68",
+      "slide_id": 68,
       "term": "Forma Sentencial",
       "front": "Forma Sentencial",
       "back": "Dada una gramática $G$:\n**Forma Sentencial:** Cualquier cadena de símbolos terminales y/o no terminales que puede derivarse desde el axioma $S$:\n$$\\alpha \\in (N \\cup \\Sigma)^* \\text{ es forma sentencial} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha$$",
       "context": null
     },
     {
-      "id": "card_70",
-      "slide_id": 70,
+      "id": "card_69",
+      "slide_id": 69,
       "term": "Sentencia",
       "front": "Sentencia",
       "back": "Dada una gramática $G$:\n**Sentencia:** Una forma sentencial compuesta únicamente por símbolos terminales:\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
       "context": null
     },
     {
-      "id": "card_71",
-      "slide_id": 71,
+      "id": "card_70",
+      "slide_id": 70,
       "term": "Lenguaje Generado por una Gramática ($L(G)$)",
       "front": "Lenguaje Generado por una Gramática ($L(G)$)",
       "back": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
       "context": null
     },
     {
-      "id": "card_72",
-      "slide_id": 72,
+      "id": "card_71",
+      "slide_id": 71,
       "term": "Gramática de Estructura de Frase",
       "front": "Gramática de Estructura de Frase",
       "back": "**Definición:** Gramática cuyas reglas de producción $P$ tienen invariantes a izquierda y derecha del no terminal a derivar:\n$$\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$$\n**Casos especiales:**\n*   **Regla no generativa:** $X \\to \\epsilon$ (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n*   **Regla compresora:** $\\alpha X \\beta \\to \\alpha \\beta$ (cuando $\\delta = \\epsilon$).",
       "context": null
     },
     {
-      "id": "card_73",
-      "slide_id": 73,
+      "id": "card_72",
+      "slide_id": 72,
       "term": "Jerarquía de Chomsky: Clasificación General",
       "front": "Jerarquía de Chomsky: Clasificación General",
       "back": "Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:\n1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.\n2.  **Tipo 1:** Gramáticas Dependientes del Contexto.\n3.  **Tipo 2:** Gramáticas Libres de Contexto.\n4.  **Tipo 3:** Gramáticas Regulares.\n**Relación de contención:** $\\text{Tipo } 3 \\subset \\text{Tipo } 2 \\subset \\text{Tipo } 1 \\subset \\text{Tipo } 0$.",
       "context": null
     },
     {
-      "id": "card_74",
-      "slide_id": 74,
+      "id": "card_73",
+      "slide_id": 73,
       "term": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "front": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "back": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Restricción:** Ninguna. Producciones de la forma $\\alpha \\to \\beta$ con $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$ y $\\beta \\in (N \\cup \\Sigma)^*$",
       "context": null
     },
     {
-      "id": "card_75",
-      "slide_id": 75,
+      "id": "card_74",
+      "slide_id": 74,
       "term": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "front": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Restricción:** Estructura de frase y no compresora. Sus reglas $\\alpha X \\beta \\to \\alpha \\delta \\beta$ verifican $\\delta \\neq \\epsilon$.\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).",
       "context": null
     },
     {
-      "id": "card_76",
-      "slide_id": 76,
+      "id": "card_75",
+      "slide_id": 75,
       "term": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "front": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "back": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Restricción:** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):\n$$X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$$",
       "context": null
     },
     {
-      "id": "card_77",
-      "slide_id": 77,
+      "id": "card_76",
+      "slide_id": 76,
       "term": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "front": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "back": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Restricción:** Estructura de frase con producciones de un único tipo de linealidad:\n- **Lineal por Derecha:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$$\n- **Lineal por Izquierda:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$$\n*(Se admite $S \\to \\epsilon$ en el axioma si el lenguaje contiene a $\\epsilon$).*",
       "context": null
     },
     {
-      "id": "card_78",
-      "slide_id": 78,
+      "id": "card_77",
+      "slide_id": 77,
       "term": "Grafo de Gramática Regular Lineal por Derecha",
       "front": "Grafo de Gramática Regular Lineal por Derecha",
       "back": "Dada $G_{LD} = (N, \\Sigma, P, S)$, su grafo asociado es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$, donde $\\epsilon$ representa el nodo de aceptación (doble círculo).\n**Definición de arcos:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Arco etiquetado con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Arco etiquetado con $x$ de $X$ al nodo $\\epsilon$.\n3.  Si $X \\to xY \\in P \\implies$ Arco etiquetado con $x$ de $X$ al nodo $Y$.",
       "context": null
     },
     {
-      "id": "card_79",
-      "slide_id": 79,
+      "id": "card_78",
+      "slide_id": 78,
       "term": "Grafo de Gramática Regular Lineal por Izquierda",
       "front": "Grafo de Gramática Regular Lineal por Izquierda",
       "back": "**Definición:** El grafo asociado a una gramática lineal por izquierda ($G_{LI}$) se define siguiendo los mismos principios estructurales que la lineal por derecha.\n**Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \\to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación.",
       "context": null
     },
     {
-      "id": "card_80",
-      "slide_id": 80,
+      "id": "card_79",
+      "slide_id": 79,
       "term": "Árbol de Derivación (Árbol de Parser)",
       "front": "Árbol de Derivación (Árbol de Parser)",
       "back": "**Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$.",
       "context": null
     },
     {
-      "id": "card_81",
-      "slide_id": 81,
+      "id": "card_80",
+      "slide_id": 80,
       "term": "Gramática Ambigua",
       "front": "Gramática Ambigua",
       "back": "**Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.",
       "context": null
     },
     {
-      "id": "card_82",
-      "slide_id": 82,
+      "id": "card_81",
+      "slide_id": 81,
       "term": "Construcción del Árbol de Derivación",
       "front": "Construcción del Árbol de Derivación",
       "back": "Reglas algorítmicas de construcción:\n1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.\n2.  **Expansión de producciones:** Para cada nodo etiquetado con un no terminal $A$, al aplicar la regla $A \\to Y_1 Y_2 \\dots Y_k$, se dibujan $k$ descendientes ordenados de izquierda a derecha etiquetados con $Y_1, \\dots, Y_k$.\n3.  **Hojas:** Los descendientes etiquetados con terminales o la cadena vacía $\\epsilon$ actúan como hojas (nodos terminales sin descendientes).\n4.  **Criterio de finalización:** El proceso concluye cuando todos los nodos hoja pertenecen a $\\Sigma \\cup \\{\\epsilon\\}$.",
       "context": null
     },
     {
-      "id": "card_83",
-      "slide_id": 83,
+      "id": "card_82",
+      "slide_id": 82,
       "term": "Lectura del Árbol de Derivación (Frontera)",
       "front": "Lectura del Árbol de Derivación (Frontera)",
       "back": "**Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).\n**Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.\n**Pertenencia:** La cadena obtenida representa la sentencia que pertenece al lenguaje $L(G)$.",

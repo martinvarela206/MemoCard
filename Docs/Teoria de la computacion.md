@@ -535,23 +535,17 @@ Donde:
 
 ---
 
-## Diapositiva 65: Reglas de Producción: Cabeza
+## Diapositiva 65: Reglas de Producción: Cabeza y Cuerpo
 
 Cada regla de producción de una gramática $G$ se expresa como un par $(\alpha, \alpha') \in P$, denotado por $\alpha \to \alpha'$:
 **Cabeza ($\alpha$):** Cadena con por lo menos un símbolo no terminal:
 $$\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$$
-
----
-
-## Diapositiva 66: Reglas de Producción: Cuerpo
-
-Cada regla de producción de una gramática $G$ se expresa como un par $(\alpha, \alpha') \in P$, denotado por $\alpha \to \alpha'$:
 **Cuerpo ($\alpha'$):** Cadena de símbolos terminales y/o no terminales, o cadena vacía:
 $$\alpha' \in (N \cup \Sigma)^*$$
 
 ---
 
-## Diapositiva 67: Notación de Backus
+## Diapositiva 66: Notación de Backus
 
 **Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.
 **Representación:** Las reglas $\alpha \to \alpha_1, \alpha \to \alpha_2, \dots, \alpha \to \alpha_n$ se abrevian como:
@@ -559,7 +553,7 @@ $$\alpha \to \alpha_1 \mid \alpha_2 \mid \dots \mid \alpha_n$$
 
 ---
 
-## Diapositiva 68: Relación Deriva
+## Diapositiva 67: Relación Deriva
 
 Sean las cadenas $\beta, \delta, \sigma, \mu, \alpha, \alpha' \in (N \cup \Sigma)^*$:
 **Deriva Directa ($\underset{G}{\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:
@@ -569,7 +563,7 @@ $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \
 
 ---
 
-## Diapositiva 69: Forma Sentencial
+## Diapositiva 68: Forma Sentencial
 
 Dada una gramática $G$:
 **Forma Sentencial:** Cualquier cadena de símbolos terminales y/o no terminales que puede derivarse desde el axioma $S$:
@@ -577,7 +571,7 @@ $$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\u
 
 ---
 
-## Diapositiva 70: Sentencia
+## Diapositiva 69: Sentencia
 
 Dada una gramática $G$:
 **Sentencia:** Una forma sentencial compuesta únicamente por símbolos terminales:
@@ -585,14 +579,14 @@ $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarro
 
 ---
 
-## Diapositiva 71: Lenguaje Generado por una Gramática ($L(G)$)
+## Diapositiva 70: Lenguaje Generado por una Gramática ($L(G)$)
 
 **Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w$$
 
 ---
 
-## Diapositiva 72: Gramática de Estructura de Frase
+## Diapositiva 71: Gramática de Estructura de Frase
 
 **Definición:** Gramática cuyas reglas de producción $P$ tienen invariantes a izquierda y derecha del no terminal a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
@@ -602,7 +596,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-## Diapositiva 73: Jerarquía de Chomsky: Clasificación General
+## Diapositiva 72: Jerarquía de Chomsky: Clasificación General
 
 Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
 1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.
@@ -613,14 +607,14 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-## Diapositiva 74: Jerarquía: Gramática Tipo 0 (Irrestrictas)
+## Diapositiva 73: Jerarquía: Gramática Tipo 0 (Irrestrictas)
 
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
 **Restricción:** Ninguna. Producciones de la forma $\alpha \to \beta$ con $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$ y $\beta \in (N \cup \Sigma)^*$
 
 ---
 
-## Diapositiva 75: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
+## Diapositiva 74: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
 **Restricción:** Estructura de frase y no compresora. Sus reglas $\alpha X \beta \to \alpha \delta \beta$ verifican $\delta \neq \epsilon$.
@@ -628,7 +622,7 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-## Diapositiva 76: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
+## Diapositiva 75: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
 **Restricción:** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):
@@ -636,7 +630,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-## Diapositiva 77: Jerarquía: Gramática Tipo 3 (Regulares)
+## Diapositiva 76: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
 **Restricción:** Estructura de frase con producciones de un único tipo de linealidad:
@@ -648,7 +642,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-## Diapositiva 78: Grafo de Gramática Regular Lineal por Derecha
+## Diapositiva 77: Grafo de Gramática Regular Lineal por Derecha
 
 Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$, donde $\epsilon$ representa el nodo de aceptación (doble círculo).
 **Definición de arcos:**
@@ -658,14 +652,14 @@ Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etique
 
 ---
 
-## Diapositiva 79: Grafo de Gramática Regular Lineal por Izquierda
+## Diapositiva 78: Grafo de Gramática Regular Lineal por Izquierda
 
 **Definición:** El grafo asociado a una gramática lineal por izquierda ($G_{LI}$) se define siguiendo los mismos principios estructurales que la lineal por derecha.
 **Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación.
 
 ---
 
-## Diapositiva 80: Árbol de Derivación (Árbol de Parser)
+## Diapositiva 79: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Etiquetados con no terminales ($N$).
@@ -673,13 +667,13 @@ Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etique
 
 ---
 
-## Diapositiva 81: Gramática Ambigua
+## Diapositiva 80: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-## Diapositiva 82: Construcción del Árbol de Derivación
+## Diapositiva 81: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -689,7 +683,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-## Diapositiva 83: Lectura del Árbol de Derivación (Frontera)
+## Diapositiva 82: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
