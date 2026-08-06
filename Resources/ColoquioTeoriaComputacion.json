@@ -265,12 +265,12 @@
     {
       "id": 53,
       "title": "Lenguaje Regular (LR)",
-      "content": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces."
+      "content": "Un **lenguaje $L$**, sobre un alfabeto $\\Sigma$, **es regular** si se puede generar a partir de:\n- **Los lenguajes básicos:** **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$).\n- **Utilizando las operaciones:** unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces."
     },
     {
       "id": 54,
       "title": "Lenguajes Regulares finitos o infinitos",
-      "content": "El número de operaciones aplicadas debe ser finito, pero el lenguaje regular obtenido puede ser finito o infinito (como en el caso de la clausura de Kleene), estos lenguajes pueden ser reconocidos por los Autómatas Finitos y presentan regularidades o repeticiones de sus componentes.\n\nRecordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente."
+      "content": "Los lenguajes regulares pueden ser finitos o infinitos, pero siempre se deben generar a partir de un número finito de operaciones. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n*Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.*"
     },
     {
       "id": 55,
@@ -284,8 +284,8 @@
     },
     {
       "id": 57,
-      "title": "Lenguajes No Regulares: Definición",
-      "content": "Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero no ser regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada."
+      "title": "Lenguajes NO Regulares",
+      "content": "Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero NO SON regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada."
     },
     {
       "id": 58,
@@ -835,7 +835,7 @@
       "slide_id": 53,
       "term": "Lenguaje Regular (LR)",
       "front": "Lenguaje Regular (LR)",
-      "back": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.",
+      "back": "Un **lenguaje $L$**, sobre un alfabeto $\\Sigma$, **es regular** si se puede generar a partir de:\n- **Los lenguajes básicos:** **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$).\n- **Utilizando las operaciones:** unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.",
       "context": null
     },
     {
@@ -843,7 +843,7 @@
       "slide_id": 54,
       "term": "Lenguajes Regulares finitos o infinitos",
       "front": "Lenguajes Regulares finitos o infinitos",
-      "back": "El número de operaciones aplicadas debe ser finito, pero el lenguaje regular obtenido puede ser finito o infinito (como en el caso de la clausura de Kleene), estos lenguajes pueden ser reconocidos por los Autómatas Finitos y presentan regularidades o repeticiones de sus componentes.\n\nRecordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
+      "back": "Los lenguajes regulares pueden ser finitos o infinitos, pero siempre se deben generar a partir de un número finito de operaciones. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n*Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.*",
       "context": null
     },
     {
@@ -865,9 +865,9 @@
     {
       "id": "card_57",
       "slide_id": 57,
-      "term": "Lenguajes No Regulares: Definición",
-      "front": "Lenguajes No Regulares: Definición",
-      "back": "Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero no ser regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada.",
+      "term": "Lenguajes NO Regulares",
+      "front": "Lenguajes NO Regulares",
+      "back": "Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero NO SON regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada.",
       "context": null
     },
     {
