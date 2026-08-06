@@ -213,18 +213,18 @@ Las tres formas clásicas de representar un lenguaje son:
 ---
 ## Diapositiva 27: Representación de un Lenguaje: Por Extensión
 
-**Definición:** Se enumeran las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos).
+**La representación por extensión** consiste en enumerar las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos).
 
 ---
 ## Diapositiva 28: Representación de un Lenguaje: Por Comprensión
 
-**Definición:** Se establece la propiedad lógica o predicado que deben satisfacer las cadenas:
+**La representación por compresión** consiste en definir la propiedad lógica o predicado que deben satisfacer las cadenas:
 $$L = \{x \in \Sigma^* \mid P(x)\}$$
 
 ---
 ## Diapositiva 29: Representación de un Lenguaje: Con Parámetros
 
-**Definición:** Se reemplaza la cadena por una expresión con variables (parámetros) sujetas a restricciones:
+**La representación con parámetros** consiste en definir una expresión con variables (parámetros) que representan las cadenas del lenguaje, y se especifican las restricciones que deben cumplir estos parámetros:
 $$L = \{w \in \Sigma^* \mid w = f(\alpha, \beta, \dots) \text{ con condiciones para } \alpha, \beta, \dots\}$$
 
 ---

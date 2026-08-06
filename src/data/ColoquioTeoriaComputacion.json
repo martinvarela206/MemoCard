@@ -135,17 +135,17 @@
     {
       "id": 27,
       "title": "Representación de un Lenguaje: Por Extensión",
-      "content": "**Definición:** Se enumeran las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos)."
+      "content": "**La representación por extensión** consiste en enumerar las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos)."
     },
     {
       "id": 28,
       "title": "Representación de un Lenguaje: Por Comprensión",
-      "content": "**Definición:** Se establece la propiedad lógica o predicado que deben satisfacer las cadenas:\n$$L = \\{x \\in \\Sigma^* \\mid P(x)\\}$$"
+      "content": "**La representación por compresión** consiste en definir la propiedad lógica o predicado que deben satisfacer las cadenas:\n$$L = \\{x \\in \\Sigma^* \\mid P(x)\\}$$"
     },
     {
       "id": 29,
       "title": "Representación de un Lenguaje: Con Parámetros",
-      "content": "**Definición:** Se reemplaza la cadena por una expresión con variables (parámetros) sujetas a restricciones:\n$$L = \\{w \\in \\Sigma^* \\mid w = f(\\alpha, \\beta, \\dots) \\text{ con condiciones para } \\alpha, \\beta, \\dots\\}$$"
+      "content": "**La representación con parámetros** consiste en definir una expresión con variables (parámetros) que representan las cadenas del lenguaje, y se especifican las restricciones que deben cumplir estos parámetros:\n$$L = \\{w \\in \\Sigma^* \\mid w = f(\\alpha, \\beta, \\dots) \\text{ con condiciones para } \\alpha, \\beta, \\dots\\}$$"
     },
     {
       "id": 30,
@@ -627,7 +627,7 @@
       "slide_id": 27,
       "term": "Representación de un Lenguaje: Por Extensión",
       "front": "Representación de un Lenguaje: Por Extensión",
-      "back": "**Definición:** Se enumeran las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos).",
+      "back": "**La representación por extensión** consiste en enumerar las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos).",
       "context": null
     },
     {
@@ -635,7 +635,7 @@
       "slide_id": 28,
       "term": "Representación de un Lenguaje: Por Comprensión",
       "front": "Representación de un Lenguaje: Por Comprensión",
-      "back": "**Definición:** Se establece la propiedad lógica o predicado que deben satisfacer las cadenas:\n$$L = \\{x \\in \\Sigma^* \\mid P(x)\\}$$",
+      "back": "**La representación por compresión** consiste en definir la propiedad lógica o predicado que deben satisfacer las cadenas:\n$$L = \\{x \\in \\Sigma^* \\mid P(x)\\}$$",
       "context": null
     },
     {
@@ -643,7 +643,7 @@
       "slide_id": 29,
       "term": "Representación de un Lenguaje: Con Parámetros",
       "front": "Representación de un Lenguaje: Con Parámetros",
-      "back": "**Definición:** Se reemplaza la cadena por una expresión con variables (parámetros) sujetas a restricciones:\n$$L = \\{w \\in \\Sigma^* \\mid w = f(\\alpha, \\beta, \\dots) \\text{ con condiciones para } \\alpha, \\beta, \\dots\\}$$",
+      "back": "**La representación con parámetros** consiste en definir una expresión con variables (parámetros) que representan las cadenas del lenguaje, y se especifican las restricciones que deben cumplir estos parámetros:\n$$L = \\{w \\in \\Sigma^* \\mid w = f(\\alpha, \\beta, \\dots) \\text{ con condiciones para } \\alpha, \\beta, \\dots\\}$$",
       "context": null
     },
     {
