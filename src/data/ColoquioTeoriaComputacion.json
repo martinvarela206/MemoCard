@@ -305,12 +305,12 @@
     {
       "id": 61,
       "title": "Lenguajes generados por operaciones de las ER",
-      "content": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$"
+      "content": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$\n*   $L((E_1)^*) = (L(E_1))^*$"
     },
     {
       "id": 62,
       "title": "Prioridad de Operaciones en ER",
-      "content": "Jerarquía de prioridad decreciente establecida para omitir paréntesis en la escritura de expresiones regulares:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)"
+      "content": "En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)"
     },
     {
       "id": 63,
@@ -904,7 +904,7 @@
       "slide_id": 61,
       "term": "Lenguajes generados por operaciones de las ER",
       "front": "Lenguajes generados por operaciones de las ER",
-      "back": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$",
+      "back": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$\n*   $L((E_1)^*) = (L(E_1))^*$",
       "context": null
     },
     {
@@ -912,7 +912,7 @@
       "slide_id": 62,
       "term": "Prioridad de Operaciones en ER",
       "front": "Prioridad de Operaciones en ER",
-      "back": "Jerarquía de prioridad decreciente establecida para omitir paréntesis en la escritura de expresiones regulares:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
+      "back": "En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
       "context": null
     },
     {

@@ -500,14 +500,14 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 ## Diapositiva 61: Lenguajes generados por operaciones de las ER
 *   $L((E_1)) = L(E_1)$
 *   $L(E_1 E_2) = L(E_1)L(E_2)$
-*   $L(E_1 + E_2) = L(E_1) \cup L(E_2)$
-*   $L(E_1^*) = (L(E_1))^*$
+*   $L((E_1 + E_2)) = L(E_1) \cup L(E_2)$
+*   $L((E_1)^*) = (L(E_1))^*$
 
 ---
 
 ## Diapositiva 62: Prioridad de Operaciones en ER
 
-Jerarquía de prioridad decreciente establecida para omitir paréntesis en la escritura de expresiones regulares:
+En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:
 1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)
 2.  **Concatenación** (Prioridad intermedia)
 3.  **Suma ($+$)** (Mínima prioridad)
