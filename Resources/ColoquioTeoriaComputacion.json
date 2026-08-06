@@ -40,17 +40,17 @@
     {
       "id": 8,
       "title": "Operaciones y Relaciones sobre Cadenas (son 5)",
-      "content": "- Concatenación de cadenas ($w_1 w_2$)\n- Potencia $k$-ésima de una cadena ($w^k$)\n- Igualdad de cadenas ($w_1 = w_2$)\n- Subcadena (si $w=w_1w_2$ entonces $w_1$ es subcadena de $w$)\n- Prefijo y sufijo (si $w=w_1w_2$ entonces $w_1$ es prefijo de $w$ y $w_2$ es sufijo de $w$)"
+      "content": "- Concatenación de cadenas ($w_1 w_2$)\n- Potencia $k$-ésima de una cadena ($w^k$)\n- Igualdad de cadenas ($w_1 = w_2$)\n- Subcadena (si $w=w_1w_2w_3$ entonces $w_2$ es subcadena de $w$)\n- Prefijo y sufijo (si $w=w_1w_2$ entonces $w_1$ es prefijo de $w$ y $w_2$ es sufijo de $w$)"
     },
     {
       "id": 9,
       "title": "Operaciones sobre Cadenas: Concatenación",
-      "content": "**Definición:** La concatenación de dos cadenas $w_1 = e^1_1 \\dots e^1_{k_1}$ y $w_2 = e^2_1 \\dots e^2_{k_2}$ es la cadena $w_1 w_2 = e^1_1 \\dots e^1_{k_1} e^2_1 \\dots e^2_{k_2}$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$"
+      "content": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$"
     },
     {
       "id": 10,
       "title": "Operaciones sobre Cadenas: Potencia $k$-ésima de una cadena ($w^k$)",
-      "content": "**Definición:** La **potencia $k$-ésima** $w^k$ de una cadena $w$ es la cadena que resulta de concatenar $w^{k-1}$ con $w$. La definición recursiva de la potencia $k$-ésima de una cadena $w$ es:\n1.  $w^0 = \\epsilon$\n2.  $w^k = w^{k-1} \\cdot w \\quad (k \\in \\mathbb{N})$\n\n$w^k = w^{k-1} w = w^{k-2} w w = \\dots = \\underbrace{w w w \\dots w}_{k \\text{ veces}}$ ($k$ cadenas $w$ concatenadas)"
+      "content": "**Definición:** La **potencia $k$-ésima** $w^k$ de una cadena $w$ es la cadena que resulta de concatenar $w^{k-1}$ con $w$ con $w^0 = \\epsilon$. La definición recursiva de la potencia $k$-ésima de una cadena $w$ es:\n1.  $w^0 = \\epsilon$\n2.  $w^k = w^{k-1} \\cdot w \\quad (k \\in \\mathbb{N})$\n\n$w^k = w^{k-1} w = w^{k-2} w w = \\dots = \\underbrace{w w w \\dots w}_{k \\text{ veces}}$ ($k$ cadenas $w$ concatenadas)"
     },
     {
       "id": 11,
@@ -60,17 +60,17 @@
     {
       "id": 12,
       "title": "Relaciones entre Cadenas: Subcadena",
-      "content": "**Definición:** La cadena $w_1$ es **subcadena** de una cadena $w$, si existen cadenas $w_2$ y $w_3$ tales que $w = w_2 w_1 w_3$. Las cadenas $w_2$ y $w_3$ pueden ser vacías, por lo tanto cada cadena es subcadena de sí misma."
+      "content": "**Definición:** La cadena $w_2$ es **subcadena** de una cadena $w$, si existen cadenas $w_1$ y $w_3$ tales que $w = w_1 w_2 w_3$. Las cadenas $w_1$ y $w_3$ pueden ser vacías, por lo tanto cada cadena es subcadena de sí misma."
     },
     {
       "id": 13,
       "title": "Relaciones entre Cadenas: Prefijo y Sufijo",
-      "content": "**Definición:** Si la cadena $w = w_1 w_2$ entonces $w_1$ es **prefijo** de $w$ y $w_2$ es **sufijo** de $w$."
+      "content": "**Definición:** Si la cadena $w = w_1 w_2$ entonces $w_1$ es **prefijo** de $w$ y $w_2$ es **sufijo** de $w$. Como $w_1$ o $w_2$ pueden ser vacías, entonces cada cadena es prefijo y sufijo de sí misma."
     },
     {
       "id": 14,
       "title": "Las cadenas tienen 9 propiedades y estas son:",
-      "content": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula**\n- Propiedad 3: **Aditividad de longitud**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro)**\n- Propiedad 6: **Asociatividad**\n- Propiedad 7: **No conmutatividad**\n- Propiedad 8: **Cancelación**\n- Propiedad 9: **Descomposición nula**"
+      "content": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro) en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**"
     },
     {
       "id": 15,
@@ -79,13 +79,13 @@
     },
     {
       "id": 16,
-      "title": "Propiedad de las cadenas 2 de 9: Longitud nula",
-      "content": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud nula:** Si la longitud de una cadena es 0, entonces esa cadena es $\\epsilon$. $|x| = 0 \\iff x = \\epsilon$."
+      "title": "Propiedad de las cadenas 2 de 9: Longitud nula = $\\epsilon$",
+      "content": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud nula = $\\epsilon$:** Si la longitud de una cadena es 0, entonces esa cadena es $\\epsilon$. $|x| = 0 \\iff x = \\epsilon$."
     },
     {
       "id": 17,
-      "title": "Propiedad de las cadenas 3 de 9: Aditividad de longitud",
-      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Aditividad de longitud:** La longitud de la concatenación de dos cadenas es la suma de sus longitudes. $|xy| = |x| + |y|$."
+      "title": "Propiedad de las cadenas 3 de 9: Aditividad de longitud en la concatenación",
+      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Aditividad de longitud en la concatenación:** La longitud de la concatenación de dos cadenas es la suma de sus longitudes. $|xy| = |x| + |y|$."
     },
     {
       "id": 18,
@@ -94,28 +94,28 @@
     },
     {
       "id": 19,
-      "title": "Propiedad de las cadenas 5 de 9: Identidad (Neutro)",
-      "content": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro):** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$."
+      "title": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
+      "content": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro) en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$."
     },
     {
       "id": 20,
-      "title": "Propiedad de las cadenas 6 de 9: Asociatividad",
-      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Asociatividad:** La concatenación es asociativa. $x(yz) = (xy)z = x y z$."
+      "title": "Propiedad de las cadenas 6 de 9: Asociatividad en la concatenación",
+      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Asociatividad en la concatenación:** La concatenación es asociativa. $x(yz) = (xy)z = x y z$."
     },
     {
       "id": 21,
-      "title": "Propiedad de las cadenas 7 de 9: No conmutatividad",
-      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **No conmutatividad:** La concatenación no es conmutativa. $xy \\neq yx$ en general."
+      "title": "Propiedad de las cadenas 7 de 9: No conmutatividad en la concatenación",
+      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **No conmutatividad en la concatenación:** La concatenación no es conmutativa. $xy \\neq yx$ en general."
     },
     {
       "id": 22,
-      "title": "Propiedad de las cadenas 8 de 9: Cancelación",
-      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$."
+      "title": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
+      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$."
     },
     {
       "id": 23,
-      "title": "Propiedad de las cadenas 9 de 9: Descomposición nula",
-      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Descomposición nula:** Si la concatenación de dos cadenas es $\\epsilon$, entonces ambas cadenas son $\\epsilon$. $xy = \\epsilon \\implies x = \\epsilon \\land y = \\epsilon$."
+      "title": "Propiedad de las cadenas 9 de 9: Concatenación nula",
+      "content": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Concatenación nula:** Si la concatenación de dos cadenas es $\\epsilon$, entonces ambas cadenas son $\\epsilon$. $xy = \\epsilon \\implies x = \\epsilon \\land y = \\epsilon$."
     },
     {
       "id": 24,
@@ -295,7 +295,7 @@
     {
       "id": 59,
       "title": "Expresión Regular (ER)",
-      "content": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^* y (E_2)^*$ son expresiones regulares."
+      "content": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares."
     },
     {
       "id": 60,
@@ -475,7 +475,7 @@
       "slide_id": 8,
       "term": "Operaciones y Relaciones sobre Cadenas (son 5)",
       "front": "Operaciones y Relaciones sobre Cadenas (son 5)",
-      "back": "- Concatenación de cadenas ($w_1 w_2$)\n- Potencia $k$-ésima de una cadena ($w^k$)\n- Igualdad de cadenas ($w_1 = w_2$)\n- Subcadena (si $w=w_1w_2$ entonces $w_1$ es subcadena de $w$)\n- Prefijo y sufijo (si $w=w_1w_2$ entonces $w_1$ es prefijo de $w$ y $w_2$ es sufijo de $w$)",
+      "back": "- Concatenación de cadenas ($w_1 w_2$)\n- Potencia $k$-ésima de una cadena ($w^k$)\n- Igualdad de cadenas ($w_1 = w_2$)\n- Subcadena (si $w=w_1w_2w_3$ entonces $w_2$ es subcadena de $w$)\n- Prefijo y sufijo (si $w=w_1w_2$ entonces $w_1$ es prefijo de $w$ y $w_2$ es sufijo de $w$)",
       "context": null
     },
     {
@@ -483,7 +483,7 @@
       "slide_id": 9,
       "term": "Operaciones sobre Cadenas: Concatenación",
       "front": "Operaciones sobre Cadenas: Concatenación",
-      "back": "**Definición:** La concatenación de dos cadenas $w_1 = e^1_1 \\dots e^1_{k_1}$ y $w_2 = e^2_1 \\dots e^2_{k_2}$ es la cadena $w_1 w_2 = e^1_1 \\dots e^1_{k_1} e^2_1 \\dots e^2_{k_2}$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$",
+      "back": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$",
       "context": null
     },
     {
@@ -491,7 +491,7 @@
       "slide_id": 10,
       "term": "Operaciones sobre Cadenas: Potencia $k$-ésima de una cadena ($w^k$)",
       "front": "Operaciones sobre Cadenas: Potencia $k$-ésima de una cadena ($w^k$)",
-      "back": "**Definición:** La **potencia $k$-ésima** $w^k$ de una cadena $w$ es la cadena que resulta de concatenar $w^{k-1}$ con $w$. La definición recursiva de la potencia $k$-ésima de una cadena $w$ es:\n1.  $w^0 = \\epsilon$\n2.  $w^k = w^{k-1} \\cdot w \\quad (k \\in \\mathbb{N})$\n\n$w^k = w^{k-1} w = w^{k-2} w w = \\dots = \\underbrace{w w w \\dots w}_{k \\text{ veces}}$ ($k$ cadenas $w$ concatenadas)",
+      "back": "**Definición:** La **potencia $k$-ésima** $w^k$ de una cadena $w$ es la cadena que resulta de concatenar $w^{k-1}$ con $w$ con $w^0 = \\epsilon$. La definición recursiva de la potencia $k$-ésima de una cadena $w$ es:\n1.  $w^0 = \\epsilon$\n2.  $w^k = w^{k-1} \\cdot w \\quad (k \\in \\mathbb{N})$\n\n$w^k = w^{k-1} w = w^{k-2} w w = \\dots = \\underbrace{w w w \\dots w}_{k \\text{ veces}}$ ($k$ cadenas $w$ concatenadas)",
       "context": null
     },
     {
@@ -507,7 +507,7 @@
       "slide_id": 12,
       "term": "Relaciones entre Cadenas: Subcadena",
       "front": "Relaciones entre Cadenas: Subcadena",
-      "back": "**Definición:** La cadena $w_1$ es **subcadena** de una cadena $w$, si existen cadenas $w_2$ y $w_3$ tales que $w = w_2 w_1 w_3$. Las cadenas $w_2$ y $w_3$ pueden ser vacías, por lo tanto cada cadena es subcadena de sí misma.",
+      "back": "**Definición:** La cadena $w_2$ es **subcadena** de una cadena $w$, si existen cadenas $w_1$ y $w_3$ tales que $w = w_1 w_2 w_3$. Las cadenas $w_1$ y $w_3$ pueden ser vacías, por lo tanto cada cadena es subcadena de sí misma.",
       "context": null
     },
     {
@@ -515,7 +515,7 @@
       "slide_id": 13,
       "term": "Relaciones entre Cadenas: Prefijo y Sufijo",
       "front": "Relaciones entre Cadenas: Prefijo y Sufijo",
-      "back": "**Definición:** Si la cadena $w = w_1 w_2$ entonces $w_1$ es **prefijo** de $w$ y $w_2$ es **sufijo** de $w$.",
+      "back": "**Definición:** Si la cadena $w = w_1 w_2$ entonces $w_1$ es **prefijo** de $w$ y $w_2$ es **sufijo** de $w$. Como $w_1$ o $w_2$ pueden ser vacías, entonces cada cadena es prefijo y sufijo de sí misma.",
       "context": null
     },
     {
@@ -523,7 +523,7 @@
       "slide_id": 14,
       "term": "Las cadenas tienen 9 propiedades y estas son:",
       "front": "Las cadenas tienen 9 propiedades y estas son:",
-      "back": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula**\n- Propiedad 3: **Aditividad de longitud**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro)**\n- Propiedad 6: **Asociatividad**\n- Propiedad 7: **No conmutatividad**\n- Propiedad 8: **Cancelación**\n- Propiedad 9: **Descomposición nula**",
+      "back": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro) en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**",
       "context": null
     },
     {
@@ -537,17 +537,17 @@
     {
       "id": "card_16",
       "slide_id": 16,
-      "term": "Propiedad de las cadenas 2 de 9: Longitud nula",
-      "front": "Propiedad de las cadenas 2 de 9: Longitud nula",
-      "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud nula:** Si la longitud de una cadena es 0, entonces esa cadena es $\\epsilon$. $|x| = 0 \\iff x = \\epsilon$.",
+      "term": "Propiedad de las cadenas 2 de 9: Longitud nula = $\\epsilon$",
+      "front": "Propiedad de las cadenas 2 de 9: Longitud nula = $\\epsilon$",
+      "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud nula = $\\epsilon$:** Si la longitud de una cadena es 0, entonces esa cadena es $\\epsilon$. $|x| = 0 \\iff x = \\epsilon$.",
       "context": null
     },
     {
       "id": "card_17",
       "slide_id": 17,
-      "term": "Propiedad de las cadenas 3 de 9: Aditividad de longitud",
-      "front": "Propiedad de las cadenas 3 de 9: Aditividad de longitud",
-      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Aditividad de longitud:** La longitud de la concatenación de dos cadenas es la suma de sus longitudes. $|xy| = |x| + |y|$.",
+      "term": "Propiedad de las cadenas 3 de 9: Aditividad de longitud en la concatenación",
+      "front": "Propiedad de las cadenas 3 de 9: Aditividad de longitud en la concatenación",
+      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Aditividad de longitud en la concatenación:** La longitud de la concatenación de dos cadenas es la suma de sus longitudes. $|xy| = |x| + |y|$.",
       "context": null
     },
     {
@@ -561,41 +561,41 @@
     {
       "id": "card_19",
       "slide_id": 19,
-      "term": "Propiedad de las cadenas 5 de 9: Identidad (Neutro)",
-      "front": "Propiedad de las cadenas 5 de 9: Identidad (Neutro)",
-      "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro):** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$.",
+      "term": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
+      "front": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
+      "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro) en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$.",
       "context": null
     },
     {
       "id": "card_20",
       "slide_id": 20,
-      "term": "Propiedad de las cadenas 6 de 9: Asociatividad",
-      "front": "Propiedad de las cadenas 6 de 9: Asociatividad",
-      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Asociatividad:** La concatenación es asociativa. $x(yz) = (xy)z = x y z$.",
+      "term": "Propiedad de las cadenas 6 de 9: Asociatividad en la concatenación",
+      "front": "Propiedad de las cadenas 6 de 9: Asociatividad en la concatenación",
+      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Asociatividad en la concatenación:** La concatenación es asociativa. $x(yz) = (xy)z = x y z$.",
       "context": null
     },
     {
       "id": "card_21",
       "slide_id": 21,
-      "term": "Propiedad de las cadenas 7 de 9: No conmutatividad",
-      "front": "Propiedad de las cadenas 7 de 9: No conmutatividad",
-      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **No conmutatividad:** La concatenación no es conmutativa. $xy \\neq yx$ en general.",
+      "term": "Propiedad de las cadenas 7 de 9: No conmutatividad en la concatenación",
+      "front": "Propiedad de las cadenas 7 de 9: No conmutatividad en la concatenación",
+      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **No conmutatividad en la concatenación:** La concatenación no es conmutativa. $xy \\neq yx$ en general.",
       "context": null
     },
     {
       "id": "card_22",
       "slide_id": 22,
-      "term": "Propiedad de las cadenas 8 de 9: Cancelación",
-      "front": "Propiedad de las cadenas 8 de 9: Cancelación",
-      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$.",
+      "term": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
+      "front": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
+      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$.",
       "context": null
     },
     {
       "id": "card_23",
       "slide_id": 23,
-      "term": "Propiedad de las cadenas 9 de 9: Descomposición nula",
-      "front": "Propiedad de las cadenas 9 de 9: Descomposición nula",
-      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Descomposición nula:** Si la concatenación de dos cadenas es $\\epsilon$, entonces ambas cadenas son $\\epsilon$. $xy = \\epsilon \\implies x = \\epsilon \\land y = \\epsilon$.",
+      "term": "Propiedad de las cadenas 9 de 9: Concatenación nula",
+      "front": "Propiedad de las cadenas 9 de 9: Concatenación nula",
+      "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Concatenación nula:** Si la concatenación de dos cadenas es $\\epsilon$, entonces ambas cadenas son $\\epsilon$. $xy = \\epsilon \\implies x = \\epsilon \\land y = \\epsilon$.",
       "context": null
     },
     {
@@ -883,7 +883,7 @@
       "slide_id": 59,
       "term": "Expresión Regular (ER)",
       "front": "Expresión Regular (ER)",
-      "back": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^* y (E_2)^*$ son expresiones regulares.",
+      "back": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.",
       "context": null
     },
     {

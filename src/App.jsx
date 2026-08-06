@@ -268,16 +268,19 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
     if (el.type === 'ul' || el.type === 'ol') {
       const Tag = el.type;
       return (
-        <Tag key={idx} className="content-list">
+        <Tag key={`list-${idx}`} className="content-list">
           {el.items.map((item, itemIdx) => (
-            <li key={itemIdx} className={item.indented ? "nested-item" : "main-item"}>
+            <li key={`item-${idx}-${itemIdx}`} className={item.indented ? "nested-item" : "main-item"}>
               {renderLineWithBlur(item.text)}
             </li>
           ))}
         </Tag>
       );
     }
-    return el;
+    if (React.isValidElement(el)) {
+      return React.cloneElement(el, { key: `line-${idx}` });
+    }
+    return <React.Fragment key={`line-${idx}`}>{el}</React.Fragment>;
   });
 }
 
