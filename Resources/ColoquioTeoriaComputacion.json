@@ -265,7 +265,7 @@
     {
       "id": 53,
       "title": "Lenguaje Regular (LR)",
-      "content": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\Phi$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces."
+      "content": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces."
     },
     {
       "id": 54,
@@ -295,12 +295,12 @@
     {
       "id": 59,
       "title": "Expresión Regular (ER)",
-      "content": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares."
+      "content": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\emptyset$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares."
     },
     {
       "id": 60,
       "title": "Lenguajes definidos por Expresiones Regulares",
-      "content": "El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:\n*   $L(\\Phi) = \\Phi$\n*   $L(\\epsilon) = \\{\\epsilon\\}$\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$\n*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$"
+      "content": "El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:\n*   $L(\\emptyset) = \\emptyset$\n*   $L(\\epsilon) = \\{\\epsilon\\}$\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$\n*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$"
     },
     {
       "id": 61,
@@ -835,7 +835,7 @@
       "slide_id": 53,
       "term": "Lenguaje Regular (LR)",
       "front": "Lenguaje Regular (LR)",
-      "back": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\Phi$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.",
+      "back": "Un lenguaje $L$, sobre un alfabeto $\\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\\emptyset$** (lenguaje vacío), **$\\{\\epsilon\\}$** (lenguaje unitario vacío) y **$\\{x \\mid x \\in \\Sigma\\}$** (lenguajes unitarios de los símbolos de $\\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.",
       "context": null
     },
     {
@@ -883,7 +883,7 @@
       "slide_id": 59,
       "term": "Expresión Regular (ER)",
       "front": "Expresión Regular (ER)",
-      "back": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\Phi$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.",
+      "back": "Dada una expresión regular sobre un alfabeto $\\Sigma$, se define inductivamente como:\n1.  **Caso Base 1:** El lenguaje vacío $\\emptyset$ es una ER.\n2.  **Caso Base 2:** La cadena vacía $\\epsilon$ es una ER.\n3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \\in \\Sigma$.\n4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.",
       "context": null
     },
     {
@@ -891,7 +891,7 @@
       "slide_id": 60,
       "term": "Lenguajes definidos por Expresiones Regulares",
       "front": "Lenguajes definidos por Expresiones Regulares",
-      "back": "El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:\n*   $L(\\Phi) = \\Phi$\n*   $L(\\epsilon) = \\{\\epsilon\\}$\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$\n*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$",
+      "back": "El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:\n*   $L(\\emptyset) = \\emptyset$\n*   $L(\\epsilon) = \\{\\epsilon\\}$\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$\n*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L(E_1 + E_2) = L(E_1) \\cup L(E_2)$\n*   $L(E_1^*) = (L(E_1))^*$",
       "context": null
     },
     {

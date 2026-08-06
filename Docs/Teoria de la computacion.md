@@ -430,7 +430,7 @@ Una **descripción finita** consiste en definir un lenguaje potencialmente infin
 
 ## Diapositiva 53: Lenguaje Regular (LR)
 
-Un lenguaje $L$, sobre un alfabeto $\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\Phi$** (lenguaje vacío), **$\{\epsilon\}$** (lenguaje unitario vacío) y **$\{x \mid x \in \Sigma\}$** (lenguajes unitarios de los símbolos de $\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.
+Un lenguaje $L$, sobre un alfabeto $\Sigma$, es regular si se puede generar a partir de los lenguajes básicos **$\emptyset$** (lenguaje vacío), **$\{\epsilon\}$** (lenguaje unitario vacío) y **$\{x \mid x \in \Sigma\}$** (lenguajes unitarios de los símbolos de $\Sigma$), utilizando las operaciones: unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.
 
 ---
 ## Diapositiva 54: Lenguajes Regulares finitos o infinitos
@@ -478,7 +478,7 @@ Existen lenguajes que puede definirse de forma finita (por medio de formulas mat
 ## Diapositiva 59: Expresión Regular (ER)
 
 Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente como:
-1.  **Caso Base 1:** El lenguaje vacío $\Phi$ es una ER.
+1.  **Caso Base 1:** El lenguaje vacío $\emptyset$ es una ER.
 2.  **Caso Base 2:** La cadena vacía $\epsilon$ es una ER.
 3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \in \Sigma$.
 4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.
@@ -488,7 +488,7 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 ## Diapositiva 60: Lenguajes definidos por Expresiones Regulares
 
 El lenguaje regular $L(E)$ representado por la expresión regular $E$ se define como:
-*   $L(\Phi) = \Phi$
+*   $L(\emptyset) = \emptyset$
 *   $L(\epsilon) = \{\epsilon\}$
 *   $L(x) = \{x\} \quad (\forall x \in \Sigma)$
 *   $L((E_1)) = L(E_1)$
