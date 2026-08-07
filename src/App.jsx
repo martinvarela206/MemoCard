@@ -752,7 +752,6 @@ function App() {
                           <div className="card-term">
                             {renderMathAndMarkdown(studySession.queue[studySession.currentIndex].term)}
                           </div>
-                          <span className="card-instruction">Haz clic en la tarjeta o presiona Espacio para revelarla</span>
                         </div>
                       </div>
 
@@ -773,10 +772,6 @@ function App() {
                           <div className="card-answer">
                             {renderSlideLines(studySession.queue[studySession.currentIndex].back)}
                           </div>
-                        </div>
-                        
-                        <div className="card-instruction" style={{ textAlign: 'center', width: '100%' }}>
-                          Califica tu recuerdo abajo para reprogramarla
                         </div>
                       </div>
 
