@@ -671,10 +671,10 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 ## Diapositiva 80: Definición de Aristas del Grafo Asociado a una Gramática Regular
 
 **Definición de Aristas:**
-1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetado con $\epsilon$ de $S$ al nodo $\epsilon$.
-2.  Si $X \to x \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $\epsilon$.
-3.  Para Derecha: Si $X \to xY \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.
-4.  Para Izquierda: Si $X \to Yx \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.
+1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetadas con $\epsilon$ de $S$ al nodo $\epsilon$.
+2.  Si $X \to x \in P \implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\epsilon$.
+3.  Para Derecha: Si $X \to xY \in P \implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.
+4.  Para Izquierda: Si $X \to Yx \in P \implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.
 
 ---
 

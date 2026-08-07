@@ -400,7 +400,7 @@
     {
       "id": 80,
       "title": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
-      "content": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetado con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$."
+      "content": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetadas con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$."
     },
     {
       "id": 81,
@@ -1061,7 +1061,7 @@
       "slide_id": 80,
       "term": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "front": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
-      "back": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetado con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.",
+      "back": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetadas con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.",
       "context": null
     },
     {
