@@ -197,10 +197,10 @@ $$L \subseteq \Sigma^*$$
 ---
 
 ## Diapositiva 25: Casos Especiales de Lenguajes (2)
-- **Lenguaje vacío:** $L = \Phi$ (no tiene elementos).
+- **Lenguaje vacío:** $L = \emptyset$ (no tiene elementos).
 - **Lenguaje unitario vacío:** $L = \{\epsilon\}$ (tiene un elemento: la cadena vacía).
 - Tanto el lenguaje vacío como el unitario vacío son lenguajes comunes a todos los alfabetos.
-- **Estos dos conjuntos NO SON IGUALES:** $\Phi \neq \{\epsilon\}$.
+- **Estos dos conjuntos NO SON IGUALES:** $\emptyset \neq \{\epsilon\}$.
 
 ---
 ## Diapositiva 26: Representaciones de los Lenguajes (3)
@@ -299,21 +299,21 @@ Las dos operaciones de clausura de un lenguaje son:
 ---
 ## Diapositiva 38: Operaciones con Lenguajes: Clausura de Kleene de un Lenguaje ($L^*$)
 
-Sea un lenguaje $L \neq \Phi$ (un lenguaje no vacío) sobre $\Sigma$:
+Sea un lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$:
 **Clausura de Kleene de un Lenguaje ($L^*$):** Es la unión de todas las potencias del lenguaje:
 $$L^* = \bigcup_{i=0}^{\infty} L^i$$
 
 ---
 ## Diapositiva 39: Operaciones con Lenguajes: Clausura Positiva de un Lenguaje ($L^+$)
 
-Sea un lenguaje $L \neq \Phi$ (un lenguaje no vacío) sobre $\Sigma$:
+Sea un lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$:
 **Clausura Positiva de un Lenguaje ($L^+$):** Es la unión de todas las potencias del lenguaje excluyendo la potencia cero:
 $$L^+ = \bigcup_{i=1}^{\infty} L^i$$
 
 ---
 ## Diapositiva 40: Relaciones entre $L^*$, $L^+$ y $\{\epsilon\}$
 
-Para cualquier lenguaje $L \neq \Phi$ (un lenguaje no vacío) sobre $\Sigma$ se cumplen las siguientes relaciones fundamentales:
+Para cualquier lenguaje $L \neq \emptyset$ (un lenguaje no vacío) sobre $\Sigma$ se cumplen las siguientes relaciones fundamentales:
 - **$L^* = L^+ \cup \{\epsilon\}$**
 - **$L^+ = L^* - \{\epsilon\}$**
 
@@ -381,7 +381,7 @@ Sean $L$, $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\Sigma$:
   - $L_1 \cup (L_1 \cap L_2) = L_1$
   - $L_1 \cap (L_1 \cup L_2) = L_1$
 - **Elementos Neutros:**
-  - Elemento neutro de la unión ($\Phi$): $L \cup \Phi = \Phi \cup L = L$
+  - Elemento neutro de la unión ($\emptyset$): $L \cup \emptyset = \emptyset \cup L = L$
   - Elemento neutro de la intersección ($\Sigma^*$): $L \cap \Sigma^* = \Sigma^* \cap L = L$
 
 ---
@@ -431,7 +431,7 @@ Una **descripción finita** consiste en definir un lenguaje potencialmente infin
 ## Diapositiva 53: Lenguaje Regular (LR)
 
 Un **lenguaje $L$**, sobre un alfabeto $\Sigma$, **es regular** si se puede generar a partir de:
-- **Los lenguajes básicos:** **$\Phi$** (lenguaje vacío), **$\{\epsilon\}$** (lenguaje unitario vacío) y **$\{x \mid x \in \Sigma\}$** (lenguajes unitarios de los símbolos de $\Sigma$).
+- **Los lenguajes básicos:** **$\emptyset$** (lenguaje vacío), **$\{\epsilon\}$** (lenguaje unitario vacío) y **$\{x \mid x \in \Sigma\}$** (lenguajes unitarios de los símbolos de $\Sigma$).
 - **Utilizando las operaciones:** unión, concatenación, clausura de Kleene y/o clausura positiva, aplicadas un número finito de veces.
 
 ---
@@ -480,7 +480,7 @@ Existen lenguajes que puede definirse de forma finita (por medio de formulas mat
 ## Diapositiva 59: Expresión Regular (ER)
 
 Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente como:
-1.  **Caso Base 1:** El lenguaje vacío $\Phi$ es una ER.
+1.  **Caso Base 1:** El lenguaje vacío $\emptyset$ es una ER.
 2.  **Caso Base 2:** La cadena vacía $\epsilon$ es una ER.
 3.  **Caso Base 3:** $x$ es una ER, para cualquier $x \in \Sigma$.
 4.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.
@@ -491,10 +491,11 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 
 ## Diapositiva 60: Lenguajes generados por ER elementales
 
-*   $L(\Phi) = \Phi$: El lenguaje generado por $\Phi$ es el lenguaje vacío.
+*   $L(\emptyset) = \emptyset$: El lenguaje generado por $\emptyset$ es el lenguaje vacío.
 *   $L(\epsilon) = \{\epsilon\}$: El lenguaje generado por $\epsilon$ es el lenguaje unitario vacío.
 *   $L(x) = \{x\} \quad (\forall x \in \Sigma)$ El lenguaje generado por un símbolo $x$ es el lenguaje unitario que contiene a $x$.
 
+*Ojo con $L(x)=\{x \mid x \in \Sigma\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.*
 ---
 
 ## Diapositiva 61: Lenguajes generados por operaciones de las ER
@@ -529,9 +530,9 @@ Una gramática $G$ es una estructura algebraica definida por la 4-tupla:
 $$G = (N, \Sigma, P, S)$$
 Donde:
 *   **$N$:** Conjunto finito de símbolos no terminales.
-*   **$\Sigma$:** Conjunto finito de símbolos terminales (alfabeto, tal que $N \cap \Sigma = \Phi$).
+*   **$\Sigma$:** Conjunto finito de símbolos terminales (alfabeto, tal que $N \cap \Sigma = \emptyset$).
+*   **$P$:** Reglas de producción finitas (reglas gramaticales o simplemente producciones).
 *   **$S$:** Símbolo inicial o axioma ($S \in N$).
-*   **$P$:** Relación de producción finita (reglas gramaticales).
 
 ---
 
