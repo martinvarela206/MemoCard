@@ -499,10 +499,10 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 ---
 
 ## Diapositiva 61: Lenguajes generados por operaciones de las ER
-*   $L((E_1)) = L(E_1)$: El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.
-*   $L(E_1 E_2) = L(E_1)L(E_2)$: El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.
-*   $L((E_1 + E_2)) = L(E_1) \cup L(E_2)$: El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.
-*   $L((E_1)^*) = (L(E_1))^*$: El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.
+*   **$L((E_1)) = L(E_1)$:** El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.
+*   **$L(E_1 E_2) = L(E_1)L(E_2)$:** El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.
+*   **$L((E_1 + E_2)) = L(E_1) \cup L(E_2)$:** El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.
+*   **$L((E_1)^*) = (L(E_1))^*$:** El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.
 
 ---
 
