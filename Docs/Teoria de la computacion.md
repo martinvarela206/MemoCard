@@ -590,7 +590,7 @@ $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarro
 
 ## Diapositiva 71: Lenguaje Generado por una Gramática ($L(G)$)
 
-**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:
+**Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ---
