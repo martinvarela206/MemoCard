@@ -664,7 +664,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
-**Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación.
+> La lectura tanto para por derecha como por izquierda es igual, mas alla que la produccion sea $X -> xY$ o $X -> Yx$, se lee como "de X se puede llegar a Y con el terminal x".
 
 ---
 
