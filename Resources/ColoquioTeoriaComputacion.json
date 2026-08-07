@@ -20,7 +20,7 @@
     {
       "id": 4,
       "title": "Cadena vacía o nula ($\\epsilon$)",
-      "content": "**Definición:** Si la cadena no tiene símbolos, es decir su longitud es 0, entonces se denomina **cadena vacía o nula**, se la denota como $\\epsilon$ y $|\\epsilon|=0$."
+      "content": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$."
     },
     {
       "id": 5,
@@ -503,7 +503,7 @@
       "slide_id": 4,
       "term": "Cadena vacía o nula ($\\epsilon$)",
       "front": "Cadena vacía o nula ($\\epsilon$)",
-      "back": "**Definición:** Si la cadena no tiene símbolos, es decir su longitud es 0, entonces se denomina **cadena vacía o nula**, se la denota como $\\epsilon$ y $|\\epsilon|=0$.",
+      "back": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.",
       "context": null
     },
     {
