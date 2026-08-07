@@ -597,7 +597,7 @@ $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ## Diapositiva 72: Gramática de Estructura de Frase
 
-**Definición:** Gramática cuyas reglas de producción $P$ tienen invariantes a izquierda y derecha del no terminal a derivar:
+**Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
 **Casos especiales:**
 *   **Regla no generativa:** $X \to \epsilon$ (cuando $\alpha = \beta = \delta = \epsilon$).
@@ -653,7 +653,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ## Diapositiva 78: Grafo de Gramática Regular Lineal por Derecha
 
-Dada $G_{LD} = (N, \Sigma, P, S)$, su grafo asociado es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$, donde $\epsilon$ representa el nodo de aceptación (doble círculo).
+Dada una gramática lineal por derecha **$G_{LD} = (N, \Sigma, P, S)$**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$, donde $\epsilon$ representa el nodo de aceptación (doble círculo).
 **Definición de arcos:**
 1.  Si $S \to \epsilon \in P \implies$ Arco etiquetado con $\epsilon$ de $S$ al nodo $\epsilon$.
 2.  Si $X \to x \in P \implies$ Arco etiquetado con $x$ de $X$ al nodo $\epsilon$.
