@@ -574,16 +574,16 @@ $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \
 
 ## Diapositiva 69: Forma Sentencial
 
-Dada una gramática $G$:
-**Forma Sentencial:** Cualquier cadena de símbolos terminales y/o no terminales que puede derivarse desde el axioma $S$:
+**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que posea símbolos no terminales, que se pueda derivar desde el axioma, se denomina **forma sentencial**.
+**Fórmula:**
 $$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\underset{G}{\Rightarrow}} \alpha$$
 
 ---
 
 ## Diapositiva 70: Sentencia
 
-Dada una gramática $G$:
-**Sentencia:** Una forma sentencial compuesta únicamente por símbolos terminales:
+**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por simbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
+**Fórmula:**
 $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarrow}} w$$
 
 ---
