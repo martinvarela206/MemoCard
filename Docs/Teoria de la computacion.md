@@ -21,7 +21,7 @@
 
 ## Diapositiva 3: Cadena o palabra ($w$)
 
-**Definición:** Una **cadena** o **palabra** designada como $w$, de longitud $|w|=n$ es una sucesión finita de $n$ símbolos de un alfabeto $\Sigma$, tal que para $w=e_1e_2\dots e_n$ con $e_i$ desde $1$ hasta $n$ y $e_i \in \Sigma$.
+**Definición:** Una **cadena** o **palabra** designada como $w$, de longitud $|w|=n$ es una sucesión finita de $n$ símbolos de un alfabeto $\Sigma$, tal que para $w=e_1e_2\dots e_n$ con $e_i$ elementos desde $1$ hasta $n$ y $e_i \in \Sigma$.
 
 ---
 
