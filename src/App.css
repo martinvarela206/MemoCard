@@ -652,4 +652,15 @@
   pointer-events: none; /* Prevent clicking child elements from interfering */
 }
 
-
+/* KaTeX math bold support inside markdown bold tags (strong, b), headings and card terms */
+strong .katex,
+strong .katex *,
+b .katex,
+b .katex *,
+h1 .katex, h1 .katex *,
+h2 .katex, h2 .katex *,
+h3 .katex, h3 .katex *,
+.card-term .katex,
+.card-term .katex * {
+  font-weight: bold !important;
+}

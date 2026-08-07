@@ -355,7 +355,7 @@
     {
       "id": 71,
       "title": "Lenguaje Generado por una Gramática ($L(G)$)",
-      "content": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$"
+      "content": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w\\}$$"
     },
     {
       "id": 72,
@@ -984,7 +984,7 @@
       "slide_id": 71,
       "term": "Lenguaje Generado por una Gramática ($L(G)$)",
       "front": "Lenguaje Generado por una Gramática ($L(G)$)",
-      "back": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
+      "back": "**Definición:** El lenguaje $L(G)$ generado por la gramática $G = (N, \\Sigma, P, S)$ es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w\\}$$",
       "context": null
     },
     {
