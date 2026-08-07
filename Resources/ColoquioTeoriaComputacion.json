@@ -260,7 +260,7 @@
     {
       "id": 52,
       "title": "Propiedades de la Clausura Positiva",
-      "content": "* **Propiedad 7 — Cadena vacía:**\n  $$\\epsilon \\in L \\iff \\epsilon \\in L^+$$\n\n*Esto sucede porque $\\epsilon \\in L^1$, y como $L^1 \\subseteq L^+$, entonces $\\epsilon \\in L^+$.*"
+      "content": "* **Propiedad 7 — Cadena vacía:**\n  $$\\epsilon \\in L \\iff \\epsilon \\in L^+$$\n\nDemostración:\n- ($\\implies$) Si $\\epsilon \\in L$, como $L \\subseteq L^+$ (por definición de clausura positiva), entonces $\\epsilon \\in L^+$\n- ($\\impliedby$) Si $\\epsilon \\in L^+$, por definición de la unión infinita de potencias, $\\epsilon$ debe pertenecer a alguna potencia $L^i$ ($i \\ge 1$), lo cual solo es posible si el lenguaje base $L$ ya contenía a $\\epsilon$."
     },
     {
       "id": 53,
@@ -892,7 +892,7 @@
       "slide_id": 52,
       "term": "Propiedades de la Clausura Positiva",
       "front": "Propiedades de la Clausura Positiva",
-      "back": "* **Propiedad 7 — Cadena vacía:**\n  $$\\epsilon \\in L \\iff \\epsilon \\in L^+$$\n\n*Esto sucede porque $\\epsilon \\in L^1$, y como $L^1 \\subseteq L^+$, entonces $\\epsilon \\in L^+$.*",
+      "back": "* **Propiedad 7 — Cadena vacía:**\n  $$\\epsilon \\in L \\iff \\epsilon \\in L^+$$\n\nDemostración:\n- ($\\implies$) Si $\\epsilon \\in L$, como $L \\subseteq L^+$ (por definición de clausura positiva), entonces $\\epsilon \\in L^+$\n- ($\\impliedby$) Si $\\epsilon \\in L^+$, por definición de la unión infinita de potencias, $\\epsilon$ debe pertenecer a alguna potencia $L^i$ ($i \\ge 1$), lo cual solo es posible si el lenguaje base $L$ ya contenía a $\\epsilon$.",
       "context": null
     },
     {

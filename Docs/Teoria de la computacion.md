@@ -434,7 +434,9 @@ Sean $L$, $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\Sigma$:
 * **Propiedad 7 — Cadena vacía:**
   $$\epsilon \in L \iff \epsilon \in L^+$$
 
-*Esto sucede porque $\epsilon \in L^1$, y como $L^1 \subseteq L^+$, entonces $\epsilon \in L^+$.*
+Demostración:
+- ($\implies$) Si $\epsilon \in L$, como $L \subseteq L^+$ (por definición de clausura positiva), entonces $\epsilon \in L^+$
+- ($\impliedby$) Si $\epsilon \in L^+$, por definición de la unión infinita de potencias, $\epsilon$ debe pertenecer a alguna potencia $L^i$ ($i \ge 1$), lo cual solo es posible si el lenguaje base $L$ ya contenía a $\epsilon$.
 
 ---
 
