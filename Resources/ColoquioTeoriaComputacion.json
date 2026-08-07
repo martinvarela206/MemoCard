@@ -405,7 +405,7 @@
     {
       "id": 81,
       "title": "Árbol de Derivación (Árbol de Parser)",
-      "content": "**Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$."
+      "content": "**Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$."
     },
     {
       "id": 82,
@@ -1069,7 +1069,7 @@
       "slide_id": 81,
       "term": "Árbol de Derivación (Árbol de Parser)",
       "front": "Árbol de Derivación (Árbol de Parser)",
-      "back": "**Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$.",
+      "back": "**Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Etiquetados con no terminales ($N$).\n**Hojas:** Etiquetadas con terminales ($\\Sigma$) o $\\epsilon$.",
       "context": null
     },
     {
