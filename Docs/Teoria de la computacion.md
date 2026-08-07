@@ -651,24 +651,34 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-## Diapositiva 78: Grafo de Gramática Regular Lineal por Derecha
+## Diapositiva 78: Grafo Asociado a una Gramática Regular Lineal por Derecha
 
-Dada una gramática lineal por derecha **$G_{LD} = (N, \Sigma, P, S)$**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$, donde $\epsilon$ representa el nodo de aceptación (doble círculo).
-**Definición de arcos:**
-1.  Si $S \to \epsilon \in P \implies$ Arco etiquetado con $\epsilon$ de $S$ al nodo $\epsilon$.
-2.  Si $X \to x \in P \implies$ Arco etiquetado con $x$ de $X$ al nodo $\epsilon$.
-3.  Si $X \to xY \in P \implies$ Arco etiquetado con $x$ de $X$ al nodo $Y$.
+Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
+
+> Los vértices son el conjunto de símbolos no terminales más el estado de aceptación ($\epsilon$).
+> Las aristas se etiquetan con símbolos terminales y los símbolos no terminales definen que nodos son unidos por las aristas.
 
 ---
 
-## Diapositiva 79: Grafo de Gramática Regular Lineal por Izquierda
+## Diapositiva 79: Grafo Asociado a una Gramática Regular Lineal por Izquierda
 
-**Definición:** El grafo asociado a una gramática lineal por izquierda ($G_{LI}$) se define siguiendo los mismos principios estructurales que la lineal por derecha.
+Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
+
 **Diferencia de lectura:** Los arcos que involucran un no terminal a la izquierda en el cuerpo ($X \to Yx$) se interpretan según la precedencia espacial del no terminal con respecto al terminal en el proceso de generación.
 
 ---
 
-## Diapositiva 80: Árbol de Derivación (Árbol de Parser)
+## Diapositiva 80: Definición de Aristas del Grafo Asociado a una Gramática Regular
+
+**Definición de Aristas:**
+1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetado con $\epsilon$ de $S$ al nodo $\epsilon$.
+2.  Si $X \to x \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $\epsilon$.
+3.  Para Derecha: Si $X \to xY \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.
+4.  Para Izquierda: Si $X \to Yx \in P \implies$ Aristas etiquetado con $x$ de $X$ al nodo $Y$.
+
+---
+
+## Diapositiva 81: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Representación gráfica ordenada de la derivación de una palabra en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Etiquetados con no terminales ($N$).
@@ -676,13 +686,13 @@ Dada una gramática lineal por derecha **$G_{LD} = (N, \Sigma, P, S)$**, su **gr
 
 ---
 
-## Diapositiva 81: Gramática Ambigua
+## Diapositiva 82: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-## Diapositiva 82: Construcción del Árbol de Derivación
+## Diapositiva 83: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -692,7 +702,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-## Diapositiva 83: Lectura del Árbol de Derivación (Frontera)
+## Diapositiva 84: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
