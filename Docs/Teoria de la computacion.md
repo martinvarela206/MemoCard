@@ -681,8 +681,8 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 ## Diapositiva 81: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.
-**Raíz e internos:** Etiquetados con no terminales ($N$).
-**Hojas:** Etiquetadas con terminales ($\Sigma$) o $\epsilon$.
+**Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.
+**Hojas:** Nodos etiquetados con símbolos terminales que pertenecen a $\Sigma$ o con la cadena vacía $\epsilon$.
 
 ---
 
