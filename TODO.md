@@ -1,0 +1,4 @@
+- Añadir las operaciones con ER (algunos ejemplos).
+- Mejorar diapositiva 68
+- Mejorar diapositivas 74 a la 77
+- Mejorar 83 y 84
