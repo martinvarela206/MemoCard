@@ -129,10 +129,17 @@ function restoreMathPlaceholders(nodes, mathItems) {
 function renderTextWithMathAndMarkdown(text, isClozeMode = false, keyPrefix = "") {
   if (!text) return "";
   
+  let isFootnote = false;
+  let textToProcess = text;
+  if (typeof text === 'string' && text.trim().startsWith('>')) {
+    isFootnote = true;
+    textToProcess = text.trim().replace(/^>\s*/, '');
+  }
+
   const mathItems = [];
   
   // 1. Extract block math $$...$$
-  let processedText = text.replace(/\$\$(.*?)\$\$/gs, (match, mathContent) => {
+  let processedText = textToProcess.replace(/\$\$(.*?)\$\$/gs, (match, mathContent) => {
     const placeholder = `%%BLOCKMATH_${mathItems.length}%%`;
     try {
       const html = katex.renderToString(mathContent, { displayMode: true, throwOnError: false });
@@ -171,7 +178,8 @@ function renderTextWithMathAndMarkdown(text, isClozeMode = false, keyPrefix = ""
   const formattedElements = parseMarkdownText(processedText, isClozeMode, keyPrefix);
   
   // 4. Restore math elements
-  return restoreMathPlaceholders(formattedElements, mathItems);
+  const restored = restoreMathPlaceholders(formattedElements, mathItems);
+  return isFootnote ? <span className="card-footnote">{restored}</span> : restored;
 }
 
 function renderMathAndMarkdown(text) {
@@ -218,8 +226,13 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
     
     if (isBullet || isNumbered) {
       const listType = isBullet ? 'ul' : 'ol';
-      const cleanText = isBullet ? trimmed.substring(1).trim() : trimmed.replace(/^\d+\.\s+/, '').trim();
+      let cleanText = isBullet ? trimmed.substring(1).trim() : trimmed.replace(/^\d+\.\s+/, '').trim();
       
+      const isFootnote = cleanText.startsWith('>');
+      if (isFootnote) {
+        cleanText = cleanText.replace(/^>\s*/, '');
+      }
+
       // If we change list type or start a new list
       if (currentListType !== listType || !currentList) {
         if (currentList) {
@@ -232,6 +245,7 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
       currentList.items.push({
         text: cleanText,
         indented: isIndented,
+        isFootnote: isFootnote,
         key: i
       });
     } else {
@@ -249,6 +263,13 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
           <div key={i} className="math-block-line">
             {renderLineWithBlur(`$$${math}$$`)}
           </div>
+        );
+      } else if (trimmed.startsWith('>')) {
+        const cleanText = trimmed.replace(/^>\s*/, '');
+        elements.push(
+          <p key={i} className="card-footnote">
+            {renderLineWithBlur(cleanText)}
+          </p>
         );
       } else {
         elements.push(
@@ -269,11 +290,14 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
       const Tag = el.type;
       return (
         <Tag key={`list-${idx}`} className="content-list">
-          {el.items.map((item, itemIdx) => (
-            <li key={`item-${idx}-${itemIdx}`} className={item.indented ? "nested-item" : "main-item"}>
-              {renderLineWithBlur(item.text)}
-            </li>
-          ))}
+          {el.items.map((item, itemIdx) => {
+            const className = `${item.indented ? "nested-item" : "main-item"}${item.isFootnote ? " card-footnote" : ""}`;
+            return (
+              <li key={`item-${idx}-${itemIdx}`} className={className}>
+                {renderLineWithBlur(item.text)}
+              </li>
+            );
+          })}
         </Tag>
       );
     }

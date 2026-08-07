@@ -300,12 +300,12 @@
     {
       "id": 60,
       "title": "Lenguajes generados por ER elementales",
-      "content": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n*Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.*"
+      "content": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n> Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto."
     },
     {
       "id": 61,
       "title": "Lenguajes generados por operaciones de las ER",
-      "content": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$\n*   $L((E_1)^*) = (L(E_1))^*$"
+      "content": "*   $L((E_1)) = L(E_1)$: El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.\n*   $L(E_1 E_2) = L(E_1)L(E_2)$: El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$: El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.\n*   $L((E_1)^*) = (L(E_1))^*$: El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER."
     },
     {
       "id": 62,
@@ -891,7 +891,7 @@
       "slide_id": 60,
       "term": "Lenguajes generados por ER elementales",
       "front": "Lenguajes generados por ER elementales",
-      "back": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n*Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.*",
+      "back": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n> Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.",
       "context": null
     },
     {
@@ -899,7 +899,7 @@
       "slide_id": 61,
       "term": "Lenguajes generados por operaciones de las ER",
       "front": "Lenguajes generados por operaciones de las ER",
-      "back": "*   $L((E_1)) = L(E_1)$\n*   $L(E_1 E_2) = L(E_1)L(E_2)$\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$\n*   $L((E_1)^*) = (L(E_1))^*$",
+      "back": "*   $L((E_1)) = L(E_1)$: El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.\n*   $L(E_1 E_2) = L(E_1)L(E_2)$: El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.\n*   $L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$: El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.\n*   $L((E_1)^*) = (L(E_1))^*$: El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.",
       "context": null
     },
     {

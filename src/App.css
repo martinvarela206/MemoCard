@@ -268,6 +268,12 @@
   white-space: pre-wrap;
 }
 
+.card-footnote {
+  font-style: italic;
+  font-size: calc(1em - 2pt);
+  color: var(--text-muted);
+}
+
 /* Math block styling inside cards */
 .card-answer p {
   margin-bottom: 12px;

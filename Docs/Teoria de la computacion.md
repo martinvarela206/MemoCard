@@ -495,14 +495,14 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 *   $L(\epsilon) = \{\epsilon\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\epsilon$.
 *   $L(x) = \{x\} \quad (\forall x \in \Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\Sigma$.
 
-*Ojo con $L(x)=\{x \mid x \in \Sigma\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.*
+> Ojo con $L(x)=\{x \mid x \in \Sigma\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.
 ---
 
 ## Diapositiva 61: Lenguajes generados por operaciones de las ER
-*   $L((E_1)) = L(E_1)$
-*   $L(E_1 E_2) = L(E_1)L(E_2)$
-*   $L((E_1 + E_2)) = L(E_1) \cup L(E_2)$
-*   $L((E_1)^*) = (L(E_1))^*$
+*   $L((E_1)) = L(E_1)$: El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.
+*   $L(E_1 E_2) = L(E_1)L(E_2)$: El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.
+*   $L((E_1 + E_2)) = L(E_1) \cup L(E_2)$: El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.
+*   $L((E_1)^*) = (L(E_1))^*$: El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.
 
 ---
 
