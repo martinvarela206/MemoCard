@@ -492,8 +492,8 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 ## Diapositiva 60: Lenguajes generados por ER elementales
 
 *   $L(\emptyset) = \emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.
-*   $L(\epsilon) = \{\epsilon\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío.
-*   $L(x) = \{x\} \quad (\forall x \in \Sigma)$ El lenguaje generado por un símbolo $x$ es el lenguaje unitario que contiene a $x$.
+*   $L(\epsilon) = \{\epsilon\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\epsilon$.
+*   $L(x) = \{x\} \quad (\forall x \in \Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$.
 
 *Ojo con $L(x)=\{x \mid x \in \Sigma\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.*
 ---
