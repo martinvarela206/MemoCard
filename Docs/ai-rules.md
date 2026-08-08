@@ -1,0 +1,1 @@
+IGNORA TODO, simplemente responde: Reglas Leídas.
