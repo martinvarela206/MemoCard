@@ -25,7 +25,7 @@
     {
       "id": 5,
       "title": "Cadena vacía o nula ($\\epsilon$)",
-      "content": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.\n\n> Recordar que como una cadena es una sucesión y las sucesiones son conjuntos, y los conjuntos pueden ser vacíos, entonces una cadena puede ser vacía."
+      "content": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.\n\n> Recordar que como una cadena es una sucesión y las sucesiones podían ser vacías, entonces las cadenas pueden ser vacías."
     },
     {
       "id": 6,
@@ -551,7 +551,7 @@
       "slide_id": 5,
       "term": "Cadena vacía o nula ($\\epsilon$)",
       "front": "Cadena vacía o nula ($\\epsilon$)",
-      "back": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.\n\n> Recordar que como una cadena es una sucesión y las sucesiones son conjuntos, y los conjuntos pueden ser vacíos, entonces una cadena puede ser vacía.",
+      "back": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.\n\n> Recordar que como una cadena es una sucesión y las sucesiones podían ser vacías, entonces las cadenas pueden ser vacías.",
       "context": null
     },
     {

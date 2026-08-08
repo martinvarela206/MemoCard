@@ -35,7 +35,7 @@
 
 **Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\epsilon$, con $|\epsilon|=0$.
 
-> Recordar que como una cadena es una sucesión y las sucesiones son conjuntos, y los conjuntos pueden ser vacíos, entonces una cadena puede ser vacía.
+> Recordar que como una cadena es una sucesión y las sucesiones podían ser vacías, entonces las cadenas pueden ser vacías.
 
 ---
 
