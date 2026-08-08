@@ -568,7 +568,7 @@ Dada una expresión regular sobre un alfabeto $\Sigma$, se define inductivamente
 
 ## Diapositiva 67: Prioridad de Operaciones en ER
 
-En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:
+En la escritura de ER los paréntesis se pueden omitir si se sigue la siguiente prioridad de operaciones:
 1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)
 2.  **Concatenación** (Prioridad intermedia)
 3.  **Suma ($+$)** (Mínima prioridad)
@@ -674,7 +674,7 @@ $$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\u
 
 ## Diapositiva 78: Sentencia
 
-**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por simbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
+**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
 **Fórmula:**
 $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarrow}} w$$
 
@@ -687,9 +687,9 @@ $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ---
 
-## Diapositiva 80: Lenguaje Reverso o Reflexo ($L^{-1}(G)$)
+## Diapositiva 80: Lenguaje Inverso ($L^{-1}(G)$)
 
-**Definición:** El lenguaje reverso o reflexo $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \dots a_n \in L(G) \implies w^{-1} = a_n \dots a_2 a_1 \in L^{-1}(G)$.
+El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \dots a_n \in L(G) \implies w^{-1} = a_n \dots a_2 a_1 \in L^{-1}(G)$.
 **Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).
 
 ---
@@ -784,7 +784,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
-> La lectura tanto para por derecha como por izquierda es igual, mas alla que la produccion sea $X -> xY$ o $X -> Yx$, se lee como "de X se puede llegar a Y con el terminal x".
+> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como *"De X se puede llegar a Y con el terminal x"*.
 
 ---
 
