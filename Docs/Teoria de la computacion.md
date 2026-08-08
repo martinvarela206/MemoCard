@@ -89,10 +89,6 @@ $$\Sigma^+ = \bigcup_{i=1}^{\infty} \Sigma^i$$
 ## Diapositiva 11: Operaciones sobre Cadenas: Concatenación
 
 **Definición:** Sean $w_1 = a_1a_2 \dots a_i$ y $w_2 = b_1b_2 \dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \dots a_i b_1b_2 \dots b_j$.
-**Longitud resultante:**
-$$|w_1 w_2| = |w_1| + |w_2|$$
-**Elemento neutro:** La cadena vacía $\epsilon$ es el elemento neutro:
-$$\forall w : w\epsilon = \epsilon w = w$$
 
 ---
 
@@ -109,7 +105,7 @@ $w^k = w^{k-1} w = w^{k-2} w w = \dots = \underbrace{w w w \dots w}_{k \text{ ve
 ## Diapositiva 13: Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)
 
 **Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:
-$$w_1 = w_2 \iff (\forall i : 1 \le i \le n \implies a_i = b_i) \land (|w_1| = |w_2|)$$
+$$w_1 = w_2 \iff (\forall i : 1 \le i \le n \implies a_i = b_i) \land (|w_1| = |w_2| = n)$$
 
 ---
 
@@ -131,7 +127,7 @@ $$w_1 = w_2 \iff (\forall i : 1 \le i \le n \implies a_i = b_i) \land (|w_1| = |
 - Propiedad 2: **Longitud nula = $\epsilon$**
 - Propiedad 3: **Aditividad de longitud en la concatenación**
 - Propiedad 4: **Longitud de subcadena**
-- Propiedad 5: **Identidad (Neutro) en la concatenación**
+- Propiedad 5: **Elemento neutro en la concatenación**
 - Propiedad 6: **Asociatividad en la concatenación**
 - Propiedad 7: **No conmutatividad en la concatenación**
 - Propiedad 8: **Cancelación en la concatenación**
@@ -167,10 +163,10 @@ Si $x, y \in \Sigma^*$ son cadenas arbitrarias:
 
 ---
 
-## Diapositiva 21: Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación
+## Diapositiva 21: Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación
 
-Si $x \in \Sigma^*$ es una cadena arbitraria:
-*   **Identidad (Neutro) en la concatenación:** La cadena vacía $\epsilon$ es el elemento neutro de la concatenación. $x\epsilon = \epsilon x = x$.
+**Elemento neutro en la concatenación:** La cadena vacía $\epsilon$ es el elemento neutro de la concatenación.
+$$\forall w \in \Sigma^*: w\epsilon = \epsilon w = w$$
 
 ---
 
@@ -191,7 +187,7 @@ Si $x, y \in \Sigma^*$ son cadenas arbitrarias:
 ## Diapositiva 24: Propiedad de las cadenas 8 de 9: Cancelación en la concatenación
 
 Si $x, y, z \in \Sigma^*$ son cadenas arbitrarias:
-*   **Cancelación en la concatenación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\epsilon$. Si $x = yz \land x = y \implies z = \epsilon$.
+*   **Cancelación en la concatenación:** Si una cadena es igual a una concatenación de otras dos cadenas, y a su vez es igual a una de esas dos cadenas, entonces la otra cadena es $\epsilon$. Si $x = yz \land x = y \implies z = \epsilon$.
 
 ---
 

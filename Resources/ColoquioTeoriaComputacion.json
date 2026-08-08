@@ -55,7 +55,7 @@
     {
       "id": 11,
       "title": "Operaciones sobre Cadenas: Concatenación",
-      "content": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$"
+      "content": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$."
     },
     {
       "id": 12,
@@ -65,7 +65,7 @@
     {
       "id": 13,
       "title": "Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)",
-      "content": "**Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:\n$$w_1 = w_2 \\iff (\\forall i : 1 \\le i \\le n \\implies a_i = b_i) \\land (|w_1| = |w_2|)$$"
+      "content": "**Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:\n$$w_1 = w_2 \\iff (\\forall i : 1 \\le i \\le n \\implies a_i = b_i) \\land (|w_1| = |w_2| = n)$$"
     },
     {
       "id": 14,
@@ -80,7 +80,7 @@
     {
       "id": 16,
       "title": "Las cadenas tienen 9 propiedades y estas son:",
-      "content": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro) en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**"
+      "content": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Elemento neutro en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**"
     },
     {
       "id": 17,
@@ -104,8 +104,8 @@
     },
     {
       "id": 21,
-      "title": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
-      "content": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro) en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$."
+      "title": "Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación",
+      "content": "**Elemento neutro en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación.\n$$\\forall w \\in \\Sigma^*: w\\epsilon = \\epsilon w = w$$"
     },
     {
       "id": 22,
@@ -120,7 +120,7 @@
     {
       "id": 24,
       "title": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
-      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$."
+      "content": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena es igual a una concatenación de otras dos cadenas, y a su vez es igual a una de esas dos cadenas, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$."
     },
     {
       "id": 25,
@@ -599,7 +599,7 @@
       "slide_id": 11,
       "term": "Operaciones sobre Cadenas: Concatenación",
       "front": "Operaciones sobre Cadenas: Concatenación",
-      "back": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.\n**Longitud resultante:**\n$$|w_1 w_2| = |w_1| + |w_2|$$\n**Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro:\n$$\\forall w : w\\epsilon = \\epsilon w = w$$",
+      "back": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.",
       "context": null
     },
     {
@@ -615,7 +615,7 @@
       "slide_id": 13,
       "term": "Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)",
       "front": "Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)",
-      "back": "**Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:\n$$w_1 = w_2 \\iff (\\forall i : 1 \\le i \\le n \\implies a_i = b_i) \\land (|w_1| = |w_2|)$$",
+      "back": "**Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:\n$$w_1 = w_2 \\iff (\\forall i : 1 \\le i \\le n \\implies a_i = b_i) \\land (|w_1| = |w_2| = n)$$",
       "context": null
     },
     {
@@ -639,7 +639,7 @@
       "slide_id": 16,
       "term": "Las cadenas tienen 9 propiedades y estas son:",
       "front": "Las cadenas tienen 9 propiedades y estas son:",
-      "back": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Identidad (Neutro) en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**",
+      "back": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Elemento neutro en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**",
       "context": null
     },
     {
@@ -677,9 +677,9 @@
     {
       "id": "card_21",
       "slide_id": 21,
-      "term": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
-      "front": "Propiedad de las cadenas 5 de 9: Identidad (Neutro) en la concatenación",
-      "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Identidad (Neutro) en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación. $x\\epsilon = \\epsilon x = x$.",
+      "term": "Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación",
+      "front": "Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación",
+      "back": "**Elemento neutro en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación.\n$$\\forall w \\in \\Sigma^*: w\\epsilon = \\epsilon w = w$$",
       "context": null
     },
     {
@@ -703,7 +703,7 @@
       "slide_id": 24,
       "term": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
       "front": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
-      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena $x$ es igual a la concatenación de dos cadenas $yz$ y $x=y$, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$.",
+      "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena es igual a una concatenación de otras dos cadenas, y a su vez es igual a una de esas dos cadenas, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$.",
       "context": null
     },
     {
