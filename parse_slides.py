@@ -1,6 +1,103 @@
 import os
 import re
 import json
+import math
+
+def clean_for_line_estimation(text):
+    # Remove markdown bold/italics
+    text = re.sub(r'\*\*\*([^*]+)\*\*\*', r'\1', text)
+    text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
+    text = re.sub(r'\*([^*]+)\*', r'\1', text)
+    # Remove links
+    text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)
+    # Remove inline code backticks
+    text = re.sub(r'`([^`]+)`', r'\1', text)
+    
+    # Clean math commands
+    def clean_math(match):
+        math_content = match.group(1)
+        cleaned = re.sub(r'\\[a-zA-Z]+', 'x', math_content)
+        cleaned = re.sub(r'[{}]', '', cleaned)
+        return cleaned
+
+    text = re.sub(r'\$([^\$]+)\$', clean_math, text)
+    return text
+
+def estimate_visual_lines(body_text):
+    if not body_text:
+        return 0.0
+        
+    lines = body_text.split('\n')
+    total_lines = 0.0
+    current_list = []
+    
+    def process_current_list():
+        nonlocal total_lines
+        if not current_list:
+            return
+        
+        is_two_col = len(current_list) >= 5
+        item_visual_lines = []
+        for line in current_list:
+            is_indented = line.startswith(' ') or line.startswith('\t')
+            if is_indented:
+                is_two_col = False
+            
+            cleaned = clean_for_line_estimation(line.strip())
+            cleaned = re.sub(r'^([-*+]|\d+\.)\s*', '', cleaned)
+            
+            lines_needed = math.ceil(len(cleaned) / 70.0)
+            if lines_needed == 0:
+                lines_needed = 1.0
+            item_visual_lines.append(lines_needed)
+            
+        if is_two_col:
+            # We also need to make sure all items are short (< 55 chars)
+            for line in current_list:
+                cleaned = clean_for_line_estimation(line.strip())
+                cleaned = re.sub(r'^([-*+]|\d+\.)\s*', '', cleaned)
+                if len(cleaned) >= 55:
+                    is_two_col = False
+                    break
+                    
+        if is_two_col:
+            mid = math.ceil(len(current_list) / 2.0)
+            col1 = item_visual_lines[:mid]
+            col2 = item_visual_lines[mid:]
+            list_height = max(sum(col1), sum(col2))
+        else:
+            list_height = sum(item_visual_lines)
+            
+        total_lines += list_height + 0.5  # lighter padding for lists
+        current_list.clear()
+
+    for line in lines:
+        trimmed = line.strip()
+        if not trimmed:
+            process_current_list()
+            total_lines += 0.1  # lighter spacing for empty lines
+            continue
+            
+        is_bullet = trimmed.startswith('-') or trimmed.startswith('*') or trimmed.startswith('+')
+        is_numbered = re.match(r'^\d+\.', trimmed) is not None
+        
+        if is_bullet or is_numbered:
+            current_list.append(line)
+        else:
+            process_current_list()
+            if trimmed.startswith('$$') and trimmed.endswith('$$'):
+                total_lines += 1.5  # lighter height for block math
+            elif trimmed.startswith('>'):
+                cleaned = clean_for_line_estimation(trimmed.replace('>', '', 1).strip())
+                lines_needed = math.ceil(len(cleaned) / 80.0)
+                total_lines += lines_needed + 0.3  # lighter padding for footnotes
+            else:
+                cleaned = clean_for_line_estimation(line)
+                lines_needed = math.ceil(len(cleaned) / 70.0)
+                total_lines += lines_needed + 0.2  # lighter padding for paragraphs
+                
+    process_current_list()
+    return total_lines
 
 def parse_markdown(filepath):
     print(f"Reading file: {filepath}")
@@ -57,6 +154,18 @@ def parse_markdown(filepath):
         # Body is everything after the header line
         body = part[part.find(header_line) + len(header_line):].strip()
         
+        # Estimate visual lines to prevent overflow and scrollbars
+        est_lines = estimate_visual_lines(body)
+        if est_lines >= 11.0:
+            print(f"\n[ERROR] Diapositiva {slide_num}: '{slide_title}'")
+            print(f"        Supera el límite de renglones visuales ({est_lines:.1f} >= 11.0).")
+            print(f"        Por favor, divídela en varias diapositivas en el archivo markdown.")
+            print(f"        Contenido problemático:\n{body}\n")
+            raise ValueError(f"Diapositiva {slide_num} excede el límite de renglones visuales ({est_lines:.1f} >= 11.0).")
+        elif est_lines >= 9.5:
+            print(f"[WARNING] Diapositiva {slide_num}: '{slide_title}'")
+            print(f"          Está al límite de renglones visuales ({est_lines:.1f} >= 9.5).")
+            
         slides_list.append({
             "id": slide_num,
             "title": slide_title,

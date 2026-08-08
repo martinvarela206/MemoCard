@@ -288,8 +288,10 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
   return elements.map((el, idx) => {
     if (el.type === 'ul' || el.type === 'ol') {
       const Tag = el.type;
+      const isShortList = el.items.length >= 5 && el.items.every(item => item.text.length < 55 && !item.indented);
+      const listClassName = `content-list${isShortList ? " two-columns" : ""}`;
       return (
-        <Tag key={`list-${idx}`} className="content-list">
+        <Tag key={`list-${idx}`} className={listClassName}>
           {el.items.map((item, itemIdx) => {
             const className = `${item.indented ? "nested-item" : "main-item"}${item.isFootnote ? " card-footnote" : ""}`;
             return (

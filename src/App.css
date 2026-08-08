@@ -615,6 +615,18 @@
   margin-bottom: 16px;
   text-align: left;
 }
+.content-list.two-columns {
+  column-count: 2;
+  column-gap: 30px;
+}
+.content-list.two-columns li {
+  break-inside: avoid-column;
+}
+@media (max-width: 600px) {
+  .content-list.two-columns {
+    column-count: 1;
+  }
+}
 .main-item {
   margin-bottom: 8px;
 }
