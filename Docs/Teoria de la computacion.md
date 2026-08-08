@@ -536,7 +536,7 @@ Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son r
 5.  **Clausura de Kleene:** $L_1^*$
 6.  **Clausura Positiva:** $L_1^+$
 
-> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la union y la concatenación demuestra que cumple la propiedad de ser **Lenguaje Regular**.
+> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la concatenación demuestra que cumple la propiedad de ser **Lenguaje Regular**.
 ---
 
 ## Diapositiva 65: Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)
