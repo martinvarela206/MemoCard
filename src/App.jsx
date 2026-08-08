@@ -397,6 +397,55 @@ function App() {
     return localStorage.getItem('memocard_selected_theme') || null;
   });
 
+  const [themeStudySession, setThemeStudySession] = useState(() => {
+    const savedSession = localStorage.getItem('memocard_theme_study_session');
+    if (!savedSession) return null;
+    try {
+      const parsed = JSON.parse(savedSession);
+      const savedProgress = localStorage.getItem('memocard_progress');
+      let progressMap = {};
+      if (savedProgress) {
+        try {
+          progressMap = JSON.parse(savedProgress);
+        } catch (e) {
+          console.error("Error loading progress map", e);
+        }
+      }
+      
+      const hydratedCards = data.cards.map(c => ({
+        ...c,
+        status: progressMap[c.id] || 'unlearned'
+      }));
+
+      const reconstructedQueue = parsed.queueIds
+        .map(id => hydratedCards.find(c => c.id === id))
+        .filter(Boolean);
+
+      if (reconstructedQueue.length > 0) {
+        return {
+          queue: reconstructedQueue,
+          currentIndex: Math.min(parsed.currentIndex, reconstructedQueue.length - 1),
+          showAnswer: parsed.showAnswer
+        };
+      }
+    } catch (e) {
+      console.error("Error restoring theme study session", e);
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    if (themeStudySession) {
+      localStorage.setItem('memocard_theme_study_session', JSON.stringify({
+        queueIds: themeStudySession.queue.map(c => c.id),
+        currentIndex: themeStudySession.currentIndex,
+        showAnswer: themeStudySession.showAnswer
+      }));
+    } else {
+      localStorage.removeItem('memocard_theme_study_session');
+    }
+  }, [themeStudySession]);
+
   // Dynamic themes computation with progress
   const themesList = React.useMemo(() => {
     const themesMap = {};
@@ -515,11 +564,11 @@ function App() {
     localStorage.setItem('memocard_progress', JSON.stringify(progressMap));
   };
 
-  // Grade card helper
-  const handleGradeCard = useCallback((status) => {
-    if (!studySession) return;
+  // Generic study helper functions to share logic between Global/Range and Theme sessions
+  const handleGradeCardGeneric = useCallback((status, session, setSession, onFinish) => {
+    if (!session) return;
     
-    const currentCard = studySession.queue[studySession.currentIndex];
+    const currentCard = session.queue[session.currentIndex];
     
     // Update card status
     const updatedCards = cards.map(c => {
@@ -533,8 +582,8 @@ function App() {
     saveProgress(updatedCards);
     
     // Advance queue
-    if (studySession.currentIndex + 1 < studySession.queue.length) {
-      setStudySession(prev => ({
+    if (session.currentIndex + 1 < session.queue.length) {
+      setSession(prev => ({
         ...prev,
         currentIndex: prev.currentIndex + 1,
         showAnswer: false
@@ -542,16 +591,15 @@ function App() {
     } else {
       // Session finished
       alert("¡Sesión finalizada! Buen trabajo repasando tus tarjetas.");
-      setStudySession(null);
-      setActiveTab('dashboard');
+      setSession(null);
+      if (onFinish) onFinish();
     }
-  }, [studySession, cards]);
+  }, [cards]);
 
-  // Card navigation helpers
-  const handleNextCard = useCallback(() => {
-    if (!studySession) return;
-    if (studySession.currentIndex + 1 < studySession.queue.length) {
-      setStudySession(prev => ({
+  const handleNextCardGeneric = useCallback((session, setSession) => {
+    if (!session) return;
+    if (session.currentIndex + 1 < session.queue.length) {
+      setSession(prev => ({
         ...prev,
         currentIndex: prev.currentIndex + 1,
         showAnswer: false
@@ -559,49 +607,77 @@ function App() {
     } else {
       alert("¡Has llegado al final de la sesión!");
     }
-  }, [studySession]);
+  }, []);
 
-  const handlePrevCard = useCallback(() => {
-    if (!studySession) return;
-    if (studySession.currentIndex > 0) {
-      setStudySession(prev => ({
+  const handlePrevCardGeneric = useCallback((session, setSession) => {
+    if (!session) return;
+    if (session.currentIndex > 0) {
+      setSession(prev => ({
         ...prev,
         currentIndex: prev.currentIndex - 1,
         showAnswer: false
       }));
     }
-  }, [studySession]);
+  }, []);
 
-  // Handle keyboard shortcuts during study
+  // Standard/Range study helpers
+  const handleGradeCard = useCallback((status) => {
+    handleGradeCardGeneric(status, studySession, setStudySession, () => {
+      setActiveTab('dashboard');
+    });
+  }, [studySession, handleGradeCardGeneric]);
+
+  const handleNextCard = useCallback(() => handleNextCardGeneric(studySession, setStudySession), [studySession, handleNextCardGeneric]);
+  const handlePrevCard = useCallback(() => handlePrevCardGeneric(studySession, setStudySession), [studySession, handlePrevCardGeneric]);
+
+  // Theme study helpers
+  const handleThemeGradeCard = useCallback((status) => {
+    handleGradeCardGeneric(status, themeStudySession, setThemeStudySession, () => {
+      setSelectedTheme(null);
+    });
+  }, [themeStudySession, handleGradeCardGeneric]);
+
+  const handleThemeNextCard = useCallback(() => handleNextCardGeneric(themeStudySession, setThemeStudySession), [themeStudySession, handleNextCardGeneric]);
+  const handleThemePrevCard = useCallback(() => handlePrevCardGeneric(themeStudySession, setThemeStudySession), [themeStudySession, handlePrevCardGeneric]);
+
+  // Handle keyboard shortcuts during study (both Standard and Theme sessions)
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (activeTab !== 'study' || !studySession) return;
+      const isStudyTab = activeTab === 'study' && studySession;
+      const isSlidesTab = activeTab === 'slides' && themeStudySession;
+      if (!isStudyTab && !isSlidesTab) return;
+
+      const currentSession = isStudyTab ? studySession : themeStudySession;
+      const setCurrentSession = isStudyTab ? setStudySession : setThemeStudySession;
+
+      const activeGradeCard = isStudyTab ? handleGradeCard : handleThemeGradeCard;
+      const activePrevCard = isStudyTab ? handlePrevCard : handleThemePrevCard;
+      const activeNextCard = isStudyTab ? handleNextCard : handleThemeNextCard;
       
       if (e.code === 'Space') {
         e.preventDefault();
-        if (!studySession.showAnswer) {
-          setStudySession(prev => ({ ...prev, showAnswer: true }));
+        if (!currentSession.showAnswer) {
+          setCurrentSession(prev => ({ ...prev, showAnswer: true }));
         } else {
-          // If already showing answer, space acts as "Good" grade
-          handleGradeCard('good');
+          activeGradeCard('good');
         }
       } else if (e.key === 'a' || e.key === 'A' || e.code === 'ArrowLeft') {
         e.preventDefault();
-        handlePrevCard();
+        activePrevCard();
       } else if (e.key === 'd' || e.key === 'D' || e.code === 'ArrowRight') {
         e.preventDefault();
-        handleNextCard();
-      } else if (studySession.showAnswer) {
-        if (e.key === '1') handleGradeCard('again');
-        else if (e.key === '2') handleGradeCard('hard');
-        else if (e.key === '3') handleGradeCard('good');
-        else if (e.key === '4') handleGradeCard('easy');
+        activeNextCard();
+      } else if (currentSession.showAnswer) {
+        if (e.key === '1') activeGradeCard('again');
+        else if (e.key === '2') activeGradeCard('hard');
+        else if (e.key === '3') activeGradeCard('good');
+        else if (e.key === '4') activeGradeCard('easy');
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeTab, studySession, handleGradeCard, handlePrevCard, handleNextCard]);
+  }, [activeTab, studySession, themeStudySession, handleGradeCard, handlePrevCard, handleNextCard, handleThemeGradeCard, handleThemePrevCard, handleThemeNextCard]);
 
   // Statistics calculation
   const stats = {
@@ -673,6 +749,23 @@ function App() {
     setActiveTab('study');
   };
 
+  const startThemeStudy = (themeName) => {
+    const filteredQueue = cards.filter(c => c.theme === themeName);
+    if (filteredQueue.length === 0) {
+      alert("No hay tarjetas que coincidan con este tema.");
+      return;
+    }
+    
+    filteredQueue.sort((a, b) => a.slide_id - b.slide_id);
+    
+    setThemeStudySession({
+      queue: filteredQueue,
+      currentIndex: 0,
+      showAnswer: false
+    });
+    setSelectedTheme(themeName);
+  };
+
   const resetProgress = () => {
     if (window.confirm("¿Estás seguro de que quieres restablecer todo el progreso de estudio? Esto borrará el historial de todas las tarjetas.")) {
       const reset = cards.map(c => ({ ...c, status: 'unlearned' }));
@@ -692,6 +785,177 @@ function App() {
   });
 
   const currentSlideObj = data.slides.find(s => s.id === selectedSlide) || data.slides[0];
+
+  const renderStudySession = (session, setSession, onGrade, onPrev, onNext, onExit) => {
+    return (
+      <div className="study-container">
+        {/* Stats header */}
+        <div className="session-progress glass-panel" style={{ borderRadius: '12px' }}>
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+            Repasando: <strong>{session.currentIndex + 1}</strong> de <strong>{session.queue.length}</strong>
+          </span>
+          
+          <div className="progress-track">
+            <div 
+              className="progress-bar" 
+              style={{ width: `${((session.currentIndex) / session.queue.length) * 100}%` }}
+            />
+          </div>
+
+          <button 
+            className="btn-secondary" 
+            style={{ padding: '4px 10px', fontSize: '0.8rem', border: '1px solid rgba(239, 68, 68, 0.3)', color: '#ef4444' }}
+            onClick={onExit}
+          >
+            Salir
+          </button>
+        </div>
+
+        {/* 3D Flip Card */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', width: '100%' }}>
+          {/* Left Arrow Button */}
+          <button 
+            className="btn-secondary" 
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            disabled={session.currentIndex === 0}
+            style={{
+              borderRadius: '50%',
+              width: '45px',
+              height: '45px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.25rem',
+              padding: '0',
+              opacity: session.currentIndex === 0 ? 0.3 : 1,
+              cursor: session.currentIndex === 0 ? 'not-allowed' : 'pointer',
+              border: '1px solid var(--border-color)',
+              background: 'rgba(255,255,255,0.05)',
+              color: 'white',
+              boxShadow: 'var(--shadow-glass)',
+              transition: 'all 0.2s',
+              flexShrink: 0
+            }}
+            title="Tarjeta anterior (Tecla A / Flecha Izquierda)"
+          >
+            ◀
+          </button>
+
+          {/* 3D Flip Card */}
+          <div 
+            className="card-perspective" 
+            onClick={() => setSession(prev => ({ ...prev, showAnswer: !prev.showAnswer }))}
+            style={{ flex: 1 }}
+          >
+            <div className={`card-rotator ${session.showAnswer ? 'flipped' : ''}`}>
+              
+              {/* Front Face */}
+              <div className="card-face front glass-panel">
+                <div className="card-header">
+                  <span>Diapositiva {session.queue[session.currentIndex].slide_id}</span>
+                  <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>
+                    {session.queue[session.currentIndex].theme || 'CONCEPTO'}
+                  </span>
+                </div>
+                
+                {session.queue[session.currentIndex].context && (
+                  <div className="card-context" onClick={(e) => e.stopPropagation()}>
+                    {renderMathAndMarkdown(session.queue[session.currentIndex].context)}
+                  </div>
+                )}
+                
+                <div className="card-body">
+                  <div className="card-term">
+                    {renderMathAndMarkdown(session.queue[session.currentIndex].term)}
+                  </div>
+                </div>
+              </div>
+
+              {/* Back Face */}
+              <div className="card-face back glass-panel">
+                <div className="card-header">
+                  <span>Diapositiva {session.queue[session.currentIndex].slide_id}</span>
+                  <span style={{ color: 'var(--secondary)', fontWeight: 'bold' }}>RESPUESTA</span>
+                </div>
+                
+                {session.queue[session.currentIndex].context && (
+                  <div className="card-context">
+                    {renderMathAndMarkdown(session.queue[session.currentIndex].context)}
+                  </div>
+                )}
+                
+                <div className="card-body" style={{ alignItems: 'flex-start', textAlign: 'left' }}>
+                  <div className="card-answer">
+                    {renderSlideLines(session.queue[session.currentIndex].back)}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Arrow Button */}
+          <button 
+            className="btn-secondary" 
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
+            disabled={session.currentIndex === session.queue.length - 1}
+            style={{
+              borderRadius: '50%',
+              width: '45px',
+              height: '45px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.25rem',
+              padding: '0',
+              opacity: session.currentIndex === session.queue.length - 1 ? 0.3 : 1,
+              cursor: session.currentIndex === session.queue.length - 1 ? 'not-allowed' : 'pointer',
+              border: '1px solid var(--border-color)',
+              background: 'rgba(255,255,255,0.05)',
+              color: 'white',
+              boxShadow: 'var(--shadow-glass)',
+              transition: 'all 0.2s',
+              flexShrink: 0
+            }}
+            title="Siguiente tarjeta (Tecla D / Flecha Derecha)"
+          >
+            ▶
+          </button>
+        </div>
+
+        {/* Controls */}
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+          {!session.showAnswer ? (
+            <button 
+              className="flip-prompt"
+              onClick={() => setSession(prev => ({ ...prev, showAnswer: true }))}
+            >
+              Revelar Respuesta (Espacio)
+            </button>
+          ) : (
+            <div className="grade-controls">
+              <button className="grade-btn again" onClick={() => onGrade('again')}>
+                <span>Otra Vez</span>
+                <span className="shortcut">Teclado 1</span>
+              </button>
+              <button className="grade-btn hard" onClick={() => onGrade('hard')}>
+                <span>Difícil</span>
+                <span className="shortcut">Teclado 2</span>
+              </button>
+              <button className="grade-btn good" onClick={() => onGrade('good')}>
+                <span>Bien</span>
+                <span className="shortcut">Teclado 3</span>
+              </button>
+              <button className="grade-btn easy" onClick={() => onGrade('easy')}>
+                <span>Fácil</span>
+                <span className="shortcut">Teclado 4</span>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="app-container">
@@ -912,172 +1176,7 @@ function App() {
         {activeTab === 'study' && (
           <div className="study-container">
             {studySession ? (
-              <>
-                {/* Stats header */}
-                <div className="session-progress glass-panel" style={{ borderRadius: '12px' }}>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    Repasando: <strong>{studySession.currentIndex + 1}</strong> de <strong>{studySession.queue.length}</strong>
-                  </span>
-                  
-                  <div className="progress-track">
-                    <div 
-                      className="progress-bar" 
-                      style={{ width: `${((studySession.currentIndex) / studySession.queue.length) * 100}%` }}
-                    />
-                  </div>
-
-                  <button 
-                    className="btn-secondary" 
-                    style={{ padding: '4px 10px', fontSize: '0.8rem', border: '1px solid rgba(239, 68, 68, 0.3)', color: '#ef4444' }}
-                    onClick={() => setStudySession(null)}
-                  >
-                    Salir
-                  </button>
-                </div>
-
-                {/* 3D Flip Card */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '20px', width: '100%' }}>
-                  {/* Left Arrow Button */}
-                  <button 
-                    className="btn-secondary" 
-                    onClick={(e) => { e.stopPropagation(); handlePrevCard(); }}
-                    disabled={studySession.currentIndex === 0}
-                    style={{
-                      borderRadius: '50%',
-                      width: '45px',
-                      height: '45px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.25rem',
-                      padding: '0',
-                      opacity: studySession.currentIndex === 0 ? 0.3 : 1,
-                      cursor: studySession.currentIndex === 0 ? 'not-allowed' : 'pointer',
-                      border: '1px solid var(--border-color)',
-                      background: 'rgba(255,255,255,0.05)',
-                      color: 'white',
-                      boxShadow: 'var(--shadow-glass)',
-                      transition: 'all 0.2s',
-                      flexShrink: 0
-                    }}
-                    title="Tarjeta anterior (Tecla A / Flecha Izquierda)"
-                  >
-                    ◀
-                  </button>
-
-                  {/* 3D Flip Card */}
-                  <div 
-                    className="card-perspective" 
-                    onClick={() => setStudySession(prev => ({ ...prev, showAnswer: !prev.showAnswer }))}
-                    style={{ flex: 1 }}
-                  >
-                    <div className={`card-rotator ${studySession.showAnswer ? 'flipped' : ''}`}>
-                      
-                      {/* Front Face */}
-                      <div className="card-face front glass-panel">
-                        <div className="card-header">
-                          <span>Diapositiva {studySession.queue[studySession.currentIndex].slide_id}</span>
-                          <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>
-                            {studySession.queue[studySession.currentIndex].theme || 'CONCEPTO'}
-                          </span>
-                        </div>
-                        
-                        {studySession.queue[studySession.currentIndex].context && (
-                          <div className="card-context" onClick={(e) => e.stopPropagation()}>
-                            {renderMathAndMarkdown(studySession.queue[studySession.currentIndex].context)}
-                          </div>
-                        )}
-                        
-                        <div className="card-body">
-                          <div className="card-term">
-                            {renderMathAndMarkdown(studySession.queue[studySession.currentIndex].term)}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Back Face */}
-                      <div className="card-face back glass-panel">
-                        <div className="card-header">
-                          <span>Diapositiva {studySession.queue[studySession.currentIndex].slide_id}</span>
-                          <span style={{ color: 'var(--secondary)', fontWeight: 'bold' }}>RESPUESTA</span>
-                        </div>
-                        
-                        {studySession.queue[studySession.currentIndex].context && (
-                          <div className="card-context">
-                            {renderMathAndMarkdown(studySession.queue[studySession.currentIndex].context)}
-                          </div>
-                        )}
-                        
-                        <div className="card-body" style={{ alignItems: 'flex-start', textAlign: 'left' }}>
-                          <div className="card-answer">
-                            {renderSlideLines(studySession.queue[studySession.currentIndex].back)}
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  {/* Right Arrow Button */}
-                  <button 
-                    className="btn-secondary" 
-                    onClick={(e) => { e.stopPropagation(); handleNextCard(); }}
-                    disabled={studySession.currentIndex === studySession.queue.length - 1}
-                    style={{
-                      borderRadius: '50%',
-                      width: '45px',
-                      height: '45px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.25rem',
-                      padding: '0',
-                      opacity: studySession.currentIndex === studySession.queue.length - 1 ? 0.3 : 1,
-                      cursor: studySession.currentIndex === studySession.queue.length - 1 ? 'not-allowed' : 'pointer',
-                      border: '1px solid var(--border-color)',
-                      background: 'rgba(255,255,255,0.05)',
-                      color: 'white',
-                      boxShadow: 'var(--shadow-glass)',
-                      transition: 'all 0.2s',
-                      flexShrink: 0
-                    }}
-                    title="Siguiente tarjeta (Tecla D / Flecha Derecha)"
-                  >
-                    ▶
-                  </button>
-                </div>
-
-                {/* Controls */}
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
-                  {!studySession.showAnswer ? (
-                    <button 
-                      className="flip-prompt"
-                      onClick={() => setStudySession(prev => ({ ...prev, showAnswer: true }))}
-                    >
-                      Revelar Respuesta (Espacio)
-                    </button>
-                  ) : (
-                    <div className="grade-controls">
-                      <button className="grade-btn again" onClick={() => handleGradeCard('again')}>
-                        <span>Otra Vez</span>
-                        <span className="shortcut">Teclado 1</span>
-                      </button>
-                      <button className="grade-btn hard" onClick={() => handleGradeCard('hard')}>
-                        <span>Difícil</span>
-                        <span className="shortcut">Teclado 2</span>
-                      </button>
-                      <button className="grade-btn good" onClick={() => handleGradeCard('good')}>
-                        <span>Bien</span>
-                        <span className="shortcut">Teclado 3</span>
-                      </button>
-                      <button className="grade-btn easy" onClick={() => handleGradeCard('easy')}>
-                        <span>Fácil</span>
-                        <span className="shortcut">Teclado 4</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
+              renderStudySession(studySession, setStudySession, handleGradeCard, handlePrevCard, handleNextCard, () => setStudySession(null))
             ) : (
               <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <h2>No hay ninguna sesión activa</h2>
@@ -1090,13 +1189,13 @@ function App() {
           </div>
         )}
 
-        {/* SLIDE VIEWER TAB */}
+        {/* STUDY BY THEME TAB */}
         {activeTab === 'slides' && (
           selectedTheme === null ? (
             <div className="themes-grid-container glass-panel" style={{ padding: '30px', flexGrow: 1, overflowY: 'auto' }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', marginBottom: '8px', color: 'var(--text-primary)' }}>📖 Selecciona un Tema para Estudiar</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '25px' }}>
-                Selecciona uno de los temas del coloquio para ver su contenido o iniciar una sesión de estudio focalizada.
+                Selecciona uno de los temas del coloquio para iniciar una sesión de estudio focalizada con tarjetas memorizables.
               </p>
               
               <div className="themes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
@@ -1105,9 +1204,7 @@ function App() {
                     key={theme.name} 
                     className="theme-card glass-panel"
                     onClick={() => {
-                      setSelectedTheme(theme.name);
-                      // Seleccionar la primera diapositiva de este tema
-                      setSelectedSlide(theme.start);
+                      startThemeStudy(theme.name);
                     }}
                     style={{
                       padding: '20px',
@@ -1161,148 +1258,19 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="slide-viewer-container glass-panel">
-              {/* Sidebar list */}
-              <div className="slide-sidebar" style={{ borderRight: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column' }}>
-                <button
-                  className="btn-secondary"
-                  onClick={() => setSelectedTheme(null)}
-                  style={{
-                    marginBottom: '15px',
-                    padding: '8px 12px',
-                    width: '100%',
-                    fontSize: '0.85rem',
-                    textAlign: 'left',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid var(--border-color)',
-                    color: 'var(--text-secondary)'
-                  }}
-                >
-                  ◀ Volver a Temas
+            themeStudySession ? (
+              renderStudySession(themeStudySession, setThemeStudySession, handleThemeGradeCard, handleThemePrevCard, handleThemeNextCard, () => {
+                setThemeStudySession(null);
+                setSelectedTheme(null);
+              })
+            ) : (
+              <div className="glass-panel" style={{ padding: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                <h2>Cargando sesión del tema...</h2>
+                <button className="btn-primary" onClick={() => setSelectedTheme(null)} style={{ alignSelf: 'center' }}>
+                  Volver a Temas
                 </button>
-                <div className="sidebar-title" style={{ fontSize: '0.95rem', color: 'var(--primary)', marginBottom: '8px' }}>
-                  {selectedTheme}
-                </div>
-                <input 
-                  type="text"
-                  placeholder="🔍 Buscar diapositiva..."
-                  value={searchSlide}
-                  onChange={e => setSearchSlide(e.target.value)}
-                  style={{
-                    background: 'rgba(0,0,0,0.2)',
-                    border: '1px solid var(--border-color)',
-                    borderRadius: '8px',
-                    padding: '8px 12px',
-                    color: 'white',
-                    fontSize: '0.85rem',
-                    marginBottom: '10px',
-                    width: '100%'
-                  }}
-                />
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1, overflowY: 'auto' }}>
-                  {filteredSlides.map(slide => (
-                    <button
-                      key={slide.id}
-                      className={`slide-nav-item ${selectedSlide === slide.id ? 'active' : ''}`}
-                      onClick={() => setSelectedSlide(slide.id)}
-                    >
-                      D{slide.id}: {slide.title}
-                    </button>
-                  ))}
-                  {filteredSlides.length === 0 && (
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', padding: '10px' }}>
-                      No se encontraron diapositivas
-                    </div>
-                  )}
-                </div>
               </div>
-
-              {/* Selected Slide Content Display */}
-              <div className="slide-content-area">
-                <div className="slide-content-header">
-                  <h2>{currentSlideObj.title}</h2>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <button
-                      className="btn-primary"
-                      onClick={() => {
-                        const themeInfo = themesList.find(t => t.name === selectedTheme);
-                        if (themeInfo) {
-                          setFilterSlideStart(themeInfo.start);
-                          setFilterSlideEnd(themeInfo.end);
-                          startStudy('range');
-                        }
-                      }}
-                      style={{
-                        padding: '6px 12px',
-                        fontSize: '0.8rem',
-                        background: 'var(--grad-primary)',
-                        border: 'none',
-                        borderRadius: '6px',
-                        color: 'white',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        boxShadow: 'var(--shadow-glass)'
-                      }}
-                    >
-                      🧠 Estudiar Tema
-                    </button>
-                    
-                    <button 
-                      onClick={() => setClozeMode(!clozeMode)}
-                      style={{
-                        background: clozeMode ? 'var(--primary-glow)' : 'transparent',
-                        border: `1px solid ${clozeMode ? 'var(--primary)' : 'var(--border-color)'}`,
-                        borderRadius: '6px',
-                        padding: '4px 10px',
-                        color: clozeMode ? 'var(--primary)' : 'var(--text-secondary)',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s'
-                      }}
-                      title="Oculta los conceptos clave en negrita. Haz clic sobre ellos para revelarlos uno a uno."
-                    >
-                      {clozeMode ? '👁️ Revelar Todo' : '🙈 Ocultar Conceptos'}
-                    </button>
-                    <span className="slide-index-badge">Diapositiva {currentSlideObj.id} / {data.slides.length}</span>
-                  </div>
-                </div>
-
-                <div className="slide-body">
-                  {renderSlideLines(currentSlideObj.content, clozeMode)}
-                </div>
-                
-                {/* Previous/Next quick buttons */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', marginTop: 'auto', paddingTop: '20px' }}>
-                  <button
-                    className="btn-secondary"
-                    disabled={currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start}
-                    onClick={() => setSelectedSlide(prev => Math.max(1, prev - 1))}
-                    style={{ 
-                      opacity: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start ? 0.3 : 1, 
-                      cursor: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start ? 'not-allowed' : 'pointer' 
-                    }}
-                  >
-                    ◀ Anterior
-                  </button>
-                  <button
-                    className="btn-secondary"
-                    disabled={currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end}
-                    onClick={() => setSelectedSlide(prev => Math.min(data.slides.length, prev + 1))}
-                    style={{ 
-                      opacity: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end ? 0.3 : 1, 
-                      cursor: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end ? 'not-allowed' : 'pointer' 
-                    }}
-                  >
-                    Siguiente ▶
-                  </button>
-                </div>
-              </div>
-            </div>
+            )
           )
         )}
 
