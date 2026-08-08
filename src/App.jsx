@@ -309,11 +309,80 @@ function renderSlideLines(content, blurConcepts = false, onRevealConcept = null)
 }
 
 function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [cards, setCards] = useState([]);
-  const [studySession, setStudySession] = useState(null); // { queue: [], currentIndex: 0, showAnswer: false }
-  const [selectedSlide, setSelectedSlide] = useState(data.slides[0]?.id || 1);
-  const [clozeMode, setClozeMode] = useState(false);
+  const [activeTab, setActiveTab] = useState(() => {
+    const val = localStorage.getItem('memocard_active_tab');
+    return ['dashboard', 'study', 'slides', 'stats'].includes(val) ? val : 'dashboard';
+  });
+
+  const [cards, setCards] = useState(() => {
+    const savedProgress = localStorage.getItem('memocard_progress');
+    let progressMap = {};
+    if (savedProgress) {
+      try {
+        progressMap = JSON.parse(savedProgress);
+      } catch (e) {
+        console.error("Error loading progress map", e);
+      }
+    }
+    return data.cards.map(c => ({
+      ...c,
+      status: progressMap[c.id] || 'unlearned'
+    }));
+  });
+
+  const [studySession, setStudySession] = useState(() => {
+    const savedSession = localStorage.getItem('memocard_study_session');
+    if (!savedSession) return null;
+    try {
+      const parsed = JSON.parse(savedSession);
+      const savedProgress = localStorage.getItem('memocard_progress');
+      let progressMap = {};
+      if (savedProgress) {
+        try {
+          progressMap = JSON.parse(savedProgress);
+        } catch (e) {
+          console.error("Error loading progress map", e);
+        }
+      }
+      
+      const hydratedCards = data.cards.map(c => ({
+        ...c,
+        status: progressMap[c.id] || 'unlearned'
+      }));
+
+      const reconstructedQueue = parsed.queueIds
+        .map(id => hydratedCards.find(c => c.id === id))
+        .filter(Boolean);
+
+      if (reconstructedQueue.length > 0) {
+        return {
+          queue: reconstructedQueue,
+          currentIndex: Math.min(parsed.currentIndex, reconstructedQueue.length - 1),
+          showAnswer: parsed.showAnswer
+        };
+      }
+    } catch (e) {
+      console.error("Error restoring study session", e);
+    }
+    return null;
+  });
+
+  const [selectedSlide, setSelectedSlide] = useState(() => {
+    const saved = localStorage.getItem('memocard_selected_slide');
+    if (saved) {
+      const val = parseInt(saved);
+      if (!isNaN(val) && data.slides.some(s => s.id === val)) {
+        return val;
+      }
+    }
+    return data.slides[0]?.id || 1;
+  });
+
+  const [clozeMode, setClozeMode] = useState(() => {
+    const saved = localStorage.getItem('memocard_cloze_mode');
+    return saved ? JSON.parse(saved) : false;
+  });
+
   const [searchSlide, setSearchSlide] = useState('');
   
   // Custom filter configs
@@ -322,7 +391,32 @@ function App() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [shuffleCustom, setShuffleCustom] = useState(false);
 
-  // Load progress on mount
+  // Sync state to localStorage when changes occur
+  useEffect(() => {
+    localStorage.setItem('memocard_active_tab', activeTab);
+  }, [activeTab]);
+
+  useEffect(() => {
+    localStorage.setItem('memocard_selected_slide', selectedSlide);
+  }, [selectedSlide]);
+
+  useEffect(() => {
+    localStorage.setItem('memocard_cloze_mode', JSON.stringify(clozeMode));
+  }, [clozeMode]);
+
+  useEffect(() => {
+    if (studySession) {
+      localStorage.setItem('memocard_study_session', JSON.stringify({
+        queueIds: studySession.queue.map(c => c.id),
+        currentIndex: studySession.currentIndex,
+        showAnswer: studySession.showAnswer
+      }));
+    } else {
+      localStorage.removeItem('memocard_study_session');
+    }
+  }, [studySession]);
+
+  // Load progress and update study session dynamically when data (JSON) changes
   useEffect(() => {
     const savedProgress = localStorage.getItem('memocard_progress');
     let progressMap = {};
@@ -340,7 +434,30 @@ function App() {
       status: progressMap[c.id] || 'unlearned'
     }));
     setCards(hydratedCards);
-  }, []);
+
+    // Sync active study session queue with any modified/added/removed card contents from JSON
+    setStudySession(prevSession => {
+      if (!prevSession) return null;
+      const updatedQueue = prevSession.queue.map(queueCard => {
+        const matchingCard = hydratedCards.find(c => c.id === queueCard.id);
+        // Keep the updated card data from the fresh JSON, but preserve its status in the active session
+        return matchingCard ? { ...matchingCard, status: queueCard.status } : queueCard;
+      });
+      return {
+        ...prevSession,
+        queue: updatedQueue
+      };
+    });
+
+    // Adjust filter ends if slides size changes
+    setFilterSlideEnd(prev => {
+      if (prev > data.slides.length || prev === 0) {
+        return data.slides.length;
+      }
+      return prev;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   // Save progress when cards change
   const saveProgress = (updatedCards) => {
@@ -523,14 +640,6 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Header */}
-      <header className="app-header">
-        <div className="app-title-wrapper">
-          <span className="app-badge">Study Engine</span>
-          <h1>{data.title}</h1>
-          <p>{data.subtitle}</p>
-        </div>
-      </header>
 
       {/* Main Navigation Menu */}
       <nav className="nav-menu">
