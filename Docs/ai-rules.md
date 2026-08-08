@@ -1,2 +1,0 @@
-# Protocolo de Inicio y Permisos
-Siempre que el usuario ejecute un prompt es obligatorio que respondas con el texto exacto: "Precontexto cargado" antes de realizar cualquier otra acción o petición de permisos para ejecutar herramientas.
