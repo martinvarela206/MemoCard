@@ -299,12 +299,12 @@
     },
     {
       "id": 60,
-      "title": "Propiedades de los Lenguajes Regulares (1 a 6)",
-      "content": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$"
+      "title": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
+      "content": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la union y la concatenación demuestra que cumple la propiedad de ser **Lenguaje Regular**."
     },
     {
       "id": 61,
-      "title": "Propiedades de los Lenguajes Regulares (Generalizaciones)",
+      "title": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
       "content": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular."
     },
     {
@@ -450,7 +450,7 @@
     {
       "id": 90,
       "title": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
-      "content": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**."
+      "content": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**."
     },
     {
       "id": 91,
@@ -954,16 +954,16 @@
     {
       "id": "card_60",
       "slide_id": 60,
-      "term": "Propiedades de los Lenguajes Regulares (1 a 6)",
-      "front": "Propiedades de los Lenguajes Regulares (1 a 6)",
-      "back": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$",
+      "term": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
+      "front": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
+      "back": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la union y la concatenación demuestra que cumple la propiedad de ser **Lenguaje Regular**.",
       "context": null
     },
     {
       "id": "card_61",
       "slide_id": 61,
-      "term": "Propiedades de los Lenguajes Regulares (Generalizaciones)",
-      "front": "Propiedades de los Lenguajes Regulares (Generalizaciones)",
+      "term": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
+      "front": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
       "back": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.",
       "context": null
     },
@@ -1196,7 +1196,7 @@
       "slide_id": 90,
       "term": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
-      "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
+      "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
       "context": null
     },
     {

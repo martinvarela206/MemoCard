@@ -502,7 +502,7 @@ Los lenguajes regulares pueden ser finitos o infinitos, pero siempre se deben ge
 
 ---
 
-## Diapositiva 60: Propiedades de los Lenguajes Regulares (1 a 6)
+## Diapositiva 60: Propiedades de los Lenguajes Regulares sobre Operaciones (6)
 
 Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son regulares:
 1.  **Unión:** $L_1 \cup L_2$
@@ -512,9 +512,10 @@ Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son r
 5.  **Clausura de Kleene:** $L_1^*$
 6.  **Clausura Positiva:** $L_1^+$
 
+> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la union y la concatenación demuestra que cumple la propiedad de ser **Lenguaje Regular**.
 ---
 
-## Diapositiva 61: Propiedades de los Lenguajes Regulares (Generalizaciones)
+## Diapositiva 61: Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)
 
 Se derivan por inducción matemática a partir de las propiedades básicas:
 *   La **unión finita** de lenguajes regulares es un lenguaje regular.
@@ -784,7 +785,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
-> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **"De X se puede llegar a Y por medio de x"**.
+> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **"De X se puede llegar a Y por medio de x"**.
 
 ---
 
