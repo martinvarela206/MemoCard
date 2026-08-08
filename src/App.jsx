@@ -393,6 +393,41 @@ function App() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [shuffleCustom, setShuffleCustom] = useState(false);
 
+  const [selectedTheme, setSelectedTheme] = useState(() => {
+    return localStorage.getItem('memocard_selected_theme') || null;
+  });
+
+  // Dynamic themes computation with progress
+  const themesList = React.useMemo(() => {
+    const themesMap = {};
+    data.slides.forEach(slide => {
+      const themeName = slide.theme || "Sin Tema";
+      if (!themesMap[themeName]) {
+        themesMap[themeName] = {
+          name: themeName,
+          start: slide.id,
+          end: slide.id,
+          count: 0
+        };
+      }
+      themesMap[themeName].end = Math.max(themesMap[themeName].end, slide.id);
+      themesMap[themeName].start = Math.min(themesMap[themeName].start, slide.id);
+      themesMap[themeName].count += 1;
+    });
+
+    return Object.values(themesMap).map(theme => {
+      const themeCards = cards.filter(c => c.theme === theme.name);
+      const total = themeCards.length;
+      const mastered = themeCards.filter(c => c.status === 'easy' || c.status === 'good').length;
+      const percentMastered = total > 0 ? Math.round((mastered / total) * 100) : 0;
+      return {
+        ...theme,
+        totalCards: total,
+        percentMastered
+      };
+    });
+  }, [data, cards]);
+
   // Sync state to localStorage when changes occur
   useEffect(() => {
     localStorage.setItem('memocard_active_tab', activeTab);
@@ -401,6 +436,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem('memocard_selected_slide', selectedSlide);
   }, [selectedSlide]);
+
+  useEffect(() => {
+    if (selectedTheme) {
+      localStorage.setItem('memocard_selected_theme', selectedTheme);
+    } else {
+      localStorage.removeItem('memocard_selected_theme');
+    }
+  }, [selectedTheme]);
 
   useEffect(() => {
     localStorage.setItem('memocard_cloze_mode', JSON.stringify(clozeMode));
@@ -584,6 +627,12 @@ function App() {
       filteredQueue = cards.filter(c => c.status === 'again' || c.status === 'hard');
     } else if (mode === 'pending') {
       filteredQueue = cards.filter(c => c.status === 'unlearned');
+    } else if (mode === 'range') {
+      filteredQueue = cards.filter(c => {
+        const slideId = c.slide_id;
+        return slideId >= filterSlideStart && slideId <= filterSlideEnd;
+      });
+      filteredQueue.sort((a, b) => a.slide_id - b.slide_id);
     } else if (mode === 'custom') {
       filteredQueue = cards.filter(c => {
         const slideId = c.slide_id;
@@ -610,6 +659,8 @@ function App() {
       } else {
         finalQueue.sort((a, b) => a.slide_id - b.slide_id);
       }
+    } else if (mode === 'range') {
+      finalQueue.sort((a, b) => a.slide_id - b.slide_id);
     } else {
       finalQueue.sort(() => Math.random() - 0.5);
     }
@@ -633,10 +684,12 @@ function App() {
   };
 
   // Filter slides in sidebar
-  const filteredSlides = data.slides.filter(slide => 
-    slide.title.toLowerCase().includes(searchSlide.toLowerCase()) ||
-    `Diapositiva ${slide.id}`.toLowerCase().includes(searchSlide.toLowerCase())
-  );
+  const filteredSlides = data.slides.filter(slide => {
+    const matchesTheme = selectedTheme === null || slide.theme === selectedTheme;
+    const matchesSearch = slide.title.toLowerCase().includes(searchSlide.toLowerCase()) ||
+      `Diapositiva ${slide.id}`.toLowerCase().includes(searchSlide.toLowerCase());
+    return matchesTheme && matchesSearch;
+  });
 
   const currentSlideObj = data.slides.find(s => s.id === selectedSlide) || data.slides[0];
 
@@ -644,30 +697,80 @@ function App() {
     <div className="app-container">
 
       {/* Main Navigation Menu */}
-      <nav className="nav-menu">
+      <nav className="nav-menu" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
         <button 
           className={`nav-button ${activeTab === 'dashboard' ? 'active' : ''}`}
           onClick={() => { setActiveTab('dashboard'); setStudySession(null); }}
         >
           📊 Dashboard
         </button>
-        <button 
-          className={`nav-button ${activeTab === 'study' ? 'active' : ''}`}
-          onClick={() => {
-            if (!studySession) {
-              startStudy('all');
-            } else {
-              setActiveTab('study');
-            }
+        
+        {/* Estudiar por Rango Tab Wrapper */}
+        <div 
+          className={`nav-button-group ${activeTab === 'study' ? 'active' : ''}`} 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px', 
+            background: activeTab === 'study' ? 'var(--primary-glow)' : 'rgba(255,255,255,0.02)', 
+            border: `1px solid ${activeTab === 'study' ? 'var(--primary)' : 'var(--border-color)'}`,
+            borderRadius: '12px',
+            padding: '2px 8px 2px 2px',
+            transition: 'all 0.3s ease'
           }}
         >
-          🧠 Memorización
-        </button>
+          <button 
+            className="nav-button"
+            style={{ 
+              border: 'none', 
+              background: 'transparent', 
+              boxShadow: 'none', 
+              color: activeTab === 'study' ? 'var(--primary)' : 'var(--text-secondary)',
+              padding: '8px 12px',
+              margin: '0'
+            }}
+            onClick={() => {
+              if (!studySession) {
+                startStudy('range');
+              } else {
+                setActiveTab('study');
+              }
+            }}
+          >
+            🧠 Estudiar por Rango
+          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', borderLeft: '1px solid var(--border-color)', paddingLeft: '8px' }}>
+            <input 
+              type="number" 
+              min="1" 
+              max={data.slides.length} 
+              value={filterSlideStart} 
+              onChange={e => setFilterSlideStart(Math.max(1, parseInt(e.target.value) || 1))}
+              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '4px 6px', color: 'white', width: '50px', textAlign: 'center', fontSize: '0.8rem' }}
+              onClick={e => e.stopPropagation()}
+            />
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>a</span>
+            <input 
+              type="number" 
+              min="1" 
+              max={data.slides.length} 
+              value={filterSlideEnd} 
+              onChange={e => setFilterSlideEnd(Math.min(data.slides.length, parseInt(e.target.value) || data.slides.length))}
+              style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '4px 6px', color: 'white', width: '50px', textAlign: 'center', fontSize: '0.8rem' }}
+              onClick={e => e.stopPropagation()}
+            />
+          </div>
+        </div>
+
         <button 
           className={`nav-button ${activeTab === 'slides' ? 'active' : ''}`}
-          onClick={() => { setActiveTab('slides'); setStudySession(null); }}
+          onClick={() => { 
+            setActiveTab('slides'); 
+            setStudySession(null); 
+            setSelectedTheme(null); // Reiniciar tema al entrar
+          }}
         >
-          📖 Diapositivas
+          📖 Estudiar por Tema
         </button>
         <button 
           className={`nav-button ${activeTab === 'stats' ? 'active' : ''}`}
@@ -989,94 +1092,218 @@ function App() {
 
         {/* SLIDE VIEWER TAB */}
         {activeTab === 'slides' && (
-          <div className="slide-viewer-container glass-panel">
-            {/* Sidebar list */}
-            <div className="slide-sidebar" style={{ borderRight: '1px solid var(--border-color)' }}>
-              <div className="sidebar-title">Estructura del Coloquio</div>
-              <input 
-                type="text"
-                placeholder="🔍 Buscar diapositiva..."
-                value={searchSlide}
-                onChange={e => setSearchSlide(e.target.value)}
-                style={{
-                  background: 'rgba(0,0,0,0.2)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '8px',
-                  padding: '8px 12px',
-                  color: 'white',
-                  fontSize: '0.85rem',
-                  marginBottom: '10px',
-                  width: '100%'
-                }}
-              />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1, overflowY: 'auto' }}>
-                {filteredSlides.map(slide => (
-                  <button
-                    key={slide.id}
-                    className={`slide-nav-item ${selectedSlide === slide.id ? 'active' : ''}`}
-                    onClick={() => setSelectedSlide(slide.id)}
+          selectedTheme === null ? (
+            <div className="themes-grid-container glass-panel" style={{ padding: '30px', flexGrow: 1, overflowY: 'auto' }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', marginBottom: '8px', color: 'var(--text-primary)' }}>📖 Selecciona un Tema para Estudiar</h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '25px' }}>
+                Selecciona uno de los temas del coloquio para ver su contenido o iniciar una sesión de estudio focalizada.
+              </p>
+              
+              <div className="themes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+                {themesList.map(theme => (
+                  <div 
+                    key={theme.name} 
+                    className="theme-card glass-panel"
+                    onClick={() => {
+                      setSelectedTheme(theme.name);
+                      // Seleccionar la primera diapositiva de este tema
+                      setSelectedSlide(theme.start);
+                    }}
+                    style={{
+                      padding: '20px',
+                      cursor: 'pointer',
+                      borderRadius: '12px',
+                      border: '1px solid var(--border-color)',
+                      background: 'rgba(255,255,255,0.03)',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.borderColor = 'var(--primary)';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                      e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(6, 182, 212, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.borderColor = 'var(--border-color)';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
                   >
-                    D{slide.id}: {slide.title}
-                  </button>
-                ))}
-                {filteredSlides.length === 0 && (
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', padding: '10px' }}>
-                    No se encontraron diapositivas
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: 'white', margin: '0' }}>{theme.name}</h3>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Rango: D{theme.start} a D{theme.end}</span>
+                      <span>{theme.count} diapositivas</span>
+                    </div>
+                    
+                    {/* Progress indicator */}
+                    <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '4px', color: 'var(--text-secondary)' }}>
+                        <span>Dominado:</span>
+                        <strong style={{ color: 'var(--secondary)' }}>{theme.percentMastered}%</strong>
+                      </div>
+                      <div style={{ height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+                        <div 
+                          style={{ 
+                            height: '100%', 
+                            background: 'var(--grad-secondary)', 
+                            width: `${theme.percentMastered}%`,
+                            transition: 'width 0.4s ease'
+                          }} 
+                        />
+                      </div>
+                    </div>
                   </div>
-                )}
+                ))}
               </div>
             </div>
-
-            {/* Selected Slide Content Display */}
-            <div className="slide-content-area">
-              <div className="slide-content-header">
-                <h2>{currentSlideObj.title}</h2>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <button 
-                    onClick={() => setClozeMode(!clozeMode)}
-                    style={{
-                      background: clozeMode ? 'var(--primary-glow)' : 'transparent',
-                      border: `1px solid ${clozeMode ? 'var(--primary)' : 'var(--border-color)'}`,
-                      borderRadius: '6px',
-                      padding: '4px 10px',
-                      color: clozeMode ? 'var(--primary)' : 'var(--text-secondary)',
-                      fontSize: '0.8rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                    title="Oculta los conceptos clave en negrita. Haz clic sobre ellos para revelarlos uno a uno."
-                  >
-                    {clozeMode ? '👁️ Revelar Todo' : '🙈 Ocultar Conceptos'}
-                  </button>
-                  <span className="slide-index-badge">Diapositiva {currentSlideObj.id} / {data.slides.length}</span>
+          ) : (
+            <div className="slide-viewer-container glass-panel">
+              {/* Sidebar list */}
+              <div className="slide-sidebar" style={{ borderRight: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column' }}>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setSelectedTheme(null)}
+                  style={{
+                    marginBottom: '15px',
+                    padding: '8px 12px',
+                    width: '100%',
+                    fontSize: '0.85rem',
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid var(--border-color)',
+                    color: 'var(--text-secondary)'
+                  }}
+                >
+                  ◀ Volver a Temas
+                </button>
+                <div className="sidebar-title" style={{ fontSize: '0.95rem', color: 'var(--primary)', marginBottom: '8px' }}>
+                  {selectedTheme}
+                </div>
+                <input 
+                  type="text"
+                  placeholder="🔍 Buscar diapositiva..."
+                  value={searchSlide}
+                  onChange={e => setSearchSlide(e.target.value)}
+                  style={{
+                    background: 'rgba(0,0,0,0.2)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    color: 'white',
+                    fontSize: '0.85rem',
+                    marginBottom: '10px',
+                    width: '100%'
+                  }}
+                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flexGrow: 1, overflowY: 'auto' }}>
+                  {filteredSlides.map(slide => (
+                    <button
+                      key={slide.id}
+                      className={`slide-nav-item ${selectedSlide === slide.id ? 'active' : ''}`}
+                      onClick={() => setSelectedSlide(slide.id)}
+                    >
+                      D{slide.id}: {slide.title}
+                    </button>
+                  ))}
+                  {filteredSlides.length === 0 && (
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', padding: '10px' }}>
+                      No se encontraron diapositivas
+                    </div>
+                  )}
                 </div>
               </div>
 
-              <div className="slide-body">
-                {renderSlideLines(currentSlideObj.content, clozeMode)}
-              </div>
-              
-              {/* Previous/Next quick buttons */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', marginTop: 'auto', paddingTop: '20px' }}>
-                <button
-                  className="btn-secondary"
-                  disabled={currentSlideObj.id === 1}
-                  onClick={() => setSelectedSlide(prev => Math.max(1, prev - 1))}
-                  style={{ opacity: currentSlideObj.id === 1 ? 0.3 : 1, cursor: currentSlideObj.id === 1 ? 'not-allowed' : 'pointer' }}
-                >
-                  ◀ Anterior
-                </button>
-                <button
-                  className="btn-secondary"
-                  disabled={currentSlideObj.id === data.slides.length}
-                  onClick={() => setSelectedSlide(prev => Math.min(data.slides.length, prev + 1))}
-                  style={{ opacity: currentSlideObj.id === data.slides.length ? 0.3 : 1, cursor: currentSlideObj.id === data.slides.length ? 'not-allowed' : 'pointer' }}
-                >
-                  Siguiente ▶
-                </button>
+              {/* Selected Slide Content Display */}
+              <div className="slide-content-area">
+                <div className="slide-content-header">
+                  <h2>{currentSlideObj.title}</h2>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <button
+                      className="btn-primary"
+                      onClick={() => {
+                        const themeInfo = themesList.find(t => t.name === selectedTheme);
+                        if (themeInfo) {
+                          setFilterSlideStart(themeInfo.start);
+                          setFilterSlideEnd(themeInfo.end);
+                          startStudy('range');
+                        }
+                      }}
+                      style={{
+                        padding: '6px 12px',
+                        fontSize: '0.8rem',
+                        background: 'var(--grad-primary)',
+                        border: 'none',
+                        borderRadius: '6px',
+                        color: 'white',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        boxShadow: 'var(--shadow-glass)'
+                      }}
+                    >
+                      🧠 Estudiar Tema
+                    </button>
+                    
+                    <button 
+                      onClick={() => setClozeMode(!clozeMode)}
+                      style={{
+                        background: clozeMode ? 'var(--primary-glow)' : 'transparent',
+                        border: `1px solid ${clozeMode ? 'var(--primary)' : 'var(--border-color)'}`,
+                        borderRadius: '6px',
+                        padding: '4px 10px',
+                        color: clozeMode ? 'var(--primary)' : 'var(--text-secondary)',
+                        fontSize: '0.8rem',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s'
+                      }}
+                      title="Oculta los conceptos clave en negrita. Haz clic sobre ellos para revelarlos uno a uno."
+                    >
+                      {clozeMode ? '👁️ Revelar Todo' : '🙈 Ocultar Conceptos'}
+                    </button>
+                    <span className="slide-index-badge">Diapositiva {currentSlideObj.id} / {data.slides.length}</span>
+                  </div>
+                </div>
+
+                <div className="slide-body">
+                  {renderSlideLines(currentSlideObj.content, clozeMode)}
+                </div>
+                
+                {/* Previous/Next quick buttons */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', marginTop: 'auto', paddingTop: '20px' }}>
+                  <button
+                    className="btn-secondary"
+                    disabled={currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start}
+                    onClick={() => setSelectedSlide(prev => Math.max(1, prev - 1))}
+                    style={{ 
+                      opacity: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start ? 0.3 : 1, 
+                      cursor: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.start ? 'not-allowed' : 'pointer' 
+                    }}
+                  >
+                    ◀ Anterior
+                  </button>
+                  <button
+                    className="btn-secondary"
+                    disabled={currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end}
+                    onClick={() => setSelectedSlide(prev => Math.min(data.slides.length, prev + 1))}
+                    style={{ 
+                      opacity: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end ? 0.3 : 1, 
+                      cursor: currentSlideObj.id === themesList.find(t => t.name === selectedTheme)?.end ? 'not-allowed' : 'pointer' 
+                    }}
+                  >
+                    Siguiente ▶
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )
         )}
 
         {/* STATISTICS TAB */}
