@@ -39,7 +39,7 @@
 
 ---
 
-## Diapositiva 6: Potencia de un Alfabeto ($\Sigma^k$)
+## Diapositiva 6: Potencia $k$-ésima de un Alfabeto ($\Sigma^k$)
 
 **Definición:** La potencia $k$-ésima de un alfabeto $\Sigma$, denotada por $\Sigma^k$, es el conjunto de todas las posibles cadenas con símbolos de $\Sigma$ de longitud exacta $k$.
 **Distinción:**
@@ -69,7 +69,7 @@ $$\Sigma^+ = \bigcup_{i=1}^{\infty} \Sigma^i$$
 
 ---
 
-## Diapositiva 9: Relaciones fundamentales entre $\Sigma^*$, $\Sigma^+$ y $\epsilon$
+## Diapositiva 9: Relaciones entre $\Sigma^*$, $\Sigma^+$ y $\{\epsilon\}$
 
 - $\Sigma^* = \Sigma^+ \cup \{\epsilon\}$
 - $\Sigma^+ = \Sigma^* - \{\epsilon\}$

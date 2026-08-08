@@ -29,7 +29,7 @@
     },
     {
       "id": 6,
-      "title": "Potencia de un Alfabeto ($\\Sigma^k$)",
+      "title": "Potencia $k$-ésima de un Alfabeto ($\\Sigma^k$)",
       "content": "**Definición:** La potencia $k$-ésima de un alfabeto $\\Sigma$, denotada por $\\Sigma^k$, es el conjunto de todas las posibles cadenas con símbolos de $\\Sigma$ de longitud exacta $k$.\n**Distinción:**\n- $\\Sigma$: Conjunto de símbolos.\n- $\\Sigma^0$: $\\{\\epsilon\\}$ (por convención, para cualquier alfabeto $\\Sigma$).\n- $\\Sigma^1$: Conjunto de cadenas de longitud 1.\n- $\\Sigma^n$: Conjunto de cadenas de longitud $n$."
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "id": 9,
-      "title": "Relaciones fundamentales entre $\\Sigma^*$, $\\Sigma^+$ y $\\epsilon$",
+      "title": "Relaciones entre $\\Sigma^*$, $\\Sigma^+$ y $\\{\\epsilon\\}$",
       "content": "- $\\Sigma^* = \\Sigma^+ \\cup \\{\\epsilon\\}$\n- $\\Sigma^+ = \\Sigma^* - \\{\\epsilon\\}$"
     },
     {
@@ -557,8 +557,8 @@
     {
       "id": "card_6",
       "slide_id": 6,
-      "term": "Potencia de un Alfabeto ($\\Sigma^k$)",
-      "front": "Potencia de un Alfabeto ($\\Sigma^k$)",
+      "term": "Potencia $k$-ésima de un Alfabeto ($\\Sigma^k$)",
+      "front": "Potencia $k$-ésima de un Alfabeto ($\\Sigma^k$)",
       "back": "**Definición:** La potencia $k$-ésima de un alfabeto $\\Sigma$, denotada por $\\Sigma^k$, es el conjunto de todas las posibles cadenas con símbolos de $\\Sigma$ de longitud exacta $k$.\n**Distinción:**\n- $\\Sigma$: Conjunto de símbolos.\n- $\\Sigma^0$: $\\{\\epsilon\\}$ (por convención, para cualquier alfabeto $\\Sigma$).\n- $\\Sigma^1$: Conjunto de cadenas de longitud 1.\n- $\\Sigma^n$: Conjunto de cadenas de longitud $n$.",
       "context": null
     },
@@ -581,8 +581,8 @@
     {
       "id": "card_9",
       "slide_id": 9,
-      "term": "Relaciones fundamentales entre $\\Sigma^*$, $\\Sigma^+$ y $\\epsilon$",
-      "front": "Relaciones fundamentales entre $\\Sigma^*$, $\\Sigma^+$ y $\\epsilon$",
+      "term": "Relaciones entre $\\Sigma^*$, $\\Sigma^+$ y $\\{\\epsilon\\}$",
+      "front": "Relaciones entre $\\Sigma^*$, $\\Sigma^+$ y $\\{\\epsilon\\}$",
       "back": "- $\\Sigma^* = \\Sigma^+ \\cup \\{\\epsilon\\}$\n- $\\Sigma^+ = \\Sigma^* - \\{\\epsilon\\}$",
       "context": null
     },
