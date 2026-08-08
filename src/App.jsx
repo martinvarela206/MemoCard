@@ -874,7 +874,9 @@ function App() {
                       <div className="card-face front glass-panel">
                         <div className="card-header">
                           <span>Diapositiva {studySession.queue[studySession.currentIndex].slide_id}</span>
-                          <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>CONCEPTO</span>
+                          <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>
+                            {studySession.queue[studySession.currentIndex].theme || 'CONCEPTO'}
+                          </span>
                         </div>
                         
                         {studySession.queue[studySession.currentIndex].context && (

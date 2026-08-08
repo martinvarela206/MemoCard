@@ -118,7 +118,7 @@ def parse_markdown(filepath):
     # Process the first block for title/subtitle if it doesn't look like a slide
     first_part = slides_raw[0].strip() if slides_raw else ""
     start_index = 0
-    if first_part and not first_part.startswith("## Diapositiva"):
+    if first_part and not first_part.startswith("### Diapositiva"):
         title_match = re.search(r'^#\s+(.+)$', first_part, re.MULTILINE)
         if title_match:
             title = title_match.group(1).replace("Diapositivas de Estudio:", "").strip()
@@ -130,6 +130,7 @@ def parse_markdown(filepath):
         
     slides_list = []
     cards_list = []
+    current_theme = None
     
     # Iterate over the slide parts
     for idx, part in enumerate(slides_raw[start_index:], start=1):
@@ -137,11 +138,20 @@ def parse_markdown(filepath):
         if not part:
             continue
             
-        # Parse Slide Header: '## Diapositiva X: Title'
-        header_match = re.search(r'^##\s+Diapositiva\s+(\d+):\s*(.+)$', part, re.MULTILINE)
+        # Check if this part is a theme definition instead of a slide
+        # A theme definition has a H2 header (##) and NO H3 header (###)
+        if part.startswith("##") and not "###" in part:
+            theme_match = re.search(r'^##\s+(.+)$', part, re.MULTILINE)
+            if theme_match:
+                current_theme = theme_match.group(1).strip()
+                print(f"Detectado tema: {current_theme}")
+                continue
+            
+        # Parse Slide Header: '### Diapositiva X: Title'
+        header_match = re.search(r'^###\s+Diapositiva\s+(\d+):\s*(.+)$', part, re.MULTILINE)
         if not header_match:
-            # If it doesn't match the standard slide header, check if it's just '## Title'
-            header_match = re.search(r'^##\s*(.+)$', part, re.MULTILINE)
+            # If it doesn't match the standard slide header, check if it's just '### Title'
+            header_match = re.search(r'^###\s*(.+)$', part, re.MULTILINE)
             if not header_match:
                 continue
             slide_num = idx
@@ -169,7 +179,8 @@ def parse_markdown(filepath):
         slides_list.append({
             "id": slide_num,
             "title": slide_title,
-            "content": body
+            "content": body,
+            "theme": current_theme
         })
         
         # Create exactly one card for the entire slide
@@ -180,7 +191,8 @@ def parse_markdown(filepath):
             "term": slide_title,
             "front": slide_title,
             "back": body,
-            "context": None
+            "context": None,
+            "theme": current_theme
         })
             
     # Clean up card back contents (strip outer whitespace, fix newlines)
