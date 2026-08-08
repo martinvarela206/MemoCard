@@ -784,7 +784,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
-> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como *"De X se puede llegar a Y con el terminal x"*.
+> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **"De X se puede llegar a Y por medio de x"**.
 
 ---
 

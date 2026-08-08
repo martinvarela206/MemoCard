@@ -335,7 +335,7 @@
     {
       "id": 67,
       "title": "Prioridad de Operaciones en ER",
-      "content": "En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)"
+      "content": "En la escritura de ER los paréntesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)"
     },
     {
       "id": 68,
@@ -390,7 +390,7 @@
     {
       "id": 78,
       "title": "Sentencia",
-      "content": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por simbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$"
+      "content": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$"
     },
     {
       "id": 79,
@@ -399,8 +399,8 @@
     },
     {
       "id": 80,
-      "title": "Lenguaje Reverso o Reflexo ($L^{-1}(G)$)",
-      "content": "**Definición:** El lenguaje reverso o reflexo $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro)."
+      "title": "Lenguaje Inverso ($L^{-1}(G)$)",
+      "content": "El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro)."
     },
     {
       "id": 81,
@@ -450,7 +450,7 @@
     {
       "id": 90,
       "title": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
-      "content": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas alla que la produccion sea $X -> xY$ o $X -> Yx$, se lee como \"de X se puede llegar a Y con el terminal x\"."
+      "content": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**."
     },
     {
       "id": 91,
@@ -1012,7 +1012,7 @@
       "slide_id": 67,
       "term": "Prioridad de Operaciones en ER",
       "front": "Prioridad de Operaciones en ER",
-      "back": "En la escritura de ER los parentesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
+      "back": "En la escritura de ER los paréntesis se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
       "context": null
     },
     {
@@ -1100,7 +1100,7 @@
       "slide_id": 78,
       "term": "Sentencia",
       "front": "Sentencia",
-      "back": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por simbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
+      "back": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
       "context": null
     },
     {
@@ -1114,9 +1114,9 @@
     {
       "id": "card_80",
       "slide_id": 80,
-      "term": "Lenguaje Reverso o Reflexo ($L^{-1}(G)$)",
-      "front": "Lenguaje Reverso o Reflexo ($L^{-1}(G)$)",
-      "back": "**Definición:** El lenguaje reverso o reflexo $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).",
+      "term": "Lenguaje Inverso ($L^{-1}(G)$)",
+      "front": "Lenguaje Inverso ($L^{-1}(G)$)",
+      "back": "El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).",
       "context": null
     },
     {
@@ -1196,7 +1196,7 @@
       "slide_id": 90,
       "term": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
-      "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas alla que la produccion sea $X -> xY$ o $X -> Yx$, se lee como \"de X se puede llegar a Y con el terminal x\".",
+      "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura tanto para por derecha como por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
       "context": null
     },
     {
