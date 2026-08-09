@@ -368,24 +368,7 @@ function App() {
     }
     return null;
   });
-
-  const [selectedSlide, setSelectedSlide] = useState(() => {
-    const saved = localStorage.getItem('memocard_selected_slide');
-    if (saved) {
-      const val = parseInt(saved);
-      if (!isNaN(val) && data.slides.some(s => s.id === val)) {
-        return val;
-      }
-    }
-    return data.slides[0]?.id || 1;
-  });
-
-  const [clozeMode, setClozeMode] = useState(() => {
-    const saved = localStorage.getItem('memocard_cloze_mode');
-    return saved ? JSON.parse(saved) : false;
-  });
-
-  const [searchSlide, setSearchSlide] = useState('');
+  // State variables for selectedSlide, clozeMode and searchSlide removed (orphaned code cleaned)
   
   // Custom filter configs
   const [filterSlideStart, setFilterSlideStart] = useState(1);
@@ -483,20 +466,12 @@ function App() {
   }, [activeTab]);
 
   useEffect(() => {
-    localStorage.setItem('memocard_selected_slide', selectedSlide);
-  }, [selectedSlide]);
-
-  useEffect(() => {
     if (selectedTheme) {
       localStorage.setItem('memocard_selected_theme', selectedTheme);
     } else {
       localStorage.removeItem('memocard_selected_theme');
     }
   }, [selectedTheme]);
-
-  useEffect(() => {
-    localStorage.setItem('memocard_cloze_mode', JSON.stringify(clozeMode));
-  }, [clozeMode]);
 
   useEffect(() => {
     if (studySession) {
@@ -776,15 +751,7 @@ function App() {
     }
   };
 
-  // Filter slides in sidebar
-  const filteredSlides = data.slides.filter(slide => {
-    const matchesTheme = selectedTheme === null || slide.theme === selectedTheme;
-    const matchesSearch = slide.title.toLowerCase().includes(searchSlide.toLowerCase()) ||
-      `Diapositiva ${slide.id}`.toLowerCase().includes(searchSlide.toLowerCase());
-    return matchesTheme && matchesSearch;
-  });
-
-  const currentSlideObj = data.slides.find(s => s.id === selectedSlide) || data.slides[0];
+  // Sidebar filtering and current slide helper constants removed (orphaned code cleaned)
 
   const renderStudySession = (session, setSession, onGrade, onPrev, onNext, onExit) => {
     return (

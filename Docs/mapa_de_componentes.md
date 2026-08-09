@@ -55,13 +55,13 @@ graph TD
     App --> MainContainer[main]
     
     Nav --> TabDash["📊 Dashboard (dashboard)"]
-    Nav --> TabStudy["🧠 Memorización (study)"]
-    Nav --> TabSlides["📖 Diapositivas (slides)"]
+    Nav --> TabStudy["🧠 Estudiar por Rango (study)"]
+    Nav --> TabSlides["📖 Estudiar por Tema (slides)"]
     Nav --> TabStats["📈 Estadísticas (stats)"]
 
     MainContainer -->|activeTab === 'dashboard'| ViewDash[Vista Dashboard]
-    MainContainer -->|activeTab === 'study'| ViewStudy[Vista Memorización]
-    MainContainer -->|activeTab === 'slides'| ViewSlides[Vista Diapositivas]
+    MainContainer -->|activeTab === 'study'| ViewStudy[Vista Estudiar por Rango]
+    MainContainer -->|activeTab === 'slides'| ViewSlides[Vista Estudiar por Tema]
     MainContainer -->|activeTab === 'stats'| ViewStats[Vista Estadísticas]
 ```
 
@@ -70,7 +70,7 @@ Punto de inicio donde se ve un resumen rápido y se lanzan las sesiones de estud
 *   **Grid de Estadísticas Rápidas (`.dashboard-grid`)**: Muestra 4 tarjetas de estadísticas (`.stat-card`):
     1.  *Diapositivas*: Cantidad total de diapositivas en los apuntes.
     2.  *Tarjetas Totales*: Cantidad de conceptos extraídos.
-    3.  *Aprendidas*: % y cantidad de tarjetas que han sido vistas por lo menos una vez.
+    3.  *Aprendidas*: % y cantidad de tarjetas vistas por lo menos una vez.
     4.  *Dominadas*: % y cantidad de tarjetas con estado "Bien" o "Fácil".
 *   **Lanzador de Sesión Rápida (`.action-box`)**:
     *   Botón *Estudiar Todo* (`startStudy('all')`).
@@ -82,33 +82,17 @@ Punto de inicio donde se ve un resumen rápido y se lanzan las sesiones de estud
     *   Checkbox de Mezcla Aleatoria (Toggle para `shuffleCustom`).
     *   Botón *Iniciar Personalizado* (`startStudy('custom')`).
 
-### 2. Vista Memorización (`activeTab === 'study'`)
-Interfaz interactiva de repetición espaciada con tarjetas en 3D.
-*   **Cabecera de Sesión Activa (`.session-progress`)**: Muestra el progreso del estudio y un botón para "Salir" de la sesión.
-    *   Barra de progreso visual (`.progress-track` y `.progress-bar`).
-*   **Contenedor de Tarjeta 3D**:
-    *   Botones de navegación de tarjetas (◀ Anterior y Siguiente ▶).
-    *   Estructura 3D (`.card-perspective` -> `.card-rotator` con clase `.flipped` si la respuesta está revelada):
-        *   **Cara Frontal (`.card-face.front`)**: Muestra el ID de la diapositiva asociada, la etiqueta de tipo "CONCEPTO", el contexto (`.card-context` si tiene), y el término a definir (`.card-term`).
-        *   **Cara Posterior (`.card-face.back`)**: Muestra el ID de la diapositiva, la etiqueta "RESPUESTA", el contexto y la explicación/cuerpo (`.card-answer`) renderizado como lista o texto.
-*   **Sección de Controles**:
-    *   *Si la respuesta está oculta*: Botón "Revelar Respuesta (Espacio)" (`.flip-prompt`).
-    *   *Si la respuesta está revelada*: Botones de calificación (`.grade-controls`):
-        1.  *Otra vez* (`.grade-btn.again`) - Tecla 1
-        2.  *Difícil* (`.grade-btn.hard`) - Tecla 2
-        3.  *Bien* (`.grade-btn.good`) - Tecla 3
-        4.  *Fácil* (`.grade-btn.easy`) - Tecla 4
-*   **Estado de Sesión Inactiva**: Si no hay sesión activa, muestra una caja con el mensaje "No hay ninguna sesión activa" y un botón rápido para iniciar una sesión con todas las tarjetas.
+### 2. Vista Estudiar por Rango (`activeTab === 'study'`)
+Interfaz interactiva de repetición espaciada con tarjetas en 3D para un intervalo de diapositivas personalizado (por defecto, todas).
+*   Llama al helper de renderizado interactivo `renderStudySession(studySession, setStudySession, handleGradeCard, handlePrevCard, handleNextCard, exitCallback)` para dibujar la sesión de estudio.
 
-### 3. Vista Diapositivas (`activeTab === 'slides'`)
-Visor de diapositivas individuales con navegación secuencial, filtrado y ocultamiento de conceptos clave.
-*   **Barra Lateral de Diapositivas (`.slide-sidebar`)**:
-    *   Buscador (`input` con placeholder "Buscar diapositiva...").
-    *   Lista vertical con scroll de botones para navegar a cada diapositiva (`.slide-nav-item`).
-*   **Área de Contenido (`.slide-content-area`)**:
-    *   Cabecera: Título de la diapositiva activa, indicador numérico (ej. *Diapositiva 5 / 95*), y botón toggle "Ocultar/Revelar Conceptos" (Cloze Mode).
-    *   Cuerpo (`.slide-body`): Contenido completo de la diapositiva con formateo matemático e ítems con palabras clave ocultas si el Cloze Mode está activo.
-    *   Botones de Navegación de Pie de Página: Botones "◀ Anterior" y "Siguiente ▶" rápidos.
+### 3. Vista Estudiar por Tema (`activeTab === 'slides'`)
+Interfaz interactiva para estudiar temas específicos del coloquio con rangos predefinidos de diapositivas.
+*   **Grid de Temas (`.themes-grid`)**: Muestra los 4 temas dinámicamente ("Alfabetos y Cadenas", "Lenguajes en general", "Lenguajes Regulares y Expresiones Regulares", "Gramática") en tarjetas estilizadas (`.theme-card`). Cada tarjeta despliega:
+    *   El rango exacto de diapositivas y conteo de páginas.
+    *   El porcentaje acumulado de dominio (tarjetas en estado Bien/Fácil).
+    *   Una barra de progreso visual de dominio.
+*   **Flujo de Sesión Activa**: Al seleccionar un tema, inicializa `themeStudySession` llamando a `startThemeStudy(themeName)`. Utiliza el helper genérico `renderStudySession` para proveer la misma interfaz interactiva 3D que el estudio de rango. Al hacer clic en "Salir", el usuario regresa al listado de temas.
 
 ### 4. Vista Estadísticas (`activeTab === 'stats'`)
 Informes y resumen visual detallado del estado del aprendizaje de las tarjetas.
@@ -134,21 +118,24 @@ Las siguientes funciones controlan el renderizado de LaTeX, Markdown, Cloze Test
     *   Detecta si el texto comienza con `>` para darle estilo de nota al pie (`.card-footnote`).
 4.  **`renderMathAndMarkdown(text)`**:
     *   Instancia rápida de la función anterior sin modo cloze.
-5.  **`renderSlideLines(content, blurConcepts, onRevealConcept)`**:
+5.  **`renderSlideLines(content)`**:
     *   Divide el contenido de una diapositiva en líneas.
-    *   Detecta listas ordenadas (`ol`) y desordenadas (`ul`), sangrías, ecuaciones solitarias en bloque (`$$...$$`) y bloques de nota (`>`).
+    *   Detecta listas ordenadas (`ol`) y desordenadas (`ul`), sangrías, ecuaciones solitarias en bloque (`$$...$$`) y bloques de nota (`&gt;`).
     *   Agrupa los elementos de la lista consecutiva y renderiza todo estructuradamente aplicando `renderTextWithMathAndMarkdown`.
 
 ### Métodos del Componente Principal `App()`
 *   **`saveProgress(updatedCards)`**: Guarda en `localStorage` (clave `memocard_progress`) el estado de estudio mapeado únicamente para las tarjetas modificadas.
-*   **`handleGradeCard(status)`**: Asigna una calificación a la tarjeta actual (`again`, `hard`, `good`, `easy`), la guarda llamando a `saveProgress`, y avanza el índice o finaliza la sesión volviendo al Dashboard.
-*   **`startStudy(mode)`**: Filtra las tarjetas según el modo deseado (`all` para todas, `weak` para tarjetas con problemas, `pending` para nuevas, o `custom` aplicando los filtros de rango y estado). Si la cola no está vacía, la mezcla aleatoriamente (o no) y asigna el estado `studySession`.
+*   **`handleGradeCard(status)`**: Asigna una calificación a la tarjeta actual (`again`, `hard`, `good`, `easy`) en la sesión personalizada, la guarda llamando a `saveProgress` y avanza el índice.
+*   **`handleThemeGradeCard(status)`**: Realiza la misma calificación pero sobre la sesión del tema seleccionado (`themeStudySession`).
+*   **`startStudy(mode)`**: Filtra las tarjetas según el modo deseado (`all`, `weak`, `pending`, `range` o `custom`). Si la cola no está vacía, la ordena o mezcla y asigna el estado `studySession`.
+*   **`startThemeStudy(themeName)`**: Filtra las tarjetas pertenecientes al tema seleccionado, las ordena por orden correlativo e inicia la sesión `themeStudySession`.
 *   **`resetProgress()`**: Limpia la clave de `localStorage` y restablece el estado de todas las tarjetas a `unlearned`.
+*   **`renderStudySession(session, setSession, onGrade, onPrev, onNext, onExit)`**: Renderiza el visor interactivo de memorización 3D (barra de progreso, tarjeta flip 3D con KaTeX, y botones de evaluación rápidos) reutilizado en ambas pestañas.
 *   **Atajos de Teclado (dentro de un `useEffect`)**:
     *   `Space`: Si la respuesta está oculta, la revela. Si ya está revelada, califica como "Bien" (`good`).
     *   `A` / `ArrowLeft`: Va a la tarjeta anterior.
     *   `D` / `ArrowRight`: Va a la tarjeta siguiente.
-    *   Teclas `1`, `2`, `3`, `4`: Califican la tarjeta con *Otra vez*, *Difícil*, *Bien* o *Fácil* respectivamente si la respuesta está visible.
+    *   Teclas `1`, `2`, `3`, `4`: Califican la tarjeta con *Otra vez*, *Difícil*, *Bien* o *Fácil* respectivamente si la respuesta está visible. Funciona tanto para el estudio por rango como por temas.
 
 ---
 
@@ -166,7 +153,7 @@ Cuando edites estilos, ten en cuenta este mapa de selectores para no romper otra
 *   `.action-box`: Contenedor principal de bienvenida y llamada a la acción de estudio.
 *   `.btn-primary`: Botón principal con sombra difuminada y degradado.
 
-### Estilos de Tarjetas (Memorización)
+### Estilos de Tarjetas (Memorización y Temas Activos)
 *   `.study-container`: Contenedor centralizado para la sesión de tarjetas.
 *   `.progress-track` & `.progress-bar`: Indicador de avance de la sesión actual.
 *   `.card-perspective` & `.card-rotator`: Configuraciones 3D para permitir el giro de la tarjeta.
@@ -176,11 +163,8 @@ Cuando edites estilos, ten en cuenta este mapa de selectores para no romper otra
 *   `.flip-prompt`: Botón grande interactivo para voltear la tarjeta.
 *   `.grade-controls` & `.grade-btn` (`.again`, `.hard`, `.good`, `.easy`): Botones inferiores con sus respectivos atajos de teclado visuales (`.shortcut`).
 
-### Estilos de Diapositivas
-*   `.slide-viewer-container`: Layout de dos columnas (barra lateral + contenido principal).
-*   `.slide-sidebar` & `.slide-nav-item`: Lista lateral de búsqueda y botones rápidos para cada diapositiva.
-*   `.slide-content-area` & `.slide-body`: Caja de visualización y formateado de la diapositiva seleccionada.
-*   `.cloze-concept` & `.cloze-concept.blurred`: Efecto blur de privacidad para las palabras clave interactivas.
+### Estilos de Grid de Temas
+*   `.themes-grid-container`, `.themes-grid` & `.theme-card`: Contenedor, grid responsivo y tarjetas del menú de selección de temas.
 
 ### Estilos de Estadísticas
 *   `.stats-panel`: Panel de resumen de progreso acumulado.
