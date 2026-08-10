@@ -389,13 +389,13 @@
     {
       "id": 65,
       "title": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
-      "content": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la concatenación, y que sea una **concatenación finita**, por generalización cumple la propiedad de ser **Lenguaje Regular**.",
+      "content": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> La **potencia k-ésima** no figura, porque no aporta nada significativo a lo que ya hace la concatenación, puesto que la potencia k-ésima no es ni mas ni menos que concatenar k veces, por lo que sigue siendo un **lenguaje regular**.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
       "id": 66,
       "title": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
-      "content": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.\n\n> La concatenación finita de un lenguaje con sigo mismo es la potencia k-ésima de un lenguaje.",
+      "content": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.\n\n> La concatenación finita (por generalización) es la potencia k-ésima.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -1215,7 +1215,7 @@
       "slide_id": 65,
       "term": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
       "front": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
-      "back": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la concatenación, y que sea una **concatenación finita**, por generalización cumple la propiedad de ser **Lenguaje Regular**.",
+      "back": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> La **potencia k-ésima** no figura, porque no aporta nada significativo a lo que ya hace la concatenación, puesto que la potencia k-ésima no es ni mas ni menos que concatenar k veces, por lo que sigue siendo un **lenguaje regular**.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
@@ -1224,7 +1224,7 @@
       "slide_id": 66,
       "term": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
       "front": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
-      "back": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.\n\n> La concatenación finita de un lenguaje con sigo mismo es la potencia k-ésima de un lenguaje.",
+      "back": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.\n\n> La concatenación finita (por generalización) es la potencia k-ésima.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },

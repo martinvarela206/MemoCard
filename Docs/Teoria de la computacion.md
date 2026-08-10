@@ -556,7 +556,8 @@ Si $L_1$ y $L_2$ son lenguajes regulares sobre $\Sigma$, entonces también son r
 5.  **Clausura de Kleene:** $L_1^*$
 6.  **Clausura Positiva:** $L_1^+$
 
-> Si bien la **potencia k-ésima** no figura, el hecho de que la potencia k-ésima dependa de la concatenación, y que sea una **concatenación finita**, por generalización cumple la propiedad de ser **Lenguaje Regular**.
+> La **potencia k-ésima** no figura, porque no aporta nada significativo a lo que ya hace la concatenación, puesto que la potencia k-ésima no es ni mas ni menos que concatenar k veces, por lo que sigue siendo un **lenguaje regular**.
+
 ---
 
 ### Diapositiva 66: Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)
@@ -566,7 +567,8 @@ Se derivan por inducción matemática a partir de las propiedades básicas:
 *   La **intersección finita** de lenguajes regulares es un lenguaje regular.
 *   La **concatenación finita** de lenguajes regulares es un lenguaje regular.
 
-> La concatenación finita de un lenguaje con sigo mismo es la potencia k-ésima de un lenguaje.
+> La concatenación finita (por generalización) es la potencia k-ésima.
+
 ---
 
 ### Diapositiva 67: Lenguajes NO Regulares
