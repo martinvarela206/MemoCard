@@ -365,13 +365,13 @@
     {
       "id": 61,
       "title": "Definición de Problema",
-      "content": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
+      "content": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como el proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
       "id": 62,
-      "title": "Lenguajes infinitos y descripciones finitas",
-      "content": "Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.\n\nUna **descripción finita** consiste en definir un lenguaje potencialmente infinito aplicando una cantidad finita de **operaciones** a un número finito de **lenguajes básicos**.",
+      "title": "Descripciones finitas y Lenguajes Regulares",
+      "content": "Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.\n\nUna **descripción finita** consiste aplicar a una serie de **lenguajes básicos** solo ciertas **operaciones**, un número finito de veces. Esto permite obtener un **Lenguaje Regular**.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -383,7 +383,7 @@
     {
       "id": 64,
       "title": "Lenguajes Regulares finitos o infinitos",
-      "content": "Los lenguajes regulares pueden ser finitos o infinitos, pero siempre se deben generar a partir de un número finito de operaciones. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n> Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
+      "content": "Los lenguajes regulares pueden ser **finitos** o **infinitos**, pero siempre se deben generar a partir de una **descripción finita**. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n> Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -406,222 +406,228 @@
     },
     {
       "id": 68,
-      "title": "Ejemplos de Lenguajes No Regulares",
-      "content": "- $L_1=\\{a^i b^i\\mid i\\in\\mathbb{N}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de b's sea igual a la cantidad de a's.\n- Sobre $\\Sigma = \\{0,1\\}$ $L_2=\\{\\text{las palabras cuyo número de unos es mayor al número de ceros}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de 1's sea mayor a la cantidad de 0's.\n- Sobre $\\Sigma = \\{0, 1, \\dots, 9\\}$, $L_3 = \\{\\text{palabras que son sufijos de la expansión decimal del número } \\pi\\}$, no es regular porque la regla debe ser finita y determinística, mientras que la secuencia de decimales de $\\pi$ es infinita e irracional (no periódica).",
+      "title": "Potensia k-ésima no es Lenguaje Regular",
+      "content": "Como se ha visto en las operaciones, la potencia k-ésima no figura como operación aceptada. Esto se debe a que la potencia k-ésima requiere contar infinitamente. Por ejemplo:\n\n$$L_1=\\{a^i b^i\\mid i\\in\\mathbb{N}\\}$$\n\nNo es regular porque los AF no pueden contar infinitamente que la cantidad de b's sea igual a la cantidad de a's.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
       "id": 69,
+      "title": "Ejemplos de Lenguajes No Regulares",
+      "content": "- Sobre $\\Sigma = \\{0,1\\}$ $L_2=\\{\\text{las palabras cuyo número de unos es mayor al número de ceros}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de 1's sea mayor a la cantidad de 0's.\n- Sobre $\\Sigma = \\{0, 1, \\dots, 9\\}$, $L_3 = \\{\\text{palabras que son sufijos de la expansión decimal del número } \\pi\\}$, no es regular porque la regla debe ser finita y determinística, mientras que la secuencia de decimales de $\\pi$ es infinita e irracional (no periódica).",
+      "theme": "Lenguajes Regulares y Expresiones Regulares"
+    },
+    {
+      "id": 70,
       "title": "Expresión Regular (ER)",
       "content": "Definición: Los lenguajes regulares puede expresar por medio de expresiones regulares, que se definen de manera inductiva de la siguiente manera:\n\n1.  **Pasos base:** Son expresiones regulares: $E=\\emptyset$, $E=\\epsilon$ y $E=x$, para cualquier $x \\in \\Sigma$.\n2.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 70,
+      "id": 71,
       "title": "Operaciones de las ERs",
       "content": "Si $E$ es una ER, entonces:\n- Su forma agrupada es una ER: $(E)$\n- La concatenación de ERs es una ER: $E_1 E_2$\n- La suma de ERs es una ER: $(E_1 + E_2)$\n- La clausura de Kleene es una ER: $(E)^*$\n- La clausura positiva no es una operación para las ERs.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 71,
+      "id": 72,
       "title": "Lenguajes generados por ER elementales",
       "content": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n> Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 72,
+      "id": 73,
       "title": "Lenguajes generados por operaciones de las ER",
       "content": "*   **$L((E_1)) = L(E_1)$:** El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.\n*   **$L(E_1 E_2) = L(E_1)L(E_2)$:** El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.\n*   **$L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$:** El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.\n*   **$L((E_1)^*) = (L(E_1))^*$:** El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 73,
+      "id": 74,
       "title": "Prioridad de Operaciones en ER",
       "content": "En la escritura de ER los paréntesis (agrupaciones) se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 74,
+      "id": 75,
       "title": "Expresiones Regulares Equivalentes",
       "content": "**Definición:** Dos expresiones regulares $E_1$ y $E_2$ son equivalentes si y sólo si definen el mismo lenguaje regular.\n**Fórmula:**\n$$E_1 \\equiv E_2 \\iff L(E_1) = L(E_2)$$\n**Nota:** Por abuso de lenguaje se suele escribir $E_1 = E_2$.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 75,
+      "id": 76,
       "title": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "content": "Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:\n- **Universo del Alfabeto ($\\Sigma^*$):** Si $\\Sigma = \\{a,b\\}$, la ER es `(a + b)*`.\n- **Prefijo fijo $P$:** $P \\cdot \\Sigma^*$ (ejemplo con prefijo $aca$ en $\\Sigma=\\{a,b,c\\}$: `aca(a + b + c)*`).\n- **Sufijo fijo $S$:** $\\Sigma^* \\cdot S$ (ejemplo con sufijo $ca$ en $\\Sigma=\\{a,b,c\\}$: `(a + b + c)*ca`).",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 76,
+      "id": 77,
       "title": "Guía Práctica de Construcción de Expresiones Regulares - Parte 2",
       "content": "Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:\n- **Subcadena fija $Sub$:** $\\Sigma^* \\cdot Sub \\cdot \\Sigma^*$ (ejemplo con subcadena $aa$: `(a + b + c)*aa(a + b + c)*`).\n- **Solapamiento en ER ($P = S = X$):** $X + X \\cdot \\Sigma^* \\cdot X$ (ejemplo con prefijo y sufijo $baca$: `baca + baca(a + b + c)*baca`).",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 77,
+      "id": 78,
       "title": "Construcción de ERs: Conteo de Símbolos",
       "content": "Restricciones numéricas al contar símbolos sobre un alfabeto $\\Sigma$:\n- **Definición $\\Sigma_{resto}$:** Alfabeto excluyendo el símbolo $x$ a contar ($\\Sigma - \\{x\\}$).\n- **Exactamente una ocurrencia de $x$:** $\\Sigma_{resto}^* \\cdot x \\cdot \\Sigma_{resto}^*$ (ejemplo en $\\Sigma = \\{a,b\\}$ con una sola $b$: `a* b a*`).\n- **Número par de $x$:** $(\\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^*)^*$ ó bien $(\\Sigma_{resto}^* + x \\Sigma_{resto}^* x)^*$.\n- **Número impar de $x$:** $\\Sigma_{resto}^* \\cdot x \\cdot \\Sigma_{resto}^* \\cdot (\\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^*)^*$.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 78,
+      "id": 79,
       "title": "Construcción de ERs: Números Naturales",
       "content": "Restricciones de formato para representar conjuntos de números:\n- **Dígitos sin ceros a la izquierda (Números naturales):** En $\\Sigma = \\{0, 1, 2, 3\\}$, un número no comienza con $0$ salvo el número $0$ por sí solo:\n  $$\\text{ER} = 0 + (1 + 2 + 3)(0 + 1 + 2 + 3)^*$$",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": 79,
+      "id": 80,
       "title": "Gramática ($G$): Definición algebraica",
       "content": "Una gramática $G$ es una estructura algebraica definida por la 4-tupla:\n$$G = (N, \\Sigma, P, S)$$\nDonde:\n*   **$N$:** Conjunto finito de símbolos no terminales.\n*   **$\\Sigma$:** Conjunto finito de símbolos terminales (alfabeto, tal que $N \\cap \\Sigma = \\emptyset$).\n*   **$P$:** Reglas de producción finitas (reglas gramaticales o simplemente producciones).\n*   **$S$:** Símbolo inicial o axioma ($S \\in N$).",
       "theme": "Gramática"
     },
     {
-      "id": 80,
+      "id": 81,
       "title": "Convenciones de Notación en Gramáticas",
       "content": "Convenciones para definir reglas gramaticales:\n- **Símbolos No Terminales $(\\in N)$:** Letras mayúsculas $A, B, C, \\dots, S, X, Y, Z$. Se utilizan $X, Y, Z$ como comodines.\n- **Símbolos Terminales ($\\in \\Sigma$):** Letras minúsculas $a, b, c, \\dots, x, y, z$. Se utilizan $x, y, z$ como comodines.\n- **Cadenas de Terminales ($\\in \\Sigma^*$):** Se representan con la letra $w$.\n- **Cadenas Mixtas ($\\in (N \\cup \\Sigma)^*$):** Se representan con letras griegas $\\alpha, \\beta, \\gamma, \\delta, \\pi, \\rho$ (y la cadena vacía con $\\epsilon$).",
       "theme": "Gramática"
     },
     {
-      "id": 81,
+      "id": 82,
       "title": "Definición de las reglas de producción",
       "content": "Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\\alpha, \\alpha') \\in P$. Por comodidad, se expresan como relaciones de producción, tal que $\\alpha \\to \\alpha'$.\n\n> Se lee \"alfa produce alfa prima\" o \"alfa se reescribe como alfa prima\".",
       "theme": "Gramática"
     },
     {
-      "id": 82,
+      "id": 83,
       "title": "Cabeza y Cuerpo de las reglas de producción",
       "content": "Las reglas de producción tienen dos partes:\n- **Cabeza ($\\alpha$):** $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$\n> Es decir, que la cabeza es una cadena con al menos tiene un símbolo no terminal.\n- **Cuerpo ($\\alpha'$):** $\\alpha' \\in (N \\cup \\Sigma)^*$\n> Es decir, que el cuerpo es una cadena con cualquier número de símbolos terminales y/o no terminales, o bien la cadena vacía.",
       "theme": "Gramática"
     },
     {
-      "id": 83,
+      "id": 84,
       "title": "Notación de Backus",
       "content": "**Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.\n**Representación:** Las reglas $\\alpha \\to \\alpha_1, \\alpha \\to \\alpha_2, \\dots, \\alpha \\to \\alpha_n$ se abrevian como:\n$$\\alpha \\to \\alpha_1 \\mid \\alpha_2 \\mid \\dots \\mid \\alpha_n$$",
       "theme": "Gramática"
     },
     {
-      "id": 84,
+      "id": 85,
       "title": "Relación Deriva",
       "content": "Sean las cadenas $\\beta, \\delta, \\sigma, \\mu, \\alpha, \\alpha' \\in (N \\cup \\Sigma)^*$:\n**Deriva Directa ($\\underset{G}{\\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:\n$$\\beta \\delta \\sigma \\underset{G}{\\Rightarrow} \\beta \\mu \\sigma \\iff (\\delta \\to \\mu) \\in P$$\n**Derivación en Múltiples Pasos ($\\overset{*}{\\underset{G}{\\Rightarrow}}$):** Clausura reflexiva y transitiva de la deriva directa:\n$$\\alpha \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha' \\iff \\alpha = \\alpha_0 \\underset{G}{\\Rightarrow} \\alpha_1 \\underset{G}{\\Rightarrow} \\dots \\underset{G}{\\Rightarrow} \\alpha_n = \\alpha' \\quad (n \\ge 0)$$",
       "theme": "Gramática"
     },
     {
-      "id": 85,
+      "id": 86,
       "title": "Forma Sentencial",
       "content": "**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que posea símbolos no terminales, que se pueda derivar desde el axioma, se denomina **forma sentencial**.\n**Fórmula:**\n$$\\alpha \\in (N \\cup \\Sigma)^* \\text{ es forma sentencial} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha$$",
       "theme": "Gramática"
     },
     {
-      "id": 86,
+      "id": 87,
       "title": "Sentencia",
       "content": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
       "theme": "Gramática"
     },
     {
-      "id": 87,
+      "id": 88,
       "title": "Lenguaje Generado por una Gramática ($L(G)$)",
       "content": "**Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \\Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w\\}$$",
       "theme": "Gramática"
     },
     {
-      "id": 88,
+      "id": 89,
       "title": "Lenguaje Inverso ($L^{-1}(G)$)",
       "content": "El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).",
       "theme": "Gramática"
     },
     {
-      "id": 89,
+      "id": 90,
       "title": "Gramática de Estructura de Frase",
       "content": "**Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ a derivar:\n$$\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$$\n**Casos especiales:**\n*   **Regla no generativa:** $X \\to \\epsilon$ (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n*   **Regla compresora:** $\\alpha X \\beta \\to \\alpha \\beta$ (cuando $\\delta = \\epsilon$).",
       "theme": "Gramática"
     },
     {
-      "id": 90,
+      "id": 91,
       "title": "Gramática de Estructura de Frase: Contraejemplo de Invariancia",
       "content": "**Regla general GEF:** La regla $\\alpha X \\beta \\to \\alpha \\delta \\beta$ exige que la parte izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ sean **invariantes** (no cambien de lado ni de forma en el cuerpo).\n**Contraejemplo de regla NO GEF ($CB \\to BC$):**\n- **Si $X = C$:** En la cabeza $\\alpha = \\epsilon$ y $\\beta = B$. En el cuerpo la parte derecha debería ser $B$, pero $B$ aparece a la izquierda ($BC$). No es invariante.\n- **Si $X = B$:** En la cabeza $\\alpha = C$ y $\\beta = \\epsilon$. En el cuerpo la parte izquierda debería ser $C$, pero $C$ aparece a la derecha ($BC$). Tampoco es invariante.\n**Conclusión:** La regla $CB \\to BC$ no cumple la condición GEF.",
       "theme": "Gramática"
     },
     {
-      "id": 91,
+      "id": 92,
       "title": "Jerarquía de Chomsky: Clasificación General",
       "content": "Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:\n1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.\n2.  **Tipo 1:** Gramáticas Dependientes del Contexto.\n3.  **Tipo 2:** Gramáticas Libres de Contexto.\n4.  **Tipo 3:** Gramáticas Regulares.\n**Relación de contención:** $\\text{Tipo } 3 \\subset \\text{Tipo } 2 \\subset \\text{Tipo } 1 \\subset \\text{Tipo } 0$.",
       "theme": "Gramática"
     },
     {
-      "id": 92,
+      "id": 93,
       "title": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "content": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Ninguna. Producciones de la forma $\\alpha \\to \\beta$ con $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$ y $\\beta \\in (N \\cup \\Sigma)^*$",
       "theme": "Gramática"
     },
     {
-      "id": 93,
+      "id": 94,
       "title": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Estructura de frase y no compresora. Sus reglas $\\alpha X \\beta \\to \\alpha \\delta \\beta$ verifican $\\delta \\neq \\epsilon$.\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).",
       "theme": "Gramática"
     },
     {
-      "id": 94,
+      "id": 95,
       "title": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "content": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):\n$$X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$$",
       "theme": "Gramática"
     },
     {
-      "id": 95,
+      "id": 96,
       "title": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "content": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Estructura de frase con producciones de un único tipo de linealidad:\n- **Lineal por Derecha:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$$\n- **Lineal por Izquierda:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$$\n*(Se admite $S \\to \\epsilon$ en el axioma si el lenguaje contiene a $\\epsilon$).*",
       "theme": "Gramática"
     },
     {
-      "id": 96,
+      "id": 97,
       "title": "Impacto de la Regla $S \\to \\epsilon$ en GEF, Tipo 0 y Tipo 1",
       "content": "La regla $S \\to \\epsilon$ permite que un lenguaje incluya la cadena vacía ($\\epsilon \\in L(G)$). Su comportamiento según la clasificación es:\n- **Gramática de Estructura de Frase:** Actúa como una regla compresora (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n- **Tipo 0 (Irrestrictas):** Cumple directamente la definición general ($\\text{cabeza} = S \\in N$, $\\text{cuerpo} = \\epsilon \\in \\dots$).\n- **Tipo 1 (Dependientes del Contexto):** Excepción explícita a la restricción no compresora ($|\\alpha| \\le |\\beta|$).",
       "theme": "Gramática"
     },
     {
-      "id": 97,
+      "id": 98,
       "title": "Impacto de la Regla $S \\to \\epsilon$ en Tipo 2 y Tipo 3",
       "content": "La regla $S \\to \\epsilon$ según la clasificación de Chomsky para tipos 2 y 3:\n- **Tipo 2 (Libres de Contexto):** Cumple la restricción formal ($X \\to \\alpha$ con $X = S$ y $\\alpha = \\epsilon$).\n- **Tipo 3 (Regulares):** Es la única excepción permitida donde el cuerpo no contiene símbolos terminales ni no terminales.",
       "theme": "Gramática"
     },
     {
-      "id": 98,
+      "id": 99,
       "title": "Grafo Asociado a una Gramática Regular Lineal por Derecha",
       "content": "Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> Los vértices son el conjunto de símbolos no terminales más el estado de aceptación ($\\epsilon$).\n> Las aristas se etiquetan con símbolos terminales y los símbolos no terminales definen que nodos son unidos por las aristas.",
       "theme": "Gramática"
     },
     {
-      "id": 99,
+      "id": 100,
       "title": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "content": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
       "theme": "Gramática"
     },
     {
-      "id": 100,
+      "id": 101,
       "title": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "content": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetadas con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.",
       "theme": "Gramática"
     },
     {
-      "id": 101,
+      "id": 102,
       "title": "Árbol de Derivación (Árbol de Parser)",
       "content": "**Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.\n**Hojas:** Nodos etiquetados con símbolos terminales que pertenecen a $\\Sigma$ o con la cadena vacía $\\epsilon$.",
       "theme": "Gramática"
     },
     {
-      "id": 102,
+      "id": 103,
       "title": "Gramática Ambigua",
       "content": "**Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.",
       "theme": "Gramática"
     },
     {
-      "id": 103,
+      "id": 104,
       "title": "Construcción del Árbol de Derivación",
       "content": "Reglas algorítmicas de construcción:\n1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.\n2.  **Expansión de producciones:** Para cada nodo etiquetado con un no terminal $A$, al aplicar la regla $A \\to Y_1 Y_2 \\dots Y_k$, se dibujan $k$ descendientes ordenados de izquierda a derecha etiquetados con $Y_1, \\dots, Y_k$.\n3.  **Hojas:** Los descendientes etiquetados con terminales o la cadena vacía $\\epsilon$ actúan como hojas (nodos terminales sin descendientes).\n4.  **Criterio de finalización:** El proceso concluye cuando todos los nodos hoja pertenecen a $\\Sigma \\cup \\{\\epsilon\\}$.",
       "theme": "Gramática"
     },
     {
-      "id": 104,
+      "id": 105,
       "title": "Lectura del Árbol de Derivación (Frontera)",
       "content": "**Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).\n**Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.\n**Pertenencia:** La cadena obtenida representa la sentencia que pertenece al lenguaje $L(G)$.",
       "theme": "Gramática"
@@ -1173,16 +1179,16 @@
       "slide_id": 61,
       "term": "Definición de Problema",
       "front": "Definición de Problema",
-      "back": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como: El proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
+      "back": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como el proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
       "id": "card_62",
       "slide_id": 62,
-      "term": "Lenguajes infinitos y descripciones finitas",
-      "front": "Lenguajes infinitos y descripciones finitas",
-      "back": "Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.\n\nUna **descripción finita** consiste en definir un lenguaje potencialmente infinito aplicando una cantidad finita de **operaciones** a un número finito de **lenguajes básicos**.",
+      "term": "Descripciones finitas y Lenguajes Regulares",
+      "front": "Descripciones finitas y Lenguajes Regulares",
+      "back": "Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.\n\nUna **descripción finita** consiste aplicar a una serie de **lenguajes básicos** solo ciertas **operaciones**, un número finito de veces. Esto permite obtener un **Lenguaje Regular**.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
@@ -1200,7 +1206,7 @@
       "slide_id": 64,
       "term": "Lenguajes Regulares finitos o infinitos",
       "front": "Lenguajes Regulares finitos o infinitos",
-      "back": "Los lenguajes regulares pueden ser finitos o infinitos, pero siempre se deben generar a partir de un número finito de operaciones. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n> Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
+      "back": "Los lenguajes regulares pueden ser **finitos** o **infinitos**, pero siempre se deben generar a partir de una **descripción finita**. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n> Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
@@ -1234,15 +1240,24 @@
     {
       "id": "card_68",
       "slide_id": 68,
-      "term": "Ejemplos de Lenguajes No Regulares",
-      "front": "Ejemplos de Lenguajes No Regulares",
-      "back": "- $L_1=\\{a^i b^i\\mid i\\in\\mathbb{N}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de b's sea igual a la cantidad de a's.\n- Sobre $\\Sigma = \\{0,1\\}$ $L_2=\\{\\text{las palabras cuyo número de unos es mayor al número de ceros}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de 1's sea mayor a la cantidad de 0's.\n- Sobre $\\Sigma = \\{0, 1, \\dots, 9\\}$, $L_3 = \\{\\text{palabras que son sufijos de la expansión decimal del número } \\pi\\}$, no es regular porque la regla debe ser finita y determinística, mientras que la secuencia de decimales de $\\pi$ es infinita e irracional (no periódica).",
+      "term": "Potensia k-ésima no es Lenguaje Regular",
+      "front": "Potensia k-ésima no es Lenguaje Regular",
+      "back": "Como se ha visto en las operaciones, la potencia k-ésima no figura como operación aceptada. Esto se debe a que la potencia k-ésima requiere contar infinitamente. Por ejemplo:\n\n$$L_1=\\{a^i b^i\\mid i\\in\\mathbb{N}\\}$$\n\nNo es regular porque los AF no pueden contar infinitamente que la cantidad de b's sea igual a la cantidad de a's.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
       "id": "card_69",
       "slide_id": 69,
+      "term": "Ejemplos de Lenguajes No Regulares",
+      "front": "Ejemplos de Lenguajes No Regulares",
+      "back": "- Sobre $\\Sigma = \\{0,1\\}$ $L_2=\\{\\text{las palabras cuyo número de unos es mayor al número de ceros}\\}$, no es regular porque los AF no pueden contar infinitamente que la cantidad de 1's sea mayor a la cantidad de 0's.\n- Sobre $\\Sigma = \\{0, 1, \\dots, 9\\}$, $L_3 = \\{\\text{palabras que son sufijos de la expansión decimal del número } \\pi\\}$, no es regular porque la regla debe ser finita y determinística, mientras que la secuencia de decimales de $\\pi$ es infinita e irracional (no periódica).",
+      "context": null,
+      "theme": "Lenguajes Regulares y Expresiones Regulares"
+    },
+    {
+      "id": "card_70",
+      "slide_id": 70,
       "term": "Expresión Regular (ER)",
       "front": "Expresión Regular (ER)",
       "back": "Definición: Los lenguajes regulares puede expresar por medio de expresiones regulares, que se definen de manera inductiva de la siguiente manera:\n\n1.  **Pasos base:** Son expresiones regulares: $E=\\emptyset$, $E=\\epsilon$ y $E=x$, para cualquier $x \\in \\Sigma$.\n2.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.",
@@ -1250,8 +1265,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_70",
-      "slide_id": 70,
+      "id": "card_71",
+      "slide_id": 71,
       "term": "Operaciones de las ERs",
       "front": "Operaciones de las ERs",
       "back": "Si $E$ es una ER, entonces:\n- Su forma agrupada es una ER: $(E)$\n- La concatenación de ERs es una ER: $E_1 E_2$\n- La suma de ERs es una ER: $(E_1 + E_2)$\n- La clausura de Kleene es una ER: $(E)^*$\n- La clausura positiva no es una operación para las ERs.",
@@ -1259,8 +1274,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_71",
-      "slide_id": 71,
+      "id": "card_72",
+      "slide_id": 72,
       "term": "Lenguajes generados por ER elementales",
       "front": "Lenguajes generados por ER elementales",
       "back": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n> Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.",
@@ -1268,8 +1283,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_72",
-      "slide_id": 72,
+      "id": "card_73",
+      "slide_id": 73,
       "term": "Lenguajes generados por operaciones de las ER",
       "front": "Lenguajes generados por operaciones de las ER",
       "back": "*   **$L((E_1)) = L(E_1)$:** El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.\n*   **$L(E_1 E_2) = L(E_1)L(E_2)$:** El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.\n*   **$L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$:** El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.\n*   **$L((E_1)^*) = (L(E_1))^*$:** El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.",
@@ -1277,8 +1292,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_73",
-      "slide_id": 73,
+      "id": "card_74",
+      "slide_id": 74,
       "term": "Prioridad de Operaciones en ER",
       "front": "Prioridad de Operaciones en ER",
       "back": "En la escritura de ER los paréntesis (agrupaciones) se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
@@ -1286,8 +1301,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_74",
-      "slide_id": 74,
+      "id": "card_75",
+      "slide_id": 75,
       "term": "Expresiones Regulares Equivalentes",
       "front": "Expresiones Regulares Equivalentes",
       "back": "**Definición:** Dos expresiones regulares $E_1$ y $E_2$ son equivalentes si y sólo si definen el mismo lenguaje regular.\n**Fórmula:**\n$$E_1 \\equiv E_2 \\iff L(E_1) = L(E_2)$$\n**Nota:** Por abuso de lenguaje se suele escribir $E_1 = E_2$.",
@@ -1295,8 +1310,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_75",
-      "slide_id": 75,
+      "id": "card_76",
+      "slide_id": 76,
       "term": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "front": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "back": "Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:\n- **Universo del Alfabeto ($\\Sigma^*$):** Si $\\Sigma = \\{a,b\\}$, la ER es `(a + b)*`.\n- **Prefijo fijo $P$:** $P \\cdot \\Sigma^*$ (ejemplo con prefijo $aca$ en $\\Sigma=\\{a,b,c\\}$: `aca(a + b + c)*`).\n- **Sufijo fijo $S$:** $\\Sigma^* \\cdot S$ (ejemplo con sufijo $ca$ en $\\Sigma=\\{a,b,c\\}$: `(a + b + c)*ca`).",
@@ -1304,8 +1319,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_76",
-      "slide_id": 76,
+      "id": "card_77",
+      "slide_id": 77,
       "term": "Guía Práctica de Construcción de Expresiones Regulares - Parte 2",
       "front": "Guía Práctica de Construcción de Expresiones Regulares - Parte 2",
       "back": "Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:\n- **Subcadena fija $Sub$:** $\\Sigma^* \\cdot Sub \\cdot \\Sigma^*$ (ejemplo con subcadena $aa$: `(a + b + c)*aa(a + b + c)*`).\n- **Solapamiento en ER ($P = S = X$):** $X + X \\cdot \\Sigma^* \\cdot X$ (ejemplo con prefijo y sufijo $baca$: `baca + baca(a + b + c)*baca`).",
@@ -1313,8 +1328,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_77",
-      "slide_id": 77,
+      "id": "card_78",
+      "slide_id": 78,
       "term": "Construcción de ERs: Conteo de Símbolos",
       "front": "Construcción de ERs: Conteo de Símbolos",
       "back": "Restricciones numéricas al contar símbolos sobre un alfabeto $\\Sigma$:\n- **Definición $\\Sigma_{resto}$:** Alfabeto excluyendo el símbolo $x$ a contar ($\\Sigma - \\{x\\}$).\n- **Exactamente una ocurrencia de $x$:** $\\Sigma_{resto}^* \\cdot x \\cdot \\Sigma_{resto}^*$ (ejemplo en $\\Sigma = \\{a,b\\}$ con una sola $b$: `a* b a*`).\n- **Número par de $x$:** $(\\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^*)^*$ ó bien $(\\Sigma_{resto}^* + x \\Sigma_{resto}^* x)^*$.\n- **Número impar de $x$:** $\\Sigma_{resto}^* \\cdot x \\cdot \\Sigma_{resto}^* \\cdot (\\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^* \\cdot x \\Sigma_{resto}^*)^*$.",
@@ -1322,8 +1337,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_78",
-      "slide_id": 78,
+      "id": "card_79",
+      "slide_id": 79,
       "term": "Construcción de ERs: Números Naturales",
       "front": "Construcción de ERs: Números Naturales",
       "back": "Restricciones de formato para representar conjuntos de números:\n- **Dígitos sin ceros a la izquierda (Números naturales):** En $\\Sigma = \\{0, 1, 2, 3\\}$, un número no comienza con $0$ salvo el número $0$ por sí solo:\n  $$\\text{ER} = 0 + (1 + 2 + 3)(0 + 1 + 2 + 3)^*$$",
@@ -1331,8 +1346,8 @@
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
-      "id": "card_79",
-      "slide_id": 79,
+      "id": "card_80",
+      "slide_id": 80,
       "term": "Gramática ($G$): Definición algebraica",
       "front": "Gramática ($G$): Definición algebraica",
       "back": "Una gramática $G$ es una estructura algebraica definida por la 4-tupla:\n$$G = (N, \\Sigma, P, S)$$\nDonde:\n*   **$N$:** Conjunto finito de símbolos no terminales.\n*   **$\\Sigma$:** Conjunto finito de símbolos terminales (alfabeto, tal que $N \\cap \\Sigma = \\emptyset$).\n*   **$P$:** Reglas de producción finitas (reglas gramaticales o simplemente producciones).\n*   **$S$:** Símbolo inicial o axioma ($S \\in N$).",
@@ -1340,8 +1355,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_80",
-      "slide_id": 80,
+      "id": "card_81",
+      "slide_id": 81,
       "term": "Convenciones de Notación en Gramáticas",
       "front": "Convenciones de Notación en Gramáticas",
       "back": "Convenciones para definir reglas gramaticales:\n- **Símbolos No Terminales $(\\in N)$:** Letras mayúsculas $A, B, C, \\dots, S, X, Y, Z$. Se utilizan $X, Y, Z$ como comodines.\n- **Símbolos Terminales ($\\in \\Sigma$):** Letras minúsculas $a, b, c, \\dots, x, y, z$. Se utilizan $x, y, z$ como comodines.\n- **Cadenas de Terminales ($\\in \\Sigma^*$):** Se representan con la letra $w$.\n- **Cadenas Mixtas ($\\in (N \\cup \\Sigma)^*$):** Se representan con letras griegas $\\alpha, \\beta, \\gamma, \\delta, \\pi, \\rho$ (y la cadena vacía con $\\epsilon$).",
@@ -1349,8 +1364,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_81",
-      "slide_id": 81,
+      "id": "card_82",
+      "slide_id": 82,
       "term": "Definición de las reglas de producción",
       "front": "Definición de las reglas de producción",
       "back": "Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\\alpha, \\alpha') \\in P$. Por comodidad, se expresan como relaciones de producción, tal que $\\alpha \\to \\alpha'$.\n\n> Se lee \"alfa produce alfa prima\" o \"alfa se reescribe como alfa prima\".",
@@ -1358,8 +1373,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_82",
-      "slide_id": 82,
+      "id": "card_83",
+      "slide_id": 83,
       "term": "Cabeza y Cuerpo de las reglas de producción",
       "front": "Cabeza y Cuerpo de las reglas de producción",
       "back": "Las reglas de producción tienen dos partes:\n- **Cabeza ($\\alpha$):** $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$\n> Es decir, que la cabeza es una cadena con al menos tiene un símbolo no terminal.\n- **Cuerpo ($\\alpha'$):** $\\alpha' \\in (N \\cup \\Sigma)^*$\n> Es decir, que el cuerpo es una cadena con cualquier número de símbolos terminales y/o no terminales, o bien la cadena vacía.",
@@ -1367,8 +1382,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_83",
-      "slide_id": 83,
+      "id": "card_84",
+      "slide_id": 84,
       "term": "Notación de Backus",
       "front": "Notación de Backus",
       "back": "**Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.\n**Representación:** Las reglas $\\alpha \\to \\alpha_1, \\alpha \\to \\alpha_2, \\dots, \\alpha \\to \\alpha_n$ se abrevian como:\n$$\\alpha \\to \\alpha_1 \\mid \\alpha_2 \\mid \\dots \\mid \\alpha_n$$",
@@ -1376,8 +1391,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_84",
-      "slide_id": 84,
+      "id": "card_85",
+      "slide_id": 85,
       "term": "Relación Deriva",
       "front": "Relación Deriva",
       "back": "Sean las cadenas $\\beta, \\delta, \\sigma, \\mu, \\alpha, \\alpha' \\in (N \\cup \\Sigma)^*$:\n**Deriva Directa ($\\underset{G}{\\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:\n$$\\beta \\delta \\sigma \\underset{G}{\\Rightarrow} \\beta \\mu \\sigma \\iff (\\delta \\to \\mu) \\in P$$\n**Derivación en Múltiples Pasos ($\\overset{*}{\\underset{G}{\\Rightarrow}}$):** Clausura reflexiva y transitiva de la deriva directa:\n$$\\alpha \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha' \\iff \\alpha = \\alpha_0 \\underset{G}{\\Rightarrow} \\alpha_1 \\underset{G}{\\Rightarrow} \\dots \\underset{G}{\\Rightarrow} \\alpha_n = \\alpha' \\quad (n \\ge 0)$$",
@@ -1385,8 +1400,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_85",
-      "slide_id": 85,
+      "id": "card_86",
+      "slide_id": 86,
       "term": "Forma Sentencial",
       "front": "Forma Sentencial",
       "back": "**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que posea símbolos no terminales, que se pueda derivar desde el axioma, se denomina **forma sentencial**.\n**Fórmula:**\n$$\\alpha \\in (N \\cup \\Sigma)^* \\text{ es forma sentencial} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha$$",
@@ -1394,8 +1409,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_86",
-      "slide_id": 86,
+      "id": "card_87",
+      "slide_id": 87,
       "term": "Sentencia",
       "front": "Sentencia",
       "back": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{G}{\\Rightarrow}} w$$",
@@ -1403,8 +1418,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_87",
-      "slide_id": 87,
+      "id": "card_88",
+      "slide_id": 88,
       "term": "Lenguaje Generado por una Gramática ($L(G)$)",
       "front": "Lenguaje Generado por una Gramática ($L(G)$)",
       "back": "**Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \\Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w\\}$$",
@@ -1412,8 +1427,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_88",
-      "slide_id": 88,
+      "id": "card_89",
+      "slide_id": 89,
       "term": "Lenguaje Inverso ($L^{-1}(G)$)",
       "front": "Lenguaje Inverso ($L^{-1}(G)$)",
       "back": "El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.\n**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).",
@@ -1421,8 +1436,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_89",
-      "slide_id": 89,
+      "id": "card_90",
+      "slide_id": 90,
       "term": "Gramática de Estructura de Frase",
       "front": "Gramática de Estructura de Frase",
       "back": "**Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ a derivar:\n$$\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$$\n**Casos especiales:**\n*   **Regla no generativa:** $X \\to \\epsilon$ (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n*   **Regla compresora:** $\\alpha X \\beta \\to \\alpha \\beta$ (cuando $\\delta = \\epsilon$).",
@@ -1430,8 +1445,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_90",
-      "slide_id": 90,
+      "id": "card_91",
+      "slide_id": 91,
       "term": "Gramática de Estructura de Frase: Contraejemplo de Invariancia",
       "front": "Gramática de Estructura de Frase: Contraejemplo de Invariancia",
       "back": "**Regla general GEF:** La regla $\\alpha X \\beta \\to \\alpha \\delta \\beta$ exige que la parte izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ sean **invariantes** (no cambien de lado ni de forma en el cuerpo).\n**Contraejemplo de regla NO GEF ($CB \\to BC$):**\n- **Si $X = C$:** En la cabeza $\\alpha = \\epsilon$ y $\\beta = B$. En el cuerpo la parte derecha debería ser $B$, pero $B$ aparece a la izquierda ($BC$). No es invariante.\n- **Si $X = B$:** En la cabeza $\\alpha = C$ y $\\beta = \\epsilon$. En el cuerpo la parte izquierda debería ser $C$, pero $C$ aparece a la derecha ($BC$). Tampoco es invariante.\n**Conclusión:** La regla $CB \\to BC$ no cumple la condición GEF.",
@@ -1439,8 +1454,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_91",
-      "slide_id": 91,
+      "id": "card_92",
+      "slide_id": 92,
       "term": "Jerarquía de Chomsky: Clasificación General",
       "front": "Jerarquía de Chomsky: Clasificación General",
       "back": "Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:\n1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.\n2.  **Tipo 1:** Gramáticas Dependientes del Contexto.\n3.  **Tipo 2:** Gramáticas Libres de Contexto.\n4.  **Tipo 3:** Gramáticas Regulares.\n**Relación de contención:** $\\text{Tipo } 3 \\subset \\text{Tipo } 2 \\subset \\text{Tipo } 1 \\subset \\text{Tipo } 0$.",
@@ -1448,8 +1463,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_92",
-      "slide_id": 92,
+      "id": "card_93",
+      "slide_id": 93,
       "term": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "front": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "back": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Ninguna. Producciones de la forma $\\alpha \\to \\beta$ con $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$ y $\\beta \\in (N \\cup \\Sigma)^*$",
@@ -1457,8 +1472,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_93",
-      "slide_id": 93,
+      "id": "card_94",
+      "slide_id": 94,
       "term": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "front": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Estructura de frase y no compresora. Sus reglas $\\alpha X \\beta \\to \\alpha \\delta \\beta$ verifican $\\delta \\neq \\epsilon$.\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).",
@@ -1466,8 +1481,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_94",
-      "slide_id": 94,
+      "id": "card_95",
+      "slide_id": 95,
       "term": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "front": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "back": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):\n$$X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$$",
@@ -1475,8 +1490,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_95",
-      "slide_id": 95,
+      "id": "card_96",
+      "slide_id": 96,
       "term": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "front": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "back": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Estructura de frase con producciones de un único tipo de linealidad:\n- **Lineal por Derecha:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$$\n- **Lineal por Izquierda:**\n    $$X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$$\n*(Se admite $S \\to \\epsilon$ en el axioma si el lenguaje contiene a $\\epsilon$).*",
@@ -1484,8 +1499,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_96",
-      "slide_id": 96,
+      "id": "card_97",
+      "slide_id": 97,
       "term": "Impacto de la Regla $S \\to \\epsilon$ en GEF, Tipo 0 y Tipo 1",
       "front": "Impacto de la Regla $S \\to \\epsilon$ en GEF, Tipo 0 y Tipo 1",
       "back": "La regla $S \\to \\epsilon$ permite que un lenguaje incluya la cadena vacía ($\\epsilon \\in L(G)$). Su comportamiento según la clasificación es:\n- **Gramática de Estructura de Frase:** Actúa como una regla compresora (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n- **Tipo 0 (Irrestrictas):** Cumple directamente la definición general ($\\text{cabeza} = S \\in N$, $\\text{cuerpo} = \\epsilon \\in \\dots$).\n- **Tipo 1 (Dependientes del Contexto):** Excepción explícita a la restricción no compresora ($|\\alpha| \\le |\\beta|$).",
@@ -1493,8 +1508,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_97",
-      "slide_id": 97,
+      "id": "card_98",
+      "slide_id": 98,
       "term": "Impacto de la Regla $S \\to \\epsilon$ en Tipo 2 y Tipo 3",
       "front": "Impacto de la Regla $S \\to \\epsilon$ en Tipo 2 y Tipo 3",
       "back": "La regla $S \\to \\epsilon$ según la clasificación de Chomsky para tipos 2 y 3:\n- **Tipo 2 (Libres de Contexto):** Cumple la restricción formal ($X \\to \\alpha$ con $X = S$ y $\\alpha = \\epsilon$).\n- **Tipo 3 (Regulares):** Es la única excepción permitida donde el cuerpo no contiene símbolos terminales ni no terminales.",
@@ -1502,8 +1517,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_98",
-      "slide_id": 98,
+      "id": "card_99",
+      "slide_id": 99,
       "term": "Grafo Asociado a una Gramática Regular Lineal por Derecha",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Derecha",
       "back": "Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> Los vértices son el conjunto de símbolos no terminales más el estado de aceptación ($\\epsilon$).\n> Las aristas se etiquetan con símbolos terminales y los símbolos no terminales definen que nodos son unidos por las aristas.",
@@ -1511,8 +1526,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_99",
-      "slide_id": 99,
+      "id": "card_100",
+      "slide_id": 100,
       "term": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
@@ -1520,8 +1535,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_100",
-      "slide_id": 100,
+      "id": "card_101",
+      "slide_id": 101,
       "term": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "front": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "back": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetadas con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.",
@@ -1529,8 +1544,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_101",
-      "slide_id": 101,
+      "id": "card_102",
+      "slide_id": 102,
       "term": "Árbol de Derivación (Árbol de Parser)",
       "front": "Árbol de Derivación (Árbol de Parser)",
       "back": "**Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.\n**Hojas:** Nodos etiquetados con símbolos terminales que pertenecen a $\\Sigma$ o con la cadena vacía $\\epsilon$.",
@@ -1538,8 +1553,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_102",
-      "slide_id": 102,
+      "id": "card_103",
+      "slide_id": 103,
       "term": "Gramática Ambigua",
       "front": "Gramática Ambigua",
       "back": "**Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.",
@@ -1547,8 +1562,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_103",
-      "slide_id": 103,
+      "id": "card_104",
+      "slide_id": 104,
       "term": "Construcción del Árbol de Derivación",
       "front": "Construcción del Árbol de Derivación",
       "back": "Reglas algorítmicas de construcción:\n1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.\n2.  **Expansión de producciones:** Para cada nodo etiquetado con un no terminal $A$, al aplicar la regla $A \\to Y_1 Y_2 \\dots Y_k$, se dibujan $k$ descendientes ordenados de izquierda a derecha etiquetados con $Y_1, \\dots, Y_k$.\n3.  **Hojas:** Los descendientes etiquetados con terminales o la cadena vacía $\\epsilon$ actúan como hojas (nodos terminales sin descendientes).\n4.  **Criterio de finalización:** El proceso concluye cuando todos los nodos hoja pertenecen a $\\Sigma \\cup \\{\\epsilon\\}$.",
@@ -1556,8 +1571,8 @@
       "theme": "Gramática"
     },
     {
-      "id": "card_104",
-      "slide_id": 104,
+      "id": "card_105",
+      "slide_id": 105,
       "term": "Lectura del Árbol de Derivación (Frontera)",
       "front": "Lectura del Árbol de Derivación (Frontera)",
       "back": "**Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).\n**Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.\n**Pertenencia:** La cadena obtenida representa la sentencia que pertenece al lenguaje $L(G)$.",
