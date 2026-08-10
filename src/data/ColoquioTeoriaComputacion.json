@@ -461,7 +461,7 @@
     {
       "id": 77,
       "title": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
-      "content": "L(a+b+c) = L(a)\\cup L(b)\\cup L(c) = {a,b,c}\nL(ab) = L(a)L(b) = {ab}\nL(ab(a+b+c)) ={aba,abb,abc}\nL(ab*)={ab,abab,ababab,\\dots}",
+      "content": "$L(a+b+c) = L(a) \\cup L(b) \\cup L(c) = \\{a,b,c\\}$\n$L(ab) = L(a)L(b) = \\{ab\\}$\n$L(ab(a+b+c)) = \\{aba, abb, abc\\}$\n$L((ab)^*) = \\{ab, abab, ababab, \\dots\\}$",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -491,7 +491,7 @@
     {
       "id": 82,
       "title": "Construcción de ERs: Ejemplos 4",
-      "content": "$L_8 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y el sufijo no se solapa para no alterar la paridad.",
+      "content": "$L_8 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -1347,7 +1347,7 @@
       "slide_id": 77,
       "term": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "front": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
-      "back": "L(a+b+c) = L(a)\\cup L(b)\\cup L(c) = {a,b,c}\nL(ab) = L(a)L(b) = {ab}\nL(ab(a+b+c)) ={aba,abb,abc}\nL(ab*)={ab,abab,ababab,\\dots}",
+      "back": "$L(a+b+c) = L(a) \\cup L(b) \\cup L(c) = \\{a,b,c\\}$\n$L(ab) = L(a)L(b) = \\{ab\\}$\n$L(ab(a+b+c)) = \\{aba, abb, abc\\}$\n$L((ab)^*) = \\{ab, abab, ababab, \\dots\\}$",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
@@ -1392,7 +1392,7 @@
       "slide_id": 82,
       "term": "Construcción de ERs: Ejemplos 4",
       "front": "Construcción de ERs: Ejemplos 4",
-      "back": "$L_8 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y el sufijo no se solapa para no alterar la paridad.",
+      "back": "$L_8 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },

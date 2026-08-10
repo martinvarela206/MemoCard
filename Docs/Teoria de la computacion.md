@@ -658,10 +658,10 @@ $$E_1 \equiv E_2 \iff L(E_1) = L(E_2)$$
 
 ### Diapositiva 77: Guía Práctica de Construcción de Expresiones Regulares - Parte 1
 
-L(a+b+c) = L(a)\cup L(b)\cup L(c) = {a,b,c}
-L(ab) = L(a)L(b) = {ab}
-L(ab(a+b+c)) ={aba,abb,abc}
-L(ab*)={ab,abab,ababab,\dots}
+$L(a+b+c) = L(a) \cup L(b) \cup L(c) = \{a,b,c\}$
+$L(ab) = L(a)L(b) = \{ab\}$
+$L(ab(a+b+c)) = \{aba, abb, abc\}$
+$L((ab)^*) = \{ab, abab, ababab, \dots\}$
 
 ---
 
@@ -703,7 +703,7 @@ $L_7 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y s
 
 $L_8 \text{ sobre } \{a,b,c\} = \{w \text{ tiene un solo } b \text{ seguido por un número impar de } a\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\epsilon)$
 
-> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y el sufijo no se solapa para no alterar la paridad.
+> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.
 
 ---
 
