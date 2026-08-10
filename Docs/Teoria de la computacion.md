@@ -658,36 +658,60 @@ $$E_1 \equiv E_2 \iff L(E_1) = L(E_2)$$
 
 ### Diapositiva 77: Guía Práctica de Construcción de Expresiones Regulares - Parte 1
 
-Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:
-- **Universo del Alfabeto ($\Sigma^*$):** Si $\Sigma = \{a,b\}$, la ER es `(a + b)*`.
-- **Prefijo fijo $P$:** $P \cdot \Sigma^*$ (ejemplo con prefijo $aca$ en $\Sigma=\{a,b,c\}$: `aca(a + b + c)*`).
-- **Sufijo fijo $S$:** $\Sigma^* \cdot S$ (ejemplo con sufijo $ca$ en $\Sigma=\{a,b,c\}$: `(a + b + c)*ca`).
+L(a+b+c) = L(a)\cup L(b)\cup L(c) = {a,b,c}
+L(ab) = L(a)L(b) = {ab}
+L(ab(a+b+c)) ={aba,abb,abc}
+L(ab*)={ab,abab,ababab,\dots}
 
 ---
 
 ### Diapositiva 78: Guía Práctica de Construcción de Expresiones Regulares - Parte 2
 
-Patrones fundamentales para construir Expresiones Regulares a partir de descripciones coloquiales:
-- **Subcadena fija $Sub$:** $\Sigma^* \cdot Sub \cdot \Sigma^*$ (ejemplo con subcadena $aa$: `(a + b + c)*aa(a + b + c)*`).
-- **Solapamiento en ER ($P = S = X$):** $X + X \cdot \Sigma^* \cdot X$ (ejemplo con prefijo y sufijo $baca$: `baca + baca(a + b + c)*baca`).
+- La concatención da cadenas literales.
+- La suma/union da cadenas alternativas.
 
 ---
 
-### Diapositiva 79: Construcción de ERs: Conteo de Símbolos
+### Diapositiva 79: Construcción de ERs: Ejemplos 1
 
-Restricciones numéricas al contar símbolos sobre un alfabeto $\Sigma$:
-- **Definición $\Sigma_{resto}$:** Alfabeto excluyendo el símbolo $x$ a contar ($\Sigma - \{x\}$).
-- **Exactamente una ocurrencia de $x$:** $\Sigma_{resto}^* \cdot x \cdot \Sigma_{resto}^*$ (ejemplo en $\Sigma = \{a,b\}$ con una sola $b$: `a* b a*`).
-- **Número par de $x$:** $(\Sigma_{resto}^* \cdot x \Sigma_{resto}^* \cdot x \Sigma_{resto}^*)^*$ ó bien $(\Sigma_{resto}^* + x \Sigma_{resto}^* x)^*$.
-- **Número impar de $x$:** $\Sigma_{resto}^* \cdot x \cdot \Sigma_{resto}^* \cdot (\Sigma_{resto}^* \cdot x \Sigma_{resto}^* \cdot x \Sigma_{resto}^*)^*$.
+$L_1 \text{ sobre } \{a,b,c\} = \{w \text{ tiene subcadena } aca\}: E_1 = (a+b+c)^*aca(a+b+c)^*$
+$L_2 \text{ sobre } \{0,1,2,3\} = \{w \text{ no tiene prefijo } 0\}: E_2 = (1+2+3)(0+1+2+3)^*$
+$L_3 \text{ sobre } \{0,1,2,3\} = \{w \text{ tiene longitud } 3 \text{ y prefijo } 1\}: E_3 = 1(0+1+2+3)^2$
 
 ---
 
-### Diapositiva 80: Construcción de ERs: Números Naturales
+### Diapositiva 80: Construcción de ERs: Ejemplos 2
 
-Restricciones de formato para representar conjuntos de números:
-- **Dígitos sin ceros a la izquierda (Números naturales):** En $\Sigma = \{0, 1, 2, 3\}$, un número no comienza con $0$ salvo el número $0$ por sí solo:
-  $$\text{ER} = 0 + (1 + 2 + 3)(0 + 1 + 2 + 3)^*$$
+$L_4 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } baca\}: E_4 = (baca(a+b+c)^*baca)+baca$
+$L_5 \text{ sobre } \{a,b\} = \{w \text{ tiene un número impar de } a \text{ y un número par de } b\}: E_5 = a(aa)^*bb(bb)^*$
+
+> En $L_4$ existe solapamiento, por lo que hay el caso sin solapamiento y el caso mínimo con solapamiento.
+> En $L_5$ no se pueden usar potencias k-ésimas; se pone la cantidad repetida y se agrupa de a 2 en Kleene.
+
+---
+
+### Diapositiva 81: Construcción de ERs: Ejemplos 3
+
+$L_6 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo } c, \text{ sufijo } ba \text{ y subcadenas de } b \text{ o es } cc\}: E_6 = cc+cb^*ba$
+$L_7 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y subcadena } b^3\}: E_7 = c(a+b+c)^*bbb(a+b+c)^*c$
+
+> En $L_6$ existe un caso único con $cc$ y el resto. No requiere agrupaciones por orden de prioridad.
+
+---
+
+### Diapositiva 82: Construcción de ERs: Ejemplos 4
+
+$L_8 \text{ sobre } \{a,b,c\} = \{w \text{ tiene un solo } b \text{ seguido por un número impar de } a\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\epsilon)$
+
+> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y el sufijo no se solapa para no alterar la paridad.
+
+---
+
+### Diapositiva 83: Construcción de ERs: Ejemplos 5
+
+$L_9 \text{ sobre } \{0,1,2,3\} = \{w \text{ representa un número natural sin ceros a la izquierda, excepto } 0\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$
+
+> En $L_9$ un número no comienza con $0$ salvo $0$, por lo que se contempla $0$ o un dígito no nulo $(1+2+3)$ y lo que sigue.
 
 ---
 
@@ -695,7 +719,7 @@ Restricciones de formato para representar conjuntos de números:
 
 ---
 
-### Diapositiva 81: Gramática ($G$): Definición algebraica
+### Diapositiva 84: Gramática ($G$): Definición algebraica
 
 Una gramática $G$ es una estructura algebraica definida por la 4-tupla:
 $$G = (N, \Sigma, P, S)$$
@@ -707,7 +731,7 @@ Donde:
 
 ---
 
-### Diapositiva 82: Convenciones de Notación en Gramáticas
+### Diapositiva 85: Convenciones de Notación en Gramáticas
 
 Convenciones para definir reglas gramaticales:
 - **Símbolos No Terminales $(\in N)$:** Letras mayúsculas $A, B, C, \dots, S, X, Y, Z$. Se utilizan $X, Y, Z$ como comodines.
@@ -717,7 +741,7 @@ Convenciones para definir reglas gramaticales:
 
 ---
 
-### Diapositiva 83: Definición de las reglas de producción
+### Diapositiva 86: Definición de las reglas de producción
 
 Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\alpha, \alpha') \in P$. Por comodidad, se expresan como relaciones de producción, tal que $\alpha \to \alpha'$.
 
@@ -725,7 +749,7 @@ Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\a
 
 ---
 
-### Diapositiva 84: Cabeza y Cuerpo de las reglas de producción
+### Diapositiva 87: Cabeza y Cuerpo de las reglas de producción
 
 Las reglas de producción tienen dos partes:
 - **Cabeza ($\alpha$):** $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$
@@ -735,7 +759,7 @@ Las reglas de producción tienen dos partes:
 
 ---
 
-### Diapositiva 85: Notación de Backus
+### Diapositiva 88: Notación de Backus
 
 **Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.
 **Representación:** Las reglas $\alpha \to \alpha_1, \alpha \to \alpha_2, \dots, \alpha \to \alpha_n$ se abrevian como:
@@ -743,7 +767,7 @@ $$\alpha \to \alpha_1 \mid \alpha_2 \mid \dots \mid \alpha_n$$
 
 ---
 
-### Diapositiva 86: Relación Deriva
+### Diapositiva 89: Relación Deriva
 
 Sean las cadenas $\beta, \delta, \sigma, \mu, \alpha, \alpha' \in (N \cup \Sigma)^*$:
 **Deriva Directa ($\underset{G}{\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:
@@ -753,7 +777,7 @@ $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \
 
 ---
 
-### Diapositiva 87: Forma Sentencial
+### Diapositiva 90: Forma Sentencial
 
 **Forma Sentencial:** Dada una gramática $G$, cualquier cadena que posea símbolos no terminales, que se pueda derivar desde el axioma, se denomina **forma sentencial**.
 **Fórmula:**
@@ -761,7 +785,7 @@ $$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\u
 
 ---
 
-### Diapositiva 88: Sentencia
+### Diapositiva 91: Sentencia
 
 **Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
 **Fórmula:**
@@ -769,21 +793,21 @@ $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarro
 
 ---
 
-### Diapositiva 89: Lenguaje Generado por una Gramática ($L(G)$)
+### Diapositiva 92: Lenguaje Generado por una Gramática ($L(G)$)
 
 **Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ---
 
-### Diapositiva 90: Lenguaje Inverso ($L^{-1}(G)$)
+### Diapositiva 93: Lenguaje Inverso ($L^{-1}(G)$)
 
 El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \dots a_n \in L(G) \implies w^{-1} = a_n \dots a_2 a_1 \in L^{-1}(G)$.
 **Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).
 
 ---
 
-### Diapositiva 91: Gramática de Estructura de Frase
+### Diapositiva 94: Gramática de Estructura de Frase
 
 **Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
@@ -793,7 +817,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-### Diapositiva 92: Gramática de Estructura de Frase: Contraejemplo de Invariancia
+### Diapositiva 95: Gramática de Estructura de Frase: Contraejemplo de Invariancia
 
 **Regla general GEF:** La regla $\alpha X \beta \to \alpha \delta \beta$ exige que la parte izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ sean **invariantes** (no cambien de lado ni de forma en el cuerpo).
 **Contraejemplo de regla NO GEF ($CB \to BC$):**
@@ -803,7 +827,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-### Diapositiva 93: Jerarquía de Chomsky: Clasificación General
+### Diapositiva 96: Jerarquía de Chomsky: Clasificación General
 
 Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
 1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.
@@ -814,14 +838,14 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-### Diapositiva 94: Jerarquía: Gramática Tipo 0 (Irrestrictas)
+### Diapositiva 97: Jerarquía: Gramática Tipo 0 (Irrestrictas)
 
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
 **Definición (Restricciones):** Ninguna. Producciones de la forma $\alpha \to \beta$ con $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$ y $\beta \in (N \cup \Sigma)^*$
 
 ---
 
-### Diapositiva 95: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
+### Diapositiva 98: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
 **Definición (Restricciones):** Estructura de frase y no compresora. Sus reglas $\alpha X \beta \to \alpha \delta \beta$ verifican $\delta \neq \epsilon$.
@@ -829,7 +853,7 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-### Diapositiva 96: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
+### Diapositiva 99: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
 **Definición (Restricciones):** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):
@@ -837,7 +861,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-### Diapositiva 97: Jerarquía: Gramática Tipo 3 (Regulares)
+### Diapositiva 100: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
 **Definición (Restricciones):** Estructura de frase con producciones de un único tipo de linealidad:
@@ -849,7 +873,7 @@ $$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
 
 ---
 
-### Diapositiva 98: Impacto de la Regla $S \to \epsilon$ en GEF, Tipo 0 y Tipo 1
+### Diapositiva 101: Impacto de la Regla $S \to \epsilon$ en GEF, Tipo 0 y Tipo 1
 
 La regla $S \to \epsilon$ permite que un lenguaje incluya la cadena vacía ($\epsilon \in L(G)$). Su comportamiento según la clasificación es:
 - **Gramática de Estructura de Frase:** Actúa como una regla compresora (cuando $\alpha = \beta = \delta = \epsilon$).
@@ -858,7 +882,7 @@ La regla $S \to \epsilon$ permite que un lenguaje incluya la cadena vacía ($\ep
 
 ---
 
-### Diapositiva 99: Impacto de la Regla $S \to \epsilon$ en Tipo 2 y Tipo 3
+### Diapositiva 102: Impacto de la Regla $S \to \epsilon$ en Tipo 2 y Tipo 3
 
 La regla $S \to \epsilon$ según la clasificación de Chomsky para tipos 2 y 3:
 - **Tipo 2 (Libres de Contexto):** Cumple la restricción formal ($X \to \alpha$ con $X = S$ y $\alpha = \epsilon$).
@@ -866,7 +890,7 @@ La regla $S \to \epsilon$ según la clasificación de Chomsky para tipos 2 y 3:
 
 ---
 
-### Diapositiva 100: Grafo Asociado a una Gramática Regular Lineal por Derecha
+### Diapositiva 103: Grafo Asociado a una Gramática Regular Lineal por Derecha
 
 Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -875,7 +899,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 ---
 
-### Diapositiva 101: Grafo Asociado a una Gramática Regular Lineal por Izquierda
+### Diapositiva 104: Grafo Asociado a una Gramática Regular Lineal por Izquierda
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -883,7 +907,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 102: Definición de Aristas del Grafo Asociado a una Gramática Regular
+### Diapositiva 105: Definición de Aristas del Grafo Asociado a una Gramática Regular
 
 **Definición de Aristas:**
 1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetadas con $\epsilon$ de $S$ al nodo $\epsilon$.
@@ -893,7 +917,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 103: Árbol de Derivación (Árbol de Parser)
+### Diapositiva 106: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.
@@ -901,13 +925,13 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 104: Gramática Ambigua
+### Diapositiva 107: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-### Diapositiva 105: Construcción del Árbol de Derivación
+### Diapositiva 108: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -917,7 +941,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-### Diapositiva 106: Lectura del Árbol de Derivación (Frontera)
+### Diapositiva 109: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
