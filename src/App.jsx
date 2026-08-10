@@ -360,7 +360,12 @@ function App() {
         return {
           queue: reconstructedQueue,
           currentIndex: Math.min(parsed.currentIndex, reconstructedQueue.length - 1),
-          showAnswer: parsed.showAnswer
+          showAnswer: parsed.showAnswer,
+          mode: parsed.mode,
+          filterSlideStart: parsed.filterSlideStart,
+          filterSlideEnd: parsed.filterSlideEnd,
+          filterStatus: parsed.filterStatus,
+          shuffleCustom: parsed.shuffleCustom
         };
       }
     } catch (e) {
@@ -375,6 +380,9 @@ function App() {
   const [filterSlideEnd, setFilterSlideEnd] = useState(data.slides.length);
   const [filterStatus, setFilterStatus] = useState('all');
   const [shuffleCustom, setShuffleCustom] = useState(false);
+  const [trackingTheme, setTrackingTheme] = useState(() => {
+    return localStorage.getItem('memocard_tracking_theme') || '';
+  });
 
   const [selectedTheme, setSelectedTheme] = useState(() => {
     return localStorage.getItem('memocard_selected_theme') || null;
@@ -408,7 +416,8 @@ function App() {
         return {
           queue: reconstructedQueue,
           currentIndex: Math.min(parsed.currentIndex, reconstructedQueue.length - 1),
-          showAnswer: parsed.showAnswer
+          showAnswer: parsed.showAnswer,
+          themeName: parsed.themeName
         };
       }
     } catch (e) {
@@ -422,7 +431,8 @@ function App() {
       localStorage.setItem('memocard_theme_study_session', JSON.stringify({
         queueIds: themeStudySession.queue.map(c => c.id),
         currentIndex: themeStudySession.currentIndex,
-        showAnswer: themeStudySession.showAnswer
+        showAnswer: themeStudySession.showAnswer,
+        themeName: themeStudySession.themeName
       }));
     } else {
       localStorage.removeItem('memocard_theme_study_session');
@@ -474,11 +484,24 @@ function App() {
   }, [selectedTheme]);
 
   useEffect(() => {
+    if (trackingTheme) {
+      localStorage.setItem('memocard_tracking_theme', trackingTheme);
+    } else {
+      localStorage.removeItem('memocard_tracking_theme');
+    }
+  }, [trackingTheme]);
+
+  useEffect(() => {
     if (studySession) {
       localStorage.setItem('memocard_study_session', JSON.stringify({
         queueIds: studySession.queue.map(c => c.id),
         currentIndex: studySession.currentIndex,
-        showAnswer: studySession.showAnswer
+        showAnswer: studySession.showAnswer,
+        mode: studySession.mode,
+        filterSlideStart: studySession.filterSlideStart,
+        filterSlideEnd: studySession.filterSlideEnd,
+        filterStatus: studySession.filterStatus,
+        shuffleCustom: studySession.shuffleCustom
       }));
     } else {
       localStorage.removeItem('memocard_study_session');
@@ -507,24 +530,124 @@ function App() {
     // Sync active study session queue with any modified/added/removed card contents from JSON
     setStudySession(prevSession => {
       if (!prevSession) return null;
-      const updatedQueue = prevSession.queue.map(queueCard => {
-        const matchingCard = hydratedCards.find(c => c.id === queueCard.id);
-        // Keep the updated card data from the fresh JSON, but preserve its status in the active session
-        return matchingCard ? { ...matchingCard, status: queueCard.status } : queueCard;
-      });
+      
+      const { mode, filterSlideStart: pStart, filterSlideEnd: pEnd, filterStatus: pStatus, shuffleCustom: pShuffle } = prevSession;
+      
+      if (!mode) {
+        const updatedQueue = prevSession.queue.map(queueCard => {
+          const matchingCard = hydratedCards.find(c => c.id === queueCard.id);
+          return matchingCard ? { ...matchingCard, status: queueCard.status } : queueCard;
+        });
+        return { ...prevSession, queue: updatedQueue };
+      }
+
+      let newQueue = [];
+      if (mode === 'all') {
+        newQueue = [...hydratedCards];
+      } else if (mode === 'weak') {
+        newQueue = hydratedCards.filter(c => c.status === 'again' || c.status === 'hard');
+      } else if (mode === 'pending') {
+        newQueue = hydratedCards.filter(c => c.status === 'unlearned');
+      } else if (mode === 'range') {
+        newQueue = hydratedCards.filter(c => c.slide_id >= pStart && c.slide_id <= pEnd);
+      } else if (mode === 'custom') {
+        newQueue = hydratedCards.filter(c => {
+          const matchesRange = c.slide_id >= pStart && c.slide_id <= pEnd;
+          const matchesStatus = pStatus === 'all' || 
+            (pStatus === 'unlearned' && c.status === 'unlearned') ||
+            (pStatus === 'weak' && (c.status === 'again' || c.status === 'hard')) ||
+            (pStatus === 'mastered' && (c.status === 'good' || c.status === 'easy'));
+          return matchesRange && matchesStatus;
+        });
+      }
+
+      if (mode === 'range' || (mode === 'custom' && !pShuffle)) {
+        newQueue.sort((a, b) => a.slide_id - b.slide_id);
+      } else if (mode === 'all' || mode === 'weak' || mode === 'pending' || (mode === 'custom' && pShuffle)) {
+        const existingIds = prevSession.queue.map(c => c.id);
+        const presentCards = newQueue.filter(c => existingIds.includes(c.id));
+        presentCards.sort((a, b) => existingIds.indexOf(a.id) - existingIds.indexOf(b.id));
+        const newCards = newQueue.filter(c => !existingIds.includes(c.id));
+        newQueue = [...presentCards, ...newCards];
+      }
+
+      if (newQueue.length === 0) return null;
+
+      const currentCard = prevSession.queue[prevSession.currentIndex];
+      let newIndex = currentCard ? newQueue.findIndex(c => c.id === currentCard.id) : -1;
+      if (newIndex === -1) {
+        newIndex = Math.min(prevSession.currentIndex, newQueue.length - 1);
+      }
+      if (newIndex < 0) newIndex = 0;
+
       return {
         ...prevSession,
-        queue: updatedQueue
+        queue: newQueue,
+        currentIndex: newIndex
       };
     });
 
-    // Adjust filter ends if slides size changes
-    setFilterSlideEnd(prev => {
-      if (prev > data.slides.length || prev === 0) {
-        return data.slides.length;
+    // Sync theme study session queue with any modified/added/removed card contents from JSON
+    setThemeStudySession(prevSession => {
+      if (!prevSession) return null;
+      
+      const themeName = prevSession.themeName || selectedTheme;
+      if (!themeName) {
+        const updatedQueue = prevSession.queue.map(queueCard => {
+          const matchingCard = hydratedCards.find(c => c.id === queueCard.id);
+          return matchingCard ? { ...matchingCard, status: queueCard.status } : queueCard;
+        });
+        return { ...prevSession, queue: updatedQueue };
       }
-      return prev;
+
+      const newQueue = hydratedCards.filter(c => c.theme === themeName);
+      newQueue.sort((a, b) => a.slide_id - b.slide_id);
+
+      if (newQueue.length === 0) return null;
+
+      const currentCard = prevSession.queue[prevSession.currentIndex];
+      let newIndex = currentCard ? newQueue.findIndex(c => c.id === currentCard.id) : -1;
+      if (newIndex === -1) {
+        newIndex = Math.min(prevSession.currentIndex, newQueue.length - 1);
+      }
+      if (newIndex < 0) newIndex = 0;
+
+      return {
+        ...prevSession,
+        queue: newQueue,
+        currentIndex: newIndex
+      };
     });
+
+    // Recalculate ranges for trackingTheme if set
+    if (trackingTheme) {
+      const themesMap = {};
+      data.slides.forEach(slide => {
+        const themeName = slide.theme || "Sin Tema";
+        if (!themesMap[themeName]) {
+          themesMap[themeName] = {
+            name: themeName,
+            start: slide.id,
+            end: slide.id
+          };
+        }
+        themesMap[themeName].end = Math.max(themesMap[themeName].end, slide.id);
+        themesMap[themeName].start = Math.min(themesMap[themeName].start, slide.id);
+      });
+      const activeThemeData = themesMap[trackingTheme];
+      if (activeThemeData) {
+        setFilterSlideStart(activeThemeData.start);
+        setFilterSlideEnd(activeThemeData.end);
+      }
+    } else {
+      // Adjust filter ends if slides size changes
+      setFilterSlideEnd(prev => {
+        if (prev > data.slides.length || prev === 0) {
+          return data.slides.length;
+        }
+        return prev;
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -719,7 +842,12 @@ function App() {
     setStudySession({
       queue: finalQueue,
       currentIndex: 0,
-      showAnswer: false
+      showAnswer: false,
+      mode,
+      filterSlideStart,
+      filterSlideEnd,
+      filterStatus,
+      shuffleCustom
     });
     setActiveTab('study');
   };
@@ -736,7 +864,8 @@ function App() {
     setThemeStudySession({
       queue: filteredQueue,
       currentIndex: 0,
-      showAnswer: false
+      showAnswer: false,
+      themeName
     });
     setSelectedTheme(themeName);
   };
@@ -976,7 +1105,10 @@ function App() {
               min="1" 
               max={data.slides.length} 
               value={filterSlideStart} 
-              onChange={e => setFilterSlideStart(Math.max(1, parseInt(e.target.value) || 1))}
+              onChange={e => {
+                setFilterSlideStart(Math.max(1, parseInt(e.target.value) || 1));
+                setTrackingTheme('');
+              }}
               style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '4px 6px', color: 'white', width: '50px', textAlign: 'center', fontSize: '0.8rem' }}
               onClick={e => e.stopPropagation()}
             />
@@ -986,7 +1118,10 @@ function App() {
               min="1" 
               max={data.slides.length} 
               value={filterSlideEnd} 
-              onChange={e => setFilterSlideEnd(Math.min(data.slides.length, parseInt(e.target.value) || data.slides.length))}
+              onChange={e => {
+                setFilterSlideEnd(Math.min(data.slides.length, parseInt(e.target.value) || data.slides.length));
+                setTrackingTheme('');
+              }}
               style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '4px 6px', color: 'white', width: '50px', textAlign: 'center', fontSize: '0.8rem' }}
               onClick={e => e.stopPropagation()}
             />
@@ -1077,6 +1212,30 @@ function App() {
               </h3>
               <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 200px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Vincular Rango por Tema:</label>
+                  <select
+                    value={trackingTheme}
+                    onChange={e => {
+                      const selected = e.target.value;
+                      setTrackingTheme(selected);
+                      if (selected) {
+                        const themeData = themesList.find(t => t.name === selected);
+                        if (themeData) {
+                          setFilterSlideStart(themeData.start);
+                          setFilterSlideEnd(themeData.end);
+                        }
+                      }
+                    }}
+                    style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '8px', color: 'white', cursor: 'pointer' }}
+                  >
+                    <option value="">Personalizado (Rango Libre)</option>
+                    {themesList.map(t => (
+                      <option key={t.name} value={t.name}>{t.name} (D{t.start} - D{t.end})</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div style={{ flex: '1 1 200px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <label style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Rango de Diapositivas (Desde - Hasta):</label>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                     <input 
@@ -1084,7 +1243,10 @@ function App() {
                       min="1" 
                       max={data.slides.length} 
                       value={filterSlideStart} 
-                      onChange={e => setFilterSlideStart(Math.max(1, parseInt(e.target.value) || 1))}
+                      onChange={e => {
+                        setFilterSlideStart(Math.max(1, parseInt(e.target.value) || 1));
+                        setTrackingTheme('');
+                      }}
                       style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '8px', color: 'white', width: '70px', textAlign: 'center' }}
                     />
                     <span style={{ color: 'var(--text-muted)' }}>a</span>
@@ -1093,7 +1255,10 @@ function App() {
                       min="1" 
                       max={data.slides.length} 
                       value={filterSlideEnd} 
-                      onChange={e => setFilterSlideEnd(Math.min(data.slides.length, parseInt(e.target.value) || data.slides.length))}
+                      onChange={e => {
+                        setFilterSlideEnd(Math.min(data.slides.length, parseInt(e.target.value) || data.slides.length));
+                        setTrackingTheme('');
+                      }}
                       style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '8px', color: 'white', width: '70px', textAlign: 'center' }}
                     />
                   </div>
