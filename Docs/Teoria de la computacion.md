@@ -250,7 +250,6 @@ $$L = \{w \in \Sigma^* \mid w = f(\alpha, \beta, \dots) \text{ con condiciones p
 
 ### Diapositiva 32: Reglas de la Representación por Compresión
 
-**Reglas de construcción:**
 - Siempre comienza con $L = \{w \in \Sigma^* \mid \dots \}$ o bien $L = \{w \in \Sigma^k \mid \dots\}$ cuando la longitud sea fija.
 - Consiste en definir el lenguaje utilizando condiciones lógicas y lenguaje técnico, sin introducir parámetros ni exponentes.
 - Se deben usar términos como: *"tiene longitud"*, *"tiene prefijo..."*, *"tiene sufijo..."*, *"comienza con..."*, *"termina con..."*, etc.
@@ -261,12 +260,11 @@ $$L = \{w \in \Sigma^* \mid w = f(\alpha, \beta, \dots) \text{ con condiciones p
 
 ### Diapositiva 33: Reglas de la Representación con Parámetros
 
-**Reglas de construcción:**
 - Siempre comienza con $L = \{w \in \Sigma^* \mid \dots \}$ o bien $L = \{w \in \Sigma^k \mid \dots\}$ cuando la longitud sea fija.
 - Consiste en definir el lenguaje mediante una ecuación con parámetros de subcadena y variables de potencia.
-- Representar las subcadenas utilizando **letras griegas** ($\alpha, \beta, \delta$, etc.) y declarar explícitamente a qué conjunto pertenecen (ej: $\alpha \in \Sigma^*$, $\alpha \in \Sigma^2$, $\alpha,\beta \in \{y,z\}$).
+- Representar las subcadenas utilizando **letras griegas** ($\alpha, \beta, \delta$, etc.) y declarar explícitamente a qué conjunto pertenecen.
 - **Nunca** usar subcadenas del tipo $w_i$.
-- Para potencias o repeticiones de símbolos/subcadenas, usar variables numéricas ($n, i, j, k$, etc.) y aclarar a qué conjunto pertenecen (ej. $n \in \mathbb{N}_0$, $n \ge 1$).
+- Para potencias o repeticiones de símbolos/subcadenas, usar variables numéricas ($n, i, j, k$, etc.) y aclarar a qué conjunto pertenecen.
 
 ---
 
