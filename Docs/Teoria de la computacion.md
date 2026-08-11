@@ -663,55 +663,51 @@ $L(ab) = L(a)L(b) = \{ab\}$
 $L(ab(a+b+c)) = \{aba, abb, abc\}$
 $L((ab)^*) = \{ab, abab, ababab, \dots\}$
 
----
-
-### Diapositiva 78: Guía Práctica de Construcción de Expresiones Regulares - Parte 2
-
-- La concatención da cadenas literales.
-- La suma/union da cadenas alternativas.
+> La concatención da cadenas literales.
+> La suma/union da cadenas alternativas.
 
 ---
 
-### Diapositiva 79: Construcción de ERs: Ejemplos 1
+### Diapositiva 78: Construcción de ERs: Ejemplos 1
 
 $L_1 \text{ sobre } \{a,b,c\} = \{w \text{ tiene subcadena } aca\}: E_1 = (a+b+c)^*aca(a+b+c)^*$
 $L_2 \text{ sobre } \{0,1,2,3\} = \{w \text{ no tiene prefijo } 0\}: E_2 = (1+2+3)(0+1+2+3)^*$
-$L_3 \text{ sobre } \{0,1,2,3\} = \{w \text{ tiene longitud } 3 \text{ y prefijo } 1\}: E_3 = 1(0+1+2+3)^2$
 
 ---
 
-### Diapositiva 80: Construcción de ERs: Ejemplos 2
+### Diapositiva 79: Construcción de ERs: Ejemplos 2
 
-$L_4 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } baca\}: E_4 = (baca(a+b+c)^*baca)+baca$
-$L_5 \text{ sobre } \{a,b\} = \{w \text{ tiene un número impar de } a \text{ y un número par de } b\}: E_5 = a(aa)^*bb(bb)^*$
+$L_3 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } baca\}: E_3 = (baca(a+b+c)^*baca)+baca$
+$L_4 \text{ sobre } \{a,b\} = \{w \text{ tiene un número impar de } a \text{ y un número par de } b\}: E_4 = a(aa)^*bb(bb)^*$
 
-> En $L_4$ existe solapamiento, por lo que hay el caso sin solapamiento y el caso mínimo con solapamiento.
-> En $L_5$ no se pueden usar potencias k-ésimas; se pone la cantidad repetida y se agrupa de a 2 en Kleene.
-
----
-
-### Diapositiva 81: Construcción de ERs: Ejemplos 3
-
-$L_6 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo } c, \text{ sufijo } ba \text{ y subcadenas de } b \text{ o es } cc\}: E_6 = cc+cb^*ba$
-$L_7 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y subcadena } b^3\}: E_7 = c(a+b+c)^*bbb(a+b+c)^*c$
-
-> En $L_6$ existe un caso único con $cc$ y el resto. No requiere agrupaciones por orden de prioridad.
+> En $L_3$ existe solapamiento, por lo que hay el caso sin solapamiento y el caso mínimo con solapamiento.
+> En $L_4$ no se pueden usar potencias k-ésimas; se pone la cantidad repetida y se agrupa de a 2 en Kleene.
 
 ---
 
-### Diapositiva 82: Construcción de ERs: Ejemplos 4
+### Diapositiva 80: Construcción de ERs: Ejemplos 3
 
-$L_8 \text{ sobre } \{a,b,c\} = \{w \text{ tiene un solo } b \text{ seguido por un número impar de } a\}: E_8 = (a+c)^*ba(aa)^*(c(c+a)^*+\epsilon)$
+$L_5 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo } c, \text{ sufijo } ba \text{ y subcadenas de } b \text{ o es } cc\}: E_5 = cc+cb^*ba$
+$L_6 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y subcadena } b^3\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$
 
-> En $L_8$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.
+> En $L_5$ existe un caso único con $cc$. No requiere agrupaciones por orden de prioridad.
 
 ---
 
-### Diapositiva 83: Construcción de ERs: Ejemplos 5
+### Diapositiva 81: Construcción de ERs: Ejemplos 4
 
+$L_7 \text{ sobre } \{a,b,c\} = \{w \text{ tiene un solo } b \text{ seguido por un número impar de } a\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\epsilon)$
+
+> En $L_7$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.
+
+---
+
+### Diapositiva 82: Construcción de ERs: Ejemplos 5
+
+$L_8 \text{ sobre } \{0,1,2,3\} = \{w \text{ tiene longitud } 3 \text{ y prefijo } 1\}: E_8 = 1(0+1+2+3)^2$
 $L_9 \text{ sobre } \{0,1,2,3\} = \{w \text{ representa un número natural sin ceros a la izquierda, excepto } 0\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$
 
-> En $L_9$ un número no comienza con $0$ salvo $0$, por lo que se contempla $0$ o un dígito no nulo $(1+2+3)$ y lo que sigue.
+> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.
 
 ---
 
@@ -719,7 +715,7 @@ $L_9 \text{ sobre } \{0,1,2,3\} = \{w \text{ representa un número natural sin c
 
 ---
 
-### Diapositiva 84: Gramática ($G$): Definición algebraica
+### Diapositiva 83: Gramática ($G$): Definición algebraica
 
 Una gramática $G$ es una estructura algebraica definida por la 4-tupla:
 $$G = (N, \Sigma, P, S)$$
@@ -731,7 +727,7 @@ Donde:
 
 ---
 
-### Diapositiva 85: Convenciones de Notación en Gramáticas
+### Diapositiva 84: Convenciones de Notación en Gramáticas
 
 Convenciones para definir reglas gramaticales:
 - **Símbolos No Terminales $(\in N)$:** Letras mayúsculas $A, B, C, \dots, S, X, Y, Z$. Se utilizan $X, Y, Z$ como comodines.
@@ -741,7 +737,7 @@ Convenciones para definir reglas gramaticales:
 
 ---
 
-### Diapositiva 86: Definición de las reglas de producción
+### Diapositiva 85: Definición de las reglas de producción
 
 Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\alpha, \alpha') \in P$. Por comodidad, se expresan como relaciones de producción, tal que $\alpha \to \alpha'$.
 
@@ -749,7 +745,7 @@ Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\a
 
 ---
 
-### Diapositiva 87: Cabeza y Cuerpo de las reglas de producción
+### Diapositiva 86: Cabeza y Cuerpo de las reglas de producción
 
 Las reglas de producción tienen dos partes:
 - **Cabeza ($\alpha$):** $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$
@@ -759,7 +755,7 @@ Las reglas de producción tienen dos partes:
 
 ---
 
-### Diapositiva 88: Notación de Backus
+### Diapositiva 87: Notación de Backus
 
 **Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.
 **Representación:** Las reglas $\alpha \to \alpha_1, \alpha \to \alpha_2, \dots, \alpha \to \alpha_n$ se abrevian como:
@@ -767,7 +763,7 @@ $$\alpha \to \alpha_1 \mid \alpha_2 \mid \dots \mid \alpha_n$$
 
 ---
 
-### Diapositiva 89: Relación Deriva
+### Diapositiva 88: Relación Deriva
 
 La relación deriva o derivación es el proceso por el cual la cabeza se sustituye por el cuerpo.
 
@@ -775,7 +771,7 @@ La derivación puede ser directa (en un solo paso) o con múltiples pasos.
 
 ---
 
-### Diapositiva 90: Derivación Directa
+### Diapositiva 89: Derivación Directa
 
 Sean $\delta$ la subcadena que va a ser reescrita como $\mu$, entonces la cabeza y cuerpo de la producción tienen la forma:
 - $\alpha = \beta \delta \sigma$
@@ -789,7 +785,7 @@ $$\beta \delta \sigma \underset{G}{\Rightarrow} \beta \delta \sigma$$
 
 ---
 
-### Diapositiva 91: Derivación en múltiples pasos
+### Diapositiva 90: Derivación en múltiples pasos
 
 En este caso, ya no existe la regla directa $(\alpha,\alpha')$, sino que existen multiples reglas tal que $(\alpha,{\alpha}_0),({\alpha}_0,{\alpha}_1),\dots,({\alpha}_n,\alpha')$.
 
@@ -800,7 +796,7 @@ $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \
 
 ---
 
-### Diapositiva 92: Forma Sentencial
+### Diapositiva 91: Forma Sentencial
 
 **Forma Sentencial:** Dada una gramática $G$, cualquier cadena que se pueda derivar desde el axioma, se denomina **forma sentencial**.
 **Fórmula:**
@@ -810,7 +806,7 @@ $$\alpha \text{ es forma sentencial} \iff S \overset{*}{\underset{k_1,\dots,k_n}
 
 ---
 
-### Diapositiva 93: Sentencia
+### Diapositiva 92: Sentencia
 
 **Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
 **Fórmula:**
@@ -820,20 +816,20 @@ $$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{k_1,\dots,k_n
 
 ---
 
-### Diapositiva 94: Lenguaje Generado por una Gramática ($L(G)$)
+### Diapositiva 93: Lenguaje Generado por una Gramática ($L(G)$)
 
 **Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ---
 
-### Diapositiva 95: Lenguaje Inverso ($L^{-1}(G)$)
+### Diapositiva 94: Lenguaje Inverso ($L^{-1}(G)$)
 
 El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \dots a_n \in L(G) \implies w^{-1} = a_n \dots a_2 a_1 \in L^{-1}(G)$.
 
 ---
 
-### Diapositiva 96: Gramáticas de lenguajes inversos
+### Diapositiva 95: Gramáticas de lenguajes inversos
 
 **Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).
 
@@ -841,7 +837,7 @@ El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado
 
 ---
 
-### Diapositiva 97: Gramática de Estructura de Frase
+### Diapositiva 96: Gramática de Estructura de Frase
 
 **Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
@@ -850,7 +846,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-### Diapositiva 98: Casos especiales de reglas de producción
+### Diapositiva 97: Casos especiales de reglas de producción
 
 - **Regla no generativa:** $X \to \epsilon$ (cuando $\alpha = \beta = \delta = \epsilon$).
 
@@ -861,7 +857,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 > La nueva forma sentencial tiene menor longitud que la forma sentencial anterior.
 ---
 
-### Diapositiva 99: Contraejemplo de Gramática de Estructura de Frase
+### Diapositiva 98: Contraejemplo de Gramática de Estructura de Frase
 
 **Regla general GEF:** La regla $\alpha X \beta \to \alpha \delta \beta$ exige que la parte izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ sean **invariantes** (no deben cambiar ni de lado ni de forma en el cuerpo).
 
@@ -871,7 +867,7 @@ $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \al
 
 ---
 
-### Diapositiva 100: Jerarquía de Chomsky: Clasificación General
+### Diapositiva 99: Jerarquía de Chomsky: Clasificación General
 
 Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
 1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.
@@ -882,7 +878,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 
 ---
 
-### Diapositiva 101: Jerarquía: Gramática Tipo 0 (Irrestrictas)
+### Diapositiva 100: Jerarquía: Gramática Tipo 0 (Irrestrictas)
 
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
 **Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\alpha X \beta \to \delta$ con $X \in N$ y $\alpha,\beta,\delta \in (N \cup \Sigma)^*$.
@@ -891,7 +887,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 
 ---
 
-### Diapositiva 102: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
+### Diapositiva 101: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
 **Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.
@@ -903,7 +899,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 > $S \to \epsilon$ es excepción a la restricción no compresora.
 ---
 
-### Diapositiva 103: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
+### Diapositiva 102: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
 **Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.
@@ -914,7 +910,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 > Se pierde la parte izquierda y/o derechas como invariantes de las GEF, y se limita la cabeza a un solo símbolo no terminal.
 ---
 
-### Diapositiva 104: Jerarquía: Gramática Tipo 3 (Regulares)
+### Diapositiva 103: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
 **Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase con un único tipo de linealidad:
@@ -925,7 +921,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 > Se restringe el cuerpo a tener o bien parte derecha o bien parte izquierda.
 ---
 
-### Diapositiva 105: Impacto de la Regla $S \to \epsilon$
+### Diapositiva 104: Impacto de la Regla $S \to \epsilon$
 
 - GEF: Es una regla compresora (es decir, permitida por la definición general de GEF, pero catalogada como compresora).
 - Tipo 0: Es una regla válida común (no hay restricciones de ningún tipo).
@@ -935,7 +931,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 
 ---
 
-### Diapositiva 106: Grafo Asociado a una Gramática Regular Lineal por Derecha
+### Diapositiva 105: Grafo Asociado a una Gramática Regular Lineal por Derecha
 
 Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -944,7 +940,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 ---
 
-### Diapositiva 107: Grafo Asociado a una Gramática Regular Lineal por Izquierda
+### Diapositiva 106: Grafo Asociado a una Gramática Regular Lineal por Izquierda
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -952,7 +948,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 108: Definición de Aristas del Grafo Asociado a una Gramática Regular
+### Diapositiva 107: Definición de Aristas del Grafo Asociado a una Gramática Regular
 
 **Definición de Aristas:**
 1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetadas con $\epsilon$ de $S$ al nodo $\epsilon$.
@@ -962,7 +958,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 109: Árbol de Derivación (Árbol de Parser)
+### Diapositiva 108: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.
@@ -970,13 +966,13 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 110: Gramática Ambigua
+### Diapositiva 109: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-### Diapositiva 111: Construcción del Árbol de Derivación
+### Diapositiva 110: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -986,7 +982,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-### Diapositiva 112: Lectura del Árbol de Derivación (Frontera)
+### Diapositiva 111: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
