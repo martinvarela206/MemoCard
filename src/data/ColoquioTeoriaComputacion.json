@@ -479,7 +479,7 @@
     {
       "id": 80,
       "title": "Construcción de ERs: Ejemplos 3",
-      "content": "$L_5 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo } c, \\text{ sufijo } ba \\text{ y subcadenas de } b \\text{ o es } cc\\}: E_5 = cc+cb^*ba$\n$L_6 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } c \\text{ y subcadena } b^3\\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$\n\n> En $L_5$ existe un caso único con $cc$. No requiere agrupaciones por orden de prioridad.",
+      "content": "$L_5 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo } c, \\text{ sufijo } ba \\text{ y subcadenas de } b \\text{ o es } cc\\}: E_5 = cc+cb^*ba$\n$L_6 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } c \\text{ y subcadena } b^3\\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$\n\n> En $L_5$ existe un caso único con $cc$ y luego todos los demas casos con prefijo solo $c$. No requiere agrupaciones por orden de prioridad.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -1386,7 +1386,7 @@
       "slide_id": 80,
       "term": "Construcción de ERs: Ejemplos 3",
       "front": "Construcción de ERs: Ejemplos 3",
-      "back": "$L_5 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo } c, \\text{ sufijo } ba \\text{ y subcadenas de } b \\text{ o es } cc\\}: E_5 = cc+cb^*ba$\n$L_6 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } c \\text{ y subcadena } b^3\\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$\n\n> En $L_5$ existe un caso único con $cc$. No requiere agrupaciones por orden de prioridad.",
+      "back": "$L_5 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo } c, \\text{ sufijo } ba \\text{ y subcadenas de } b \\text{ o es } cc\\}: E_5 = cc+cb^*ba$\n$L_6 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } c \\text{ y subcadena } b^3\\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$\n\n> En $L_5$ existe un caso único con $cc$ y luego todos los demas casos con prefijo solo $c$. No requiere agrupaciones por orden de prioridad.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },

@@ -690,7 +690,7 @@ $L_4 \text{ sobre } \{a,b\} = \{w \text{ tiene un número impar de } a \text{ y 
 $L_5 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo } c, \text{ sufijo } ba \text{ y subcadenas de } b \text{ o es } cc\}: E_5 = cc+cb^*ba$
 $L_6 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y subcadena } b^3\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$
 
-> En $L_5$ existe un caso único con $cc$. No requiere agrupaciones por orden de prioridad.
+> En $L_5$ existe un caso único con $cc$ y luego todos los demas casos con prefijo solo $c$. No requiere agrupaciones por orden de prioridad.
 
 ---
 
