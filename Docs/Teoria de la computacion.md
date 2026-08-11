@@ -708,7 +708,7 @@ $L_8 \text{ sobre } \{0,1,2,3\} = \{w \text{ tiene longitud } 3 \text{ y prefijo
 $L_9 \text{ sobre } \{0,1,2,3\} = \{w \text{ representa un número natural sin ceros a la izquierda, excepto } 0\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$
 
 > Ojo en $L_8$, no se puede usar potencia k-ésima.
-> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.
+> En $L_9$ los números naturales no comienzan con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.
 
 ---
 
