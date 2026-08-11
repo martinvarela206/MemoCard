@@ -491,7 +491,7 @@
     {
       "id": 82,
       "title": "Construcción de ERs: Ejemplos 5",
-      "content": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)^2$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
+      "content": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -1404,7 +1404,7 @@
       "slide_id": 82,
       "term": "Construcción de ERs: Ejemplos 5",
       "front": "Construcción de ERs: Ejemplos 5",
-      "back": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)^2$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
+      "back": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
