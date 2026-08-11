@@ -769,67 +769,111 @@ $$\alpha \to \alpha_1 \mid \alpha_2 \mid \dots \mid \alpha_n$$
 
 ### Diapositiva 89: Relación Deriva
 
-Sean las cadenas $\beta, \delta, \sigma, \mu, \alpha, \alpha' \in (N \cup \Sigma)^*$:
-**Deriva Directa ($\underset{G}{\Rightarrow}$):** Proceso de sustitución directa de una cabeza por su cuerpo:
-$$\beta \delta \sigma \underset{G}{\Rightarrow} \beta \mu \sigma \iff (\delta \to \mu) \in P$$
-**Derivación en Múltiples Pasos ($\overset{*}{\underset{G}{\Rightarrow}}$):** Clausura reflexiva y transitiva de la deriva directa:
+La relación deriva o derivación es el proceso por el cual la cabeza se sustituye por el cuerpo.
+
+La derivación puede ser directa (en un solo paso) o con múltiples pasos.
+
+---
+
+### Diapositiva 90: Derivación Directa
+
+Sean $\delta$ la subcadena que va a ser reescrita como $\mu$, entonces la cabeza y cuerpo de la producción tienen la forma:
+- $\alpha = \beta \delta \sigma$
+- $\alpha' = \beta \mu \sigma$
+
+Entonces para la producción $(\alpha,\alpha')$, la derivación es:
+
+$$\beta \delta \sigma \underset{G}{\Rightarrow} \beta \delta \sigma$$
+
+> **G** es la gramática con la cual se esta trabajando ($G$, $G_1$, $G_2$), en la práctica se puede omitir o en su lugar colocar que regla de derivación se está usando.
+
+---
+
+### Diapositiva 91: Derivación en múltiples pasos
+
+En este caso, ya no existe la regla directa $(\alpha,\alpha')$, sino que existen multiples reglas tal que $(\alpha,{\alpha}_0),({\alpha}_0,{\alpha}_1),\dots,({\alpha}_n,\alpha')$.
+
+**Derivación en Múltiples Pasos ($\overset{*}{\underset{G}{\Rightarrow}}$):**
 $$\alpha \overset{*}{\underset{G}{\Rightarrow}} \alpha' \iff \alpha = \alpha_0 \underset{G}{\Rightarrow} \alpha_1 \underset{G}{\Rightarrow} \dots \underset{G}{\Rightarrow} \alpha_n = \alpha' \quad (n \ge 0)$$
 
+> **$*$** significa clausura reflexiva y transitiva, es decir, que la derivación se realiza en 0, 1 o más pasos, pero es solo para la definición formal. En los ejercicios se puede omitir.
+
 ---
 
-### Diapositiva 90: Forma Sentencial
+### Diapositiva 92: Forma Sentencial
 
-**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que posea símbolos no terminales, que se pueda derivar desde el axioma, se denomina **forma sentencial**.
+**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que se pueda derivar desde el axioma, se denomina **forma sentencial**.
 **Fórmula:**
-$$\alpha \in (N \cup \Sigma)^* \text{ es forma sentencial} \iff S \overset{*}{\underset{G}{\Rightarrow}} \alpha$$
+$$\alpha \text{ es forma sentencial} \iff S \overset{*}{\underset{k_1,\dots,k_n}{\Rightarrow}} \alpha$$
+
+> En cada derivación directa intermedia, la cabeza y el cuerpo son formas sentenciales.
 
 ---
 
-### Diapositiva 91: Sentencia
+### Diapositiva 93: Sentencia
 
 **Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.
 **Fórmula:**
-$$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{G}{\Rightarrow}} w$$
+$$w \in \Sigma^* \text{ es sentencia} \iff S \overset{*}{\underset{k_1,\dots,k_n}{\Rightarrow}} w$$
+
+> El cuerpo de la derivación final, formado solo por símbolos no terminales es la sentencia.
 
 ---
 
-### Diapositiva 92: Lenguaje Generado por una Gramática ($L(G)$)
+### Diapositiva 94: Lenguaje Generado por una Gramática ($L(G)$)
 
 **Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:
 $$L(G) = \{w \in \Sigma^* \mid S \overset{*}{\underset{G}{\Rightarrow}} w\}$$
 
 ---
 
-### Diapositiva 93: Lenguaje Inverso ($L^{-1}(G)$)
+### Diapositiva 95: Lenguaje Inverso ($L^{-1}(G)$)
 
 El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \dots a_n \in L(G) \implies w^{-1} = a_n \dots a_2 a_1 \in L^{-1}(G)$.
-**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).
 
 ---
 
-### Diapositiva 94: Gramática de Estructura de Frase
+### Diapositiva 96: Gramáticas de lenguajes inversos
+
+**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).
+
+> Si el lenguaje $G_1$ y el inverso de $G_2$ son iguales y que $G_1$ es distinto a $G_2$ (no son palíndromos) entonces sus gramáticas no pueden ser equivalentes.
+
+---
+
+### Diapositiva 97: Gramática de Estructura de Frase
 
 **Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
-**Casos especiales:**
-*   **Regla no generativa:** $X \to \epsilon$ (cuando $\alpha = \beta = \delta = \epsilon$).
-*   **Regla compresora:** $\alpha X \beta \to \alpha \beta$ (cuando $\delta = \epsilon$).
+
+> La derivación parte de UN SÍMBOLO no terminal y lo reescribe como una cadena que puede tener símbolos terminales y/o no terminales.
 
 ---
 
-### Diapositiva 95: Gramática de Estructura de Frase: Contraejemplo de Invariancia
+### Diapositiva 98: Casos especiales de reglas de producción
 
-**Regla general GEF:** La regla $\alpha X \beta \to \alpha \delta \beta$ exige que la parte izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ sean **invariantes** (no cambien de lado ni de forma en el cuerpo).
-**Contraejemplo de regla NO GEF ($CB \to BC$):**
-- **Si $X = C$:** En la cabeza $\alpha = \epsilon$ y $\beta = B$. En el cuerpo la parte derecha debería ser $B$, pero $B$ aparece a la izquierda ($BC$). No es invariante.
-- **Si $X = B$:** En la cabeza $\alpha = C$ y $\beta = \epsilon$. En el cuerpo la parte izquierda debería ser $C$, pero $C$ aparece a la derecha ($BC$). Tampoco es invariante.
-**Conclusión:** La regla $CB \to BC$ no cumple la condición GEF.
+- **Regla no generativa:** $X \to \epsilon$ (cuando $\alpha = \beta = \delta = \epsilon$).
+
+> No genera otra forma sentencial o sentencia.
+
+- **Regla compresora:** $\alpha X \beta \to \alpha \beta$ (cuando $\delta = \epsilon$).
+
+> La nueva forma sentencial tiene menor longitud que la forma sentencial anterior.
+---
+
+### Diapositiva 99: Contraejemplo de Gramática de Estructura de Frase
+
+**Regla general GEF:** La regla $\alpha X \beta \to \alpha \delta \beta$ exige que la parte izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ sean **invariantes** (no deben cambiar ni de lado ni de forma en el cuerpo).
+
+**Entonces para la regla $CB \to BC$:**
+- **Si $X = C$:** Entonces $B$ debería permanecer invariante a la derecha, pero aparece a la izquierda. No es **GEF**.
+- **Si $X = B$:** Entonces $C$ debería permanecer invariante a la izquierda, pero aparece a la derecha. No es **GEF**.
 
 ---
 
-### Diapositiva 96: Jerarquía de Chomsky: Clasificación General
+### Diapositiva 100: Jerarquía de Chomsky: Clasificación General
 
-Clasificación de las gramáticas en cuatro niveles en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
+Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:
 1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.
 2.  **Tipo 1:** Gramáticas Dependientes del Contexto.
 3.  **Tipo 2:** Gramáticas Libres de Contexto.
@@ -838,59 +882,60 @@ Clasificación de las gramáticas en cuatro niveles en función de las restricci
 
 ---
 
-### Diapositiva 97: Jerarquía: Gramática Tipo 0 (Irrestrictas)
+### Diapositiva 101: Jerarquía: Gramática Tipo 0 (Irrestrictas)
 
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
-**Definición (Restricciones):** Ninguna. Producciones de la forma $\alpha \to \beta$ con $\alpha \in (N \cup \Sigma)^* N (N \cup \Sigma)^*$ y $\beta \in (N \cup \Sigma)^*$
+**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\alpha X \beta \to \delta$ con $X \in N$ y $\alpha,\beta,\delta \in (N \cup \Sigma)^*$.
+
+> No hay restricciones sobre la cabeza o el cuerpo.
 
 ---
 
-### Diapositiva 98: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
+### Diapositiva 102: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
-**Definición (Restricciones):** Estructura de frase y no compresora. Sus reglas $\alpha X \beta \to \alpha \delta \beta$ verifican $\delta \neq \epsilon$.
+**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.
+- **GEF:** $\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$
+- **No compresora:** $X \to \delta$ con $\delta \ne \epsilon$ (excepto $S \to \epsilon$)
 **Propiedad:** Para toda regla $\alpha \to \beta$ se cumple $|\alpha| \le |\beta|$ (excepto $S \to \epsilon$).
 
+> GEF restringe la parte izquierda y derecha como invariantes.
+> $S \to \epsilon$ es excepción a la restricción no compresora.
 ---
 
-### Diapositiva 99: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
+### Diapositiva 103: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
-**Definición (Restricciones):** Estructura de frase donde el miembro izquierdo consta únicamente de un único símbolo no terminal aislado (sin contexto):
-$$X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$$
+**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.
+- $X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$
+- $X$ es siempre solo un único símbolo no terminal.
 
+> La gramática tipo 2 permite $S \to \epsilon$ sin restricción, dado que el lenguaje tipo 2 es tipo 1, entonces solo se permite esa regla compresora.
+> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, y se limita la cabeza a un solo símbolo no terminal.
 ---
 
-### Diapositiva 100: Jerarquía: Gramática Tipo 3 (Regulares)
+### Diapositiva 104: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
-**Definición (Restricciones):** Estructura de frase con producciones de un único tipo de linealidad:
-- **Lineal por Derecha:**
-    $$X \to x \quad \text{ó} \quad X \to xY \quad (X, Y \in N, x \in \Sigma)$$
-- **Lineal por Izquierda:**
-    $$X \to x \quad \text{ó} \quad X \to Yx \quad (X, Y \in N, x \in \Sigma)$$
-*(Se admite $S \to \epsilon$ en el axioma si el lenguaje contiene a $\epsilon$).*
+**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase con un único tipo de linealidad:
+- **Lineal por Derecha:** $X \to x \quad \text{ó} \quad X \to xY \quad (X, Y \in N, x \in \Sigma)$
+- **Lineal por Izquierda:** $X \to x \quad \text{ó} \quad X \to Yx \quad (X, Y \in N, x \in \Sigma)$
+
+> La gramática tipo 3 $S \to \epsilon$ es excepción, ya que obligatoriamente en el cuerpo debe aparecer un símbolo terminal y $\epsilon$ es una cadena vacía.
+> Se restringe el cuerpo a tener o bien parte derecha o bien parte izquierda.
+---
+
+### Diapositiva 105: Impacto de la Regla $S \to \epsilon$
+
+- GEF: Es una regla compresora (es decir, permitida por la definición general de GEF, pero catalogada como compresora).
+- Tipo 0: Es una regla válida común (no hay restricciones de ningún tipo).
+- Tipo 1: Solo existe por excepción (a la regla de no compresora).
+- Tipo 2: Se permite por definición general ($X \to \alpha$ permite que $\alpha = \epsilon$ para cualquier variable, no solo para $S$).
+- Tipo 3: Solo existe por excepción (porque las reglas Tipo 3 exigen obligatoriamente que aparezca un símbolo terminal $x \in \Sigma$, y $\epsilon$ es una cadena vacía).
 
 ---
 
-### Diapositiva 101: Impacto de la Regla $S \to \epsilon$ en GEF, Tipo 0 y Tipo 1
-
-La regla $S \to \epsilon$ permite que un lenguaje incluya la cadena vacía ($\epsilon \in L(G)$). Su comportamiento según la clasificación es:
-- **Gramática de Estructura de Frase:** Actúa como una regla compresora (cuando $\alpha = \beta = \delta = \epsilon$).
-- **Tipo 0 (Irrestrictas):** Cumple directamente la definición general ($\text{cabeza} = S \in N$, $\text{cuerpo} = \epsilon \in \dots$).
-- **Tipo 1 (Dependientes del Contexto):** Excepción explícita a la restricción no compresora ($|\alpha| \le |\beta|$).
-
----
-
-### Diapositiva 102: Impacto de la Regla $S \to \epsilon$ en Tipo 2 y Tipo 3
-
-La regla $S \to \epsilon$ según la clasificación de Chomsky para tipos 2 y 3:
-- **Tipo 2 (Libres de Contexto):** Cumple la restricción formal ($X \to \alpha$ con $X = S$ y $\alpha = \epsilon$).
-- **Tipo 3 (Regulares):** Es la única excepción permitida donde el cuerpo no contiene símbolos terminales ni no terminales.
-
----
-
-### Diapositiva 103: Grafo Asociado a una Gramática Regular Lineal por Derecha
+### Diapositiva 106: Grafo Asociado a una Gramática Regular Lineal por Derecha
 
 Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -899,7 +944,7 @@ Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \Sigma, P, S
 
 ---
 
-### Diapositiva 104: Grafo Asociado a una Gramática Regular Lineal por Izquierda
+### Diapositiva 107: Grafo Asociado a una Gramática Regular Lineal por Izquierda
 
 Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \cup \{\epsilon\}, R)$ (donde $N \cup \{\epsilon\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\epsilon$ (el cual se representa con un círculo doble).
 
@@ -907,7 +952,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 105: Definición de Aristas del Grafo Asociado a una Gramática Regular
+### Diapositiva 108: Definición de Aristas del Grafo Asociado a una Gramática Regular
 
 **Definición de Aristas:**
 1.  Si $S \to \epsilon \in P \implies$ Aristas etiquetadas con $\epsilon$ de $S$ al nodo $\epsilon$.
@@ -917,7 +962,7 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 106: Árbol de Derivación (Árbol de Parser)
+### Diapositiva 109: Árbol de Derivación (Árbol de Parser)
 
 **Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.
 **Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.
@@ -925,13 +970,13 @@ Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \Sigma, P,
 
 ---
 
-### Diapositiva 107: Gramática Ambigua
+### Diapositiva 110: Gramática Ambigua
 
 **Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.
 
 ---
 
-### Diapositiva 108: Construcción del Árbol de Derivación
+### Diapositiva 111: Construcción del Árbol de Derivación
 
 Reglas algorítmicas de construcción:
 1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.
@@ -941,7 +986,7 @@ Reglas algorítmicas de construcción:
 
 ---
 
-### Diapositiva 109: Lectura del Árbol de Derivación (Frontera)
+### Diapositiva 112: Lectura del Árbol de Derivación (Frontera)
 
 **Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).
 **Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.
