@@ -485,7 +485,7 @@
     {
       "id": 81,
       "title": "Construcción de ERs: Ejemplos 4",
-      "content": "$L_7 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_7$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.",
+      "content": "$L_7 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_7$ como no se aclara que hay antes de $b$, pero puede haber algo, solo se sabe que no puede ser $b$. Luego de $b$ se especifica que $a$ debe aparecer impar, pero luego de esas $a$, puede haber algo más (que no puede ser inmediatamente $a$, pero luego nada lo impide).",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -1395,7 +1395,7 @@
       "slide_id": 81,
       "term": "Construcción de ERs: Ejemplos 4",
       "front": "Construcción de ERs: Ejemplos 4",
-      "back": "$L_7 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_7$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.",
+      "back": "$L_7 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_7$ como no se aclara que hay antes de $b$, pero puede haber algo, solo se sabe que no puede ser $b$. Luego de $b$ se especifica que $a$ debe aparecer impar, pero luego de esas $a$, puede haber algo más (que no puede ser inmediatamente $a$, pero luego nada lo impide).",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },

@@ -698,7 +698,7 @@ $L_6 \text{ sobre } \{a,b,c\} = \{w \text{ tiene prefijo y sufijo } c \text{ y s
 
 $L_7 \text{ sobre } \{a,b,c\} = \{w \text{ tiene un solo } b \text{ seguido por un número impar de } a\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\epsilon)$
 
-> En $L_7$ como ya aparece $b$, no está en prefijo/sufijo y en el sufijo no se debe solapar para no alterar la paridad.
+> En $L_7$ como no se aclara que hay antes de $b$, pero puede haber algo, solo se sabe que no puede ser $b$. Luego de $b$ se especifica que $a$ debe aparecer impar, pero luego de esas $a$, puede haber algo más (que no puede ser inmediatamente $a$, pero luego nada lo impide).
 
 ---
 
