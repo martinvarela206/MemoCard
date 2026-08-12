@@ -605,7 +605,7 @@
     {
       "id": 101,
       "title": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
-      "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.\n> Si es tipo 1, es tipo 0.",
+      "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones son de estructura de frase y no compresoras.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF: solo un no terminal en la cabeza y las partes izquierda y derecha invariantes.\n> $S \\to \\epsilon$ es excepción a no compresora.",
       "theme": "Gramática"
     },
     {
@@ -1575,7 +1575,7 @@
       "slide_id": 101,
       "term": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "front": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
-      "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.\n> Si es tipo 1, es tipo 0.",
+      "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones son de estructura de frase y no compresoras.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF: solo un no terminal en la cabeza y las partes izquierda y derecha invariantes.\n> $S \\to \\epsilon$ es excepción a no compresora.",
       "context": null,
       "theme": "Gramática"
     },

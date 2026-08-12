@@ -891,14 +891,13 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 ### Diapositiva 101: Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)
 
 **Gramática Tipo 1 (Dependientes del Contexto):**
-**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.
+**Definición (Restricciones):** Son tipo 1 si sus producciones son de estructura de frase y no compresoras.
 - **GEF:** $\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$
 - **No compresora:** $X \to \delta$ con $\delta \ne \epsilon$ (excepto $S \to \epsilon$)
 **Propiedad:** Para toda regla $\alpha \to \beta$ se cumple $|\alpha| \le |\beta|$ (excepto $S \to \epsilon$).
 
-> GEF restringe la parte izquierda y derecha como invariantes.
-> $S \to \epsilon$ es excepción a la restricción no compresora.
-> Si es tipo 1, es tipo 0.
+> GEF: solo un no terminal en la cabeza y las partes izquierda y derecha invariantes.
+> $S \to \epsilon$ es excepción a no compresora.
 ---
 
 ### Diapositiva 102: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
