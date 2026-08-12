@@ -599,7 +599,7 @@
     {
       "id": 100,
       "title": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
-      "content": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\\alpha X \\beta \\to \\delta$ con $X \\in N$ y $\\alpha,\\beta,\\delta \\in (N \\cup \\Sigma)^*$.\n\n> No hay restricciones sobre la cabeza o el cuerpo.",
+      "content": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\\alpha X \\beta \\to \\delta$ con $X \\in N$ y $\\alpha,\\beta,\\delta \\in (N \\cup \\Sigma)^*$.\n\n> Si bien no hay restricciones sobre la cabeza o el cuerpo, se pide que haya al menos 1 símbolo no terminal en la cabeza y cualquier cosa en el cuerpo.",
       "theme": "Gramática"
     },
     {
@@ -1566,7 +1566,7 @@
       "slide_id": 100,
       "term": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "front": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
-      "back": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\\alpha X \\beta \\to \\delta$ con $X \\in N$ y $\\alpha,\\beta,\\delta \\in (N \\cup \\Sigma)^*$.\n\n> No hay restricciones sobre la cabeza o el cuerpo.",
+      "back": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\\alpha X \\beta \\to \\delta$ con $X \\in N$ y $\\alpha,\\beta,\\delta \\in (N \\cup \\Sigma)^*$.\n\n> Si bien no hay restricciones sobre la cabeza o el cuerpo, se pide que haya al menos 1 símbolo no terminal en la cabeza y cualquier cosa en el cuerpo.",
       "context": null,
       "theme": "Gramática"
     },

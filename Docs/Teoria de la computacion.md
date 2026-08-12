@@ -884,7 +884,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 **Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**
 **Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\alpha X \beta \to \delta$ con $X \in N$ y $\alpha,\beta,\delta \in (N \cup \Sigma)^*$.
 
-> No hay restricciones sobre la cabeza o el cuerpo.
+> Si bien no hay restricciones sobre la cabeza o el cuerpo, se pide que haya al menos 1 símbolo no terminal en la cabeza y cualquier cosa en el cuerpo.
 
 ---
 
