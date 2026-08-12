@@ -18,15 +18,16 @@ def renumber_slides():
     modified_count = 0
     
     for line_num, line in enumerate(lines, 1):
-        # Match standard slide header: ## Diapositiva X: Title (where X can contain letters/suffixes)
-        match = re.match(r'^(##\s+[Dd]iapositiva\s+)([^:]+)(:\s*)(.+)$', line)
+        # Match standard slide header: ### Diapositiva X: Title (where X can contain letters/suffixes)
+        match = re.match(r'^(#{2,3}\s+[Dd]iapositiva\s+)([^:]+)(:\s*)(.+)$', line)
         if match:
             prefix = match.group(1)
             old_num_str = match.group(2).strip()
             title = match.group(4)
             
+            hashes = prefix.split()[0]
             # Format new header
-            new_header = f"## Diapositiva {slide_counter}: {title.strip()}\n"
+            new_header = f"{hashes} Diapositiva {slide_counter}: {title.strip()}\n"
             
             # Convert to int for comparison if possible, otherwise string comparison
             is_different = True
