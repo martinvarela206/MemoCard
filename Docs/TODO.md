@@ -1,1 +1,1 @@
-Revisar contra el apunte las definiciones de Lenguaje Regular y Expresión Regular.
+Revisar contra el apunte las definiciones de Lenguaje Regular y Expresión Regular, y operacion dervia.
