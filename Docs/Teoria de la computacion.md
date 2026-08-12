@@ -898,37 +898,37 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 
 > GEF restringe la parte izquierda y derecha como invariantes.
 > $S \to \epsilon$ es excepción a la restricción no compresora.
+> Si es tipo 1, es tipo 0.
 ---
 
 ### Diapositiva 102: Jerarquía: Gramática Tipo 2 (Libres de Contexto)
 
 **Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**
 **Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.
-- $X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$
-- $X$ es siempre solo un único símbolo no terminal.
+- Por GEF: Se permite la no generativa ($S\to\epsilon$).
+- $X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$.
 
-> La gramática tipo 2 permite $S \to \epsilon$ sin restricción, dado que el lenguaje tipo 2 es tipo 1, entonces solo se permite esa regla compresora.
-> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, y se limita la cabeza a un solo símbolo no terminal.
+> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza solo posee un solo símbolo no terminal.
+> Aunque no impide las reglas no generativas, existe un teorema donde siempre existe una gramática equivalente, tal que si es tipo 2, es tipo 1.
 ---
 
 ### Diapositiva 103: Jerarquía: Gramática Tipo 3 (Regulares)
 
 **Gramática Tipo 3 (Gramáticas Regulares):**
-**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase con un único tipo de linealidad:
+**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase, un único símbolo terminal en el cuerpo y un posible símbolo no terminal (a izquierda o derecha), que determina la linealidad:
 - **Lineal por Derecha:** $X \to x \quad \text{ó} \quad X \to xY \quad (X, Y \in N, x \in \Sigma)$
 - **Lineal por Izquierda:** $X \to x \quad \text{ó} \quad X \to Yx \quad (X, Y \in N, x \in \Sigma)$
 
-> La gramática tipo 3 $S \to \epsilon$ es excepción, ya que obligatoriamente en el cuerpo debe aparecer un símbolo terminal y $\epsilon$ es una cadena vacía.
-> Se restringe el cuerpo a tener o bien parte derecha o bien parte izquierda.
+> Es obligatorio que en el cuerpo aparezca un símbolo terminal, entonces $S\to\epsilon$ es excepción.
 ---
 
-### Diapositiva 104: Impacto de la Regla $S \to \epsilon$
+### Diapositiva 104: Impacto de la Regla no generativa ($S \to \epsilon$)
 
-- GEF: Es una regla compresora (es decir, permitida por la definición general de GEF, pero catalogada como compresora).
-- Tipo 0: Es una regla válida común (no hay restricciones de ningún tipo).
-- Tipo 1: Solo existe por excepción (a la regla de no compresora).
+- GEF: Es la regla no generativa.
+- Tipo 0: Es una regla válida porque no hay restricciones de ningún tipo.
+- Tipo 1: Es la excepción a la no compresora.
 - Tipo 2: Se permite por definición general ($X \to \alpha$ permite que $\alpha = \epsilon$ para cualquier variable, no solo para $S$).
-- Tipo 3: Solo existe por excepción (porque las reglas Tipo 3 exigen obligatoriamente que aparezca un símbolo terminal $x \in \Sigma$, y $\epsilon$ es una cadena vacía).
+- Tipo 3: Es la excepción a que el cuerpo debe contener un símbolo terminal.
 
 ---
 

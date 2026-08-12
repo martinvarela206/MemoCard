@@ -491,7 +491,7 @@
     {
       "id": 82,
       "title": "Construcción de ERs: Ejemplos 5",
-      "content": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
+      "content": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienzan con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
     {
@@ -605,25 +605,25 @@
     {
       "id": 101,
       "title": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
-      "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.",
+      "content": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.\n> Si es tipo 1, es tipo 0.",
       "theme": "Gramática"
     },
     {
       "id": 102,
       "title": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
-      "content": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.\n- $X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$\n- $X$ es siempre solo un único símbolo no terminal.\n\n> La gramática tipo 2 permite $S \\to \\epsilon$ sin restricción, dado que el lenguaje tipo 2 es tipo 1, entonces solo se permite esa regla compresora.\n> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, y se limita la cabeza a un solo símbolo no terminal.",
+      "content": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.\n- Por GEF: Se permite la no generativa ($S\\to\\epsilon$).\n- $X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$.\n\n> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza solo posee un solo símbolo no terminal.\n> Aunque no impide las reglas no generativas, existe un teorema donde siempre existe una gramática equivalente, tal que si es tipo 2, es tipo 1.",
       "theme": "Gramática"
     },
     {
       "id": 103,
       "title": "Jerarquía: Gramática Tipo 3 (Regulares)",
-      "content": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase con un único tipo de linealidad:\n- **Lineal por Derecha:** $X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$\n- **Lineal por Izquierda:** $X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$\n\n> La gramática tipo 3 $S \\to \\epsilon$ es excepción, ya que obligatoriamente en el cuerpo debe aparecer un símbolo terminal y $\\epsilon$ es una cadena vacía.\n> Se restringe el cuerpo a tener o bien parte derecha o bien parte izquierda.",
+      "content": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase, un único símbolo terminal en el cuerpo y un posible símbolo no terminal (a izquierda o derecha), que determina la linealidad:\n- **Lineal por Derecha:** $X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$\n- **Lineal por Izquierda:** $X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$\n\n> Es obligatorio que en el cuerpo aparezca un símbolo terminal, entonces $S\\to\\epsilon$ es excepción.",
       "theme": "Gramática"
     },
     {
       "id": 104,
-      "title": "Impacto de la Regla $S \\to \\epsilon$",
-      "content": "- GEF: Es una regla compresora (es decir, permitida por la definición general de GEF, pero catalogada como compresora).\n- Tipo 0: Es una regla válida común (no hay restricciones de ningún tipo).\n- Tipo 1: Solo existe por excepción (a la regla de no compresora).\n- Tipo 2: Se permite por definición general ($X \\to \\alpha$ permite que $\\alpha = \\epsilon$ para cualquier variable, no solo para $S$).\n- Tipo 3: Solo existe por excepción (porque las reglas Tipo 3 exigen obligatoriamente que aparezca un símbolo terminal $x \\in \\Sigma$, y $\\epsilon$ es una cadena vacía).",
+      "title": "Impacto de la Regla no generativa ($S \\to \\epsilon$)",
+      "content": "- GEF: Es la regla no generativa.\n- Tipo 0: Es una regla válida porque no hay restricciones de ningún tipo.\n- Tipo 1: Es la excepción a la no compresora.\n- Tipo 2: Se permite por definición general ($X \\to \\alpha$ permite que $\\alpha = \\epsilon$ para cualquier variable, no solo para $S$).\n- Tipo 3: Es la excepción a que el cuerpo debe contener un símbolo terminal.",
       "theme": "Gramática"
     },
     {
@@ -1404,7 +1404,7 @@
       "slide_id": 82,
       "term": "Construcción de ERs: Ejemplos 5",
       "front": "Construcción de ERs: Ejemplos 5",
-      "back": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienza con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
+      "back": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienzan con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
       "context": null,
       "theme": "Lenguajes Regulares y Expresiones Regulares"
     },
@@ -1575,7 +1575,7 @@
       "slide_id": 101,
       "term": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "front": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
-      "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.",
+      "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones tienen estructura de frase y no compresora.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF restringe la parte izquierda y derecha como invariantes.\n> $S \\to \\epsilon$ es excepción a la restricción no compresora.\n> Si es tipo 1, es tipo 0.",
       "context": null,
       "theme": "Gramática"
     },
@@ -1584,7 +1584,7 @@
       "slide_id": 102,
       "term": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "front": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
-      "back": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.\n- $X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$\n- $X$ es siempre solo un único símbolo no terminal.\n\n> La gramática tipo 2 permite $S \\to \\epsilon$ sin restricción, dado que el lenguaje tipo 2 es tipo 1, entonces solo se permite esa regla compresora.\n> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, y se limita la cabeza a un solo símbolo no terminal.",
+      "back": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.\n- Por GEF: Se permite la no generativa ($S\\to\\epsilon$).\n- $X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$.\n\n> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza solo posee un solo símbolo no terminal.\n> Aunque no impide las reglas no generativas, existe un teorema donde siempre existe una gramática equivalente, tal que si es tipo 2, es tipo 1.",
       "context": null,
       "theme": "Gramática"
     },
@@ -1593,16 +1593,16 @@
       "slide_id": 103,
       "term": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "front": "Jerarquía: Gramática Tipo 3 (Regulares)",
-      "back": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase con un único tipo de linealidad:\n- **Lineal por Derecha:** $X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$\n- **Lineal por Izquierda:** $X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$\n\n> La gramática tipo 3 $S \\to \\epsilon$ es excepción, ya que obligatoriamente en el cuerpo debe aparecer un símbolo terminal y $\\epsilon$ es una cadena vacía.\n> Se restringe el cuerpo a tener o bien parte derecha o bien parte izquierda.",
+      "back": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase, un único símbolo terminal en el cuerpo y un posible símbolo no terminal (a izquierda o derecha), que determina la linealidad:\n- **Lineal por Derecha:** $X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$\n- **Lineal por Izquierda:** $X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$\n\n> Es obligatorio que en el cuerpo aparezca un símbolo terminal, entonces $S\\to\\epsilon$ es excepción.",
       "context": null,
       "theme": "Gramática"
     },
     {
       "id": "card_104",
       "slide_id": 104,
-      "term": "Impacto de la Regla $S \\to \\epsilon$",
-      "front": "Impacto de la Regla $S \\to \\epsilon$",
-      "back": "- GEF: Es una regla compresora (es decir, permitida por la definición general de GEF, pero catalogada como compresora).\n- Tipo 0: Es una regla válida común (no hay restricciones de ningún tipo).\n- Tipo 1: Solo existe por excepción (a la regla de no compresora).\n- Tipo 2: Se permite por definición general ($X \\to \\alpha$ permite que $\\alpha = \\epsilon$ para cualquier variable, no solo para $S$).\n- Tipo 3: Solo existe por excepción (porque las reglas Tipo 3 exigen obligatoriamente que aparezca un símbolo terminal $x \\in \\Sigma$, y $\\epsilon$ es una cadena vacía).",
+      "term": "Impacto de la Regla no generativa ($S \\to \\epsilon$)",
+      "front": "Impacto de la Regla no generativa ($S \\to \\epsilon$)",
+      "back": "- GEF: Es la regla no generativa.\n- Tipo 0: Es una regla válida porque no hay restricciones de ningún tipo.\n- Tipo 1: Es la excepción a la no compresora.\n- Tipo 2: Se permite por definición general ($X \\to \\alpha$ permite que $\\alpha = \\epsilon$ para cualquier variable, no solo para $S$).\n- Tipo 3: Es la excepción a que el cuerpo debe contener un símbolo terminal.",
       "context": null,
       "theme": "Gramática"
     },
