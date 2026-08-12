@@ -843,7 +843,7 @@ El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado
 **Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\alpha$) y derecha ($\beta$) del símbolo no terminal $X$ a derivar:
 $$\alpha X \beta \to \alpha \delta \beta \quad (X \in N \quad \text{y} \quad \alpha, \beta, \delta \in (N \cup \Sigma)^*)$$
 
-> La derivación parte de UN SÍMBOLO no terminal y lo reescribe como una cadena que puede tener símbolos terminales y/o no terminales.
+> La derivación parte de UN SÍMBOLO no terminal, pero puede haber más de uno y lo reescribe como una cadena que puede tener símbolos terminales y/o no terminales.
 
 ---
 
@@ -896,7 +896,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 - **No compresora:** $X \to \delta$ con $\delta \ne \epsilon$ (excepto $S \to \epsilon$)
 **Propiedad:** Para toda regla $\alpha \to \beta$ se cumple $|\alpha| \le |\beta|$ (excepto $S \to \epsilon$).
 
-> GEF: solo un no terminal en la cabeza y las partes izquierda y derecha invariantes.
+> GEF: al menos un no terminal en la cabeza y las partes izquierda y derecha invariantes.
 > $S \to \epsilon$ es excepción a no compresora.
 ---
 
@@ -907,7 +907,7 @@ Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricc
 - Por GEF: Se permite la no generativa ($S\to\epsilon$).
 - $X \to \alpha \quad (X \in N, \alpha \in (N \cup \Sigma)^*)$.
 
-> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza solo posee un solo símbolo no terminal.
+> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza es SOLO UN solo símbolo no terminal.
 > Aunque no impide las reglas no generativas, existe un teorema donde siempre existe una gramática equivalente, tal que si es tipo 2, es tipo 1.
 ---
 
