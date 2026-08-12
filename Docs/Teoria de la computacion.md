@@ -618,7 +618,7 @@ Dado que la secuencia de símbolos no es periodica, son necesarias infinitas ope
 
 Definición: Los lenguajes regulares puede expresar por medio de expresiones regulares, que se definen de manera inductiva de la siguiente manera:
 
-1.  **Pasos base:** Son expresiones regulares: $E=\emptyset$, $E=\epsilon$ y $E=x$, para cualquier $x \in \Sigma$.
+1.  **Casos base:** Son expresiones regulares: $E=\emptyset$, $E=\epsilon$ y $E=x$, para cualquier $x \in \Sigma$.
 2.  **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces $(E_1)$, $(E_2)$, $E_1 E_2$, $(E_1 + E_2)$, $(E_1)^*$ y $(E_2)^*$ son expresiones regulares.
 
 ---
