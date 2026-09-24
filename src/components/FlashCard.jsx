@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { renderSlideLines } from '../utils/markdownParser';
 import { renderClozeBackText, hasClozeSyntax, parseClozeTokens } from '../utils/clozeParser';
 import ClozeText from './ClozeText';
+import TypeAnswerBox from './TypeAnswerBox';
 import CardMedia from './CardMedia';
 
 /**
@@ -127,6 +128,11 @@ export default function FlashCard({
                   Cloze [c{activeClozeIndex}]
                 </span>
               )}
+              {card.type === 'input' && (
+                <span className="input-card-badge" title="Tarjeta interactiva con entrada de texto">
+                  ⌨️ Input
+                </span>
+              )}
             </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
@@ -149,6 +155,15 @@ export default function FlashCard({
               )}
             </h2>
 
+            {card.type === 'input' && (
+              <TypeAnswerBox 
+                card={card}
+                isFlipped={isFlipped}
+                onFlip={onFlip}
+                interactive={interactiveMode}
+              />
+            )}
+
             {frontMedia.map((asset, idx) => (
               <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
             ))}
@@ -164,7 +179,11 @@ export default function FlashCard({
 
           <div className="card-footer">
             <span className="flip-hint">
-              {interactiveMode && isClozeCard && activeClozeTokens.some(t => !revealedClozeIds.includes(t.id)) ? (
+              {card.type === 'input' && interactiveMode ? (
+                <>
+                  <span className="flip-icon">⌨️</span> Escribe tu respuesta y presiona <kbd>Enter</kbd> para comprobar
+                </>
+              ) : interactiveMode && isClozeCard && activeClozeTokens.some(t => !revealedClozeIds.includes(t.id)) ? (
                 <>
                   <span className="flip-icon">👁️</span> Presiona <kbd>Espacio</kbd> o haz clic en la censura para revelar
                 </>

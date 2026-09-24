@@ -9,16 +9,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 3. ⌨️ Cards Interactivas con Input de Texto (Type-in-the-Answer)
-- [ ] **Módulo de corrección visual estilo Anki:**
-  - Comparación de caracteres (Diff visual):
-    - Caracteres correctos en verde.
-    - Faltantes o erróneos en rojo/tachado.
-- [ ] **Degradación a modo pasivo:**
-  - Cuando la interactividad está apagada, el input desaparece y la respuesta correcta se traslada directamente al dorso (Back) sin requerir escritura.
-
----
-
 ## 4. 🫀 Oclusión de Imágenes (Image Occlusion) — Crucial para Anatomía
 - [ ] **Estructura JSON de oclusión:**
   - Definir campos: `image` (URL/path), `mode` (`hide_all_guess_one` o `hide_one_guess_one`).
