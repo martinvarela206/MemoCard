@@ -10,11 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 2. 🔀 Sistema Cloze Deletion (Ocultamiento & Censura)
-- [ ] **Parser de sintaxis Anki:**
-  - Implementar parser regex/AST para `{{c1::texto_oculto}}` y `{{c1::texto_oculto::pista}}`.
-  - Soporte de clozes múltiples en la misma tarjeta:
-    - Mismo índice (`c1`, `c1`): se revelan juntos.
-    - Índices distintos (`c1`, `c2`): generan sub-tarjetas o revelación secuencial.
 - [ ] **Renderizado interactivo de Clozes:**
   - Componente visual de "píldora/bloque censurado" (placeholder clickeable con hover effect).
   - Estado individual: toggle click/tap para revelar sin voltear la tarjeta.

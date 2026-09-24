@@ -9,6 +9,8 @@
  * - 'image_occlusion': Image with bounding boxes occluding anatomical or structural details
  */
 
+import { hasClozeSyntax, getClozeIndices, expandClozeCards } from '../utils/clozeParser';
+
 export const CARD_TYPES = Object.freeze({
   BASIC: 'basic',
   CLOZE: 'cloze',
@@ -121,11 +123,6 @@ export function normalizeCard(rawCard, fallbackId = 1) {
     };
   }
 
-  // Determine formal card type with automatic fallback to 'basic' for v1 retrocompatibility
-  const type = rawCard.type && Object.values(CARD_TYPES).includes(rawCard.type)
-    ? rawCard.type
-    : CARD_TYPES.BASIC;
-
   const slideId = rawCard.slide_id || fallbackId;
   const term = rawCard.term || rawCard.front || '';
   const front = rawCard.front || term;
@@ -133,10 +130,28 @@ export function normalizeCard(rawCard, fallbackId = 1) {
   const media = normalizeCardMedia(rawCard);
   const primaryImage = media.length > 0 ? media[0].src : (rawCard.image || null);
 
+  // Automatically infer 'cloze' type if cloze deletion markup is present and type was default 'basic'
+  let inferredType = rawCard.type && Object.values(CARD_TYPES).includes(rawCard.type)
+    ? rawCard.type
+    : CARD_TYPES.BASIC;
+
+  if (inferredType === CARD_TYPES.BASIC) {
+    if (hasClozeSyntax(front) || hasClozeSyntax(term) || hasClozeSyntax(back)) {
+      inferredType = CARD_TYPES.CLOZE;
+    }
+  }
+
+  // Cloze metadata: active index and total distinct indices
+  const clozeIndices = getClozeIndices([front, term, back]);
+  const activeClozeIndex = rawCard.activeClozeIndex || (clozeIndices.length > 0 ? clozeIndices[0] : 1);
+  const clozeTotal = rawCard.clozeTotal || (clozeIndices.length > 0 ? clozeIndices.length : 1);
+
   return {
     id: rawCard.id || `card_${slideId}`,
     slide_id: slideId,
-    type,
+    type: inferredType,
+    activeClozeIndex,
+    clozeTotal,
     theme: rawCard.theme || 'General',
     subtheme: rawCard.subtheme || null,
     tags: Array.isArray(rawCard.tags)
@@ -163,7 +178,7 @@ export function normalizeCard(rawCard, fallbackId = 1) {
     answers: Array.isArray(rawCard.answers) ? rawCard.answers : [],
     image: primaryImage,
     masks: Array.isArray(rawCard.masks) ? rawCard.masks : [],
-    mode: rawCard.mode || (type === CARD_TYPES.IMAGE_OCCLUSION ? 'hide_all_guess_one' : null),
+    mode: rawCard.mode || (inferredType === CARD_TYPES.IMAGE_OCCLUSION ? 'hide_all_guess_one' : null),
     media
   };
 }
@@ -178,3 +193,17 @@ export function normalizeCards(cards) {
   if (!Array.isArray(cards)) return [];
   return cards.map((card, idx) => normalizeCard(card, idx + 1));
 }
+
+/**
+ * Normalizes cards and expands multi-index cloze cards into distinct sub-cards per Anki specifications.
+ *
+ * @param {Array} cards Raw cards array
+ * @returns {Array} Array of normalized and expanded cards
+ */
+export function normalizeAndExpandCards(cards) {
+  const normalized = normalizeCards(cards);
+  return expandClozeCards(normalized);
+}
+
+export { expandClozeCards };
+

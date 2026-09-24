@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { renderSlideLines } from '../utils/markdownParser';
+import { renderClozeFrontText, renderClozeBackText, hasClozeSyntax } from '../utils/clozeParser';
 import CardMedia from './CardMedia';
 
 export default function FlashCard({ 
@@ -9,6 +10,24 @@ export default function FlashCard({
   currentIndex, 
   totalCards 
 }) {
+  const displayFront = useMemo(() => {
+    if (!card) return '';
+    const raw = card.term || card.front || '';
+    if (card.type === 'cloze' || hasClozeSyntax(raw)) {
+      return renderClozeFrontText(raw, card.activeClozeIndex || 1);
+    }
+    return raw;
+  }, [card]);
+
+  const displayBack = useMemo(() => {
+    if (!card) return '';
+    const raw = card.back || '';
+    if (card.type === 'cloze' || hasClozeSyntax(raw)) {
+      return renderClozeBackText(raw, card.activeClozeIndex || 1);
+    }
+    return raw;
+  }, [card]);
+
   if (!card) return null;
 
   const frontMedia = (card.media || []).filter(m => m.placement === 'front' || m.placement === 'both');
@@ -42,6 +61,11 @@ export default function FlashCard({
                   Paso {card.sequence.step}{card.sequence.total ? ` de ${card.sequence.total}` : ''}
                 </span>
               )}
+              {card.type === 'cloze' && (
+                <span className="cloze-badge" title={`Tarjeta cloze hueco c${card.activeClozeIndex || 1} de ${card.clozeTotal || 1}`}>
+                  Cloze [c{card.activeClozeIndex || 1}]
+                </span>
+              )}
             </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
@@ -50,7 +74,7 @@ export default function FlashCard({
 
           <div className="card-body front-body">
             <span className="slide-num-tag">Diapositiva #{card.slide_id || currentIndex + 1}</span>
-            <h2 className="card-term">{card.term || card.front}</h2>
+            <h2 className="card-term">{displayFront}</h2>
             {frontMedia.map((asset, idx) => (
               <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
             ))}
@@ -74,10 +98,15 @@ export default function FlashCard({
         <div className="card-face back">
           <div className="card-header">
             <div className="card-back-header-left">
-              <span className="card-mini-title">{card.term || card.front}</span>
+              <span className="card-mini-title">{displayFront}</span>
               {card.sequence && (
                 <span className="sequence-badge mini">
                   Paso {card.sequence.step}
+                </span>
+              )}
+              {card.type === 'cloze' && (
+                <span className="cloze-badge mini">
+                  [c{card.activeClozeIndex || 1}]
                 </span>
               )}
             </div>
@@ -88,7 +117,7 @@ export default function FlashCard({
 
           <div className="card-body back-body">
             <div className="card-answer">
-              {renderSlideLines(card.back)}
+              {renderSlideLines(displayBack)}
             </div>
             {backMedia.map((asset, idx) => (
               <CardMedia key={`back-media-${idx}`} asset={asset} className="card-back-media" />

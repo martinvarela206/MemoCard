@@ -52,6 +52,7 @@ graph TD
 - **[src/App.jsx](../src/App.jsx)**: Orquestador principal de estado global (materia activa, índice de tarjeta, apertura de drawer y persistencia).
 - **[src/data/subjects.js](../src/data/subjects.js)**: Catálogo extensible de materias disponibles para estudio.
 - **[src/types/cardTypes.js](../src/types/cardTypes.js)**: Tipado base, tipos de tarjeta polimórficos (`basic`, `cloze`, `input`, `image_occlusion`), metadatos de subtema, tags y secuencia de derivación.
+- **[src/utils/clozeParser.js](../src/utils/clozeParser.js)**: Parser regex y AST de sintaxis Anki (`{{c1::texto::pista}}`), soporte de clozes múltiples idénticos (revelación conjunta) y disjuntos (generación de sub-tarjetas `expandClozeCards`).
 - **[src/utils/mediaResolver.js](../src/utils/mediaResolver.js)**: Resuelve rutas de imágenes, audio, video y diagramas locales/remotos.
 - **[src/utils/markdownParser.jsx](../src/utils/markdownParser.jsx)**: Utilidades desacopladas de renderizado KaTeX y Markdown (`renderSlideLines`, `renderTextWithMathAndMarkdown`, `parseMarkdownText`).
 - **[src/components/SubjectSelector.jsx](../src/components/SubjectSelector.jsx)**: Vista inicial para seleccionar la materia de estudio.

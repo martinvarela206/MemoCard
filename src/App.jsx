@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { getSubjectById } from './data/subjects';
-import { normalizeCards } from './types/cardTypes';
+import { normalizeAndExpandCards } from './types/cardTypes';
 import SubjectSelector from './components/SubjectSelector';
 import FlashCard from './components/FlashCard';
 import StudyNavigation from './components/StudyNavigation';
@@ -27,7 +27,7 @@ export default function App() {
   }, [selectedSubjectId]);
 
   const cards = useMemo(() => {
-    return normalizeCards(subject?.data?.cards || []);
+    return normalizeAndExpandCards(subject?.data?.cards || []);
   }, [subject]);
 
   // Dynamic themes list with start index for sequential jumping

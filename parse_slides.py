@@ -230,12 +230,17 @@ def parse_markdown(filepath):
                 "chainId": chain_id
             }
 
+        # Check if card has cloze deletions
+        card_type = "basic"
+        if re.search(r'\{\{c\d+::.*?\}\}', body) or re.search(r'\{\{c\d+::.*?\}\}', slide_title):
+            card_type = "cloze"
+
         # Create exactly one card for the entire slide
         card_id = f"card_{slide_num}"
         cards_list.append({
             "id": card_id,
             "slide_id": slide_num,
-            "type": "basic",
+            "type": card_type,
             "term": slide_title,
             "front": slide_title,
             "back": body,
