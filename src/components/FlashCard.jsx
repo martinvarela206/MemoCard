@@ -206,14 +206,6 @@ export default function FlashCard({
             {card.type !== 'image_occlusion' && frontMedia.map((asset, idx) => (
               <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
             ))}
-
-            {card.tags && card.tags.length > 0 && (
-              <div className="card-tags-list">
-                {card.tags.map((tag) => (
-                  <span key={tag} className="card-tag-pill">#{tag}</span>
-                ))}
-              </div>
-            )}
           </div>
         </div>
 

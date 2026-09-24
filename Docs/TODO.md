@@ -1,3 +1,14 @@
 # Tareas Pendientes (TODO)
 
-*No hay tareas pendientes en este momento.*
+## 📱 Ergonomía, Layout y Navegación en Mobile Portrait
+
+- [ ] **Item 2: Botonera de navegación en fila única inferior para portrait:**
+  - Rediseñar `.nav-buttons-cluster` en mobile portrait para que los 5 botones queden en una sola fila horizontal compacta centrada, sin saltos de línea ni anchos desproporcionados.
+- [ ] **Item 3: Adaptación vertical del formulario input en portrait:**
+  - Configurar `.type-input-group` en portrait para que el botón "Comprobar" se sitúe debajo del input a ancho completo, evitando desbordamientos laterales.
+- [ ] **Item 4: Contención de imágenes de oclusión contra desbordamiento:**
+  - Ajustar el tamaño máximo de `.occlusion-base-image` y `.image-occlusion-viewport` en pantallas móviles para que el esquema encaje dentro de la tarjeta sin desbordar su borde inferior.
+- [ ] **Item 5: Contención del panel de diff y corrección en tarjetas input:**
+  - Ajustar padding, tamaño y scroll interno en `.type-answer-feedback` y `.diff-display-container` para que el resultado de comprobación no desborde la tarjeta.
+- [ ] **Item 6: Navegación aleatoria circular con balanceo por sesión:**
+  - Habilitar el botón aleatorio de forma global e invariable (sin deshabilitarse al final del mazo) e implementar el algoritmo de balanceo ponderado por sesión (1 hora) para equiparar la frecuencia de aparición de tarjetas.
