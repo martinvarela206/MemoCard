@@ -138,6 +138,23 @@ export function normalizeCard(rawCard, fallbackId = 1) {
     slide_id: slideId,
     type,
     theme: rawCard.theme || 'General',
+    subtheme: rawCard.subtheme || null,
+    tags: Array.isArray(rawCard.tags)
+      ? rawCard.tags.map(t => String(t).trim().toLowerCase()).filter(Boolean)
+      : [],
+    sequence: rawCard.sequence && typeof rawCard.sequence === 'object'
+      ? {
+          step: Number(rawCard.sequence.step) || 1,
+          total: Number(rawCard.sequence.total) || null,
+          chainId: rawCard.sequence.chainId ? String(rawCard.sequence.chainId) : null
+        }
+      : (rawCard.step
+          ? {
+              step: Number(rawCard.step) || 1,
+              total: Number(rawCard.total_steps) || null,
+              chainId: rawCard.chain_id ? String(rawCard.chain_id) : null
+            }
+          : null),
     term,
     front,
     back,

@@ -32,7 +32,17 @@ export default function FlashCard({
         {/* Lado Frontal (Front) */}
         <div className="card-face front">
           <div className="card-header">
-            <span className="theme-badge">{card.theme || 'General'}</span>
+            <div className="card-theme-cluster">
+              <span className="theme-badge">{card.theme || 'General'}</span>
+              {card.subtheme && (
+                <span className="subtheme-badge">{card.subtheme}</span>
+              )}
+              {card.sequence && (
+                <span className="sequence-badge" title="Concepto encadenado o derivación en pasos">
+                  Paso {card.sequence.step}{card.sequence.total ? ` de ${card.sequence.total}` : ''}
+                </span>
+              )}
+            </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
             </span>
@@ -44,6 +54,13 @@ export default function FlashCard({
             {frontMedia.map((asset, idx) => (
               <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
             ))}
+            {card.tags && card.tags.length > 0 && (
+              <div className="card-tags-list">
+                {card.tags.map((tag) => (
+                  <span key={tag} className="card-tag-pill">#{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="card-footer">
@@ -56,7 +73,14 @@ export default function FlashCard({
         {/* Lado Trasero (Back) */}
         <div className="card-face back">
           <div className="card-header">
-            <span className="card-mini-title">{card.term || card.front}</span>
+            <div className="card-back-header-left">
+              <span className="card-mini-title">{card.term || card.front}</span>
+              {card.sequence && (
+                <span className="sequence-badge mini">
+                  Paso {card.sequence.step}
+                </span>
+              )}
+            </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
             </span>

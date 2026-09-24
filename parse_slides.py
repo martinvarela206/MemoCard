@@ -183,6 +183,53 @@ def parse_markdown(filepath):
             "theme": current_theme
         })
         
+        # Extract subtheme if present in title
+        subtheme = None
+        if ":" in slide_title:
+            prefix, _ = slide_title.split(":", 1)
+            category_keywords = [
+                "operaciones", "operación", "operacion", "propiedades", "propiedad", 
+                "jerarquía", "jerarquia", "guía práctica", "guia practica", 
+                "construcción de ers", "construccion de ers", "ejemplo", "ejemplos", 
+                "reglas", "definición", "definicion", "clausura"
+            ]
+            if any(k in prefix.lower() for k in category_keywords):
+                subtheme = prefix.strip()
+
+        # Extract tags automatically from content
+        card_tags = []
+        lower_title = slide_title.lower()
+        lower_body = body.lower()
+        
+        if "examen" in lower_title or "examen" in lower_body:
+            card_tags.append("examen")
+        if "definición" in lower_title or "definicion" in lower_title or "definición:" in lower_body or "definicion:" in lower_body:
+            card_tags.append("definicion")
+        if "propiedad" in lower_title or "propiedades" in lower_title:
+            card_tags.append("propiedades")
+        if "operación" in lower_title or "operaciones" in lower_title or "operacion" in lower_title:
+            card_tags.append("operaciones")
+        if "ejemplo" in lower_title or "ejemplos" in lower_title:
+            card_tags.append("ejemplo")
+        if "teorema" in lower_title or "teorema" in lower_body:
+            card_tags.append("teorema")
+        if "jerarquía" in lower_title or "jerarquia" in lower_title:
+            card_tags.append("jerarquia")
+        if "grafo" in lower_title or "árbol" in lower_title or "arbol" in lower_title:
+            card_tags.append("grafos-arboles")
+
+        # Check for sequence in title (e.g. "Parte 1", "Ejemplos 2")
+        seq_match = re.search(r'(?:parte|ejemplos?|paso)\s+(\d+)', lower_title)
+        sequence = None
+        if seq_match:
+            step_num = int(seq_match.group(1))
+            chain_id = re.sub(r'\s+(?:parte|ejemplos?|paso)\s+\d+', '', lower_title).strip()
+            sequence = {
+                "step": step_num,
+                "total": None,
+                "chainId": chain_id
+            }
+
         # Create exactly one card for the entire slide
         card_id = f"card_{slide_num}"
         cards_list.append({
@@ -193,7 +240,10 @@ def parse_markdown(filepath):
             "front": slide_title,
             "back": body,
             "context": None,
-            "theme": current_theme
+            "theme": current_theme,
+            "subtheme": subtheme,
+            "tags": card_tags,
+            "sequence": sequence
         })
             
     # Clean up card back contents (strip outer whitespace, fix newlines)

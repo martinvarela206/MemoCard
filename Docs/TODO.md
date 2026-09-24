@@ -7,11 +7,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 1. 📐 Evolución del Esquema JSON & Tipado (Core Data Model)
-- [ ] **Agrupación y Secuencialidad:**
-  - Garantizar navegación por `theme` y secuencia estricta de IDs/pasos para conceptos encadenados o derivaciones paso a paso.
-  - Añadir soporte opcional para sub-temas o `tags` transversales.
-
 ---
 
 ## 2. 🔀 Sistema Cloze Deletion (Ocultamiento & Censura)

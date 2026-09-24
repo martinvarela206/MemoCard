@@ -51,12 +51,15 @@ graph TD
 - **[src/main.jsx](../src/main.jsx)**: Montaje de la raíz React con `<App />`.
 - **[src/App.jsx](../src/App.jsx)**: Orquestador principal de estado global (materia activa, índice de tarjeta, apertura de drawer y persistencia).
 - **[src/data/subjects.js](../src/data/subjects.js)**: Catálogo extensible de materias disponibles para estudio.
+- **[src/types/cardTypes.js](../src/types/cardTypes.js)**: Tipado base, tipos de tarjeta polimórficos (`basic`, `cloze`, `input`, `image_occlusion`), metadatos de subtema, tags y secuencia de derivación.
+- **[src/utils/mediaResolver.js](../src/utils/mediaResolver.js)**: Resuelve rutas de imágenes, audio, video y diagramas locales/remotos.
 - **[src/utils/markdownParser.jsx](../src/utils/markdownParser.jsx)**: Utilidades desacopladas de renderizado KaTeX y Markdown (`renderSlideLines`, `renderTextWithMathAndMarkdown`, `parseMarkdownText`).
 - **[src/components/SubjectSelector.jsx](../src/components/SubjectSelector.jsx)**: Vista inicial para seleccionar la materia de estudio.
-- **[src/components/FlashCard.jsx](../src/components/FlashCard.jsx)**: Tarjeta interactiva con giro 3D (Front con concepto/pregunta; Back con desarrollo y fórmulas).
+- **[src/components/FlashCard.jsx](../src/components/FlashCard.jsx)**: Tarjeta interactiva con giro 3D, soporte multimedia (`CardMedia`), badges de subtema y secuencia de derivación por pasos (`Paso X de Y`), e insignias de tags transversales.
+- **[src/components/CardMedia.jsx](../src/components/CardMedia.jsx)**: Renderizado de recursos multimedia con zoom en modal lightbox y pie de figura.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con los 5 botones requeridos (Tema Ant., Card Ant., Card Sig., Tema Sig., Tema Aleatorio) y atajos de teclado.
-- **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con lista temática y secuencial de todas las tarjetas.
-- **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones y efectos 3D.
+- **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
+- **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones, tags y efectos 3D.
 - **[src/index.css](../src/index.css)**: Variables de diseño, tema oscuro y estilos globales.
 
 ---
