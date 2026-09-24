@@ -46,7 +46,10 @@ graph TD
     
     Data --> subjects_js["subjects.js"]
     Data --> json_source["ColoquioTeoriaComputacion.json"]
+    Data --> json_anat["IntroduccionAnatomofisiologia.json"]
 ```
+
+- **[src/data/IntroduccionAnatomofisiologia.json](../src/data/IntroduccionAnatomofisiologia.json)**: Mazo de estudio de Anatomofisiología con tarjetas polimórficas (`basic`, `cloze`, `input`, `image_occlusion`) y recursos visuales dedicados.
 
 - **[index.html](../index.html)**: Punto de entrada HTML. Monta `src/main.jsx`.
 - **[src/main.jsx](../src/main.jsx)**: Montaje de la raíz React con `<App />`.

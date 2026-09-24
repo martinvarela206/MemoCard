@@ -1,0 +1,186 @@
+[
+  {
+    "id": "anat_intro_001",
+    "slide_id": 1,
+    "type": "basic",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Principios Fundamentales",
+    "term": "Principio de Complementariedad Estructura-Función",
+    "front": "¿En qué consiste el principio de complementariedad entre anatomía y fisiología?",
+    "back": "- La función de una parte corporal siempre refleja y depende de su diseño anatómico específico.\n- Las adaptaciones morfológicas determinan qué procesos fisiológicos pueden ocurrir.\n- Ejemplo: los alvéolos poseen epitelio plano simple ultrafino para permitir una difusión de gases ($O_2 / CO_2$) inmediata y eficiente.",
+    "tags": ["#definicion", "#anatomia", "#fisiologia"]
+  },
+  {
+    "id": "anat_intro_002",
+    "slide_id": 2,
+    "type": "basic",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Niveles de Organización",
+    "sequence": {
+      "step": 1,
+      "total": 6,
+      "chainId": "niveles_organizacion_cuerpo"
+    },
+    "term": "Nivel de Organización 1: Nivel Químico",
+    "front": "Nivel de Organización 1: Nivel Químico",
+    "back": "- Es el nivel fundacional elemental integrado por **átomos** y **moléculas**.\n- Los bioelementos esenciales del cuerpo humano incluyen: $C, H, O, N, P, Ca, S$.\n- Se combinan covalentemente formando biomoléculas clave como el ADN (información genética) y la glucosa ($C_6H_{12}O_6$, combustible celular).",
+    "tags": ["#anatomia", "#organizacion", "#secuencia"]
+  },
+  {
+    "id": "anat_intro_003",
+    "slide_id": 3,
+    "type": "cloze",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Posiciones Anatómicas",
+    "term": "Posición Anatómica Estándar de Referencia",
+    "front": "En la posición anatómica estándar, el individuo permanece erguido con la vista al frente y las palmas de las manos orientadas en {{c1::supinación anterior::orientación palmar}} con los dedos en extensión.",
+    "back": "La posición anatómica estándar es el marco coordenado invariable universal:\n- Bipedestación erguida con pies juntos y apoyados.\n- Brazos extendidos a los lados con las **palmas hacia adelante (supinación)**.\n- Garantiza precisión para términos como *anterior*, *medial* o *proximal* independientemente de la posición real del paciente.",
+    "tags": ["#anatomia", "#postura", "#examen"]
+  },
+  {
+    "id": "anat_intro_004",
+    "slide_id": 4,
+    "type": "cloze",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Cuidados Posturales de Enfermería",
+    "term": "Posición de Fowler e Indicación Clínica",
+    "front": "La posición de Fowler sitúa al paciente con la cabecera elevada a un ángulo de {{c1::45°::ángulo en grados}} y está indicada prioritariamente en pacientes con {{c2::disnea e insuficiencia respiratoria::complicación ventilatoria}}.",
+    "back": "La **posición de Fowler** ($45^\\circ$):\n- Favorece el descenso del músculo diafragma por gravedad y optimiza la expansión torácica pulmonar.\n- Reduce el retorno venoso excesivo hacia la aurícula derecha en pacientes cardiópatas.\n- En semi-Fowler la elevación es de $30^\\circ$ y en Fowler alto alcanza $80^\\circ-90^\\circ$.",
+    "tags": ["#enfermeria", "#posturas", "#clinica"]
+  },
+  {
+    "id": "anat_intro_005",
+    "slide_id": 5,
+    "type": "input",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Términos Direccionales",
+    "term": "Término Direccional: Hacia la Raíz del Miembro",
+    "front": "¿Qué término direccional designa una estructura situada más cerca del origen o punto de inserción de una extremidad en el tronco?",
+    "back": "**Proximal**: situado más cercano al punto de inserción articular de la extremidad con el tronco (por ejemplo, el codo es proximal a la muñeca; el muslo es proximal a la rodilla).",
+    "answers": [
+      "proximal",
+      "Proximal"
+    ],
+    "tags": ["#anatomia", "#terminologia", "#examen"]
+  },
+  {
+    "id": "anat_intro_006",
+    "slide_id": 6,
+    "type": "input",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Cavidades Corporales",
+    "term": "Músculo Divisorio Toracoabdominal",
+    "front": "¿Qué tabique fibromuscular en forma de cúpula separa la cavidad torácica de la cavidad abdominopélvica?",
+    "back": "**Diafragma**: tabique músculo-tendinoso en cúpula que separa herméticamente la cavidad torácica superior de la cavidad abdominopelviana inferior y actúa como el principal motor de la ventilación pulmonar.",
+    "answers": [
+      "diafragma",
+      "el diafragma",
+      "músculo diafragma",
+      "musculo diafragma",
+      "Diafragma"
+    ],
+    "tags": ["#anatomia", "#cavidades", "#examen"]
+  },
+  {
+    "id": "anat_intro_007",
+    "slide_id": 7,
+    "type": "image_occlusion",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Planos y Cortes Anatómicos",
+    "term": "Planos de Corte Seccional del Cuerpo Humano",
+    "front": "Identifica los tres planos ortogonales fundamentales de corte en el cuerpo humano.",
+    "back": "Planos ortogonales de corte anatómico:\n- **(a) Plano sagital medio:** Divide longitudinalmente en mitad derecha e izquierda simétricas.\n- **(b) Plano frontal (coronal):** Divide en mitad anterior (ventral) y posterior (dorsal).\n- **(c) Plano transversal (axial):** Divide en mitad superior (craneal) e inferior (caudal).",
+    "image": "IntroduccionAnatomofisiologia/planos_anatomicos_tridimensionales.png",
+    "mode": "hide_all_guess_one",
+    "masks": [
+      {
+        "id": "mask_1",
+        "x": 4.5,
+        "y": 7.0,
+        "width": 28.5,
+        "height": 86.0,
+        "label": "Plano Sagital Medio",
+        "isTarget": true
+      },
+      {
+        "id": "mask_2",
+        "x": 36.5,
+        "y": 7.0,
+        "width": 29.0,
+        "height": 86.0,
+        "label": "Plano Frontal (Coronal)",
+        "isTarget": false
+      },
+      {
+        "id": "mask_3",
+        "x": 68.0,
+        "y": 7.0,
+        "width": 28.0,
+        "height": 86.0,
+        "label": "Plano Transversal (Horizontal)",
+        "isTarget": false
+      }
+    ],
+    "tags": ["#anatomia", "#planos", "#occlusion", "#examen"]
+  },
+  {
+    "id": "anat_intro_008",
+    "slide_id": 8,
+    "type": "image_occlusion",
+    "theme": "Introducción a la Anatomofisiología",
+    "subtheme": "Cuidados Posturales de Enfermería",
+    "term": "Puntos de Presión en Decúbito Supino (Escaras)",
+    "front": "Identifica los focos óseos de hiperpresión y riesgo de úlceras en decúbito supino.",
+    "back": "Puntos críticos de apoyo y riesgo de escaras en decúbito dorsal:\n1. Cabeza (prominencia occipital)\n2. Omóplato (borde escapular)\n3. Codos (olécranon cubital)\n4. Sacro (región sacrococcígea)\n5. Talones (tuberosidad calcánea)",
+    "image": "IntroduccionAnatomofisiologia/puntos_presion_decubito_supino.png",
+    "mode": "hide_all_guess_one",
+    "masks": [
+      {
+        "id": "mask_1",
+        "x": 9.0,
+        "y": 22.0,
+        "width": 14.0,
+        "height": 35.0,
+        "label": "Cabeza (Occipucio)",
+        "isTarget": false
+      },
+      {
+        "id": "mask_2",
+        "x": 27.0,
+        "y": 35.0,
+        "width": 13.0,
+        "height": 35.0,
+        "label": "Omóplato (Escápula)",
+        "isTarget": false
+      },
+      {
+        "id": "mask_3",
+        "x": 42.0,
+        "y": 40.0,
+        "width": 11.0,
+        "height": 35.0,
+        "label": "Codo (Olécranon)",
+        "isTarget": false
+      },
+      {
+        "id": "mask_4",
+        "x": 55.0,
+        "y": 45.0,
+        "width": 12.0,
+        "height": 35.0,
+        "label": "Sacro",
+        "isTarget": true
+      },
+      {
+        "id": "mask_5",
+        "x": 82.0,
+        "y": 48.0,
+        "width": 14.0,
+        "height": 35.0,
+        "label": "Talones (Calcáneo)",
+        "isTarget": false
+      }
+    ],
+    "tags": ["#enfermeria", "#escaras", "#occlusion", "#examen"]
+  }
+]

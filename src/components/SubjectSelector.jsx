@@ -14,8 +14,16 @@ export default function SubjectSelector({ onSelectSubject }) {
 
       <div className="subjects-grid">
         {SUBJECTS.map((subject) => {
-          const cardsCount = subject.data.cards?.length || 0;
-          const themesSet = new Set(subject.data.slides?.map(s => s.theme || 'General'));
+          /* Rationale: Decks can be loaded as structured objects ({ cards, slides })
+             or as direct arrays of polymorphic cards ([ card1, card2, ... ]) per json-generation-rules.
+             Normalizing here prevents runtime errors and guarantees accurate count badges. */
+          const rawCards = Array.isArray(subject.data) 
+            ? subject.data 
+            : (subject.data?.cards || subject.data?.slides || []);
+          const cardsCount = rawCards.length;
+          
+          const rawThemes = subject.data?.slides || rawCards;
+          const themesSet = new Set(rawThemes.map(s => s.theme || 'General'));
           const themesCount = themesSet.size;
 
           return (

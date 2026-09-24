@@ -62,7 +62,7 @@ export default function DeckExportImportModal({
           description: subject?.description
         },
         cardsCount: cards.length,
-        slides: subject?.data?.slides || [],
+        slides: subject?.data?.slides || (Array.isArray(subject?.data) ? subject.data : []),
         cards: cards,
         srsData: includeStats ? srsData : {},
         stats: stats
@@ -98,7 +98,7 @@ export default function DeckExportImportModal({
     reader.onload = (event) => {
       try {
         const parsed = JSON.parse(event.target.result);
-        if (!parsed || (!parsed.cards && !parsed.slides)) {
+        if (!parsed || (!parsed.cards && !parsed.slides && !Array.isArray(parsed))) {
           throw new Error('El archivo no contiene una estructura válida de mazo MemoCard.');
         }
 
@@ -249,8 +249,8 @@ export default function DeckExportImportModal({
               <div className="imported-preview-card">
                 <h4 className="preview-heading">Detalles del Archivo Seleccionado</h4>
                 <div className="preview-meta-grid">
-                  <div><strong>Materia:</strong> {importedPreview.subject?.title || 'Personalizada'}</div>
-                  <div><strong>Tarjetas:</strong> {importedPreview.cards?.length || importedPreview.slides?.length || 0}</div>
+                  <div><strong>Materia:</strong> {importedPreview.subject?.title || (Array.isArray(importedPreview) ? importedPreview[0]?.theme : null) || 'Personalizada'}</div>
+                  <div><strong>Tarjetas:</strong> {Array.isArray(importedPreview) ? importedPreview.length : (importedPreview.cards?.length || importedPreview.slides?.length || 0)}</div>
                   <div><strong>Fecha de Creación:</strong> {importedPreview.exportedAt ? new Date(importedPreview.exportedAt).toLocaleDateString() : 'N/A'}</div>
                   <div><strong>Estados SRS:</strong> {importedPreview.srsData ? Object.keys(importedPreview.srsData).length : 0}</div>
                 </div>

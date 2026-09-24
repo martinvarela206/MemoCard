@@ -71,7 +71,12 @@ export default function App() {
   }, [selectedSubjectId]);
 
   const cards = useMemo(() => {
-    return normalizeAndExpandCards(subject?.data?.cards || []);
+    /* Rationale: Adapts both multi-table deck structures ({ cards, slides }) and
+       canonical flat arrays ([ card1, card2, ... ]) defined in json-generation-rules. */
+    const rawCards = Array.isArray(subject?.data)
+      ? subject.data
+      : (subject?.data?.cards || subject?.data?.slides || []);
+    return normalizeAndExpandCards(rawCards);
   }, [subject]);
 
   // Spaced Repetition (SRS) data map per subject: { [cardId]: srsRecord }
@@ -112,11 +117,14 @@ export default function App() {
 
   // Dynamic themes list with start index for sequential jumping
   const themesList = useMemo(() => {
-    if (!subject?.data?.slides) return [];
+    /* Rationale: Themes are derived from slides metadata when available, or directly
+       from card items when the deck is structured as a canonical flat array. */
+    const rawItems = subject?.data?.slides || (Array.isArray(subject?.data) ? subject.data : (subject?.data?.cards || []));
+    if (!rawItems || rawItems.length === 0) return [];
     const themesMap = {};
     
-    subject.data.slides.forEach((slide) => {
-      const themeName = slide.theme || 'General';
+    rawItems.forEach((item) => {
+      const themeName = item.theme || 'General';
       if (!themesMap[themeName]) {
         themesMap[themeName] = {
           name: themeName,
