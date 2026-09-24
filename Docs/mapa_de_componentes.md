@@ -62,7 +62,7 @@ graph TD
 - **[src/components/ClozeText.jsx](../src/components/ClozeText.jsx)**: Renderizador interactivo de texto con clozes mediante píldoras censuradas interactivas, alternancia de visibilidad individual y soporte matemático KaTeX.
 - **[src/components/TypeAnswerBox.jsx](../src/components/TypeAnswerBox.jsx)**: Módulo de entrada de texto interactivo con aislamiento de atajos de teclado, validación en tiempo real, desglose visual de diff y degradación a modo pasivo.
 - **[src/components/ImageOcclusion.jsx](../src/components/ImageOcclusion.jsx)**: Módulo de oclusión de imágenes para esquemas y anatomía con overlay SVG responsivo, coordenadas porcentuales y alternancia individual de máscaras.
-- **[src/components/CardMedia.jsx](../src/components/CardMedia.jsx)**: Renderizado de recursos multimedia con zoom en modal lightbox y pie de figura.
+- **[src/components/CardMedia.jsx](../src/components/CardMedia.jsx)**: Renderizado de recursos multimedia con modal lightbox de alta resolución, toolbar de control, zoom interactivo (1x a 4x), desplazamiento pan mediante arrastre GPU y atajos de teclado.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con los 5 botones requeridos (Tema Ant., Card Ant., Card Sig., Tema Sig., Tema Aleatorio) y atajos de teclado.
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
 - **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones, tags y efectos 3D.

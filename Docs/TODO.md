@@ -10,8 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 5. ⚙️ Renderizado Híbrido: Markdown + KaTeX / MathJax + Medios
-- [ ] **Visor de Imágenes y Zoom:**
-  - Componente modal/lightbox con pan-and-zoom para esquemas anatómicos densos o con texto pequeño.
 - [ ] **Modo Oscuro / Alto Contraste:**
   - Inversión selectiva o estilización de diagramas/fórmulas para evitar fatiga visual en sesiones nocturnas.
 
