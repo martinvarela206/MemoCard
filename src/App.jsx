@@ -7,6 +7,7 @@ import StudyNavigation from './components/StudyNavigation';
 import StudyDrawer from './components/StudyDrawer';
 import GuidedStudyBanner from './components/GuidedStudyBanner';
 import DeckStatsModal from './components/DeckStatsModal';
+import DeckExportImportModal from './components/DeckExportImportModal';
 import { getDefaultSRSState, calculateNextReview, isCardDue } from './utils/srsEngine';
 import { 
   loadSubjectSRS, 
@@ -164,6 +165,21 @@ export default function App() {
 
   // Retention stats modal state
   const [isStatsOpen, setIsStatsOpen] = useState(false);
+
+  // Deck export/import backup modal state
+  const [isBackupOpen, setIsBackupOpen] = useState(false);
+
+  // Callback to merge and restore imported deck data
+  const handleImportDeck = useCallback((importedData) => {
+    if (!importedData) return;
+    if (importedData.srsData) {
+      const mergedSRS = {
+        ...srsData,
+        ...importedData.srsData
+      };
+      saveSRSData(mergedSRS);
+    }
+  }, [srsData, saveSRSData]);
 
   const currentCard = activeDeckCards[currentCardIndex] || null;
   const currentThemeName = currentCard?.theme || 'General';
@@ -350,6 +366,16 @@ export default function App() {
           </button>
 
           <button 
+            className="btn-backup-toggle"
+            onClick={() => setIsBackupOpen(true)}
+            aria-label="Exportar o importar respaldos del mazo"
+            title="Exportar mazo con notas y estadísticas o restaurar un respaldo"
+          >
+            <span className="backup-toggle-icon">📦</span>
+            <span className="backup-toggle-label">Respaldo</span>
+          </button>
+
+          <button 
             className="btn-toggle-drawer"
             onClick={() => setIsDrawerOpen(prev => !prev)}
             aria-label="Abrir panel de tarjetas"
@@ -451,6 +477,16 @@ export default function App() {
         subjectId={selectedSubjectId}
         cards={cards}
         srsData={srsData}
+      />
+
+      {/* Deck Export / Import Modal */}
+      <DeckExportImportModal
+        isOpen={isBackupOpen}
+        onClose={() => setIsBackupOpen(false)}
+        subject={subject}
+        cards={cards}
+        srsData={srsData}
+        onImportDeck={handleImportDeck}
       />
     </div>
   );
