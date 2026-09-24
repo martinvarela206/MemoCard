@@ -1507,29 +1507,42 @@ kbd {
     font-size: 0.9rem;
   }
 
-  /* Topbar Landscape */
+  /* Topbar Landscape: Ultra-compact */
   .study-topbar {
-    padding: 6px 16px;
-    gap: 10px;
+    padding: 4px 12px;
+    gap: 8px;
+    min-height: 38px;
   }
 
   .active-theme-pill {
-    max-width: 260px;
-    padding: 4px 10px;
-    font-size: 0.78rem;
+    max-width: 220px;
+    padding: 2px 8px;
+    font-size: 0.74rem;
   }
 
   .btn-back-subjects,
-  .btn-toggle-drawer {
-    padding: 5px 10px;
-    font-size: 0.8rem;
+  .btn-toggle-drawer,
+  .btn-contrast-toggle,
+  .btn-guided-toggle,
+  .btn-srs-toggle,
+  .btn-mode-toggle,
+  .btn-stats-toggle,
+  .btn-backup-toggle {
+    padding: 3px 8px;
+    font-size: 0.75rem;
   }
 
-  /* Arena Landscape - Side-by-Side (Card + Right-Side Vertical Navigation) */
+  .study-progress-wrapper {
+    height: 3px;
+  }
+
+  /* Arena Landscape - Fill Available Vertical Space With Minimal Padding */
   .study-arena {
-    padding: 6px 14px 10px;
-    align-items: center;
+    padding: 4px 8px 6px;
+    display: flex;
+    align-items: stretch;
     justify-content: center;
+    flex: 1;
     min-height: 0;
   }
 
@@ -1538,57 +1551,68 @@ kbd {
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    max-width: 980px;
+    max-width: 100%;
+    height: 100%;
   }
 
   .card-perspective {
     flex: 1;
     min-width: 0;
-    min-height: clamp(200px, 68vh, 320px);
+    height: 100%;
+    min-height: clamp(200px, calc(100vh - 50px), 500px);
   }
 
   .card-rotator {
-    min-height: clamp(200px, 68vh, 320px);
+    height: 100%;
+    min-height: clamp(200px, calc(100vh - 50px), 500px);
   }
 
   .card-face {
-    min-height: clamp(200px, 68vh, 320px);
-    padding: 12px 18px;
-    border-radius: 16px;
+    height: 100%;
+    min-height: clamp(200px, calc(100vh - 50px), 500px);
+    padding: 8px 14px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-header {
-    padding-bottom: 6px;
+    padding-bottom: 4px;
   }
 
   .theme-badge {
-    font-size: 0.7rem;
-    padding: 2px 8px;
+    font-size: 0.68rem;
+    padding: 1px 6px;
   }
 
   .card-counter {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
   }
 
   .front-body {
-    padding: 8px 0;
+    flex: 1;
+    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .slide-num-tag {
-    font-size: 0.7rem;
-    margin-bottom: 4px;
+    font-size: 0.68rem;
+    margin-bottom: 2px;
   }
 
   .card-term {
-    font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+    font-size: clamp(1.05rem, 2.6vw, 1.4rem);
     line-height: 1.25;
-    max-width: 92%;
+    max-width: 95%;
   }
 
   .back-body {
-    padding: 6px 0;
+    flex: 1;
+    padding: 4px 0;
   }
 
   .card-answer {

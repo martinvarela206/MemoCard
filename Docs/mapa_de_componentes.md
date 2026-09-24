@@ -71,7 +71,7 @@ graph TD
 - **[src/components/DeckExportImportModal.jsx](../src/components/DeckExportImportModal.jsx)**: Modal para exportación portable de mazos en formato JSON (tarjetas, diapositivas y metadatos SRS) e importación/restauración offline.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con 5 botones iconificados sin texto (⏮️, ◀️, ▶️, ⏭️, 🔀), atajos globales (`A`/`D` para tarjetas, `Shift+A`/`Shift+D` para temas, `R` para tema aleatorio), orientación vertical a la derecha en modo landscape y horizontal inferior en modo portrait.
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
-- **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones, tags y efectos 3D.
+- **[src/App.css](../src/App.css)**: Estilos de componentes, layout responsivo optimizado para landscape móvil (reducción de márgenes/paddings, barra superior ultracompacta y altura maximizada), microinteracciones y efectos 3D.
 - **[src/index.css](../src/index.css)**: Variables de diseño, tema oscuro y estilos globales.
 
 ---
