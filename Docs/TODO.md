@@ -10,9 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 5. ⚙️ Renderizado Híbrido: Markdown + KaTeX / MathJax + Medios
-- [ ] **Aislamiento de renderizado:**
-  - Asegurar que el parser de Markdown no rompa delimitadores de KaTeX (`$..$`, `$$..$$`).
-  - Prevenir conflictos entre la sintaxis de clozes `{{...}}` y expresiones LaTeX con dobles llaves `{{a_i}}` asegurando que el parser busque estrictamente `\{\{c\d+::`.
 - [ ] **Visor de Imágenes y Zoom:**
   - Componente modal/lightbox con pan-and-zoom para esquemas anatómicos densos o con texto pequeño.
 - [ ] **Modo Oscuro / Alto Contraste:**

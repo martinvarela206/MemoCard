@@ -17,31 +17,36 @@
  *   are rendered as plain unmasked text so the question prompt remains grammatically coherent.
  */
 
-export const CLOZE_REGEX = /\{\{c(\d+)::(.*?)(?:::([^}]*?))?\}\}/g;
+export const CLOZE_PREFIX_REGEX = /\{\{c(\d+)::/g;
 
 /**
  * Checks whether a given string contains any Anki cloze syntax patterns.
+ * Validates the strict prefix `{{c\d+::` to prevent false matches with standard LaTeX double braces.
  *
  * @param {string} text Input text string
  * @returns {boolean} True if cloze pattern exists
  */
 export function hasClozeSyntax(text) {
   if (typeof text !== 'string' || text.length === 0) return false;
-  // Reset regex lastIndex before testing
-  CLOZE_REGEX.lastIndex = 0;
-  return CLOZE_REGEX.test(text);
+  CLOZE_PREFIX_REGEX.lastIndex = 0;
+  return CLOZE_PREFIX_REGEX.test(text);
 }
 
 /**
- * Parses a string into an Abstract Syntax Tree (AST) array of tokens.
+ * Parses a string into an Abstract Syntax Tree (AST) array of tokens using balanced brace scanning.
+ *
+ * Algorithmic & Engineering Rationale:
+ * - Naive non-greedy regexes (`/\{\{c(\d+)::(.*?)\}\}/`) fail catastrophically when clozes
+ *   contain nested LaTeX formulas like `{{c1::\frac{a}{b}}}` or `{{c1::\mathbf{{a_i}}}}`, because
+ *   the first inner closing brace `}` immediately terminates the regex match prematurely.
+ * - This scanner detects the strict prefix `{{c\d+::` and maintains an internal `braceDepth` counter
+ *   for all nested `{` and `}` characters.
+ * - Cloze termination `}}` is only recognized when `braceDepth === 0`, ensuring complete preservation
+ *   of complex mathematical expressions and preventing syntax leakage.
  *
  * Tokens:
  * - TextToken:  { type: 'text', content: string }
  * - ClozeToken: { type: 'cloze', index: number, hiddenText: string, hint: string | null, raw: string, id: string }
- *
- * Rationale:
- * - Using token arrays decouples the parsing phase from the rendering phase (SRP).
- * - Preserves exact character indices and punctuation without unintended HTML escaping.
  *
  * @param {string} text Text containing optional cloze syntax
  * @returns {Array<Object>} List of typed tokens
@@ -53,34 +58,69 @@ export function parseClozeTokens(text) {
 
   const tokens = [];
   let lastIndex = 0;
-  let match;
   let counter = 0;
+  CLOZE_PREFIX_REGEX.lastIndex = 0;
 
-  CLOZE_REGEX.lastIndex = 0;
+  let match;
+  while ((match = CLOZE_PREFIX_REGEX.exec(text)) !== null) {
+    const startIndex = match.index;
+    const index = parseInt(match[1], 10);
+    let i = CLOZE_PREFIX_REGEX.lastIndex;
+    let braceDepth = 0;
+    let separatorIndex = -1;
+    let endIndex = -1;
 
-  while ((match = CLOZE_REGEX.exec(text)) !== null) {
-    const [rawMatch, indexStr, hiddenText, hintStr] = match;
-    const matchStart = match.index;
+    // Scan forward with balanced brace awareness
+    while (i < text.length) {
+      if (braceDepth === 0 && text[i] === '}' && text[i + 1] === '}') {
+        endIndex = i;
+        break;
+      }
 
-    // Push preceding plain text segment if non-empty
-    if (matchStart > lastIndex) {
-      tokens.push({
-        type: 'text',
-        content: text.slice(lastIndex, matchStart)
-      });
+      if (text[i] === '{') {
+        braceDepth++;
+      } else if (text[i] === '}') {
+        if (braceDepth > 0) braceDepth--;
+      } else if (braceDepth === 0 && separatorIndex === -1 && text[i] === ':' && text[i + 1] === ':') {
+        separatorIndex = i;
+        i += 2;
+        continue;
+      }
+      i++;
     }
 
-    const index = parseInt(indexStr, 10);
-    tokens.push({
-      type: 'cloze',
-      index,
-      hiddenText: hiddenText || '',
-      hint: hintStr !== undefined ? hintStr : null,
-      raw: rawMatch,
-      id: `cloze-${index}-${counter++}`
-    });
+    if (endIndex !== -1) {
+      // Push preceding plain text segment if non-empty
+      if (startIndex > lastIndex) {
+        tokens.push({
+          type: 'text',
+          content: text.slice(lastIndex, startIndex)
+        });
+      }
 
-    lastIndex = matchStart + rawMatch.length;
+      const fullMatch = text.slice(startIndex, endIndex + 2);
+      let hiddenText = '';
+      let hint = null;
+
+      if (separatorIndex !== -1) {
+        hiddenText = text.slice(match.index + match[0].length, separatorIndex);
+        hint = text.slice(separatorIndex + 2, endIndex);
+      } else {
+        hiddenText = text.slice(match.index + match[0].length, endIndex);
+      }
+
+      tokens.push({
+        type: 'cloze',
+        index,
+        hiddenText,
+        hint,
+        raw: fullMatch,
+        id: `cloze-${index}-${counter++}`
+      });
+
+      lastIndex = endIndex + 2;
+      CLOZE_PREFIX_REGEX.lastIndex = lastIndex;
+    }
   }
 
   // Push remaining trailing text if any
@@ -93,6 +133,8 @@ export function parseClozeTokens(text) {
 
   return tokens;
 }
+
+export const CLOZE_REGEX = CLOZE_PREFIX_REGEX;
 
 /**
  * Extracts all unique cloze indices present in a text or array of texts, sorted ascending.
@@ -107,9 +149,9 @@ export function getClozeIndices(input) {
 
   texts.forEach(str => {
     if (typeof str !== 'string') return;
-    CLOZE_REGEX.lastIndex = 0;
+    CLOZE_PREFIX_REGEX.lastIndex = 0;
     let match;
-    while ((match = CLOZE_REGEX.exec(str)) !== null) {
+    while ((match = CLOZE_PREFIX_REGEX.exec(str)) !== null) {
       const idx = parseInt(match[1], 10);
       if (!Number.isNaN(idx)) {
         indicesSet.add(idx);

@@ -136,8 +136,8 @@ export function renderTextWithMathAndMarkdown(text, isClozeMode = false, keyPref
 
   const mathItems = [];
   
-  // 1. Extract block math $$...$$
-  let processedText = textToProcess.replace(/\$\$(.*?)\$\$/gs, (_, mathContent) => {
+  // 1. Extract block math $$...$$ (ignoring escaped \$$)
+  let processedText = textToProcess.replace(/(?<!\\)\$\$(.*?)(?<!\\)\$\$/gs, (_, mathContent) => {
     const placeholder = `%%BLOCKMATH_${mathItems.length}%%`;
     try {
       const html = katex.renderToString(mathContent, { displayMode: true, throwOnError: false });
@@ -154,8 +154,8 @@ export function renderTextWithMathAndMarkdown(text, isClozeMode = false, keyPref
     return placeholder;
   });
   
-  // 2. Extract inline math $...$
-  processedText = processedText.replace(/\$(.*?)\$/g, (_, mathContent) => {
+  // 2. Extract inline math $...$ (ignoring escaped \$ and requiring non-whitespace borders)
+  processedText = processedText.replace(/(?<!\\)\$(?!\s)(.*?)(?<!\s)(?<!\\)\$/g, (_, mathContent) => {
     const placeholder = `%%INLINEMATH_${mathItems.length}%%`;
     try {
       const html = katex.renderToString(mathContent, { displayMode: false, throwOnError: false });
@@ -171,6 +171,9 @@ export function renderTextWithMathAndMarkdown(text, isClozeMode = false, keyPref
     }
     return placeholder;
   });
+
+  // Unescape explicit dollar signs \$
+  processedText = processedText.replace(/\\\$/g, '$');
   
   // 3. Parse markdown formatting
   const formattedElements = parseMarkdownText(processedText, isClozeMode, keyPrefix);
