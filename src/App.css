@@ -331,7 +331,36 @@
   transform: translateY(-1px);
 }
 
-.mode-toggle-icon {
+.btn-contrast-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-smooth);
+}
+
+.btn-contrast-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.btn-contrast-toggle.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.contrast-icon {
   font-size: 1rem;
 }
 
@@ -2067,5 +2096,53 @@ kbd {
   stroke: rgba(0, 0, 0, 0.6);
   stroke-width: 0.4px;
 }
+
+/* ==========================================================================
+   Diagram / Media Color Inversion (High Contrast & Night Sessions)
+   ========================================================================== */
+.card-media-actions-bar {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.btn-media-invert-quick {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.btn-media-invert-quick:hover {
+  background: rgba(139, 92, 246, 0.35);
+  border-color: #a78bfa;
+}
+
+.btn-media-invert-quick.active {
+  background: #3b82f6;
+  color: #ffffff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.lightbox-tool-btn.invert.active {
+  background: #3b82f6;
+  border-color: #60a5fa;
+  color: #ffffff;
+}
+
+.img-inverted {
+  filter: invert(0.92) hue-rotate(180deg) contrast(1.15) !important;
+  background: #111827;
+  border-radius: 10px;
+  transition: filter 0.2s ease;
+}
+
 
 

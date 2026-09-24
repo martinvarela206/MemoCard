@@ -13,6 +13,16 @@ export default function App() {
     return localStorage.getItem('memocard_selected_subject') || null;
   });
 
+  // Visual Theme (dark vs. high-contrast)
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('memocard_theme') || 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('memocard_theme', theme);
+  }, [theme]);
+
   // Global interactive mode flag (persisted, defaults to true)
   const [interactiveMode, setInteractiveMode] = useState(() => {
     const saved = localStorage.getItem('memocard_interactive_mode');
@@ -188,6 +198,16 @@ export default function App() {
         </div>
 
         <div className="topbar-right">
+          <button 
+            className={`btn-contrast-toggle ${theme === 'high-contrast' ? 'active' : ''}`}
+            onClick={() => setTheme(t => t === 'dark' ? 'high-contrast' : 'dark')}
+            aria-label="Alternar modo de alto contraste y visión nocturna"
+            title={theme === 'high-contrast' ? "Desactivar Alto Contraste (Volver a Tema Oscuro estándar)" : "Activar Alto Contraste (Modo Nocturno / Fórmulas Nítidas)"}
+          >
+            <span className="contrast-icon">🌓</span>
+            <span className="contrast-label">{theme === 'high-contrast' ? 'Alto Contraste' : 'Contraste'}</span>
+          </button>
+
           <button 
             className={`btn-mode-toggle ${interactiveMode ? 'interactive' : 'classic'}`}
             onClick={() => setInteractiveMode(prev => !prev)}

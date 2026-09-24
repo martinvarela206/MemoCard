@@ -9,12 +9,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 5. ⚙️ Renderizado Híbrido: Markdown + KaTeX / MathJax + Medios
-- [ ] **Modo Oscuro / Alto Contraste:**
-  - Inversión selectiva o estilización de diagramas/fórmulas para evitar fatiga visual en sesiones nocturnas.
-
----
-
 ## 6. 🧠 Algoritmo de Estudio & Navegación (Futuras Fases Anki)
 - [ ] **Navegación secuencial por temas (Modo Lectura / Aprendizaje guiado).**
 - [ ] **Modo Repaso Espaciado (SRS):**

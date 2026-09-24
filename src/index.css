@@ -42,6 +42,39 @@
   --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.15);
 }
 
+/* High Contrast & Night Mode Theme Tokens */
+[data-theme="high-contrast"] {
+  --bg-app: #000000;
+  --bg-card: #09090b;
+  --bg-card-hover: #18181b;
+  --border-color: #52525b;
+  --border-glow: #c084fc;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #f4f4f5;
+  --text-muted: #d4d4d8;
+  
+  --primary: #c084fc;
+  --secondary: #22d3ee;
+  
+  --grad-bg: radial-gradient(circle at 50% -20%, #1c1033 0%, #000000 85%);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="high-contrast"] .katex {
+  color: #ffffff;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="high-contrast"] .card-face {
+  border: 2px solid #52525b;
+}
+
+[data-theme="high-contrast"] .card-term {
+  color: #ffffff;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

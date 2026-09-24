@@ -20,6 +20,7 @@ import { resolveMediaUrl } from '../utils/mediaResolver';
 export default function CardMedia({ asset, className = '' }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isInverted, setIsInverted] = useState(false);
 
   // Pan and Zoom State
   const [scale, setScale] = useState(1);
@@ -114,6 +115,8 @@ export default function CardMedia({ asset, className = '' }) {
         handleZoomOut();
       } else if (e.key === '0' || e.key === 'r') {
         resetPanZoom();
+      } else if (e.key === 'i' || e.key === 'I') {
+        setIsInverted(v => !v);
       }
     };
 
@@ -147,7 +150,7 @@ export default function CardMedia({ asset, className = '' }) {
           <img 
             src={resolvedUrl} 
             alt={altText}
-            className="card-media-img"
+            className={`card-media-img ${isInverted ? 'img-inverted' : ''}`}
             loading="lazy"
             onError={() => setHasError(true)}
           />
@@ -157,6 +160,20 @@ export default function CardMedia({ asset, className = '' }) {
             <span className="fallback-text">{altText}</span>
           </div>
         )}
+
+        <div className="card-media-actions-bar">
+          <button
+            type="button"
+            className={`btn-media-invert-quick ${isInverted ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsInverted(v => !v);
+            }}
+            title={isInverted ? "Restaurar colores originales" : "Invertir colores para evitar deslumbramiento nocturno"}
+          >
+            ☯ {isInverted ? 'Original' : 'Invertir'}
+          </button>
+        </div>
 
         {caption && (
           <figcaption className="card-media-caption">
@@ -205,6 +222,17 @@ export default function CardMedia({ asset, className = '' }) {
             >
               ↺
             </button>
+            <button
+              type="button"
+              className={`lightbox-tool-btn invert ${isInverted ? 'active' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsInverted(v => !v);
+              }}
+              title="Invertir colores del diagrama (Tecla i)"
+            >
+              ☯
+            </button>
             <button 
               type="button"
               className="lightbox-tool-btn close" 
@@ -238,7 +266,7 @@ export default function CardMedia({ asset, className = '' }) {
               <img 
                 src={resolvedUrl} 
                 alt={altText} 
-                className="lightbox-img"
+                className={`lightbox-img ${isInverted ? 'img-inverted' : ''}`}
                 style={{
                   transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`,
                   transition: isDragging ? 'none' : 'transform 0.15s ease-out'
