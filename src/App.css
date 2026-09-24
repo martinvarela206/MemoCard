@@ -1428,33 +1428,38 @@ kbd {
     margin-left: 18px;
   }
 
-  /* Mobile 5-Button Navigation Grid */
+  /* Rationale: Single horizontal flex row with flex: 1 and min-width: 0 evenly distributes
+     all 5 navigation buttons across narrow mobile portrait screens (~360-420px) in a single line.
+     The former CSS Grid 6-column layout caused 3-tier wrapping due to DOM order interleaving,
+     resulting in oversized buttons and excessive vertical space consumption. */
   .nav-buttons-cluster {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
+    width: 100%;
   }
 
-  /* Primary Card Navigation takes upper full row with large touch targets */
-  .card-nav-btn {
-    grid-column: span 3;
-    min-height: 48px;
-    font-size: 0.95rem;
-  }
-
-  /* Secondary Theme Navigation and Random take bottom row */
-  .theme-nav-btn {
-    grid-column: span 2;
+  .study-nav-btn {
+    flex: 1;
+    min-width: 0;
+    height: 44px;
     min-height: 44px;
-    font-size: 0.8rem;
-    padding: 8px 6px;
+    padding: 0;
+    font-size: 1.1rem;
+    border-radius: 12px;
   }
 
+  .study-nav-btn .btn-icon {
+    font-size: 1.1rem;
+  }
+
+  .card-nav-btn,
+  .theme-nav-btn,
   .random-theme-btn {
-    grid-column: span 2;
-    min-height: 44px;
-    font-size: 0.8rem;
-    padding: 8px 6px;
+    grid-column: auto;
+    padding: 0;
   }
 
   /* Drawer Mobile */
@@ -1490,13 +1495,8 @@ kbd {
     padding: 6px 10px;
   }
 
-  .card-nav-btn {
-    font-size: 0.88rem;
-  }
-
-  .theme-nav-btn .btn-text,
-  .random-theme-btn .btn-text {
-    font-size: 0.72rem;
+  .nav-buttons-cluster {
+    gap: 6px;
   }
 }
 

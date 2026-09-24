@@ -2,8 +2,6 @@
 
 ## 📱 Ergonomía, Layout y Navegación en Mobile Portrait
 
-- [ ] **Item 2: Botonera de navegación en fila única inferior para portrait:**
-  - Rediseñar `.nav-buttons-cluster` en mobile portrait para que los 5 botones queden en una sola fila horizontal compacta centrada, sin saltos de línea ni anchos desproporcionados.
 - [ ] **Item 3: Adaptación vertical del formulario input en portrait:**
   - Configurar `.type-input-group` en portrait para que el botón "Comprobar" se sitúe debajo del input a ancho completo, evitando desbordamientos laterales.
 - [ ] **Item 4: Contención de imágenes de oclusión contra desbordamiento:**
