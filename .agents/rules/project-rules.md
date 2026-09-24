@@ -76,3 +76,19 @@ This file contains rules specific to the MemoCard interactive study flashcard ap
         - `fix: <elemento o problema corregido en español>`
         - `feat: <nuevo elemento o funcionalidad añadida en español>`
      6. **Advance to Next Item**: Only after the commit has been successfully created, proceed to the next item in the list and repeat steps 1 to 5.
+
+---
+
+## Deck Asset Pipeline & Zero-Duplication Standard
+
+8. **Deck Asset Storage Pipeline & Anti-Duplication Directives**:
+   - **Source vs Runtime Invariant (Two Locations Only)**:
+     - **Author Source**: `Resources/<DeckName>_assets/` (where the author pastes original images alongside `Resources/<DeckName>.json`).
+     - **Web Runtime Server**: `public/<DeckName>_assets/` (where the Vite web server directly serves assets at `/<DeckName>_assets/<filename>.<ext>`).
+   - **JSON Image Path Specification**:
+     - All `image` and `media` path references in deck JSON files must strictly follow the format:
+       `"<DeckName>_assets/<filename>.<ext>"` (e.g. `"IntroduccionAnatomofisiologia_assets/planos_anatomicos_tridimensionales.png"`).
+   - **Strict Anti-Duplication Rules**:
+     - **Never duplicate folders in `public/`**: Do not create parallel directories in `public/` without the `_assets` suffix.
+     - **Never place images in `src/data/`**: In Vite SPAs, `src/data/` is strictly reserved for JavaScript modules and JSON schemas. Placing binary images there generates dead weight that Vite does not serve at runtime.
+     - **Ingestion Procedure**: When ingesting or updating a deck, copy images directly from `Resources/<DeckName>_assets/` to `public/<DeckName>_assets/` and nowhere else.
