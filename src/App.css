@@ -679,26 +679,6 @@
   overflow-x: auto;
 }
 
-.card-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 12px;
-  text-align: center;
-}
-
-.flip-hint {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.flip-icon {
-  font-size: 1.1rem;
-  color: var(--primary);
-}
-
 kbd {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1614,14 +1594,6 @@ kbd {
 
   .card-answer ul, .card-answer ol {
     margin-bottom: 8px;
-  }
-
-  .card-footer {
-    padding-top: 6px;
-  }
-
-  .flip-hint {
-    font-size: 0.75rem;
   }
 
   /* Navigation Bar in Landscape */

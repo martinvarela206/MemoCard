@@ -208,28 +208,6 @@ export default function FlashCard({
               </div>
             )}
           </div>
-
-          <div className="card-footer">
-            <span className="flip-hint">
-              {card.type === 'image_occlusion' ? (
-                <>
-                  <span className="flip-icon">🫀</span> Haz clic en una máscara para revelarla, o presiona <kbd>Espacio</kbd> para voltear
-                </>
-              ) : card.type === 'input' && interactiveMode ? (
-                <>
-                  <span className="flip-icon">⌨️</span> Escribe tu respuesta y presiona <kbd>Enter</kbd> para comprobar
-                </>
-              ) : interactiveMode && isClozeCard && activeClozeTokens.some(t => !revealedClozeIds.includes(t.id)) ? (
-                <>
-                  <span className="flip-icon">👁️</span> Presiona <kbd>Espacio</kbd> o haz clic en la censura para revelar
-                </>
-              ) : (
-                <>
-                  <span className="flip-icon">↷</span> Haz clic o presiona <kbd>Espacio</kbd> para ver la definición
-                </>
-              )}
-            </span>
-          </div>
         </div>
 
         {/* Lado Trasero (Back) */}
@@ -299,20 +277,6 @@ export default function FlashCard({
                 />
               </div>
             )}
-          </div>
-
-          <div className="card-footer">
-            <span className="flip-hint">
-              {onRateSRS ? (
-                <>
-                  <span className="flip-icon">📊</span> Califica con <kbd>1</kbd>-<kbd>4</kbd> para registrar y avanzar, o haz clic para voltear
-                </>
-              ) : (
-                <>
-                  <span className="flip-icon">↶</span> Haz clic para volver al frente
-                </>
-              )}
-            </span>
           </div>
         </div>
       </div>
