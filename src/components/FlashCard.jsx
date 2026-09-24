@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderSlideLines } from '../utils/markdownParser';
+import CardMedia from './CardMedia';
 
 export default function FlashCard({ 
   card, 
@@ -9,6 +10,9 @@ export default function FlashCard({
   totalCards 
 }) {
   if (!card) return null;
+
+  const frontMedia = (card.media || []).filter(m => m.placement === 'front' || m.placement === 'both');
+  const backMedia = (card.media || []).filter(m => m.placement === 'back' || m.placement === 'both');
 
   return (
     <div 
@@ -37,6 +41,9 @@ export default function FlashCard({
           <div className="card-body front-body">
             <span className="slide-num-tag">Diapositiva #{card.slide_id || currentIndex + 1}</span>
             <h2 className="card-term">{card.term || card.front}</h2>
+            {frontMedia.map((asset, idx) => (
+              <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
+            ))}
           </div>
 
           <div className="card-footer">
@@ -59,6 +66,9 @@ export default function FlashCard({
             <div className="card-answer">
               {renderSlideLines(card.back)}
             </div>
+            {backMedia.map((asset, idx) => (
+              <CardMedia key={`back-media-${idx}`} asset={asset} className="card-back-media" />
+            ))}
           </div>
 
           <div className="card-footer">

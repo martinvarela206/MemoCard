@@ -17,6 +17,84 @@ export const CARD_TYPES = Object.freeze({
 });
 
 /**
+ * Normalizes a media item or image definition into a structured MediaAsset object.
+ * Metadata supported:
+ * - src: Path (local relative/public or CDN/remote URL)
+ * - alt: Alternative text for accessibility and search
+ * - caption: Description / footnote displayed below image
+ * - dimensions: { width, height, aspectRatio }
+ * - placement: 'front' | 'back' | 'both' (default: 'back')
+ * - type: 'image' | 'svg' | 'audio' (default: 'image')
+ * 
+ * @param {string|Object} asset Media asset raw representation
+ * @param {string} [defaultAlt=''] Fallback alternative text
+ * @returns {Object|null} Normalized MediaAsset
+ */
+export function normalizeMediaAsset(asset, defaultAlt = '') {
+  if (!asset) return null;
+  if (typeof asset === 'string') {
+    return {
+      src: asset,
+      alt: defaultAlt || 'Recurso visual de la tarjeta',
+      caption: null,
+      dimensions: null,
+      placement: 'back',
+      type: 'image'
+    };
+  }
+
+  return {
+    src: asset.src || '',
+    alt: asset.alt || defaultAlt || 'Recurso visual de la tarjeta',
+    caption: asset.caption || null,
+    dimensions: asset.dimensions && typeof asset.dimensions === 'object'
+      ? {
+          width: asset.dimensions.width || null,
+          height: asset.dimensions.height || null,
+          aspectRatio: asset.dimensions.aspectRatio || null
+        }
+      : null,
+    placement: asset.placement || 'back',
+    type: asset.type || 'image'
+  };
+}
+
+/**
+ * Normalizes all media associated with a card (from 'media' array or legacy 'image' field)
+ * 
+ * @param {Object} rawCard Raw card object
+ * @returns {Array<Object>} Array of normalized MediaAssets
+ */
+export function normalizeCardMedia(rawCard) {
+  const mediaList = [];
+  
+  // 1. Process explicit media array or object
+  if (Array.isArray(rawCard.media)) {
+    rawCard.media.forEach(m => {
+      const normalized = normalizeMediaAsset(m, rawCard.term || rawCard.front);
+      if (normalized && normalized.src) mediaList.push(normalized);
+    });
+  } else if (rawCard.media) {
+    const normalized = normalizeMediaAsset(rawCard.media, rawCard.term || rawCard.front);
+    if (normalized && normalized.src) mediaList.push(normalized);
+  }
+
+  // 2. Backward compatibility: if legacy 'image' is provided and not already included
+  if (rawCard.image && typeof rawCard.image === 'string' && !mediaList.some(m => m.src === rawCard.image)) {
+    mediaList.push(normalizeMediaAsset({
+      src: rawCard.image,
+      alt: rawCard.term || rawCard.front || 'Imagen de la tarjeta',
+      caption: rawCard.caption || null,
+      dimensions: rawCard.dimensions || null,
+      placement: rawCard.type === 'image_occlusion' ? 'both' : 'back',
+      type: 'image'
+    }));
+  }
+
+  return mediaList;
+}
+
+/**
  * Normalizes any card object, guaranteeing retroactive compatibility with v1 schema.
  * If a card lacks a 'type' property, it is automatically assigned 'basic'.
  *
@@ -39,7 +117,7 @@ export function normalizeCard(rawCard, fallbackId = 1) {
       image: null,
       masks: [],
       mode: null,
-      media: null
+      media: []
     };
   }
 
@@ -52,6 +130,8 @@ export function normalizeCard(rawCard, fallbackId = 1) {
   const term = rawCard.term || rawCard.front || '';
   const front = rawCard.front || term;
   const back = typeof rawCard.back === 'string' ? rawCard.back : '';
+  const media = normalizeCardMedia(rawCard);
+  const primaryImage = media.length > 0 ? media[0].src : (rawCard.image || null);
 
   return {
     id: rawCard.id || `card_${slideId}`,
@@ -64,10 +144,10 @@ export function normalizeCard(rawCard, fallbackId = 1) {
     context: rawCard.context || null,
     // Polymorphic extended properties with safe defaults
     answers: Array.isArray(rawCard.answers) ? rawCard.answers : [],
-    image: rawCard.image || null,
+    image: primaryImage,
     masks: Array.isArray(rawCard.masks) ? rawCard.masks : [],
     mode: rawCard.mode || (type === CARD_TYPES.IMAGE_OCCLUSION ? 'hide_all_guess_one' : null),
-    media: rawCard.media || null
+    media
   };
 }
 

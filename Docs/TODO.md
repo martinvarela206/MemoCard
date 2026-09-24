@@ -8,9 +8,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 1. 📐 Evolución del Esquema JSON & Tipado (Core Data Model)
-- [ ] **Soporte de Recursos Multimedia (`assets` / `media`):**
-  - Estructurar el almacenamiento de imágenes (rutas relativas locales o CDN/S3).
-  - Incluir metadatos para imágenes: `src`, `alt`, `dimensions`, `caption`.
 - [ ] **Agrupación y Secuencialidad:**
   - Garantizar navegación por `theme` y secuencia estricta de IDs/pasos para conceptos encadenados o derivaciones paso a paso.
   - Añadir soporte opcional para sub-temas o `tags` transversales.
