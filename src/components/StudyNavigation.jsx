@@ -59,56 +59,61 @@ export default function StudyNavigation({
       <div className="nav-buttons-cluster">
         {/* 1. Tema Anterior */}
         <button
+          type="button"
           className="study-nav-btn theme-nav-btn"
           onClick={onPrevTheme}
           disabled={!canPrevTheme}
-          title="Saltar a la primera tarjeta del tema anterior (Shift + A o Shift + ←)"
+          title="Tema Anterior (Shift + A o Shift + ←)"
+          aria-label="Tema Anterior"
         >
           <span className="btn-icon">⏮️</span>
-          <span className="btn-text">Tema Anterior</span>
         </button>
 
         {/* 2. Card Anterior */}
         <button
+          type="button"
           className="study-nav-btn card-nav-btn"
           onClick={onPrevCard}
           disabled={!canPrevCard}
-          title="Tarjeta anterior (Tecla A o ←)"
+          title="Tarjeta Anterior (Tecla A o ←)"
+          aria-label="Tarjeta Anterior"
         >
           <span className="btn-icon">◀️</span>
-          <span className="btn-text">Anterior</span>
         </button>
 
         {/* 3. Card Siguiente */}
         <button
+          type="button"
           className="study-nav-btn card-nav-btn primary"
           onClick={onNextCard}
           disabled={!canNextCard}
-          title="Tarjeta siguiente (Tecla D o →)"
+          title="Tarjeta Siguiente (Tecla D o →)"
+          aria-label="Tarjeta Siguiente"
         >
-          <span className="btn-text">Siguiente</span>
           <span className="btn-icon">▶️</span>
         </button>
 
         {/* 4. Tema Siguiente */}
         <button
+          type="button"
           className="study-nav-btn theme-nav-btn"
           onClick={onNextTheme}
           disabled={!canNextTheme}
-          title="Saltar a la primera tarjeta del tema siguiente (Shift + D o Shift + →)"
+          title="Tema Siguiente (Shift + D o Shift + →)"
+          aria-label="Tema Siguiente"
         >
-          <span className="btn-text">Tema Siguiente</span>
           <span className="btn-icon">⏭️</span>
         </button>
 
         {/* 5. Tema Aleatorio */}
         <button
+          type="button"
           className="study-nav-btn random-theme-btn"
           onClick={onRandomTheme}
-          title="Saltar a un tema aleatorio (Tecla R)"
+          title="Tema Aleatorio (Tecla R)"
+          aria-label="Tema Aleatorio"
         >
           <span className="btn-icon">🔀</span>
-          <span className="btn-text">Tema Aleatorio</span>
         </button>
       </div>
     </nav>

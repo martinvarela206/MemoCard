@@ -69,7 +69,7 @@ graph TD
 - **[src/components/SRSRatingBar.jsx](../src/components/SRSRatingBar.jsx)**: Barra interactiva de evaluación de calidad de recuerdo (Otra vez, Difícil, Bien, Fácil) con atajos de teclado numéricos (1, 2, 3, 4) y badges de intervalo estimado.
 - **[src/components/DeckStatsModal.jsx](../src/components/DeckStatsModal.jsx)**: Modal de métricas de retención, tarjetas maduras (&ge;21d), en aprendizaje y nuevas, racha diaria y desglose porcentual de evaluaciones.
 - **[src/components/DeckExportImportModal.jsx](../src/components/DeckExportImportModal.jsx)**: Modal para exportación portable de mazos en formato JSON (tarjetas, diapositivas y metadatos SRS) e importación/restauración offline.
-- **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con los 5 botones requeridos y atajos globales (`A`/`D` para tarjetas, `Shift+A`/`Shift+D` para temas, `R` para tema aleatorio y `Espacio` para revelación/flip).
+- **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con 5 botones iconificados sin texto (⏮️, ◀️, ▶️, ⏭️, 🔀), atajos globales (`A`/`D` para tarjetas, `Shift+A`/`Shift+D` para temas, `R` para tema aleatorio) y soporte táctil accesible.
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
 - **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones, tags y efectos 3D.
 - **[src/index.css](../src/index.css)**: Variables de diseño, tema oscuro y estilos globales.

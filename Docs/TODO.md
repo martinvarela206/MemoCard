@@ -2,8 +2,6 @@
 
 ## 📱 Ergonomía y Optimización de Pantalla en Modo Landscape
 
-- [ ] **Iconificación de la botonera de navegación (StudyNavigation):**
-  - Quitar etiquetas de texto en los botones de navegación, dejando exclusivamente iconos claros y accesibles en portrait y landscape.
 - [ ] **Disposición vertical de navegación a la derecha en landscape:**
   - Reubicar la botonera de navegación a la derecha de la card en orientación horizontal, manteniéndola abajo en portrait.
 - [ ] **Reducción de márgenes y paddings verticales en landscape:**
