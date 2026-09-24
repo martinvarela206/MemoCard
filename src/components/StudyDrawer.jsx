@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { renderTextWithMathAndMarkdown } from '../utils/markdownParser';
 
 /**
  * StudyDrawer component provides thematic accordion navigation, transversal tag filtering,
@@ -157,11 +158,17 @@ export default function StudyDrawer({
                           <div className="card-item-left">
                             <span className="card-item-num">#{card.slide_id || card.globalIndex + 1}</span>
                             <div className="card-item-info">
-                              <span className="card-item-title">{card.term || card.front}</span>
+                              {/* Rationale: Card titles in technical decks embed math symbols (e.g. $\Sigma$, $w_1 = w_2$).
+                                 Using renderTextWithMathAndMarkdown ensures KaTeX symbols render cleanly in drawer items. */}
+                              <span className="card-item-title">
+                                {renderTextWithMathAndMarkdown(card.term || card.front, false, `d_title_${card.id}`)}
+                              </span>
                               {(card.subtheme || card.sequence) && (
                                 <div className="card-item-meta">
                                   {card.subtheme && (
-                                    <span className="drawer-subtheme-chip">{card.subtheme}</span>
+                                    <span className="drawer-subtheme-chip">
+                                      {renderTextWithMathAndMarkdown(card.subtheme, false, `d_sub_${card.id}`)}
+                                    </span>
                                   )}
                                   {card.sequence && (
                                     <span className="drawer-sequence-chip">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { renderSlideLines } from '../utils/markdownParser';
+import { renderSlideLines, renderTextWithMathAndMarkdown } from '../utils/markdownParser';
 import { renderClozeBackText, hasClozeSyntax, parseClozeTokens } from '../utils/clozeParser';
 import ClozeText from './ClozeText';
 import TypeAnswerBox from './TypeAnswerBox';
@@ -136,7 +136,9 @@ export default function FlashCard({
             <div className="card-theme-cluster">
               <span className="theme-badge">{card.theme || 'General'}</span>
               {card.subtheme && (
-                <span className="subtheme-badge">{card.subtheme}</span>
+                <span className="subtheme-badge">
+                  {renderTextWithMathAndMarkdown(card.subtheme, false, `sub_${card.id}`)}
+                </span>
               )}
               {card.sequence && (
                 <span className="sequence-badge" title="Concepto encadenado o derivación en pasos">
@@ -176,7 +178,10 @@ export default function FlashCard({
                   interactive={interactiveMode}
                 />
               ) : (
-                rawFront
+                /* Rationale: Card titles and terms frequently contain inline LaTeX math syntax (e.g. $\Sigma$, $w^k$).
+                   Passing rawFront through renderTextWithMathAndMarkdown compiles these mathematical tokens into
+                   styled KaTeX DOM nodes, preventing raw escaped LaTeX code from leaking to the UI. */
+                renderTextWithMathAndMarkdown(rawFront, false, `term_${card.id}`)
               )}
             </h2>
 
@@ -225,7 +230,7 @@ export default function FlashCard({
                     interactive={false}
                   />
                 ) : (
-                  rawFront
+                  renderTextWithMathAndMarkdown(rawFront, false, `mini_term_${card.id}`)
                 )}
               </span>
               {card.sequence && (
