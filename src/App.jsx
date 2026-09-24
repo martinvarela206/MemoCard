@@ -13,6 +13,17 @@ export default function App() {
     return localStorage.getItem('memocard_selected_subject') || null;
   });
 
+  // Global interactive mode flag (persisted, defaults to true)
+  const [interactiveMode, setInteractiveMode] = useState(() => {
+    const saved = localStorage.getItem('memocard_interactive_mode');
+    return saved !== null ? saved === 'true' : true;
+  });
+
+  // Persist interactive mode state
+  useEffect(() => {
+    localStorage.setItem('memocard_interactive_mode', String(interactiveMode));
+  }, [interactiveMode]);
+
   const subject = useMemo(() => {
     return selectedSubjectId ? getSubjectById(selectedSubjectId) : null;
   }, [selectedSubjectId]);
@@ -178,6 +189,16 @@ export default function App() {
 
         <div className="topbar-right">
           <button 
+            className={`btn-mode-toggle ${interactiveMode ? 'interactive' : 'classic'}`}
+            onClick={() => setInteractiveMode(prev => !prev)}
+            aria-label={interactiveMode ? "Modo interactivo activo. Cambiar a modo clásico pasivo" : "Modo clásico activo. Cambiar a modo interactivo"}
+            title={interactiveMode ? "Modo Interactivo activo. Clic para cambiar a Modo Clásico (Lectura pasiva sin censuras interactivas)" : "Modo Clásico activo. Clic para activar Modo Interactivo (Clozes y ejercicios activos)"}
+          >
+            <span className="mode-toggle-icon">{interactiveMode ? '⚡' : '📖'}</span>
+            <span className="mode-toggle-label">{interactiveMode ? 'Interactivo' : 'Clásico'}</span>
+          </button>
+
+          <button 
             className="btn-toggle-drawer"
             onClick={() => setIsDrawerOpen(prev => !prev)}
             aria-label="Abrir panel de tarjetas"
@@ -204,6 +225,7 @@ export default function App() {
             onFlip={() => setIsFlipped(f => !f)}
             currentIndex={currentCardIndex}
             totalCards={cards.length}
+            interactiveMode={interactiveMode}
           />
 
           <StudyNavigation

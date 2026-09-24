@@ -9,15 +9,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 2. 🔀 Sistema Cloze Deletion (Ocultamiento & Censura)
-- [ ] **Modo fallback (desactivación de interactividad):**
-  - Switch/toggle global o por deck: *"Desactivar interacción / Modo clásico"*.
-  - Comportamiento en modo clásico:
-    - **Front:** muestra el texto con el hueco reemplazado por `[...]` o la pista.
-    - **Back:** muestra el texto completo sin censura con el término destacado.
-
----
-
 ## 3. ⌨️ Cards Interactivas con Input de Texto (Type-in-the-Answer)
 - [ ] **Mapeo de respuestas aceptadas:**
   - Soporte en JSON para variantes válidas: `answers: ["Sigma*", "Σ*", "\\Sigma^*"]`.

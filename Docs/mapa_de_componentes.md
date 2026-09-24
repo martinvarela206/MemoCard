@@ -93,6 +93,7 @@ graph TD
 - **Barra Superior (`.study-topbar`)**:
   - Botón *← Materias* para volver al selector.
   - Indicador de la materia y pastilla del tema temático activo (`.active-theme-pill`).
+  - Botón selector de modo (`.btn-mode-toggle`): alternancia entre *⚡ Interactivo* (revelación progresiva y clozes clickeables) y *📖 Clásico* (degradación pasiva directa).
   - Botón *☰ Temas y Cards* con contador `X/N` para abrir/cerrar el drawer.
 - **Barra de Progreso (`.study-progress-wrapper`)**:
   - Barra animada que refleja el porcentaje recorrido dentro del mazo.

@@ -19,7 +19,8 @@ export default function FlashCard({
   isFlipped, 
   onFlip, 
   currentIndex, 
-  totalCards 
+  totalCards,
+  interactiveMode = true
 }) {
   const [revealedClozeIds, setRevealedClozeIds] = useState([]);
 
@@ -60,8 +61,8 @@ export default function FlashCard({
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
 
-      // If on front face and there are unrevealed clozes, reveal the first hidden one
-      if (!isFlipped && activeClozeTokens.length > 0) {
+      // Progressive cloze reveal is only active in interactive mode on the front face
+      if (interactiveMode && !isFlipped && activeClozeTokens.length > 0) {
         const nextHidden = activeClozeTokens.find(t => !revealedClozeIds.includes(t.id));
         if (nextHidden) {
           handleToggleCloze(nextHidden.id);
@@ -69,20 +70,20 @@ export default function FlashCard({
         }
       }
 
-      // If all clozes are revealed or not a cloze card, execute standard card flip
+      // If all clozes are revealed, mode is classic, or not a cloze card: standard card flip
       onFlip();
       return;
     }
 
-    // Number keys (1-9) toggle matching cloze items
-    if (/^[1-9]$/.test(e.key) && !isFlipped && activeClozeTokens.length > 0) {
+    // Number keys (1-9) toggle matching cloze items in interactive mode
+    if (interactiveMode && /^[1-9]$/.test(e.key) && !isFlipped && activeClozeTokens.length > 0) {
       const targetIdx = parseInt(e.key, 10) - 1;
       if (targetIdx >= 0 && targetIdx < activeClozeTokens.length) {
         e.preventDefault();
         handleToggleCloze(activeClozeTokens[targetIdx].id);
       }
     }
-  }, [isFlipped, activeClozeTokens, revealedClozeIds, handleToggleCloze, onFlip]);
+  }, [interactiveMode, isFlipped, activeClozeTokens, revealedClozeIds, handleToggleCloze, onFlip]);
 
   const displayBack = useMemo(() => {
     if (!card) return '';
@@ -104,7 +105,7 @@ export default function FlashCard({
       onClick={onFlip}
       role="button"
       tabIndex={0}
-      aria-label={`Tarjeta ${currentIndex + 1} de ${totalCards}: ${card.term}. Haz clic o presiona espacio para revelar clozes o voltear.`}
+      aria-label={`Tarjeta ${currentIndex + 1} de ${totalCards}: ${card.term}. Haz clic o presiona espacio para voltear.`}
       onKeyDown={handleKeyDown}
     >
       <div className={`card-rotator ${isFlipped ? 'flipped' : ''}`}>
@@ -141,6 +142,7 @@ export default function FlashCard({
                   activeClozeIndex={activeClozeIndex}
                   revealedClozeIds={revealedClozeIds}
                   onToggleCloze={handleToggleCloze}
+                  interactive={interactiveMode}
                 />
               ) : (
                 rawFront
@@ -162,7 +164,7 @@ export default function FlashCard({
 
           <div className="card-footer">
             <span className="flip-hint">
-              {isClozeCard && activeClozeTokens.some(t => !revealedClozeIds.includes(t.id)) ? (
+              {interactiveMode && isClozeCard && activeClozeTokens.some(t => !revealedClozeIds.includes(t.id)) ? (
                 <>
                   <span className="flip-icon">👁️</span> Presiona <kbd>Espacio</kbd> o haz clic en la censura para revelar
                 </>
