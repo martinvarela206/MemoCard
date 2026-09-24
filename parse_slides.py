@@ -188,6 +188,7 @@ def parse_markdown(filepath):
         cards_list.append({
             "id": card_id,
             "slide_id": slide_num,
+            "type": "basic",
             "term": slide_title,
             "front": slide_title,
             "back": body,

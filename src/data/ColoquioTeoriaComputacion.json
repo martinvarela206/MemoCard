@@ -697,6 +697,7 @@
     {
       "id": "card_1",
       "slide_id": 1,
+      "type": "basic",
       "term": "Alfabeto ($\\Sigma$)",
       "front": "Alfabeto ($\\Sigma$)",
       "back": "**Definición:** Un **alfabeto** es un conjunto finito no vacío de elementos atómicos o indivisibles denominados **símbolos**, que se designa como **$\\Sigma$** (Sigma).",
@@ -706,6 +707,7 @@
     {
       "id": "card_2",
       "slide_id": 2,
+      "type": "basic",
       "term": "Sucesión finita",
       "front": "Sucesión finita",
       "back": "**Definición:** Una **sucesión finita** es una secuencia de n elementos, donde el orden importa. Esta secuencia esta determinada por una función con **dominio** en el conjunto finito **$\\{1,2,3,...,n\\}$** que determinan la posición que ocupa el elemento y **codominio $S$** en el conjunto de elementos que van a componer dicha secuencia, tal que:\n\n**$f : \\{1,2,3,...,n\\} \\to S$** define para cada elemento la posición que ocupa.",
@@ -715,6 +717,7 @@
     {
       "id": "card_3",
       "slide_id": 3,
+      "type": "basic",
       "term": "Propiedades de las Sucesiones",
       "front": "Propiedades de las Sucesiones",
       "back": "- En **sucesiones**, la secuencia $abc$ es distinta de la secuencia $bca$.\n- Como más de un elemento del dominio puede tener la misma imagen, entonces las secuencias pueden repetir elementos en distintas posiciones.\n- Como es una función entre conjuntos, si el conjunto dominio esta vacío, entonces la sucesión puede ser vacía.",
@@ -724,6 +727,7 @@
     {
       "id": "card_4",
       "slide_id": 4,
+      "type": "basic",
       "term": "Cadena o palabra ($w$)",
       "front": "Cadena o palabra ($w$)",
       "back": "**Definición:** Una **cadena** o **palabra** designada como $w$, de longitud $|w|=n$ es una sucesión finita de $n$ símbolos de un alfabeto $\\Sigma$, tal que para $w=e_1e_2\\dots e_n$ con $e_i$ elementos desde $1$ hasta $n$ y $e_i \\in \\Sigma$.",
@@ -733,6 +737,7 @@
     {
       "id": "card_5",
       "slide_id": 5,
+      "type": "basic",
       "term": "Cadena vacía o nula ($\\epsilon$)",
       "front": "Cadena vacía o nula ($\\epsilon$)",
       "back": "**Definición:** Si la cadena no tiene símbolos, es decir que $|w|=0$, entonces se la denomina **cadena vacía o nula**, se la denota como $\\epsilon$, con $|\\epsilon|=0$.\n\n> Recordar que como una cadena es una sucesión y las sucesiones podían ser vacías, entonces las cadenas pueden ser vacías.",
@@ -742,6 +747,7 @@
     {
       "id": "card_6",
       "slide_id": 6,
+      "type": "basic",
       "term": "Potencia $k$-ésima de un Alfabeto ($\\Sigma^k$)",
       "front": "Potencia $k$-ésima de un Alfabeto ($\\Sigma^k$)",
       "back": "**Definición:** La potencia $k$-ésima de un alfabeto $\\Sigma$, denotada por $\\Sigma^k$, es el conjunto de todas las posibles cadenas con símbolos de $\\Sigma$ de longitud exacta $k$.\n**Distinción:**\n- $\\Sigma$: Conjunto de símbolos.\n- $\\Sigma^0$: $\\{\\epsilon\\}$ (por convención, para cualquier alfabeto $\\Sigma$).\n- $\\Sigma^1$: Conjunto de cadenas de longitud 1.\n- $\\Sigma^n$: Conjunto de cadenas de longitud $n$.",
@@ -751,6 +757,7 @@
     {
       "id": "card_7",
       "slide_id": 7,
+      "type": "basic",
       "term": "Clausura de Kleene de un Alfabeto ($\\Sigma^*$)",
       "front": "Clausura de Kleene de un Alfabeto ($\\Sigma^*$)",
       "back": "**Definición:** La **Clausura de Kleene** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\\Sigma$, incluyendo la cadena vacía $\\epsilon$. Es decir, es la union de todas las potencias del alfabeto. Y se denota como $\\Sigma^*$ (sigma estrella).\n\n- **Fórmula:** \n$$\\Sigma^* = \\bigcup_{i=0}^{\\infty} \\Sigma^i$$\n- **Conjunto resultante:**\n$$\\Sigma^* = \\Sigma^0 \\cup \\Sigma^1 \\cup \\Sigma^2 \\cup \\dots$$",
@@ -760,6 +767,7 @@
     {
       "id": "card_8",
       "slide_id": 8,
+      "type": "basic",
       "term": "Clausura Positiva de un Alfabeto ($\\Sigma^+$)",
       "front": "Clausura Positiva de un Alfabeto ($\\Sigma^+$)",
       "back": "**Definición:** La **Clausura Positiva** es el conjunto de todas las posibles cadenas formadas con símbolos de un alfabeto $\\Sigma$, excluyendo la cadena vacía $\\epsilon$. Y se denota como $\\Sigma^+$ (sigma positiva).\n- **Fórmula:** \n$$\\Sigma^+ = \\bigcup_{i=1}^{\\infty} \\Sigma^i$$",
@@ -769,6 +777,7 @@
     {
       "id": "card_9",
       "slide_id": 9,
+      "type": "basic",
       "term": "Relaciones entre $\\Sigma^*$, $\\Sigma^+$ y $\\{\\epsilon\\}$",
       "front": "Relaciones entre $\\Sigma^*$, $\\Sigma^+$ y $\\{\\epsilon\\}$",
       "back": "- $\\Sigma^* = \\Sigma^+ \\cup \\{\\epsilon\\}$\n- $\\Sigma^+ = \\Sigma^* - \\{\\epsilon\\}$",
@@ -778,6 +787,7 @@
     {
       "id": "card_10",
       "slide_id": 10,
+      "type": "basic",
       "term": "Operaciones y Relaciones sobre Cadenas (son 5)",
       "front": "Operaciones y Relaciones sobre Cadenas (son 5)",
       "back": "- Concatenación de cadenas ($w_1 w_2$)\n- Potencia $k$-ésima de una cadena ($w^k$)\n- Igualdad de cadenas ($w_1 = w_2$)\n- Subcadena (si $w=w_1w_2w_3$ entonces $w_2$ es subcadena de $w$)\n- Prefijo y sufijo (si $w=w_1w_2$ entonces $w_1$ es prefijo de $w$ y $w_2$ es sufijo de $w$)",
@@ -787,6 +797,7 @@
     {
       "id": "card_11",
       "slide_id": 11,
+      "type": "basic",
       "term": "Operaciones sobre Cadenas: Concatenación",
       "front": "Operaciones sobre Cadenas: Concatenación",
       "back": "**Definición:** Sean $w_1 = a_1a_2 \\dots a_i$ y $w_2 = b_1b_2 \\dots b_j$ dos cadenas, entonces la concatenación es la cadena $w_1 w_2 = a_1a_2 \\dots a_i b_1b_2 \\dots b_j$.",
@@ -796,6 +807,7 @@
     {
       "id": "card_12",
       "slide_id": 12,
+      "type": "basic",
       "term": "Operaciones sobre Cadenas: Potencia $k$-ésima de una cadena ($w^k$)",
       "front": "Operaciones sobre Cadenas: Potencia $k$-ésima de una cadena ($w^k$)",
       "back": "**Definición:** La **potencia $k$-ésima** $w^k$ de una cadena $w$ es la cadena que resulta de concatenar $w^{k-1}$ con $w$ con $w^0 = \\epsilon$. La definición recursiva de la potencia $k$-ésima de una cadena $w$ es:\n1.  $w^0 = \\epsilon$\n2.  $w^k = w^{k-1} \\cdot w \\quad (k \\in \\mathbb{N})$\n\n$w^k = w^{k-1} w = w^{k-2} w w = \\dots = \\underbrace{w w w \\dots w}_{k \\text{ veces}}$ ($k$ cadenas $w$ concatenadas)",
@@ -805,6 +817,7 @@
     {
       "id": "card_13",
       "slide_id": 13,
+      "type": "basic",
       "term": "Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)",
       "front": "Relaciones entre Cadenas: Igualdad ($w_1 = w_2$)",
       "back": "**Definición:** Dos **cadenas son iguales** si y sólo si tienen los mismos símbolos, en el mismo orden y de la misma longitud:\n$$w_1 = w_2 \\iff (\\forall i : 1 \\le i \\le n \\implies a_i = b_i) \\land (|w_1| = |w_2| = n)$$",
@@ -814,6 +827,7 @@
     {
       "id": "card_14",
       "slide_id": 14,
+      "type": "basic",
       "term": "Relaciones entre Cadenas: Subcadena",
       "front": "Relaciones entre Cadenas: Subcadena",
       "back": "**Definición:** La cadena $w_2$ es **subcadena** de una cadena $w$, si existen cadenas $w_1$ y $w_3$ tales que $w = w_1 w_2 w_3$. Las cadenas $w_1$ y $w_3$ pueden ser vacías, por lo tanto cada cadena es subcadena de sí misma.",
@@ -823,6 +837,7 @@
     {
       "id": "card_15",
       "slide_id": 15,
+      "type": "basic",
       "term": "Relaciones entre Cadenas: Prefijo y Sufijo",
       "front": "Relaciones entre Cadenas: Prefijo y Sufijo",
       "back": "**Definición:** Si la cadena $w = w_1 w_2$ entonces $w_1$ es **prefijo** de $w$ y $w_2$ es **sufijo** de $w$. Como $w_1$ o $w_2$ pueden ser vacías, entonces cada cadena es prefijo y sufijo de sí misma.",
@@ -832,6 +847,7 @@
     {
       "id": "card_16",
       "slide_id": 16,
+      "type": "basic",
       "term": "Las cadenas tienen 9 propiedades y estas son:",
       "front": "Las cadenas tienen 9 propiedades y estas son:",
       "back": "- Propiedad 1: **Longitud no negativa**\n- Propiedad 2: **Longitud nula = $\\epsilon$**\n- Propiedad 3: **Aditividad de longitud en la concatenación**\n- Propiedad 4: **Longitud de subcadena**\n- Propiedad 5: **Elemento neutro en la concatenación**\n- Propiedad 6: **Asociatividad en la concatenación**\n- Propiedad 7: **No conmutatividad en la concatenación**\n- Propiedad 8: **Cancelación en la concatenación**\n- Propiedad 9: **Concatenación nula**",
@@ -841,6 +857,7 @@
     {
       "id": "card_17",
       "slide_id": 17,
+      "type": "basic",
       "term": "Propiedad de las cadenas 1 de 9: Longitud no negativa",
       "front": "Propiedad de las cadenas 1 de 9: Longitud no negativa",
       "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud no negativa:** Toda cadena tiene una longitud mayor o igual a 0. $|x| \\ge 0$.",
@@ -850,6 +867,7 @@
     {
       "id": "card_18",
       "slide_id": 18,
+      "type": "basic",
       "term": "Propiedad de las cadenas 2 de 9: Longitud nula = $\\epsilon$",
       "front": "Propiedad de las cadenas 2 de 9: Longitud nula = $\\epsilon$",
       "back": "Si $x \\in \\Sigma^*$ es una cadena arbitraria:\n*   **Longitud nula = $\\epsilon$:** Si la longitud de una cadena es 0, entonces esa cadena es $\\epsilon$. $|x| = 0 \\iff x = \\epsilon$.",
@@ -859,6 +877,7 @@
     {
       "id": "card_19",
       "slide_id": 19,
+      "type": "basic",
       "term": "Propiedad de las cadenas 3 de 9: Aditividad de longitud en la concatenación",
       "front": "Propiedad de las cadenas 3 de 9: Aditividad de longitud en la concatenación",
       "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Aditividad de longitud en la concatenación:** La longitud de la concatenación de dos cadenas es la suma de sus longitudes. $|xy| = |x| + |y|$.",
@@ -868,6 +887,7 @@
     {
       "id": "card_20",
       "slide_id": 20,
+      "type": "basic",
       "term": "Propiedad de las cadenas 4 de 9: Longitud de subcadena",
       "front": "Propiedad de las cadenas 4 de 9: Longitud de subcadena",
       "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Longitud de subcadena:** Si $w_1$ es subcadena de $w$, entonces la longitud de $w_1$ es menor o igual a la longitud de $w$. $|w_1| \\le |w|$.",
@@ -877,6 +897,7 @@
     {
       "id": "card_21",
       "slide_id": 21,
+      "type": "basic",
       "term": "Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación",
       "front": "Propiedad de las cadenas 5 de 9: Elemento neutro en la concatenación",
       "back": "**Elemento neutro en la concatenación:** La cadena vacía $\\epsilon$ es el elemento neutro de la concatenación.\n$$\\forall w \\in \\Sigma^*: w\\epsilon = \\epsilon w = w$$",
@@ -886,6 +907,7 @@
     {
       "id": "card_22",
       "slide_id": 22,
+      "type": "basic",
       "term": "Propiedad de las cadenas 6 de 9: Asociatividad en la concatenación",
       "front": "Propiedad de las cadenas 6 de 9: Asociatividad en la concatenación",
       "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Asociatividad en la concatenación:** La concatenación es asociativa. $x(yz) = (xy)z = x y z$.",
@@ -895,6 +917,7 @@
     {
       "id": "card_23",
       "slide_id": 23,
+      "type": "basic",
       "term": "Propiedad de las cadenas 7 de 9: No conmutatividad en la concatenación",
       "front": "Propiedad de las cadenas 7 de 9: No conmutatividad en la concatenación",
       "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **No conmutatividad en la concatenación:** La concatenación no es conmutativa. $xy \\neq yx$ en general.",
@@ -904,6 +927,7 @@
     {
       "id": "card_24",
       "slide_id": 24,
+      "type": "basic",
       "term": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
       "front": "Propiedad de las cadenas 8 de 9: Cancelación en la concatenación",
       "back": "Si $x, y, z \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Cancelación en la concatenación:** Si una cadena es igual a una concatenación de otras dos cadenas, y a su vez es igual a una de esas dos cadenas, entonces la otra cadena es $\\epsilon$. Si $x = yz \\land x = y \\implies z = \\epsilon$.",
@@ -913,6 +937,7 @@
     {
       "id": "card_25",
       "slide_id": 25,
+      "type": "basic",
       "term": "Propiedad de las cadenas 9 de 9: Concatenación nula",
       "front": "Propiedad de las cadenas 9 de 9: Concatenación nula",
       "back": "Si $x, y \\in \\Sigma^*$ son cadenas arbitrarias:\n*   **Concatenación nula:** Si la concatenación de dos cadenas es $\\epsilon$, entonces ambas cadenas son $\\epsilon$. $xy = \\epsilon \\implies x = \\epsilon \\land y = \\epsilon$.",
@@ -922,6 +947,7 @@
     {
       "id": "card_26",
       "slide_id": 26,
+      "type": "basic",
       "term": "Lenguaje ($L$)",
       "front": "Lenguaje ($L$)",
       "back": "**Definición:** Un lenguaje $L$ sobre un alfabeto $\\Sigma$ es un conjunto de cadenas de símbolos de dicho alfabeto:\n$$L \\subseteq \\Sigma^*$$\n\n*Es decir que un lenguaje $L$ es subconjunto de $\\Sigma^*$.*",
@@ -931,6 +957,7 @@
     {
       "id": "card_27",
       "slide_id": 27,
+      "type": "basic",
       "term": "Casos Especiales de Lenguajes (2)",
       "front": "Casos Especiales de Lenguajes (2)",
       "back": "- **Lenguaje vacío:** $L = \\emptyset$ (no tiene elementos).\n- **Lenguaje unitario vacío:** $L = \\{\\epsilon\\}$ (tiene un elemento: la cadena vacía).\n- Tanto el lenguaje vacío como el unitario vacío son lenguajes comunes a todos los alfabetos.\n- **Estos dos conjuntos NO SON IGUALES:** $\\emptyset \\neq \\{\\epsilon\\}$.",
@@ -940,6 +967,7 @@
     {
       "id": "card_28",
       "slide_id": 28,
+      "type": "basic",
       "term": "Representaciones de los Lenguajes (3)",
       "front": "Representaciones de los Lenguajes (3)",
       "back": "Las tres formas clásicas de representar un lenguaje son:\n- **Por Extensión** (enumeración)\n- **Por Comprensión** (predicado lógico)\n- **Con Parámetros** (expresión con variables)",
@@ -949,6 +977,7 @@
     {
       "id": "card_29",
       "slide_id": 29,
+      "type": "basic",
       "term": "Representación de un Lenguaje: Por Extensión",
       "front": "Representación de un Lenguaje: Por Extensión",
       "back": "**La representación por extensión** consiste en enumerar las cadenas que forman el lenguaje (esta representación es aplicable sólo a lenguajes finitos).",
@@ -958,6 +987,7 @@
     {
       "id": "card_30",
       "slide_id": 30,
+      "type": "basic",
       "term": "Representación de un Lenguaje: Por Comprensión",
       "front": "Representación de un Lenguaje: Por Comprensión",
       "back": "**La representación por compresión** consiste en definir la propiedad lógica o predicado que deben satisfacer las cadenas:\n$$L = \\{x \\in \\Sigma^* \\mid P(x)\\}$$",
@@ -967,6 +997,7 @@
     {
       "id": "card_31",
       "slide_id": 31,
+      "type": "basic",
       "term": "Representación de un Lenguaje: Con Parámetros",
       "front": "Representación de un Lenguaje: Con Parámetros",
       "back": "**La representación con parámetros** consiste en definir una expresión con variables (parámetros) que representan las cadenas del lenguaje, y se especifican las restricciones que deben cumplir estos parámetros:\n$$L = \\{w \\in \\Sigma^* \\mid w = f(\\alpha, \\beta, \\dots) \\text{ con condiciones para } \\alpha, \\beta, \\dots\\}$$",
@@ -976,6 +1007,7 @@
     {
       "id": "card_32",
       "slide_id": 32,
+      "type": "basic",
       "term": "Reglas de la Representación por Compresión",
       "front": "Reglas de la Representación por Compresión",
       "back": "- Siempre comienza con $L = \\{w \\in \\Sigma^* \\mid \\dots \\}$ o bien $L = \\{w \\in \\Sigma^k \\mid \\dots\\}$ cuando la longitud sea fija.\n- Consiste en definir el lenguaje utilizando condiciones lógicas y lenguaje técnico, sin introducir parámetros ni exponentes.\n- Se deben usar términos como: *\"tiene longitud\"*, *\"tiene prefijo...\"*, *\"tiene sufijo...\"*, etc.\n- Los conectores lógicos también se escriben en lenguaje natural.\n- Si alguna regla no puede escribirse de forma sencilla en lenguaje técnico, hay que recurrir al uso de parámetros.",
@@ -985,6 +1017,7 @@
     {
       "id": "card_33",
       "slide_id": 33,
+      "type": "basic",
       "term": "Reglas de la Representación con Parámetros",
       "front": "Reglas de la Representación con Parámetros",
       "back": "- Siempre comienza con $L = \\{w \\in \\Sigma^* \\mid \\dots \\}$ o bien $L = \\{w \\in \\Sigma^k \\mid \\dots\\}$ cuando la longitud sea fija.\n- Consiste en definir el lenguaje mediante una ecuación con parámetros de subcadena y variables de potencia.\n- Representar las subcadenas utilizando **letras griegas** ($\\alpha, \\beta, \\delta$, etc.) y declarar explícitamente a qué conjunto pertenecen.\n- **Nunca** usar subcadenas del tipo $w_i$.\n- Para potencias o repeticiones de símbolos/subcadenas, usar variables numéricas ($n, i, j, k$, etc.) y aclarar a qué conjunto pertenecen.",
@@ -994,6 +1027,7 @@
     {
       "id": "card_34",
       "slide_id": 34,
+      "type": "basic",
       "term": "Representación con Parámetros: Prefijos y Sufijos que se Solapan - Regla",
       "front": "Representación con Parámetros: Prefijos y Sufijos que se Solapan - Regla",
       "back": "Cuando un lenguaje exige que sus cadenas tengan un prefijo $P$ y un sufijo $S$, que pueden solaparse o ser idénticos, $w = X \\alpha X$ no es suficiente, ya que omite la cadena mínima ($w=X$ cuando $\\alpha=\\epsilon$).\nEn estos casos hay que añadir por **unión de conjuntos**, la cadena mínima.",
@@ -1003,6 +1037,7 @@
     {
       "id": "card_35",
       "slide_id": 35,
+      "type": "basic",
       "term": "Representación con Parámetros: Prefijos y Sufijos que se Solapan - Casos",
       "front": "Representación con Parámetros: Prefijos y Sufijos que se Solapan - Casos",
       "back": "- **Prefijo y sufijo idénticos ($P=S=ta$):**\n  $$L = \\{w \\in \\Sigma^* \\mid w = ta \\alpha ta, \\alpha \\in \\Sigma^*\\} \\cup \\{ta\\}$$\n- **Prefijo $at$ y sufijo $ta$ (solapamiento parcial en $t$):**\n  $$L = \\{w \\in \\Sigma^* \\mid w = at \\alpha ta, \\alpha \\in \\Sigma^*\\} \\cup \\{ata\\}$$",
@@ -1012,6 +1047,7 @@
     {
       "id": "card_36",
       "slide_id": 36,
+      "type": "basic",
       "term": "Representación con Parámetros: Solapamientos complejos",
       "front": "Representación con Parámetros: Solapamientos complejos",
       "back": "Cuando un lenguaje requiere prefijo, subcadena y sufijo que puede solaparse completamente, entonces hay que considerar todos los casos bases que pueden darse: $L$ esta formado por cadenas con prefijo $bem$, subcadena $emma$ y sufijo $ma$.\n1. Cadenas sin solapamiento: $\\{w \\in \\Sigma^* \\mid w = bem\\alpha emma \\beta ma, \\alpha, \\beta \\in \\Sigma^*\\}$\n2. Solapamiento del prefijo y la subcadena: $\\cup \\{bemma\\delta, \\delta \\in \\Sigma^*\\}$\n3. Solapamiento de la subcadena y sufijo: $\\cup \\{bem\\gamma emma, \\gamma \\in \\Sigma^*\\}$\n4. Solapamiento total: $\\cup \\{bemma\\}$",
@@ -1021,6 +1057,7 @@
     {
       "id": "card_37",
       "slide_id": 37,
+      "type": "basic",
       "term": "Representación con Parámetros: Longitudes Pares e Impares",
       "front": "Representación con Parámetros: Longitudes Pares e Impares",
       "back": "Para definir la longitud de las cadenas o partes de ellas por medio de parámetros hay que utilizar potencias variables de la forma:\n- **Longitud Par ($|w|$ es par):**\n  - $L = \\{w \\in \\Sigma^* \\mid w = \\alpha, \\alpha \\in \\Sigma^{2k}, k \\ge 0\\}$\n- **Longitud Impar ($|w|$ es impar):**\n  - $L = \\{w \\in \\Sigma^* \\mid w \\in \\Sigma^{2k+1}, k \\ge 0\\}$",
@@ -1030,6 +1067,7 @@
     {
       "id": "card_38",
       "slide_id": 38,
+      "type": "basic",
       "term": "Representación con Parámetros: Longitudes Múltiplos",
       "front": "Representación con Parámetros: Longitudes Múltiplos",
       "back": "**Definición:** Para representar múltiplos sin lenguaje coloquial, se define el conjunto de cadenas de longitud múltiplo de un número entero:\n- **Longitud múltiplo de $m$:**\n  - $L = \\{w \\in \\Sigma^* \\mid w = \\alpha, \\alpha \\in (\\Sigma^m)^*\\}$",
@@ -1039,6 +1077,7 @@
     {
       "id": "card_39",
       "slide_id": 39,
+      "type": "basic",
       "term": "Operaciones con Lenguajes (8)",
       "front": "Operaciones con Lenguajes (8)",
       "back": "Las operaciones fundamentales sobre lenguajes son:\n- **Unión**\n- **Intersección**\n- **Diferencia**\n- **Complemento**\n- **Concatenación**\n- **Potencia $k$-ésima**\n- **Clausuras de Kleene**\n- **Clausura Positiva**",
@@ -1048,6 +1087,7 @@
     {
       "id": "card_40",
       "slide_id": 40,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Unión",
       "front": "Operaciones con Lenguajes: Unión",
       "back": "Sean $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n**Unión ($L_1 \\cup L_2$):** Lenguaje cuyas cadenas pertenecen a $L_1$ o a $L_2$:\n$$L_1 \\cup L_2 = \\{w \\in \\Sigma^* \\mid w \\in L_1 \\lor w \\in L_2\\}$$",
@@ -1057,6 +1097,7 @@
     {
       "id": "card_41",
       "slide_id": 41,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Intersección",
       "front": "Operaciones con Lenguajes: Intersección",
       "back": "Sean $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n**Intersección ($L_1 \\cap L_2$):** Lenguaje cuyas cadenas pertenecen a $L_1$ y a $L_2$:\n$$L_1 \\cap L_2 = \\{w \\in \\Sigma^* \\mid w \\in L_1 \\land w \\in L_2\\}$$",
@@ -1066,6 +1107,7 @@
     {
       "id": "card_42",
       "slide_id": 42,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Diferencia (resta)",
       "front": "Operaciones con Lenguajes: Diferencia (resta)",
       "back": "Sean $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n- **Diferencia ($L_1 - L_2$):** Lenguaje cuyas cadenas pertenecen a $L_1$ pero no pertenecen a $L_2$:\n$$L_1 - L_2 = \\{w \\in \\Sigma^* \\mid w \\in L_1 \\land w \\notin L_2\\}$$",
@@ -1075,6 +1117,7 @@
     {
       "id": "card_43",
       "slide_id": 43,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Complemento",
       "front": "Operaciones con Lenguajes: Complemento",
       "back": "Sea $L$ un lenguaje sobre un alfabeto $\\Sigma$:\n**Complemento ($\\overline{L}$):** Lenguaje formado por todas las cadenas de $\\Sigma^*$ que no pertenecen a $L$:\n- Notación algebraica: $\\overline{L} = \\Sigma^* - L$\n- Notación por compresión: $\\overline{L} = \\{w \\in \\Sigma^* \\mid w \\notin L\\}$",
@@ -1084,6 +1127,7 @@
     {
       "id": "card_44",
       "slide_id": 44,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Concatenación",
       "front": "Operaciones con Lenguajes: Concatenación",
       "back": "Sean $L_1$ y $L_2$ lenguajes sobre un alfabeto $\\Sigma$:\n**Concatenación ($L_1 L_2$):** Lenguaje obtenido al concatenar cadenas de $L_1$ con cadenas de $L_2$:\n$$L_1 L_2 = \\{w \\in \\Sigma^* \\mid \\exists w_1 \\in L_1, \\exists w_2 \\in L_2 : w = w_1 w_2\\}$$",
@@ -1093,6 +1137,7 @@
     {
       "id": "card_45",
       "slide_id": 45,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Potencia $k$-ésima de un Lenguaje",
       "front": "Operaciones con Lenguajes: Potencia $k$-ésima de un Lenguaje",
       "back": "Sea $L$ un lenguaje no vacío sobre $\\Sigma$:\n**Potencia $k$-ésima ($L^k$):** Concatenación de $L$ consigo mismo $k$ veces:\n$$L^k = \\{w \\in \\Sigma^* \\mid w = w_1 w_2 \\dots w_k, \\text{ con } w_i \\in L \\text{ para } 1 \\le i \\le k\\}$$\n**Caso base:** $L^0 = \\{\\epsilon\\}$ (la potencia 0 de un lenguaje, es el lenguaje unitario vacío).",
@@ -1102,6 +1147,7 @@
     {
       "id": "card_46",
       "slide_id": 46,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Clausuras (2)",
       "front": "Operaciones con Lenguajes: Clausuras (2)",
       "back": "Las dos operaciones de clausura de un lenguaje son:\n- **Clausura de Kleene de un Lenguaje ($L^*$)**\n- **Clausura Positiva de un Lenguaje ($L^+$)**",
@@ -1111,6 +1157,7 @@
     {
       "id": "card_47",
       "slide_id": 47,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Clausura de Kleene de un Lenguaje ($L^*$)",
       "front": "Operaciones con Lenguajes: Clausura de Kleene de un Lenguaje ($L^*$)",
       "back": "Sea un lenguaje $L \\neq \\emptyset$ (un lenguaje no vacío) sobre $\\Sigma$:\n**Clausura de Kleene de un Lenguaje ($L^*$):** Es la unión de todas las potencias del lenguaje:\n$$L^* = \\bigcup_{i=0}^{\\infty} L^i$$",
@@ -1120,6 +1167,7 @@
     {
       "id": "card_48",
       "slide_id": 48,
+      "type": "basic",
       "term": "Operaciones con Lenguajes: Clausura Positiva de un Lenguaje ($L^+$)",
       "front": "Operaciones con Lenguajes: Clausura Positiva de un Lenguaje ($L^+$)",
       "back": "Sea un lenguaje $L \\neq \\emptyset$ (un lenguaje no vacío) sobre $\\Sigma$:\n**Clausura Positiva de un Lenguaje ($L^+$):** Es la unión de todas las potencias del lenguaje excluyendo la potencia cero:\n$$L^+ = \\bigcup_{i=1}^{\\infty} L^i$$",
@@ -1129,6 +1177,7 @@
     {
       "id": "card_49",
       "slide_id": 49,
+      "type": "basic",
       "term": "Relaciones entre $L^*$, $L^+$ y $\\{\\epsilon\\}$",
       "front": "Relaciones entre $L^*$, $L^+$ y $\\{\\epsilon\\}$",
       "back": "Para cualquier lenguaje $L \\neq \\emptyset$ (un lenguaje no vacío) sobre $\\Sigma$ se cumplen las siguientes relaciones fundamentales:\n- **$L^* = L^+ \\cup \\{\\epsilon\\}$**\n- **$L^+ = L^* - \\{\\epsilon\\}$**",
@@ -1138,6 +1187,7 @@
     {
       "id": "card_50",
       "slide_id": 50,
+      "type": "basic",
       "term": "Como definir por compresión las operaciones entre Lenguajes",
       "front": "Como definir por compresión las operaciones entre Lenguajes",
       "back": "Sean $A, B \\subset \\Sigma^*$:\n- $$A \\cup B = \\{w \\mid w \\in A \\lor w \\in B\\}$$\n- $$A \\cap B = \\{w \\mid w \\in A \\land w \\in B\\}$$\n- $$A B = \\{w_1w_2 \\mid w_1 \\in A \\land w_2 \\in B\\}$$\n- $$\\bar{A} = \\{w \\mid w \\in \\Sigma^* \\land w \\notin A\\}$$\n\n> Luego hay que reemplazar por los predicados para cada conjunto.\n> Luego evaluar si los predicados se superponen, y quedarse con los mas restrictivos.",
@@ -1147,6 +1197,7 @@
     {
       "id": "card_51",
       "slide_id": 51,
+      "type": "basic",
       "term": "Propiedades de las Operaciones de Lenguajes (12)",
       "front": "Propiedades de las Operaciones de Lenguajes (12)",
       "back": "* **Propiedades de la Concatenación de Lenguajes:** Propiedades 1, 2 y 3.\n* **Propiedades de la Concatenación respecto de otras operaciones:** Propiedades 4 y 5.\n* **Propiedades de la Unión e Intersección de Lenguajes:** Propiedad 6.\n* **Propiedades de la Clausura Positiva:** Propiedades 7 y 11.\n* **Propiedades de las Potencias y de la Clausura de Kleene:** Propiedades 8, 9, 10 y 12.",
@@ -1156,6 +1207,7 @@
     {
       "id": "card_52",
       "slide_id": 52,
+      "type": "basic",
       "term": "Propiedades de la Concatenación de Lenguajes (3)",
       "front": "Propiedades de la Concatenación de Lenguajes (3)",
       "back": "- **Propiedad 1 — Elemento neutro:** La cadena vacía $\\epsilon$ es el elemento neutro para la concatenación: $L{\\epsilon} = {\\epsilon}L = L$.\n- **Propiedad 2 — Asociatividad:** La concatenación es asociativa: $L_1(L_2L_3) = (L_1L_2)L_3 = L_1L_2L_3$.\n- **Propiedad 3 — No conmutatividad:** La concatenación no es conmutativa: $L_1L_2 \\neq L_2L_1$.",
@@ -1165,6 +1217,7 @@
     {
       "id": "card_53",
       "slide_id": 53,
+      "type": "basic",
       "term": "Propiedades de la Concatenación (distributiva) respecto de la Unión e Intersección (2)",
       "front": "Propiedades de la Concatenación (distributiva) respecto de la Unión e Intersección (2)",
       "back": "- **Propiedad 4 — Distributividad respecto de la unión:** La concatenación es distributiva respecto de la unión: $L_1(L_2 \\cup L_3) = L_1L_2 \\cup L_1L_3$.\n- **Propiedad 5 — No distributividad respecto de la intersección:** La concatenación no es distributiva respecto de la intersección: $L_1(L_2 \\cap L_3) \\neq L_1L_2 \\cap L_1L_3$.",
@@ -1174,6 +1227,7 @@
     {
       "id": "card_54",
       "slide_id": 54,
+      "type": "basic",
       "term": "Propiedades de la Unión e Intersección de Lenguajes (7)",
       "front": "Propiedades de la Unión e Intersección de Lenguajes (7)",
       "back": "Como los lenguajes son conjuntos, la unión ($\\cup$) y la intersección ($\\cap$) verifican las siguientes propiedades algebraicas fundamentales:\n- **Asociativa**\n- **Conmutativa**\n- **Distributiva** (de cada una respecto de la otra)\n- **Idempotencia**\n- **Absorción**\n- **Elementos Neutros** (de la unión y de la intersección)",
@@ -1183,6 +1237,7 @@
     {
       "id": "card_55",
       "slide_id": 55,
+      "type": "basic",
       "term": "Propiedades de la Unión e Intersección: Asociativa y Conmutativa",
       "front": "Propiedades de la Unión e Intersección: Asociativa y Conmutativa",
       "back": "Sean $L_1$, $L_2$ y $L_3$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n- **Asociativa:**\n  - Unión: $L_1 \\cup (L_2 \\cup L_3) = (L_1 \\cup L_2) \\cup L_3$\n  - Intersección: $L_1 \\cap (L_2 \\cap L_3) = (L_1 \\cap L_2) \\cap L_3$\n- **Conmutativa:**\n  - Unión: $L_1 \\cup L_2 = L_2 \\cup L_1$\n  - Intersección: $L_1 \\cap L_2 = L_2 \\cap L_1$",
@@ -1192,6 +1247,7 @@
     {
       "id": "card_56",
       "slide_id": 56,
+      "type": "basic",
       "term": "Propiedades de la Unión e Intersección: Distributiva e Idempotencia",
       "front": "Propiedades de la Unión e Intersección: Distributiva e Idempotencia",
       "back": "Sean $L_1$, $L_2$ y $L_3$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n- **Distributiva (de cada una respecto de la otra):**\n  - Unión respecto a intersección: $L_1 \\cup (L_2 \\cap L_3) = (L_1 \\cup L_2) \\cap (L_1 \\cup L_3)$\n  - Intersección respecto a unión: $L_1 \\cap (L_2 \\cup L_3) = (L_1 \\cap L_2) \\cup (L_1 \\cap L_3)$\n- **Idempotencia:**\n  - Unión: $L \\cup L = L$\n  - Intersección: $L \\cap L = L$",
@@ -1201,6 +1257,7 @@
     {
       "id": "card_57",
       "slide_id": 57,
+      "type": "basic",
       "term": "Propiedades de la Unión e Intersección: Absorción y Elementos Neutros",
       "front": "Propiedades de la Unión e Intersección: Absorción y Elementos Neutros",
       "back": "Sean $L$, $L_1$ y $L_2$ lenguajes sobre un mismo alfabeto $\\Sigma$:\n- **Absorción:**\n  - $L_1 \\cup (L_1 \\cap L_2) = L_1$\n  - $L_1 \\cap (L_1 \\cup L_2) = L_1$\n- **Elementos Neutros:**\n  - Elemento neutro de la unión ($\\emptyset$): $L \\cup \\emptyset = \\emptyset \\cup L = L$\n  - Elemento neutro de la intersección ($\\Sigma^*$): $L \\cap \\Sigma^* = \\Sigma^* \\cap L = L$",
@@ -1210,6 +1267,7 @@
     {
       "id": "card_58",
       "slide_id": 58,
+      "type": "basic",
       "term": "Propiedades de la Clausura Positiva",
       "front": "Propiedades de la Clausura Positiva",
       "back": "* **Propiedad 7 — Cadena vacía:**\n  $$\\epsilon \\in L \\iff \\epsilon \\in L^+$$\n\nDemostración:\n- ($\\implies$) Si $\\epsilon \\in L$, como $L \\subseteq L^+$ (por definición de clausura positiva), entonces $\\epsilon \\in L^+$\n- ($\\impliedby$) Si $\\epsilon \\in L^+$, por definición de la unión infinita de potencias, $\\epsilon$ debe pertenecer a alguna potencia $L^i$ ($i \\ge 1$), lo cual solo es posible si el lenguaje base $L$ ya contenía a $\\epsilon$.",
@@ -1219,6 +1277,7 @@
     {
       "id": "card_59",
       "slide_id": 59,
+      "type": "basic",
       "term": "Diferencia entre Clausura Positiva de un Alfabeto ($\\Sigma^+$) y de un Lenguaje ($L^+$)",
       "front": "Diferencia entre Clausura Positiva de un Alfabeto ($\\Sigma^+$) y de un Lenguaje ($L^+$)",
       "back": "Dado que los alfabetos son conjuntos de símbolos, y $\\epsilon$ es una cadena, entonces NUNCA un alfabeto puede contener a $\\epsilon$, por lo tanto la clausura positiva de un alfabeto NUNCA puede contener a $\\epsilon$.\n\nEn cambio, los lenguajes son conjuntos de cadenas, y $\\epsilon$ es una cadena, entonces un lenguaje puede contener a $\\epsilon$, por lo tanto la clausura positiva de un lenguaje PUEDE contener a $\\epsilon$.\n\n**Resumen:**\n- $\\epsilon \\notin \\Sigma^+$ (siempre).\n- $\\epsilon \\in L^+ \\iff \\epsilon \\in L$.",
@@ -1228,6 +1287,7 @@
     {
       "id": "card_60",
       "slide_id": 60,
+      "type": "basic",
       "term": "Propiedades de la Clausura de Kleene",
       "front": "Propiedades de la Clausura de Kleene",
       "back": "* **Propiedad 8 — Las potencias de $L$ son subconjunto de $L^*$:**\n  $$\\forall i:\\quad L^i \\subseteq L^*$$\n\n* **Propiedad 9 — Idempotencia de la clausura de Kleene:**\n  $$(L^*)^* = L^*$$\n\n* **Propiedad 10 — Conmutatividad con la clausura de Kleene:**\n  $$LL^* = L^*L$$",
@@ -1237,6 +1297,7 @@
     {
       "id": "card_61",
       "slide_id": 61,
+      "type": "basic",
       "term": "Propiedades entre las Clausuras de Lenguajes",
       "front": "Propiedades entre las Clausuras de Lenguajes",
       "back": "* **Propiedad 11 — Relación entre $L^+$ y $L^*$:**\n  $$L^+ \\subseteq L^*$$\n* **Propiedad 12 — Relación con la Clausura de Kleene:**\n  $$L^+ = LL^* = L^*L$$\n> Recordar que para la clausura de alfabetos, las relaciones son $\\epsilon$ dependientes.",
@@ -1246,6 +1307,7 @@
     {
       "id": "card_62",
       "slide_id": 62,
+      "type": "basic",
       "term": "Definición de Problema",
       "front": "Definición de Problema",
       "back": "**Definición de Problema:** En teoría de la computación, un problema se define formalmente como el proceso de determinar si una cadena de caracteres pertenece o no a un lenguaje $L$ determinado, sobre un alfabeto $\\Sigma$.\n$$w \\in L ?$$",
@@ -1255,6 +1317,7 @@
     {
       "id": "card_63",
       "slide_id": 63,
+      "type": "basic",
       "term": "Descripciones finitas y Lenguajes Regulares",
       "front": "Descripciones finitas y Lenguajes Regulares",
       "back": "Dado que los lenguajes pueden ser potencialmente infinitos, el problema central es encontrar una **descripción finita** que permita definir si una palabra pertenece o no a un lenguaje.\n\nUna **descripción finita** consiste aplicar a una serie de **lenguajes básicos** solo ciertas **operaciones**, un número finito de veces. Esto permite obtener un **Lenguaje Regular**.",
@@ -1264,6 +1327,7 @@
     {
       "id": "card_64",
       "slide_id": 64,
+      "type": "basic",
       "term": "Definición Formal de Lenguaje Regular (LR)",
       "front": "Definición Formal de Lenguaje Regular (LR)",
       "back": "Un **Lenguaje Regular (LR)** es un conjunto $L \\subseteq \\Sigma^*$ definido inductivamente:\n1. **Base:** $\\emptyset$, $\\{\\epsilon\\}$ y $\\{a\\}$ (para cada $a \\in \\Sigma$) son lenguajes regulares.\n2. **Paso Inductivo:** Si $L_1$ y $L_2$ son regulares, entonces:\n   - $L_1 \\cup L_2$ (unión), $L_1 L_2$ (concatenación) y $L_1^*$ (clausura) son regulares.\n3. **Clausura extrema:** Ningún otro lenguaje sobre $\\Sigma$ es regular.\n\n> Es un objeto **semántico** (conjunto de palabras, se escribe con llaves).",
@@ -1273,6 +1337,7 @@
     {
       "id": "card_65",
       "slide_id": 65,
+      "type": "basic",
       "term": "Lenguaje Regular: Definiciones Equivalentes (Teorema de Kleene)",
       "front": "Lenguaje Regular: Definiciones Equivalentes (Teorema de Kleene)",
       "back": "Un lenguaje $L \\subseteq \\Sigma^*$ es **regular** si y sólo si cumple cualquiera de estas equivalencias:\n1. **Expresiones Regulares:** Es denotado por alguna ER ($L = L(E)$).\n2. **Autómatas Finitos:** Es aceptado por algún AFD, AFND o AFND-$\\epsilon$.\n3. **Gramáticas:** Es generado por alguna Gramática Regular (Tipo 3).\n\n> **Clave de examen:** Estas 3 vías de formalización son totalmente equivalentes.",
@@ -1282,6 +1347,7 @@
     {
       "id": "card_66",
       "slide_id": 66,
+      "type": "basic",
       "term": "Lenguajes Regulares finitos o infinitos",
       "front": "Lenguajes Regulares finitos o infinitos",
       "back": "Los lenguajes regulares pueden ser **finitos** o **infinitos**, pero siempre se deben generar a partir de una **descripción finita**. Esto permite que los Autómatas Finitos puedan reconocerlos, ya que presentan regularidades o repeticiones de sus elementos.\n\n> Recordar que un Autómata Finito tiene memoria finita y no puede contar infinitamente.",
@@ -1291,6 +1357,7 @@
     {
       "id": "card_67",
       "slide_id": 67,
+      "type": "basic",
       "term": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
       "front": "Propiedades de los Lenguajes Regulares sobre Operaciones (6)",
       "back": "Si $L_1$ y $L_2$ son lenguajes regulares sobre $\\Sigma$, entonces también son regulares:\n1.  **Unión:** $L_1 \\cup L_2$\n2.  **Intersección:** $L_1 \\cap L_2$\n3.  **Concatenación:** $L_1 L_2$\n4.  **Complemento:** $\\overline{L_1} = \\Sigma^* - L_1$\n5.  **Clausura de Kleene:** $L_1^*$\n6.  **Clausura Positiva:** $L_1^+$\n\n> La **potencia k-ésima** no figura, porque no aporta nada significativo a lo que ya hace la concatenación, puesto que la potencia k-ésima no es ni mas ni menos que concatenar k veces, por lo que sigue siendo un **lenguaje regular**.",
@@ -1300,6 +1367,7 @@
     {
       "id": "card_68",
       "slide_id": 68,
+      "type": "basic",
       "term": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
       "front": "Generalización de las Propiedades de los Lenguajes Regulares sobre Operaciones (3)",
       "back": "Se derivan por inducción matemática a partir de las propiedades básicas:\n*   La **unión finita** de lenguajes regulares es un lenguaje regular.\n*   La **intersección finita** de lenguajes regulares es un lenguaje regular.\n*   La **concatenación finita** de lenguajes regulares es un lenguaje regular.\n\n> La concatenación finita (por generalización) es la potencia k-ésima.",
@@ -1309,6 +1377,7 @@
     {
       "id": "card_69",
       "slide_id": 69,
+      "type": "basic",
       "term": "Lenguajes NO Regulares",
       "front": "Lenguajes NO Regulares",
       "back": "Existen lenguajes que puede definirse de forma finita (por medio de formulas matemáticas finitas), pero NO SON regulares (ya que no se construyen a partir de los conjuntos básicos y de las operaciones mencionadas). Cualquier lenguajes que requiera contar infinitamente no es regular, ya que los AF tienen memoria limitada.",
@@ -1318,6 +1387,7 @@
     {
       "id": "card_70",
       "slide_id": 70,
+      "type": "basic",
       "term": "Ejemplo de Lenguajes No Regulares (Conteo Infinito)",
       "front": "Ejemplo de Lenguajes No Regulares (Conteo Infinito)",
       "back": "$$L_1=\\{a^i b^i\\mid i\\in\\mathbb{N}\\}$$\n\nEste ejemplo no es regular, ya que, aunque individualmente se puede evaluar $a^*$ y $b^*$, y su concatenación, el problema surge de que no son independientes, es decir que ambas cantidades deben ser iguales, y esto requiere de un conteo potencialmente infinito, algo que los AF no pueden hacer.",
@@ -1327,6 +1397,7 @@
     {
       "id": "card_71",
       "slide_id": 71,
+      "type": "basic",
       "term": "Ejemplos de Lenguajes No Regulares (Conteo Acumulativo Infinito)",
       "front": "Ejemplos de Lenguajes No Regulares (Conteo Acumulativo Infinito)",
       "back": "$$L_2 = \\{\\text{palabras cuyo número de 1s es mayor al número de 0s}\\}$$\n$$ \\text{ Sobre }\\Sigma = \\{0, 1\\}$$\n\nEste lenguaje no es regular porque exige un conteo acumulativo y potencialmente infinito para conocer la diferencia entre los dos símbolos. No se puede hacer con las operaciones dadas.",
@@ -1336,6 +1407,7 @@
     {
       "id": "card_72",
       "slide_id": 72,
+      "type": "basic",
       "term": "Ejemplos de Lenguajes No Regulares (Ausencia de regularidad)",
       "front": "Ejemplos de Lenguajes No Regulares (Ausencia de regularidad)",
       "back": "$$L_3 = \\{\\text{palabras que son sufijos de la expansión decimal del número } \\pi\\}$$\n$$\\text{ Sobre }\\Sigma = \\{0, 1, \\dots, 9\\}$$\n\nDado que la secuencia de símbolos no es periodica, son necesarias infinitas operaciones de union de nuevos símbolos, para obtener las palabras resultantes. No se puede hacer con las operaciones dadas.",
@@ -1345,6 +1417,7 @@
     {
       "id": "card_73",
       "slide_id": 73,
+      "type": "basic",
       "term": "Definición Formal de Expresión Regular (ER)",
       "front": "Definición Formal de Expresión Regular (ER)",
       "back": "Una **Expresión Regular (ER)** es una fórmula sintáctica sobre $\\Sigma \\cup \\{\\emptyset, \\epsilon, +, \\cdot, *, (, )\\}$:\n1. **Base:** Los símbolos $\\emptyset$, $\\epsilon$ y $a$ (para cada $a \\in \\Sigma$) son ER.\n2. **Paso Inductivo:** Si $E_1$ y $E_2$ son ER, entonces:\n   - $(E_1 + E_2)$ (alternativa), $(E_1 E_2)$ (concatenación) y $(E_1)^*$ (clausura) son ER.\n3. **Clausura extrema:** Ninguna otra secuencia de caracteres es una ER.\n\n> Es un objeto **sintáctico** (una fórmula/patrón, no lleva llaves de conjuntos).",
@@ -1354,6 +1427,7 @@
     {
       "id": "card_74",
       "slide_id": 74,
+      "type": "basic",
       "term": "Frontera Teórica: Lenguaje Regular vs Expresión Regular",
       "front": "Frontera Teórica: Lenguaje Regular vs Expresión Regular",
       "back": "**¿Dónde empieza y termina cada definición?**\n* **Expresión Regular (ER) = SINTAXIS:**\n  - Fórmula/patrón de caracteres: $\\emptyset, \\epsilon, a, +, \\cdot, *$. Sin llaves.\n* **Lenguaje Regular (LR) = SEMÁNTICA:**\n  - Conjunto de palabras ($L \\subseteq \\Sigma^*$): $\\emptyset, \\{\\epsilon\\}, \\{a\\}, \\cup, \\cdot, *$. Con llaves.\n* **El Puente:** La función $L(E)$ mapea la fórmula al conjunto denotado.\n\n> **Regla de oro:** La ER es la notación; el LR es el conjunto denotado.",
@@ -1363,6 +1437,7 @@
     {
       "id": "card_75",
       "slide_id": 75,
+      "type": "basic",
       "term": "Pregunta de Examen: Defina Lenguaje Regular y Expresión Regular",
       "front": "Pregunta de Examen: Defina Lenguaje Regular y Expresión Regular",
       "back": "**¿Qué responder si preguntan 'Defina LR y Defina ER' en el examen?**\n1. **Para Lenguaje Regular:** Dar la definición por conjuntos: base $\\emptyset, \\{\\epsilon\\}, \\{a\\}$ y clausura bajo $\\cup, \\cdot, *$. (O equivalencia: $L=L(E)$ o aceptado por AF).\n2. **Para Expresión Regular:** Dar la definición sintáctica inductiva: símbolos base $\\emptyset, \\epsilon, a$ y operaciones $(E_1 + E_2), (E_1 E_2), (E_1)^*$.\n\n> **Errores fatales a evitar:** Jamás definir una ER con llaves $\\{\\}$, ni definir un LR usando el operador de suma $+$. Uno es conjunto, el otro es sintaxis.",
@@ -1372,6 +1447,7 @@
     {
       "id": "card_76",
       "slide_id": 76,
+      "type": "basic",
       "term": "Operaciones de las ERs",
       "front": "Operaciones de las ERs",
       "back": "Si $E$ es una ER, entonces:\n- Su forma agrupada es una ER: $(E)$\n- La concatenación de ERs es una ER: $E_1 E_2$\n- La suma de ERs es una ER: $(E_1 + E_2)$\n- La clausura de Kleene es una ER: $(E)^*$\n- La clausura positiva no es una operación para las ERs.",
@@ -1381,6 +1457,7 @@
     {
       "id": "card_77",
       "slide_id": 77,
+      "type": "basic",
       "term": "Lenguajes generados por ER elementales",
       "front": "Lenguajes generados por ER elementales",
       "back": "*   $L(\\emptyset) = \\emptyset$: El lenguaje generado por la ER vacía es el lenguaje vacío.\n*   $L(\\epsilon) = \\{\\epsilon\\}$: El lenguaje generado por la ER de la cadena vacía es el lenguaje unitario vacío, que solo contiene a la cadena vacía $\\epsilon$.\n*   $L(x) = \\{x\\} \\quad (\\forall x \\in \\Sigma)$ El lenguaje generado por la ER que contiene a un único símbolo $x$ es el lenguaje unitario que contiene a $x$, siendo $x$ cada uno de los símbolos de $\\Sigma$.\n\n> Ojo con $L(x)=\\{x \\mid x \\in \\Sigma\\}$, ya que esto generaría el conjunto de todos los símbolos del alfabeto y no los conjuntos unitarios para cada símbolo del alfabeto.",
@@ -1390,6 +1467,7 @@
     {
       "id": "card_78",
       "slide_id": 78,
+      "type": "basic",
       "term": "Lenguajes generados por operaciones de las ER",
       "front": "Lenguajes generados por operaciones de las ER",
       "back": "*   **$L((E_1)) = L(E_1)$:** El lenguaje generado por la **agrupación** de una ER es el lenguaje generado simplemente por la ER.\n*   **$L(E_1 E_2) = L(E_1)L(E_2)$:** El lenguaje generado por la **concatenación** de dos ER es la concatenación de los lenguajes generados por cada ER.\n*   **$L((E_1 + E_2)) = L(E_1) \\cup L(E_2)$:** El lenguaje generado por la **suma** de dos ER es la unión de los lenguajes generados por cada ER.\n*   **$L((E_1)^*) = (L(E_1))^*$:** El lenguaje generado por la **clausura de Kleene** de una ER es la clausura de Kleene del lenguaje generado por la ER.",
@@ -1399,6 +1477,7 @@
     {
       "id": "card_79",
       "slide_id": 79,
+      "type": "basic",
       "term": "Prioridad de Operaciones en ER",
       "front": "Prioridad de Operaciones en ER",
       "back": "En la escritura de ER los paréntesis (agrupaciones) se pueden omitir si se sigue la siguiente prioridad de operaciones:\n1.  **Clausura de Kleene ($^*$)** (Máxima prioridad)\n2.  **Concatenación** (Prioridad intermedia)\n3.  **Suma ($+$)** (Mínima prioridad)",
@@ -1408,6 +1487,7 @@
     {
       "id": "card_80",
       "slide_id": 80,
+      "type": "basic",
       "term": "Expresiones Regulares Equivalentes",
       "front": "Expresiones Regulares Equivalentes",
       "back": "**Definición:** Dos expresiones regulares $E_1$ y $E_2$ son equivalentes si y sólo si definen el mismo lenguaje regular.\n**Fórmula:**\n$$E_1 \\equiv E_2 \\iff L(E_1) = L(E_2)$$\n**Nota:** Por abuso de lenguaje se suele escribir $E_1 = E_2$.",
@@ -1417,6 +1497,7 @@
     {
       "id": "card_81",
       "slide_id": 81,
+      "type": "basic",
       "term": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "front": "Guía Práctica de Construcción de Expresiones Regulares - Parte 1",
       "back": "$L(a+b+c) = L(a) \\cup L(b) \\cup L(c) = \\{a,b,c\\}$\n$L(ab) = L(a)L(b) = \\{ab\\}$\n$L(ab(a+b+c)) = \\{aba, abb, abc\\}$\n$L((ab)^*) = \\{ab, abab, ababab, \\dots\\}$\n\n> La concatención da cadenas literales.\n> La suma/union da cadenas alternativas.",
@@ -1426,6 +1507,7 @@
     {
       "id": "card_82",
       "slide_id": 82,
+      "type": "basic",
       "term": "Construcción de ERs: Ejemplos 1",
       "front": "Construcción de ERs: Ejemplos 1",
       "back": "$L_1 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene subcadena } aca\\}: E_1 = (a+b+c)^*aca(a+b+c)^*$\n$L_2 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ no tiene prefijo } 0\\}: E_2 = (1+2+3)(0+1+2+3)^*$",
@@ -1435,6 +1517,7 @@
     {
       "id": "card_83",
       "slide_id": 83,
+      "type": "basic",
       "term": "Construcción de ERs: Ejemplos 2",
       "front": "Construcción de ERs: Ejemplos 2",
       "back": "$L_3 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } baca\\}: E_3 = (baca(a+b+c)^*baca)+baca$\n$L_4 \\text{ sobre } \\{a,b\\} = \\{w \\text{ tiene un número impar de } a \\text{ y un número par de } b\\}: E_4 = a(aa)^*bb(bb)^*$\n\n> En $L_3$ existe solapamiento, por lo que hay el caso sin solapamiento y el caso mínimo con solapamiento.\n> En $L_4$ no se pueden usar potencias k-ésimas; se pone la cantidad repetida y se agrupa de a 2 en Kleene.",
@@ -1444,6 +1527,7 @@
     {
       "id": "card_84",
       "slide_id": 84,
+      "type": "basic",
       "term": "Construcción de ERs: Ejemplos 3",
       "front": "Construcción de ERs: Ejemplos 3",
       "back": "$L_5 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo } c, \\text{ sufijo } ba \\text{ y subcadenas de } b \\text{ o es } cc\\}: E_5 = cc+cb^*ba$\n$L_6 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene prefijo y sufijo } c \\text{ y subcadena } b^3\\}: E_6 = c(a+b+c)^*bbb(a+b+c)^*c$\n\n> En $L_5$ existe un caso único con $cc$ y luego todos los demas casos con prefijo solo $c$. No requiere agrupaciones por orden de prioridad.",
@@ -1453,6 +1537,7 @@
     {
       "id": "card_85",
       "slide_id": 85,
+      "type": "basic",
       "term": "Construcción de ERs: Ejemplos 4",
       "front": "Construcción de ERs: Ejemplos 4",
       "back": "$L_7 \\text{ sobre } \\{a,b,c\\} = \\{w \\text{ tiene un solo } b \\text{ seguido por un número impar de } a\\}: E_7 = (a+c)^*ba(aa)^*(c(c+a)^*+\\epsilon)$\n\n> En $L_7$ como no se aclara que hay antes de $b$, pero puede haber algo, solo se sabe que no puede ser $b$. Luego de $b$ se especifica que $a$ debe aparecer impar, pero luego de esas $a$, puede haber algo más (que no puede ser inmediatamente $a$, pero luego nada lo impide).",
@@ -1462,6 +1547,7 @@
     {
       "id": "card_86",
       "slide_id": 86,
+      "type": "basic",
       "term": "Construcción de ERs: Ejemplos 5",
       "front": "Construcción de ERs: Ejemplos 5",
       "back": "$L_8 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ tiene longitud } 3 \\text{ y prefijo } 1\\}: E_8 = 1(0+1+2+3)(0+1+2+3)$\n$L_9 \\text{ sobre } \\{0,1,2,3\\} = \\{w \\text{ representa un número natural sin ceros a la izquierda, excepto } 0\\}: E_9 = 0 + (1+2+3)(0+1+2+3)^*$\n\n> Ojo en $L_8$, no se puede usar potencia k-ésima.\n> En $L_9$ los números naturales no comienzan con $0$ salvo el propio $0$. En $L_8$ ninguno puede comenzar por $0$.",
@@ -1471,6 +1557,7 @@
     {
       "id": "card_87",
       "slide_id": 87,
+      "type": "basic",
       "term": "Gramática ($G$): Definición algebraica",
       "front": "Gramática ($G$): Definición algebraica",
       "back": "Una gramática $G$ es una estructura algebraica definida por la 4-tupla:\n$$G = (N, \\Sigma, P, S)$$\nDonde:\n*   **$N$:** Conjunto finito de símbolos no terminales.\n*   **$\\Sigma$:** Conjunto finito de símbolos terminales (alfabeto, tal que $N \\cap \\Sigma = \\emptyset$).\n*   **$P$:** Reglas de producción finitas (reglas gramaticales o simplemente producciones).\n*   **$S$:** Símbolo inicial o axioma ($S \\in N$).",
@@ -1480,6 +1567,7 @@
     {
       "id": "card_88",
       "slide_id": 88,
+      "type": "basic",
       "term": "Convenciones de Notación en Gramáticas",
       "front": "Convenciones de Notación en Gramáticas",
       "back": "Convenciones para definir reglas gramaticales:\n- **Símbolos No Terminales $(\\in N)$:** Letras mayúsculas $A, B, C, \\dots, S, X, Y, Z$. Se utilizan $X, Y, Z$ como comodines.\n- **Símbolos Terminales ($\\in \\Sigma$):** Letras minúsculas $a, b, c, \\dots, x, y, z$. Se utilizan $x, y, z$ como comodines.\n- **Cadenas de Terminales ($\\in \\Sigma^*$):** Se representan con la letra $w$.\n- **Cadenas Mixtas ($\\in (N \\cup \\Sigma)^*$):** Se representan con letras griegas $\\alpha, \\beta, \\gamma, \\delta, \\pi, \\rho$ (y la cadena vacía con $\\epsilon$).",
@@ -1489,6 +1577,7 @@
     {
       "id": "card_89",
       "slide_id": 89,
+      "type": "basic",
       "term": "Definición de las reglas de producción",
       "front": "Definición de las reglas de producción",
       "back": "Las reglas de producción son pares que pertenecen al conjunto $P$, tal que $(\\alpha, \\alpha') \\in P$. Por comodidad, se expresan como relaciones de producción, tal que $\\alpha \\to \\alpha'$.\n\n> Se lee \"alfa produce alfa prima\" o \"alfa se reescribe como alfa prima\".",
@@ -1498,6 +1587,7 @@
     {
       "id": "card_90",
       "slide_id": 90,
+      "type": "basic",
       "term": "Cabeza y Cuerpo de las reglas de producción",
       "front": "Cabeza y Cuerpo de las reglas de producción",
       "back": "Las reglas de producción tienen dos partes:\n- **Cabeza ($\\alpha$):** $\\alpha \\in (N \\cup \\Sigma)^* N (N \\cup \\Sigma)^*$\n> Es decir, que la cabeza es una cadena con al menos tiene un símbolo no terminal.\n- **Cuerpo ($\\alpha'$):** $\\alpha' \\in (N \\cup \\Sigma)^*$\n> Es decir, que el cuerpo es una cadena con cualquier número de símbolos terminales y/o no terminales, o bien la cadena vacía.",
@@ -1507,6 +1597,7 @@
     {
       "id": "card_91",
       "slide_id": 91,
+      "type": "basic",
       "term": "Notación de Backus",
       "front": "Notación de Backus",
       "back": "**Definición:** Notación abreviada utilizada para agrupar múltiples reglas de producción que comparten exactamente la misma cabeza.\n**Representación:** Las reglas $\\alpha \\to \\alpha_1, \\alpha \\to \\alpha_2, \\dots, \\alpha \\to \\alpha_n$ se abrevian como:\n$$\\alpha \\to \\alpha_1 \\mid \\alpha_2 \\mid \\dots \\mid \\alpha_n$$",
@@ -1516,6 +1607,7 @@
     {
       "id": "card_92",
       "slide_id": 92,
+      "type": "basic",
       "term": "Relación Deriva",
       "front": "Relación Deriva",
       "back": "La relación deriva o derivación es el proceso por el cual la cabeza se sustituye por el cuerpo.\n\nLa derivación puede ser directa (en un solo paso) o con múltiples pasos.",
@@ -1525,6 +1617,7 @@
     {
       "id": "card_93",
       "slide_id": 93,
+      "type": "basic",
       "term": "Derivación Directa",
       "front": "Derivación Directa",
       "back": "Sean $\\delta$ la subcadena que va a ser reescrita como $\\mu$, entonces la cabeza y cuerpo de la producción tienen la forma:\n- $\\alpha = \\beta \\delta \\sigma$\n- $\\alpha' = \\beta \\mu \\sigma$\n\nEntonces para la producción $(\\alpha,\\alpha')$, la derivación es:\n\n$$\\beta \\delta \\sigma \\underset{G}{\\Rightarrow} \\beta \\delta \\sigma$$\n\n> **G** es la gramática con la cual se esta trabajando ($G$, $G_1$, $G_2$), en la práctica se puede omitir o en su lugar colocar que regla de derivación se está usando.",
@@ -1534,6 +1627,7 @@
     {
       "id": "card_94",
       "slide_id": 94,
+      "type": "basic",
       "term": "Derivación en múltiples pasos",
       "front": "Derivación en múltiples pasos",
       "back": "En este caso, ya no existe la regla directa $(\\alpha,\\alpha')$, sino que existen multiples reglas tal que $(\\alpha,{\\alpha}_0),({\\alpha}_0,{\\alpha}_1),\\dots,({\\alpha}_n,\\alpha')$.\n\n**Derivación en Múltiples Pasos ($\\overset{*}{\\underset{G}{\\Rightarrow}}$):**\n$$\\alpha \\overset{*}{\\underset{G}{\\Rightarrow}} \\alpha' \\iff \\alpha = \\alpha_0 \\underset{G}{\\Rightarrow} \\alpha_1 \\underset{G}{\\Rightarrow} \\dots \\underset{G}{\\Rightarrow} \\alpha_n = \\alpha' \\quad (n \\ge 0)$$\n\n> **$*$** significa clausura reflexiva y transitiva, es decir, que la derivación se realiza en 0, 1 o más pasos, pero es solo para la definición formal. En los ejercicios se puede omitir.",
@@ -1543,6 +1637,7 @@
     {
       "id": "card_95",
       "slide_id": 95,
+      "type": "basic",
       "term": "Forma Sentencial",
       "front": "Forma Sentencial",
       "back": "**Forma Sentencial:** Dada una gramática $G$, cualquier cadena que se pueda derivar desde el axioma, se denomina **forma sentencial**.\n**Fórmula:**\n$$\\alpha \\text{ es forma sentencial} \\iff S \\overset{*}{\\underset{k_1,\\dots,k_n}{\\Rightarrow}} \\alpha$$\n\n> En cada derivación directa intermedia, la cabeza y el cuerpo son formas sentenciales.",
@@ -1552,6 +1647,7 @@
     {
       "id": "card_96",
       "slide_id": 96,
+      "type": "basic",
       "term": "Sentencia",
       "front": "Sentencia",
       "back": "**Sentencia:** Dada una gramática $G$, cualquier cadena compuesta solo por símbolos terminales y que se deriva desde el axioma, se denomina **sentencia**.\n**Fórmula:**\n$$w \\in \\Sigma^* \\text{ es sentencia} \\iff S \\overset{*}{\\underset{k_1,\\dots,k_n}{\\Rightarrow}} w$$\n\n> El cuerpo de la derivación final, formado solo por símbolos no terminales es la sentencia.",
@@ -1561,6 +1657,7 @@
     {
       "id": "card_97",
       "slide_id": 97,
+      "type": "basic",
       "term": "Lenguaje Generado por una Gramática ($L(G)$)",
       "front": "Lenguaje Generado por una Gramática ($L(G)$)",
       "back": "**Definición:** $L(G)$ es el lenguaje generado por la gramática $G = (N, \\Sigma, P, S)$, es decir, es el conjunto de todas las sentencias derivables a partir del axioma $S$:\n$$L(G) = \\{w \\in \\Sigma^* \\mid S \\overset{*}{\\underset{G}{\\Rightarrow}} w\\}$$",
@@ -1570,6 +1667,7 @@
     {
       "id": "card_98",
       "slide_id": 98,
+      "type": "basic",
       "term": "Lenguaje Inverso ($L^{-1}(G)$)",
       "front": "Lenguaje Inverso ($L^{-1}(G)$)",
       "back": "El **lenguaje inverso** $L^{-1}(G)$ de un lenguaje $L(G)$ es el conjunto formado por las cadenas reversas de $L(G)$, tal que para $w = a_1 a_2 \\dots a_n \\in L(G) \\implies w^{-1} = a_n \\dots a_2 a_1 \\in L^{-1}(G)$.",
@@ -1579,6 +1677,7 @@
     {
       "id": "card_99",
       "slide_id": 99,
+      "type": "basic",
       "term": "Gramáticas de lenguajes inversos",
       "front": "Gramáticas de lenguajes inversos",
       "back": "**Propiedad fundamental:** Si $L(G_1) = L^{-1}(G_2)$ con $L(G_1) \\neq L(G_2)$, las gramáticas $G_1$ y $G_2$ **no son gramáticas equivalentes** (generan lenguajes distintos, uno reverso del otro).\n\n> Si el lenguaje $G_1$ y el inverso de $G_2$ son iguales y que $G_1$ es distinto a $G_2$ (no son palíndromos) entonces sus gramáticas no pueden ser equivalentes.",
@@ -1588,6 +1687,7 @@
     {
       "id": "card_100",
       "slide_id": 100,
+      "type": "basic",
       "term": "Gramática de Estructura de Frase",
       "front": "Gramática de Estructura de Frase",
       "back": "**Definición:** Una gramática se dice que es **Gramática de estructura de frase** si en la cabeza de sus reglas de producción $P$ tienen partes invariantes a izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ a derivar:\n$$\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$$\n\n> La derivación parte de UN SÍMBOLO no terminal, pero puede haber más de uno y lo reescribe como una cadena que puede tener símbolos terminales y/o no terminales.",
@@ -1597,6 +1697,7 @@
     {
       "id": "card_101",
       "slide_id": 101,
+      "type": "basic",
       "term": "Casos especiales de reglas de producción",
       "front": "Casos especiales de reglas de producción",
       "back": "- **Regla no generativa:** $X \\to \\epsilon$ (cuando $\\alpha = \\beta = \\delta = \\epsilon$).\n\n> No genera otra forma sentencial o sentencia.\n\n- **Regla compresora:** $\\alpha X \\beta \\to \\alpha \\beta$ (cuando $\\delta = \\epsilon$).\n\n> La nueva forma sentencial tiene menor longitud que la forma sentencial anterior.",
@@ -1606,6 +1707,7 @@
     {
       "id": "card_102",
       "slide_id": 102,
+      "type": "basic",
       "term": "Contraejemplo de Gramática de Estructura de Frase",
       "front": "Contraejemplo de Gramática de Estructura de Frase",
       "back": "**Regla general GEF:** La regla $\\alpha X \\beta \\to \\alpha \\delta \\beta$ exige que la parte izquierda ($\\alpha$) y derecha ($\\beta$) del símbolo no terminal $X$ sean **invariantes** (no deben cambiar ni de lado ni de forma en el cuerpo).\n\n**Entonces para la regla $CB \\to BC$:**\n- **Si $X = C$:** Entonces $B$ debería permanecer invariante a la derecha, pero aparece a la izquierda. No es **GEF**.\n- **Si $X = B$:** Entonces $C$ debería permanecer invariante a la izquierda, pero aparece a la derecha. No es **GEF**.",
@@ -1615,6 +1717,7 @@
     {
       "id": "card_103",
       "slide_id": 103,
+      "type": "basic",
       "term": "Jerarquía de Chomsky: Clasificación General",
       "front": "Jerarquía de Chomsky: Clasificación General",
       "back": "Chomsky clasifica las gramáticas en cuatro niveles, en función de las restricciones aplicadas sobre la cabeza y el cuerpo de sus producciones:\n1.  **Tipo 0:** Gramáticas Irrestrictas o Recursivamente Enumerables.\n2.  **Tipo 1:** Gramáticas Dependientes del Contexto.\n3.  **Tipo 2:** Gramáticas Libres de Contexto.\n4.  **Tipo 3:** Gramáticas Regulares.\n**Relación de contención:** $\\text{Tipo } 3 \\subset \\text{Tipo } 2 \\subset \\text{Tipo } 1 \\subset \\text{Tipo } 0$.",
@@ -1624,6 +1727,7 @@
     {
       "id": "card_104",
       "slide_id": 104,
+      "type": "basic",
       "term": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "front": "Jerarquía: Gramática Tipo 0 (Irrestrictas)",
       "back": "**Gramática Tipo 0 (Irrestrictas / Recursivamente Enumerables):**\n**Definición (Restricciones):** Son tipo 0 si sus producciones tienen la forma $\\alpha X \\beta \\to \\delta$ con $X \\in N$ y $\\alpha,\\beta,\\delta \\in (N \\cup \\Sigma)^*$.\n\n> Si bien no hay restricciones sobre la cabeza o el cuerpo, se pide que haya al menos 1 símbolo no terminal en la cabeza y cualquier cosa en el cuerpo.",
@@ -1633,6 +1737,7 @@
     {
       "id": "card_105",
       "slide_id": 105,
+      "type": "basic",
       "term": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "front": "Jerarquía: Gramática Tipo 1 (Dependientes del Contexto)",
       "back": "**Gramática Tipo 1 (Dependientes del Contexto):**\n**Definición (Restricciones):** Son tipo 1 si sus producciones son de estructura de frase y no compresoras.\n- **GEF:** $\\alpha X \\beta \\to \\alpha \\delta \\beta \\quad (X \\in N \\quad \\text{y} \\quad \\alpha, \\beta, \\delta \\in (N \\cup \\Sigma)^*)$\n- **No compresora:** $X \\to \\delta$ con $\\delta \\ne \\epsilon$ (excepto $S \\to \\epsilon$)\n**Propiedad:** Para toda regla $\\alpha \\to \\beta$ se cumple $|\\alpha| \\le |\\beta|$ (excepto $S \\to \\epsilon$).\n\n> GEF: al menos un no terminal en la cabeza y las partes izquierda y derecha invariantes.\n> $S \\to \\epsilon$ es excepción a no compresora.",
@@ -1642,6 +1747,7 @@
     {
       "id": "card_106",
       "slide_id": 106,
+      "type": "basic",
       "term": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "front": "Jerarquía: Gramática Tipo 2 (Libres de Contexto)",
       "back": "**Gramática Tipo 2 (Libres de Contexto / Independientes del Contexto):**\n**Definición (Restricciones):** Son tipo 2 si sus producciones tienen estructura de frase y en la cabeza solo tiene un símbolo no terminal.\n- Por GEF: Se permite la no generativa ($S\\to\\epsilon$).\n- $X \\to \\alpha \\quad (X \\in N, \\alpha \\in (N \\cup \\Sigma)^*)$.\n\n> Se pierde la parte izquierda y/o derechas como invariantes de las GEF, ya que la cabeza es SOLO UN solo símbolo no terminal.\n> Aunque no impide las reglas no generativas, existe un teorema donde siempre existe una gramática equivalente, tal que si es tipo 2, es tipo 1.",
@@ -1651,6 +1757,7 @@
     {
       "id": "card_107",
       "slide_id": 107,
+      "type": "basic",
       "term": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "front": "Jerarquía: Gramática Tipo 3 (Regulares)",
       "back": "**Gramática Tipo 3 (Gramáticas Regulares):**\n**Definición (Restricciones):** Son tipo 3 si sus producciones tienen estructura de frase, un único símbolo terminal en el cuerpo y un posible símbolo no terminal (a izquierda o derecha), que determina la linealidad:\n- **Lineal por Derecha:** $X \\to x \\quad \\text{ó} \\quad X \\to xY \\quad (X, Y \\in N, x \\in \\Sigma)$\n- **Lineal por Izquierda:** $X \\to x \\quad \\text{ó} \\quad X \\to Yx \\quad (X, Y \\in N, x \\in \\Sigma)$\n\n> Es obligatorio que en el cuerpo aparezca un símbolo terminal, entonces $S\\to\\epsilon$ es excepción.",
@@ -1660,6 +1767,7 @@
     {
       "id": "card_108",
       "slide_id": 108,
+      "type": "basic",
       "term": "Impacto de la Regla no generativa ($S \\to \\epsilon$)",
       "front": "Impacto de la Regla no generativa ($S \\to \\epsilon$)",
       "back": "- GEF: Es la regla no generativa.\n- Tipo 0: Es una regla válida porque no hay restricciones de ningún tipo.\n- Tipo 1: Es la excepción a la no compresora.\n- Tipo 2: Se permite por definición general ($X \\to \\alpha$ permite que $\\alpha = \\epsilon$ para cualquier variable, no solo para $S$).\n- Tipo 3: Es la excepción a que el cuerpo debe contener un símbolo terminal.",
@@ -1669,6 +1777,7 @@
     {
       "id": "card_109",
       "slide_id": 109,
+      "type": "basic",
       "term": "Grafo Asociado a una Gramática Regular Lineal por Derecha",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Derecha",
       "back": "Dada una **gramática regular lineal por derecha** **($G_{LD} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> Los vértices son el conjunto de símbolos no terminales más el estado de aceptación ($\\epsilon$).\n> Las aristas se etiquetan con símbolos terminales y los símbolos no terminales definen que nodos son unidos por las aristas.",
@@ -1678,6 +1787,7 @@
     {
       "id": "card_110",
       "slide_id": 110,
+      "type": "basic",
       "term": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "front": "Grafo Asociado a una Gramática Regular Lineal por Izquierda",
       "back": "Dada una **gramática regular lineal por izquierda** **($G_{LI} = (N, \\Sigma, P, S)$)**, su **grafo asociado** es un grafo dirigido etiquetado $H = (N \\cup \\{\\epsilon\\}, R)$ (donde $N \\cup \\{\\epsilon\\}$ son los vértices y $R$ es el conjunto de aristas) y el vértice de aceptación es $\\epsilon$ (el cual se representa con un círculo doble).\n\n> La lectura por derecha y por izquierda es igual, mas allá que la producción sea $X -> xY$ o $X -> Yx$, se lee como **\"De X se puede llegar a Y por medio de x\"**.",
@@ -1687,6 +1797,7 @@
     {
       "id": "card_111",
       "slide_id": 111,
+      "type": "basic",
       "term": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "front": "Definición de Aristas del Grafo Asociado a una Gramática Regular",
       "back": "**Definición de Aristas:**\n1.  Si $S \\to \\epsilon \\in P \\implies$ Aristas etiquetadas con $\\epsilon$ de $S$ al nodo $\\epsilon$.\n2.  Si $X \\to x \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $\\epsilon$.\n3.  Para Derecha: Si $X \\to xY \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.\n4.  Para Izquierda: Si $X \\to Yx \\in P \\implies$ Aristas etiquetadas con $x$ de $X$ al nodo $Y$.",
@@ -1696,6 +1807,7 @@
     {
       "id": "card_112",
       "slide_id": 112,
+      "type": "basic",
       "term": "Árbol de Derivación (Árbol de Parser)",
       "front": "Árbol de Derivación (Árbol de Parser)",
       "back": "**Árbol de Derivación (Árbol de Parser):** Es la representación gráfica ordenada de la derivación de **una palabra** en una Gramática Tipo 2 o Tipo 3.\n**Raíz e internos:** Nodos etiquetados con símbolos no terminales que pertenecen a $N$.\n**Hojas:** Nodos etiquetados con símbolos terminales que pertenecen a $\\Sigma$ o con la cadena vacía $\\epsilon$.",
@@ -1705,6 +1817,7 @@
     {
       "id": "card_113",
       "slide_id": 113,
+      "type": "basic",
       "term": "Gramática Ambigua",
       "front": "Gramática Ambigua",
       "back": "**Gramática Ambigua:** Una gramática es ambigua si y sólo si existe al menos una palabra en su lenguaje que posee dos o más árboles de derivación diferentes.",
@@ -1714,6 +1827,7 @@
     {
       "id": "card_114",
       "slide_id": 114,
+      "type": "basic",
       "term": "Construcción del Árbol de Derivación",
       "front": "Construcción del Árbol de Derivación",
       "back": "Reglas algorítmicas de construcción:\n1.  **Raíz:** Se etiqueta con el axioma $S$ de la gramática.\n2.  **Expansión de producciones:** Para cada nodo etiquetado con un no terminal $A$, al aplicar la regla $A \\to Y_1 Y_2 \\dots Y_k$, se dibujan $k$ descendientes ordenados de izquierda a derecha etiquetados con $Y_1, \\dots, Y_k$.\n3.  **Hojas:** Los descendientes etiquetados con terminales o la cadena vacía $\\epsilon$ actúan como hojas (nodos terminales sin descendientes).\n4.  **Criterio de finalización:** El proceso concluye cuando todos los nodos hoja pertenecen a $\\Sigma \\cup \\{\\epsilon\\}$.",
@@ -1723,6 +1837,7 @@
     {
       "id": "card_115",
       "slide_id": 115,
+      "type": "basic",
       "term": "Lectura del Árbol de Derivación (Frontera)",
       "front": "Lectura del Árbol de Derivación (Frontera)",
       "back": "**Algoritmo de lectura:** Se realiza una búsqueda en profundidad del árbol (de izquierda a derecha por niveles).\n**Frontera (Resultado del árbol):** Sucesión de símbolos terminales que etiquetan las hojas recolectadas durante la búsqueda en profundidad.\n**Pertenencia:** La cadena obtenida representa la sentencia que pertenece al lenguaje $L(G)$.",
