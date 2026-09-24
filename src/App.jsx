@@ -6,7 +6,15 @@ import FlashCard from './components/FlashCard';
 import StudyNavigation from './components/StudyNavigation';
 import StudyDrawer from './components/StudyDrawer';
 import GuidedStudyBanner from './components/GuidedStudyBanner';
+import DeckStatsModal from './components/DeckStatsModal';
 import { getDefaultSRSState, calculateNextReview, isCardDue } from './utils/srsEngine';
+import { 
+  loadSubjectSRS, 
+  saveSubjectSRS, 
+  loadSubjectCardIndex, 
+  saveSubjectCardIndex, 
+  recordReviewEvent 
+} from './utils/storageManager';
 import './App.css';
 
 export default function App() {
@@ -69,29 +77,20 @@ export default function App() {
     return {};
   });
 
-  // Reload SRS data when subject changes
+  // Reload SRS data via storageManager when subject changes
   useEffect(() => {
     if (selectedSubjectId) {
-      try {
-        const saved = localStorage.getItem(`memocard_srs_${selectedSubjectId}`);
-        setSrsData(saved ? JSON.parse(saved) : {});
-      } catch {
-        setSrsData({});
-      }
+      setSrsData(loadSubjectSRS(selectedSubjectId));
     } else {
       setSrsData({});
     }
   }, [selectedSubjectId]);
 
-  // Persist SRS data
+  // Persist SRS data via storageManager
   const saveSRSData = useCallback((newData) => {
     setSrsData(newData);
     if (selectedSubjectId) {
-      try {
-        localStorage.setItem(`memocard_srs_${selectedSubjectId}`, JSON.stringify(newData));
-      } catch {
-        // Safe fallback for quota or private browsing exceptions
-      }
+      saveSubjectSRS(selectedSubjectId, newData);
     }
   }, [selectedSubjectId]);
 
@@ -135,28 +134,25 @@ export default function App() {
     return Object.values(themesMap);
   }, [subject, cards]);
 
-  // Card index within current subject (persisted per subject)
+  // Card index within current subject (persisted per subject via storageManager)
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   // Initialize or restore card index when subject changes
   useEffect(() => {
     if (selectedSubjectId && cards.length > 0) {
-      const savedIndexStr = localStorage.getItem(`memocard_card_idx_${selectedSubjectId}`);
-      if (savedIndexStr !== null) {
-        const savedIndex = parseInt(savedIndexStr, 10);
-        if (!isNaN(savedIndex) && savedIndex >= 0 && savedIndex < cards.length) {
-          setCurrentCardIndex(savedIndex);
-          return;
-        }
+      const savedIndex = loadSubjectCardIndex(selectedSubjectId);
+      if (savedIndex >= 0 && savedIndex < cards.length) {
+        setCurrentCardIndex(savedIndex);
+        return;
       }
       setCurrentCardIndex(0);
     }
   }, [selectedSubjectId, cards.length]);
 
-  // Persist current card index
+  // Persist current card index via storageManager
   useEffect(() => {
     if (selectedSubjectId) {
-      localStorage.setItem(`memocard_card_idx_${selectedSubjectId}`, String(currentCardIndex));
+      saveSubjectCardIndex(selectedSubjectId, currentCardIndex);
     }
   }, [selectedSubjectId, currentCardIndex]);
 
@@ -165,6 +161,9 @@ export default function App() {
 
   // Drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // Retention stats modal state
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
 
   const currentCard = activeDeckCards[currentCardIndex] || null;
   const currentThemeName = currentCard?.theme || 'General';
@@ -192,6 +191,11 @@ export default function App() {
     };
     saveSRSData(updatedData);
 
+    // Record review event for longitudinal retention statistics
+    if (selectedSubjectId) {
+      recordReviewEvent(selectedSubjectId, rating);
+    }
+
     setIsFlipped(false);
     if (srsOnlyDue) {
       if (currentCardIndex >= activeDeckCards.length - 1) {
@@ -202,7 +206,7 @@ export default function App() {
         setCurrentCardIndex(prev => prev + 1);
       }
     }
-  }, [currentCard, srsData, saveSRSData, srsOnlyDue, currentCardIndex, activeDeckCards.length, cards.length]);
+  }, [currentCard, srsData, saveSRSData, selectedSubjectId, srsOnlyDue, currentCardIndex, activeDeckCards.length, cards.length]);
 
   // Navigation handlers
   const handleSelectCard = useCallback((index) => {
@@ -336,6 +340,16 @@ export default function App() {
           </button>
 
           <button 
+            className="btn-stats-toggle"
+            onClick={() => setIsStatsOpen(true)}
+            aria-label="Ver estadísticas de retención y repaso"
+            title="Ver estadísticas de retención, rachas y distribución de tarjetas"
+          >
+            <span className="stats-toggle-icon">📊</span>
+            <span className="stats-toggle-label">Estadísticas</span>
+          </button>
+
+          <button 
             className="btn-toggle-drawer"
             onClick={() => setIsDrawerOpen(prev => !prev)}
             aria-label="Abrir panel de tarjetas"
@@ -427,6 +441,16 @@ export default function App() {
           handleSelectCard(idx);
           setIsDrawerOpen(false);
         }}
+      />
+
+      {/* Retention Analytics Modal */}
+      <DeckStatsModal
+        isOpen={isStatsOpen}
+        onClose={() => setIsStatsOpen(false)}
+        subjectTitle={subject.title}
+        subjectId={selectedSubjectId}
+        cards={cards}
+        srsData={srsData}
       />
     </div>
   );

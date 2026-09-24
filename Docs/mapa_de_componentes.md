@@ -57,6 +57,7 @@ graph TD
 - **[src/utils/answerValidator.js](../src/utils/answerValidator.js)**: Motor de normalización de respuestas (tildes, espacios, mayúsculas) y evaluación multi-variante con distancia de Levenshtein para tarjetas con input.
 - **[src/utils/characterDiff.js](../src/utils/characterDiff.js)**: Algoritmo de alineación LCS para diff de caracteres estilo Anki (verdes correctos, rojos tachados y faltantes).
 - **[src/utils/srsEngine.js](../src/utils/srsEngine.js)**: Motor de Repaso Espaciado con algoritmo SuperMemo-2 (SM-2), calibración dinámica de Factor de Facilidad (EF), cálculo de intervalos y previsualización de estimaciones.
+- **[src/utils/storageManager.js](../src/utils/storageManager.js)**: Gestor centralizado de persistencia offline (`localStorage` con fallback seguro), gestión de esquemas con namespace `memocard_v1:`, analítica de retención, rachas diarias y conteo de tarjetas maduras.
 - **[src/utils/markdownParser.jsx](../src/utils/markdownParser.jsx)**: Utilidades desacopladas de renderizado KaTeX y Markdown (`renderSlideLines`, `renderTextWithMathAndMarkdown`, `parseMarkdownText`).
 - **[src/components/SubjectSelector.jsx](../src/components/SubjectSelector.jsx)**: Vista inicial para seleccionar la materia de estudio.
 - **[src/components/FlashCard.jsx](../src/components/FlashCard.jsx)**: Tarjeta interactiva con giro 3D, soporte multimedia (`CardMedia`), badges de subtema y secuencia de derivación por pasos (`Paso X de Y`), e insignias de tags transversales.
@@ -66,6 +67,7 @@ graph TD
 - **[src/components/CardMedia.jsx](../src/components/CardMedia.jsx)**: Renderizado de recursos multimedia con modal lightbox de alta resolución, toolbar de control, zoom interactivo (1x a 4x), desplazamiento pan mediante arrastre GPU y atajos de teclado.
 - **[src/components/GuidedStudyBanner.jsx](../src/components/GuidedStudyBanner.jsx)**: Banner de modo aprendizaje guiado secuencial por temas con barra de progreso temática, checkpoints e invitación de avance al siguiente bloque.
 - **[src/components/SRSRatingBar.jsx](../src/components/SRSRatingBar.jsx)**: Barra interactiva de evaluación de calidad de recuerdo (Otra vez, Difícil, Bien, Fácil) con atajos de teclado numéricos (1, 2, 3, 4) y badges de intervalo estimado.
+- **[src/components/DeckStatsModal.jsx](../src/components/DeckStatsModal.jsx)**: Modal de métricas de retención, tarjetas maduras (&ge;21d), en aprendizaje y nuevas, racha diaria y desglose porcentual de evaluaciones.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con los 5 botones requeridos y atajos globales (`A`/`D` para tarjetas, `Shift+A`/`Shift+D` para temas, `R` para tema aleatorio y `Espacio` para revelación/flip).
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
 - **[src/App.css](../src/App.css)**: Estilos de componentes, layout, microinteracciones, tags y efectos 3D.
