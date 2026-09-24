@@ -105,13 +105,13 @@ export default function StudyNavigation({
           <span className="btn-icon">⏭️</span>
         </button>
 
-        {/* 5. Tema Aleatorio */}
+        {/* 5. Tarjeta Aleatoria (Circular y balanceada) */}
         <button
           type="button"
           className="study-nav-btn random-theme-btn"
           onClick={onRandomTheme}
-          title="Tema Aleatorio (Tecla R)"
-          aria-label="Tema Aleatorio"
+          title="Tarjeta Aleatoria (Tecla R)"
+          aria-label="Tarjeta Aleatoria"
         >
           <span className="btn-icon">🔀</span>
         </button>

@@ -17,6 +17,7 @@ import {
   saveSubjectCardIndex, 
   recordReviewEvent 
 } from './utils/storageManager';
+import { getNextBalancedRandomCardIndex } from './utils/randomBalancer';
 import './App.css';
 
 export default function App() {
@@ -333,14 +334,12 @@ export default function App() {
   }, [currentThemeIndex, themesList, handleSelectCard]);
 
   const handleRandomTheme = useCallback(() => {
-    if (themesList.length <= 1) return;
-    const otherThemes = themesList.filter((_, idx) => idx !== currentThemeIndex);
-    const randomIndex = Math.floor(Math.random() * otherThemes.length);
-    const randomTheme = otherThemes[randomIndex];
-    if (randomTheme && randomTheme.firstCardIndex >= 0) {
-      handleSelectCard(randomTheme.firstCardIndex);
-    }
-  }, [themesList, currentThemeIndex, handleSelectCard]);
+    /* Rationale: Uses circular session-weighted balancing across the entire active deck.
+       Ensures cards appear evenly without statistical clustering or reaching an un-clickable dead-end at the end of the deck. */
+    if (activeDeckCards.length <= 1) return;
+    const nextIdx = getNextBalancedRandomCardIndex(activeDeckCards, currentCardIndex, selectedSubjectId);
+    handleSelectCard(nextIdx);
+  }, [activeDeckCards, currentCardIndex, selectedSubjectId, handleSelectCard]);
 
   // If no subject selected, render SubjectSelector
   if (!selectedSubjectId || !subject) {
