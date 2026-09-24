@@ -197,6 +197,40 @@ export default function App() {
     localStorage.setItem('memocard_card_zoom', '1');
   }, []);
 
+  // Fullscreen state and cross-browser toggle
+  const [isFullscreen, setIsFullscreen] = useState(() => {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement);
+  });
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!(document.fullscreenElement || document.webkitFullscreenElement));
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const handleToggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen().catch(() => {});
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+  }, []);
+
   // Callback to merge and restore imported deck data
   const handleImportDeck = useCallback((importedData) => {
     if (!importedData) return;
@@ -401,6 +435,47 @@ export default function App() {
           >
             <span className="backup-toggle-icon">📦</span>
             <span className="backup-toggle-label">Respaldo</span>
+          </button>
+
+          <button 
+            type="button"
+            className={`btn-fullscreen-toggle ${isFullscreen ? 'active' : ''}`}
+            onClick={handleToggleFullscreen}
+            aria-label={isFullscreen ? "Salir de pantalla completa" : "Entrar a pantalla completa (ocultar barra de direcciones)"}
+            title={isFullscreen ? "Salir de pantalla completa" : "Pantalla completa (oculta la barra del navegador para máximo aprovechamiento)"}
+          >
+            {isFullscreen ? (
+              <svg 
+                viewBox="0 0 24 24" 
+                width="16" 
+                height="16" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                aria-hidden="true"
+                className="fullscreen-icon"
+              >
+                <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+              </svg>
+            ) : (
+              <svg 
+                viewBox="0 0 24 24" 
+                width="16" 
+                height="16" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                aria-hidden="true"
+                className="fullscreen-icon"
+              >
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            )}
+            <span className="fullscreen-toggle-label">{isFullscreen ? 'Normal' : 'Pantalla'}</span>
           </button>
 
           <button 

@@ -364,6 +364,40 @@
   font-size: 1rem;
 }
 
+.btn-fullscreen-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-smooth);
+}
+
+.btn-fullscreen-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.btn-fullscreen-toggle.active {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: #a78bfa;
+  color: #e0e7ff;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.fullscreen-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
 .btn-toggle-drawer {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border-color);
@@ -1572,7 +1606,8 @@ kbd {
   .btn-srs-toggle,
   .btn-mode-toggle,
   .btn-stats-toggle,
-  .btn-backup-toggle {
+  .btn-backup-toggle,
+  .btn-fullscreen-toggle {
     padding: 3px 8px;
     font-size: 0.75rem;
   }

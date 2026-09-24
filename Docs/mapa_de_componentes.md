@@ -107,6 +107,7 @@ graph TD
   - Indicador de la materia y pastilla del tema temático activo (`.active-theme-pill`).
   - Botón conmutador de tema (`.btn-contrast-toggle`): alternancia entre tema oscuro estándar y *Alto Contraste* (negro absoluto OLED, fórmulas KaTeX de alta nitidez e inversión selectiva de diagramas).
   - Botón selector de modo (`.btn-mode-toggle`): alternancia entre *⚡ Interactivo* (revelación progresiva y clozes clickeables) y *📖 Clásico* (degradación pasiva directa).
+  - Botón conmutador de pantalla completa (`.btn-fullscreen-toggle`): aprovecha el Fullscreen API y meta tags PWA en `index.html` para ocultar la barra de direcciones del navegador móvil en un solo toque.
   - Botón *☰ Temas y Cards* con contador `X/N` para abrir/cerrar el drawer.
 - **Barra de Progreso (`.study-progress-wrapper`)**:
   - Barra animada que refleja el porcentaje recorrido dentro del mazo.
