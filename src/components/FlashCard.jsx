@@ -5,6 +5,7 @@ import ClozeText from './ClozeText';
 import TypeAnswerBox from './TypeAnswerBox';
 import ImageOcclusion from './ImageOcclusion';
 import CardMedia from './CardMedia';
+import SRSRatingBar from './SRSRatingBar';
 
 /**
  * FlashCard Component
@@ -23,7 +24,9 @@ export default function FlashCard({
   onFlip, 
   currentIndex, 
   totalCards,
-  interactiveMode = true
+  interactiveMode = true,
+  cardSRSState,
+  onRateSRS
 }) {
   const [revealedClozeIds, setRevealedClozeIds] = useState([]);
 
@@ -283,11 +286,32 @@ export default function FlashCard({
             {card.type !== 'image_occlusion' && backMedia.map((asset, idx) => (
               <CardMedia key={`back-media-${idx}`} asset={asset} className="card-back-media" />
             ))}
+
+            {onRateSRS && (
+              <div 
+                className="card-srs-wrapper" 
+                onClick={(e) => e.stopPropagation()}
+                role="presentation"
+              >
+                <SRSRatingBar
+                  cardSRSState={cardSRSState}
+                  onRate={onRateSRS}
+                />
+              </div>
+            )}
           </div>
 
           <div className="card-footer">
             <span className="flip-hint">
-              <span className="flip-icon">↶</span> Haz clic para volver al frente
+              {onRateSRS ? (
+                <>
+                  <span className="flip-icon">📊</span> Califica con <kbd>1</kbd>-<kbd>4</kbd> para registrar y avanzar, o haz clic para voltear
+                </>
+              ) : (
+                <>
+                  <span className="flip-icon">↶</span> Haz clic para volver al frente
+                </>
+              )}
             </span>
           </div>
         </div>

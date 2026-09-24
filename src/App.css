@@ -2351,6 +2351,243 @@ kbd {
   border-color: #ffffff;
 }
 
+/* ==========================================================================
+   Spaced Repetition System (SRS) UI & Quality Rating Bar
+   ========================================================================== */
+.btn-srs-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-srs-toggle:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.btn-srs-toggle.active {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #f87171;
+  color: #fee2e2;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+}
+
+.srs-due-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #ef4444;
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.card-srs-wrapper {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.srs-rating-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.srs-rating-header {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.srs-rating-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.btn-srs-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn-srs-rating:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.srs-btn-shortcut {
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+.srs-btn-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.srs-btn-interval {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Rating variants */
+.rating-again {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+.rating-again:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.24);
+  border-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25);
+}
+
+.rating-hard {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
+}
+.rating-hard:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.24);
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.25);
+}
+
+.rating-good {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+.rating-good:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.24);
+  border-color: #10b981;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+.rating-easy {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+.rating-easy:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.24);
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+}
+
+/* SRS Completed State View */
+.srs-completed-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  max-width: 520px;
+  margin: 40px auto;
+  box-shadow: var(--shadow-card);
+}
+
+.srs-completed-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.srs-completed-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.srs-completed-msg {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.btn-srs-return-all {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn-srs-return-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+}
+
+/* High Contrast SRS adjustments */
+[data-theme="high-contrast"] .btn-srs-toggle.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+[data-theme="high-contrast"] .srs-due-badge {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+[data-theme="high-contrast"] .btn-srs-rating {
+  border: 2px solid #ffffff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="high-contrast"] .srs-completed-state {
+  border: 2px solid #ffffff;
+  background: #000000;
+}
+
+
 
 
 

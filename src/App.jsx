@@ -6,6 +6,7 @@ import FlashCard from './components/FlashCard';
 import StudyNavigation from './components/StudyNavigation';
 import StudyDrawer from './components/StudyDrawer';
 import GuidedStudyBanner from './components/GuidedStudyBanner';
+import { getDefaultSRSState, calculateNextReview, isCardDue } from './utils/srsEngine';
 import './App.css';
 
 export default function App() {
@@ -62,6 +63,51 @@ export default function App() {
   const cards = useMemo(() => {
     return normalizeAndExpandCards(subject?.data?.cards || []);
   }, [subject]);
+
+  // Spaced Repetition (SRS) data map per subject: { [cardId]: srsRecord }
+  const [srsData, setSrsData] = useState(() => {
+    return {};
+  });
+
+  // Reload SRS data when subject changes
+  useEffect(() => {
+    if (selectedSubjectId) {
+      try {
+        const saved = localStorage.getItem(`memocard_srs_${selectedSubjectId}`);
+        setSrsData(saved ? JSON.parse(saved) : {});
+      } catch {
+        setSrsData({});
+      }
+    } else {
+      setSrsData({});
+    }
+  }, [selectedSubjectId]);
+
+  // Persist SRS data
+  const saveSRSData = useCallback((newData) => {
+    setSrsData(newData);
+    if (selectedSubjectId) {
+      try {
+        localStorage.setItem(`memocard_srs_${selectedSubjectId}`, JSON.stringify(newData));
+      } catch {
+        // Safe fallback for quota or private browsing exceptions
+      }
+    }
+  }, [selectedSubjectId]);
+
+  // SRS filter mode: when true, only due cards are shown
+  const [srsOnlyDue, setSrsOnlyDue] = useState(false);
+
+  // Due cards count
+  const dueCardsCount = useMemo(() => {
+    return cards.filter(c => isCardDue(srsData[c.id])).length;
+  }, [cards, srsData]);
+
+  // Active study deck (either due cards only or all deck cards)
+  const activeDeckCards = useMemo(() => {
+    if (!srsOnlyDue) return cards;
+    return cards.filter(c => isCardDue(srsData[c.id]));
+  }, [cards, srsOnlyDue, srsData]);
 
   // Dynamic themes list with start index for sequential jumping
   const themesList = useMemo(() => {
@@ -120,7 +166,7 @@ export default function App() {
   // Drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const currentCard = cards[currentCardIndex] || null;
+  const currentCard = activeDeckCards[currentCardIndex] || null;
   const currentThemeName = currentCard?.theme || 'General';
   const currentThemeIndex = themesList.findIndex(t => t.name === currentThemeName);
 
@@ -134,6 +180,29 @@ export default function App() {
     const idx = cardsInCurrentTheme.findIndex(c => c.id === currentCard.id);
     return idx >= 0 ? idx + 1 : 1;
   }, [cardsInCurrentTheme, currentCard]);
+
+  // SRS rating handler: calculates SM-2 progression, stores update, and advances card
+  const handleRateCard = useCallback((rating) => {
+    if (!currentCard) return;
+    const currentCardSRS = srsData[currentCard.id] || getDefaultSRSState();
+    const updatedRecord = calculateNextReview(currentCardSRS, rating);
+    const updatedData = {
+      ...srsData,
+      [currentCard.id]: updatedRecord
+    };
+    saveSRSData(updatedData);
+
+    setIsFlipped(false);
+    if (srsOnlyDue) {
+      if (currentCardIndex >= activeDeckCards.length - 1) {
+        setCurrentCardIndex(0);
+      }
+    } else {
+      if (currentCardIndex < cards.length - 1) {
+        setCurrentCardIndex(prev => prev + 1);
+      }
+    }
+  }, [currentCard, srsData, saveSRSData, srsOnlyDue, currentCardIndex, activeDeckCards.length, cards.length]);
 
   // Navigation handlers
   const handleSelectCard = useCallback((index) => {
@@ -242,6 +311,21 @@ export default function App() {
           </button>
 
           <button 
+            className={`btn-srs-toggle ${srsOnlyDue ? 'active' : ''}`}
+            onClick={() => {
+              setSrsOnlyDue(prev => !prev);
+              setCurrentCardIndex(0);
+              setIsFlipped(false);
+            }}
+            aria-label="Alternar filtro de repaso espaciado para tarjetas pendientes hoy"
+            title={srsOnlyDue ? "Filtro SRS activo (Solo tarjetas pendientes). Clic para volver a ver todo el mazo" : `Activar sesión de Repaso Espaciado (${dueCardsCount} pendientes hoy)`}
+          >
+            <span className="srs-toggle-icon">🎯</span>
+            <span className="srs-toggle-label">SRS</span>
+            <span className="srs-due-badge">{dueCardsCount}</span>
+          </button>
+
+          <button 
             className={`btn-mode-toggle ${interactiveMode ? 'interactive' : 'classic'}`}
             onClick={() => setInteractiveMode(prev => !prev)}
             aria-label={interactiveMode ? "Modo interactivo activo. Cambiar a modo clásico pasivo" : "Modo clásico activo. Cambiar a modo interactivo"}
@@ -285,28 +369,51 @@ export default function App() {
 
       {/* Main Study Arena */}
       <main className="study-arena">
-        <div className="card-and-controls-wrapper">
-          <FlashCard
-            card={currentCard}
-            isFlipped={isFlipped}
-            onFlip={() => setIsFlipped(f => !f)}
-            currentIndex={currentCardIndex}
-            totalCards={cards.length}
-            interactiveMode={interactiveMode}
-          />
+        {srsOnlyDue && activeDeckCards.length === 0 ? (
+          <div className="srs-completed-state">
+            <span className="srs-completed-icon">🎉</span>
+            <h2 className="srs-completed-title">¡Mazo al día!</h2>
+            <p className="srs-completed-msg">
+              Has repasado todas las tarjetas programadas para hoy según el algoritmo SM-2.
+            </p>
+            <button
+              type="button"
+              className="btn-srs-return-all"
+              onClick={() => {
+                setSrsOnlyDue(false);
+                setCurrentCardIndex(0);
+                setIsFlipped(false);
+              }}
+            >
+              Explorar todo el mazo libremente
+            </button>
+          </div>
+        ) : (
+          <div className="card-and-controls-wrapper">
+            <FlashCard
+              card={currentCard}
+              isFlipped={isFlipped}
+              onFlip={() => setIsFlipped(f => !f)}
+              currentIndex={currentCardIndex}
+              totalCards={activeDeckCards.length}
+              interactiveMode={interactiveMode}
+              cardSRSState={currentCard ? srsData[currentCard.id] : null}
+              onRateSRS={handleRateCard}
+            />
 
-          <StudyNavigation
-            onPrevTheme={handlePrevTheme}
-            onPrevCard={handlePrevCard}
-            onNextCard={handleNextCard}
-            onNextTheme={handleNextTheme}
-            onRandomTheme={handleRandomTheme}
-            canPrevTheme={currentThemeIndex > 0}
-            canPrevCard={currentCardIndex > 0}
-            canNextCard={currentCardIndex < cards.length - 1}
-            canNextTheme={currentThemeIndex >= 0 && currentThemeIndex < themesList.length - 1}
-          />
-        </div>
+            <StudyNavigation
+              onPrevTheme={handlePrevTheme}
+              onPrevCard={handlePrevCard}
+              onNextCard={handleNextCard}
+              onNextTheme={handleNextTheme}
+              onRandomTheme={handleRandomTheme}
+              canPrevTheme={currentThemeIndex > 0}
+              canPrevCard={currentCardIndex > 0}
+              canNextCard={currentCardIndex < activeDeckCards.length - 1}
+              canNextTheme={currentThemeIndex >= 0 && currentThemeIndex < themesList.length - 1}
+            />
+          </div>
+        )}
       </main>
 
       {/* Study Drawer Sidebar */}

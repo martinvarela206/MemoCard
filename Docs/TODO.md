@@ -10,8 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 6. 🧠 Algoritmo de Estudio & Navegación (Futuras Fases Anki)
-- [ ] **Modo Repaso Espaciado (SRS):**
-  - Implementación inicial de algoritmo **SM-2** o **FSRS** (intervalos, factor de facilidad, botones: *Otra vez*, *Difícil*, *Bien*, *Fácil*).
 - [ ] **Persistencia Local:**
   - Almacenar progreso, estadísticas de aciertos y estados de repaso en `localStorage` o `IndexedDB` para funcionamiento 100% offline.
 - [ ] **Exportación / Importación:**
