@@ -2,8 +2,6 @@
 
 ## 📱 Ergonomía, Layout y Navegación en Mobile Portrait
 
-- [ ] **Item 3: Adaptación vertical del formulario input en portrait:**
-  - Configurar `.type-input-group` en portrait para que el botón "Comprobar" se sitúe debajo del input a ancho completo, evitando desbordamientos laterales.
 - [ ] **Item 4: Contención de imágenes de oclusión contra desbordamiento:**
   - Ajustar el tamaño máximo de `.occlusion-base-image` y `.image-occlusion-viewport` en pantallas móviles para que el esquema encaje dentro de la tarjeta sin desbordar su borde inferior.
 - [ ] **Item 5: Contención del panel de diff y corrección en tarjetas input:**

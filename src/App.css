@@ -1479,6 +1479,31 @@ kbd {
   .drawer-card-item {
     padding: 10px 12px;
   }
+
+  /* Rationale: In portrait orientation on mobile devices, horizontally inline text inputs
+     and submit buttons cause severe horizontal overflow and button clipping (especially when the
+     on-screen virtual keyboard is active). Stacking them vertically with full width provides natural
+     tap ergonomics, avoids horizontal scroll/overflow, and keeps landscape row layout intact. */
+  .type-input-group {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .type-answer-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+
+  .btn-submit-answer {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+    text-align: center;
+  }
 }
 
 /* Extra small mobile phones (max-width: 420px) */
@@ -1765,6 +1790,24 @@ kbd {
   .drawer-card-item {
     padding: 6px 10px;
     font-size: 0.8rem;
+  }
+
+  /* Type Input in Landscape: retain compact inline row */
+  .type-input-group {
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    gap: 8px;
+  }
+
+  .type-answer-input {
+    width: auto;
+    padding: 6px 12px;
+  }
+
+  .btn-submit-answer {
+    width: auto;
+    padding: 6px 14px;
   }
 }
 
