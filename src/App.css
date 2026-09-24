@@ -1504,6 +1504,34 @@ kbd {
     font-size: 0.95rem;
     text-align: center;
   }
+
+  /* Rationale: On mobile portrait screens, image occlusion schematics must be constrained in height
+     (clamp(140px, 24vh, 210px)) so the title, occlusion toolbar, and diagram fit comfortably inside
+     the front face of the card without overflowing past the card boundary into navigation controls.
+     The SVG overlay remains 100% locked to the aspect-ratio-scaled image. */
+  .image-occlusion-wrapper {
+    margin-top: 8px;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .occlusion-toolbar {
+    padding: 0;
+    gap: 6px;
+  }
+
+  .occlusion-mode-tag,
+  .btn-occlusion-toggle-all {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+
+  .occlusion-base-image {
+    max-height: clamp(140px, 24vh, 210px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
 }
 
 /* Extra small mobile phones (max-width: 420px) */
