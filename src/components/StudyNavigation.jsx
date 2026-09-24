@@ -17,19 +17,24 @@ export default function StudyNavigation({
       // Don't trigger if user is focusing an input or textarea
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
 
-      if (e.shiftKey && (e.key === 'ArrowLeft' || e.key === 'Left')) {
+      const key = e.key.toLowerCase();
+
+      // Theme Navigation (Shift + A or Shift + Left / Right or Shift + D)
+      if (e.shiftKey && (key === 'a' || e.key === 'ArrowLeft' || e.key === 'Left')) {
         e.preventDefault();
         if (canPrevTheme) onPrevTheme();
-      } else if (e.shiftKey && (e.key === 'ArrowRight' || e.key === 'Right')) {
+      } else if (e.shiftKey && (key === 'd' || e.key === 'ArrowRight' || e.key === 'Right')) {
         e.preventDefault();
         if (canNextTheme) onNextTheme();
-      } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+      } 
+      // Card Navigation (A / Left Arrow, D / Right Arrow)
+      else if (!e.shiftKey && (key === 'a' || e.key === 'ArrowLeft' || e.key === 'Left')) {
         e.preventDefault();
         if (canPrevCard) onPrevCard();
-      } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+      } else if (!e.shiftKey && (key === 'd' || e.key === 'ArrowRight' || e.key === 'Right')) {
         e.preventDefault();
         if (canNextCard) onNextCard();
-      } else if (e.key === 'r' || e.key === 'R') {
+      } else if (key === 'r') {
         e.preventDefault();
         onRandomTheme();
       }
@@ -57,7 +62,7 @@ export default function StudyNavigation({
           className="study-nav-btn theme-nav-btn"
           onClick={onPrevTheme}
           disabled={!canPrevTheme}
-          title="Saltar a la primera tarjeta del tema anterior (Shift + Flecha Izq)"
+          title="Saltar a la primera tarjeta del tema anterior (Shift + A o Shift + ←)"
         >
           <span className="btn-icon">⏮️</span>
           <span className="btn-text">Tema Anterior</span>
@@ -68,7 +73,7 @@ export default function StudyNavigation({
           className="study-nav-btn card-nav-btn"
           onClick={onPrevCard}
           disabled={!canPrevCard}
-          title="Tarjeta anterior (Flecha Izquierda)"
+          title="Tarjeta anterior (Tecla A o ←)"
         >
           <span className="btn-icon">◀️</span>
           <span className="btn-text">Anterior</span>
@@ -79,7 +84,7 @@ export default function StudyNavigation({
           className="study-nav-btn card-nav-btn primary"
           onClick={onNextCard}
           disabled={!canNextCard}
-          title="Tarjeta siguiente (Flecha Derecha)"
+          title="Tarjeta siguiente (Tecla D o →)"
         >
           <span className="btn-text">Siguiente</span>
           <span className="btn-icon">▶️</span>
@@ -90,7 +95,7 @@ export default function StudyNavigation({
           className="study-nav-btn theme-nav-btn"
           onClick={onNextTheme}
           disabled={!canNextTheme}
-          title="Saltar a la primera tarjeta del tema siguiente (Shift + Flecha Der)"
+          title="Saltar a la primera tarjeta del tema siguiente (Shift + D o Shift + →)"
         >
           <span className="btn-text">Tema Siguiente</span>
           <span className="btn-icon">⏭️</span>

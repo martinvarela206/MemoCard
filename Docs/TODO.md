@@ -20,16 +20,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 7. Control por teclado
-
-- espacio: revela la card (campos ocultos, valida inputs, gira la card, etc), o la vuelve a ocultar.
-- A: card anterior
-- shift+A: tema anterior
-- D: card siguiente
-- shift+D: tema siguiente.
-
----
-
 ## 💡 Sugerencias Clave de Diseño y Arquitectura
 
 1. **Evitar conflictos de sintaxis entre LaTeX y Cloze:**

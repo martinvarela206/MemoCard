@@ -88,6 +88,19 @@ export default function FlashCard({
     }
   }, [interactiveMode, isFlipped, activeClozeTokens, revealedClozeIds, handleToggleCloze, onFlip]);
 
+  // Global spacebar and keyboard shortcut listener for card interaction
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
+      if (e.key === ' ' || (/^[1-9]$/.test(e.key) && interactiveMode)) {
+        handleKeyDown(e);
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [handleKeyDown, interactiveMode]);
+
   const displayBack = useMemo(() => {
     if (!card) return '';
     const raw = card.back || '';
