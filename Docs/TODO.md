@@ -2,8 +2,6 @@
 
 ## 📱 Ergonomía y Optimización de Pantalla en Modo Landscape
 
-- [ ] **Disposición vertical de navegación a la derecha en landscape:**
-  - Reubicar la botonera de navegación a la derecha de la card en orientación horizontal, manteniéndola abajo en portrait.
 - [ ] **Reducción de márgenes y paddings verticales en landscape:**
   - Ajustar espacios excesivos entre topbar, barra de progreso y arena de estudio en modo landscape.
 - [ ] **Controles de zoom de contenido y escalado adaptativo:**
