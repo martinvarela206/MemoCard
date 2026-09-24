@@ -26,7 +26,8 @@ export default function FlashCard({
   totalCards,
   interactiveMode = true,
   cardSRSState,
-  onRateSRS
+  onRateSRS,
+  zoomLevel = 1
 }) {
   const [revealedClozeIds, setRevealedClozeIds] = useState([]);
 
@@ -121,6 +122,7 @@ export default function FlashCard({
   return (
     <div 
       className="card-perspective" 
+      style={{ '--card-zoom': zoomLevel }}
       onClick={onFlip}
       role="button"
       tabIndex={0}

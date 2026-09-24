@@ -626,7 +626,7 @@
 
 .card-term {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: calc(2.2rem * var(--card-zoom, 1));
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.35;
@@ -646,7 +646,7 @@
 .card-answer {
   text-align: left;
   width: 100%;
-  font-size: 1.05rem;
+  font-size: calc(1.05rem * var(--card-zoom, 1));
   color: var(--text-primary);
   line-height: 1.6;
 }
@@ -686,6 +686,51 @@ kbd {
   padding: 2px 6px;
   font-size: 0.75rem;
   color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Card Content Zoom & Scaling Controls Toolbar
+   ========================================================================== */
+.card-zoom-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.btn-zoom-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-zoom-action:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-zoom-action:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-zoom-action.active {
+  border-color: rgba(139, 92, 246, 0.5);
+  color: var(--primary-light, #a78bfa);
 }
 
 /* ==========================================================================
@@ -1605,7 +1650,7 @@ kbd {
   }
 
   .card-term {
-    font-size: clamp(1.05rem, 2.6vw, 1.4rem);
+    font-size: calc(clamp(1.05rem, 2.6vw, 1.4rem) * var(--card-zoom, 1));
     line-height: 1.25;
     max-width: 95%;
   }
@@ -1616,8 +1661,8 @@ kbd {
   }
 
   .card-answer {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: calc(0.88rem * var(--card-zoom, 1));
+    line-height: 1.35;
   }
 
   .card-answer p {
@@ -1626,6 +1671,27 @@ kbd {
 
   .card-answer ul, .card-answer ol {
     margin-bottom: 6px;
+  }
+
+  /* Zoom Controls in Landscape: Vertical strip on the left side */
+  .card-zoom-controls {
+    width: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+  }
+
+  .btn-zoom-action {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border-radius: 12px;
   }
 
   /* Navigation Bar in Landscape: Vertical strip on the right side */

@@ -41,6 +41,7 @@ graph TD
     Components --> SubjSel["SubjectSelector.jsx"]
     Components --> Drawer["StudyDrawer.jsx"]
     Components --> Card["FlashCard.jsx"]
+    Components --> Zoom["CardZoomControls.jsx"]
     Components --> Nav["StudyNavigation.jsx"]
     
     Data --> subjects_js["subjects.js"]
@@ -69,6 +70,7 @@ graph TD
 - **[src/components/SRSRatingBar.jsx](../src/components/SRSRatingBar.jsx)**: Barra interactiva de evaluación de calidad de recuerdo (Otra vez, Difícil, Bien, Fácil) con atajos de teclado numéricos (1, 2, 3, 4) y badges de intervalo estimado.
 - **[src/components/DeckStatsModal.jsx](../src/components/DeckStatsModal.jsx)**: Modal de métricas de retención, tarjetas maduras (&ge;21d), en aprendizaje y nuevas, racha diaria y desglose porcentual de evaluaciones.
 - **[src/components/DeckExportImportModal.jsx](../src/components/DeckExportImportModal.jsx)**: Modal para exportación portable de mazos en formato JSON (tarjetas, diapositivas y metadatos SRS) e importación/restauración offline.
+- **[src/components/CardZoomControls.jsx](../src/components/CardZoomControls.jsx)**: Barra compacta de controles de zoom con 3 botones iconificados SVG (lupa +, lupa 1:1, lupa -) para escalado adaptativo de texto y fórmulas matemáticas KaTeX (`--card-zoom`), previniendo scroll vertical innecesario. Dispuesta a la izquierda en landscape.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con 5 botones iconificados sin texto (⏮️, ◀️, ▶️, ⏭️, 🔀), atajos globales (`A`/`D` para tarjetas, `Shift+A`/`Shift+D` para temas, `R` para tema aleatorio), orientación vertical a la derecha en modo landscape y horizontal inferior en modo portrait.
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.
 - **[src/App.css](../src/App.css)**: Estilos de componentes, layout responsivo optimizado para landscape móvil (reducción de márgenes/paddings, barra superior ultracompacta y altura maximizada), microinteracciones y efectos 3D.

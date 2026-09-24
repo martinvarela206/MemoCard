@@ -8,6 +8,7 @@ import StudyDrawer from './components/StudyDrawer';
 import GuidedStudyBanner from './components/GuidedStudyBanner';
 import DeckStatsModal from './components/DeckStatsModal';
 import DeckExportImportModal from './components/DeckExportImportModal';
+import CardZoomControls from './components/CardZoomControls';
 import { getDefaultSRSState, calculateNextReview, isCardDue } from './utils/srsEngine';
 import { 
   loadSubjectSRS, 
@@ -168,6 +169,33 @@ export default function App() {
 
   // Deck export/import backup modal state
   const [isBackupOpen, setIsBackupOpen] = useState(false);
+
+  // Card content zoom level (persisted)
+  const [cardZoomLevel, setCardZoomLevel] = useState(() => {
+    const saved = localStorage.getItem('memocard_card_zoom');
+    return saved ? parseFloat(saved) : 1;
+  });
+
+  const handleZoomIn = useCallback(() => {
+    setCardZoomLevel(prev => {
+      const next = Math.min(1.5, Math.round((prev + 0.1) * 10) / 10);
+      localStorage.setItem('memocard_card_zoom', String(next));
+      return next;
+    });
+  }, []);
+
+  const handleZoomOut = useCallback(() => {
+    setCardZoomLevel(prev => {
+      const next = Math.max(0.7, Math.round((prev - 0.1) * 10) / 10);
+      localStorage.setItem('memocard_card_zoom', String(next));
+      return next;
+    });
+  }, []);
+
+  const handleZoomReset = useCallback(() => {
+    setCardZoomLevel(1);
+    localStorage.setItem('memocard_card_zoom', '1');
+  }, []);
 
   // Callback to merge and restore imported deck data
   const handleImportDeck = useCallback((importedData) => {
@@ -430,6 +458,13 @@ export default function App() {
           </div>
         ) : (
           <div className="card-and-controls-wrapper">
+            <CardZoomControls
+              zoomLevel={cardZoomLevel}
+              onZoomIn={handleZoomIn}
+              onZoomOut={handleZoomOut}
+              onZoomReset={handleZoomReset}
+            />
+
             <FlashCard
               card={currentCard}
               isFlipped={isFlipped}
@@ -439,6 +474,7 @@ export default function App() {
               interactiveMode={interactiveMode}
               cardSRSState={currentCard ? srsData[currentCard.id] : null}
               onRateSRS={handleRateCard}
+              zoomLevel={cardZoomLevel}
             />
 
             <StudyNavigation

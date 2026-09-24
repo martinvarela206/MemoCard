@@ -40,6 +40,11 @@ This file contains the general software engineering, architectural standards, an
         - **`project-rules.md`**: Project-specific architecture, packaging/build artifacts, proprietary or companion file metadata isolation, domain-specific component parity, and localized engineering constraints.
      3. **Persist Cleanly**: Insert the rule into the chosen file under its logical section with clear technical justification, avoiding duplicate or conflicting instructions.
 
+6. **Untouchable / Restricted Files Isolation**:
+   - The file `Docs/DONT READ ME.md` (and any file bearing explicit 'DONT READ' or do-not-touch user instructions) is strictly off-limits.
+   - Never read, view, open, parse, edit, modify, delete, stage, or commit this file under any circumstance.
+   - Ignore its existence completely during tool operations, globbing, searches, cleanups, and git operations.
+
 ---
 
 ## Universal Software Engineering & Architectural Principles
