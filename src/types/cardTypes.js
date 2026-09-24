@@ -175,7 +175,9 @@ export function normalizeCard(rawCard, fallbackId = 1) {
     back,
     context: rawCard.context || null,
     // Polymorphic extended properties with safe defaults
-    answers: Array.isArray(rawCard.answers) ? rawCard.answers : [],
+    answers: Array.isArray(rawCard.answers) 
+      ? rawCard.answers.filter(a => typeof a === 'string') 
+      : (typeof rawCard.answer === 'string' && rawCard.answer.length > 0 ? [rawCard.answer] : []),
     image: primaryImage,
     masks: Array.isArray(rawCard.masks) ? rawCard.masks : [],
     mode: rawCard.mode || (inferredType === CARD_TYPES.IMAGE_OCCLUSION ? 'hide_all_guess_one' : null),

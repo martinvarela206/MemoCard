@@ -54,6 +54,7 @@ graph TD
 - **[src/types/cardTypes.js](../src/types/cardTypes.js)**: Tipado base, tipos de tarjeta polimórficos (`basic`, `cloze`, `input`, `image_occlusion`), metadatos de subtema, tags y secuencia de derivación.
 - **[src/utils/clozeParser.js](../src/utils/clozeParser.js)**: Parser regex y AST de sintaxis Anki (`{{c1::texto::pista}}`), soporte de clozes múltiples idénticos (revelación conjunta) y disjuntos (generación de sub-tarjetas `expandClozeCards`).
 - **[src/utils/mediaResolver.js](../src/utils/mediaResolver.js)**: Resuelve rutas de imágenes, audio, video y diagramas locales/remotos.
+- **[src/utils/answerValidator.js](../src/utils/answerValidator.js)**: Motor de normalización de respuestas (tildes, espacios, mayúsculas) y evaluación multi-variante con distancia de Levenshtein para tarjetas con input.
 - **[src/utils/markdownParser.jsx](../src/utils/markdownParser.jsx)**: Utilidades desacopladas de renderizado KaTeX y Markdown (`renderSlideLines`, `renderTextWithMathAndMarkdown`, `parseMarkdownText`).
 - **[src/components/SubjectSelector.jsx](../src/components/SubjectSelector.jsx)**: Vista inicial para seleccionar la materia de estudio.
 - **[src/components/FlashCard.jsx](../src/components/FlashCard.jsx)**: Tarjeta interactiva con giro 3D, soporte multimedia (`CardMedia`), badges de subtema y secuencia de derivación por pasos (`Paso X de Y`), e insignias de tags transversales.

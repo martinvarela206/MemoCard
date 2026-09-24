@@ -10,9 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 3. ⌨️ Cards Interactivas con Input de Texto (Type-in-the-Answer)
-- [ ] **Mapeo de respuestas aceptadas:**
-  - Soporte en JSON para variantes válidas: `answers: ["Sigma*", "Σ*", "\\Sigma^*"]`.
-  - Normalización de strings: trim de espacios, indiferencia de mayúsculas/minúsculas opcional, normalización de acentos/diacríticos.
 - [ ] **Módulo de corrección visual estilo Anki:**
   - Comparación de caracteres (Diff visual):
     - Caracteres correctos en verde.
