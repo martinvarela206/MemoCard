@@ -97,6 +97,38 @@ export function normalizeCardMedia(rawCard) {
 }
 
 /**
+ * Normalizes image occlusion mask definitions.
+ * Ensures coordinates are validated floating point numbers clamped between 0 and 100 percent.
+ *
+ * @param {Array<Object>} masks Raw masks list
+ * @returns {Array<Object>} Normalized masks
+ */
+export function normalizeOcclusionMasks(masks) {
+  if (!Array.isArray(masks)) return [];
+  return masks.map((m, idx) => {
+    if (!m || typeof m !== 'object') return null;
+    const parsePercent = (val) => {
+      if (typeof val === 'number') return Math.max(0, Math.min(100, val));
+      if (typeof val === 'string') {
+        const num = parseFloat(val.replace('%', ''));
+        return isNaN(num) ? 0 : Math.max(0, Math.min(100, num));
+      }
+      return 0;
+    };
+
+    return {
+      id: m.id ? String(m.id) : `mask_${idx + 1}`,
+      x: parsePercent(m.x),
+      y: parsePercent(m.y),
+      width: parsePercent(m.width),
+      height: parsePercent(m.height),
+      label: typeof m.label === 'string' ? m.label : '',
+      isTarget: Boolean(m.isTarget || m.target)
+    };
+  }).filter(Boolean);
+}
+
+/**
  * Normalizes any card object, guaranteeing retroactive compatibility with v1 schema.
  * If a card lacks a 'type' property, it is automatically assigned 'basic'.
  *
@@ -129,14 +161,17 @@ export function normalizeCard(rawCard, fallbackId = 1) {
   const back = typeof rawCard.back === 'string' ? rawCard.back : '';
   const media = normalizeCardMedia(rawCard);
   const primaryImage = media.length > 0 ? media[0].src : (rawCard.image || null);
+  const masks = normalizeOcclusionMasks(rawCard.masks);
 
-  // Automatically infer 'cloze' type if cloze deletion markup is present and type was default 'basic'
+  // Automatically infer card type
   let inferredType = rawCard.type && Object.values(CARD_TYPES).includes(rawCard.type)
     ? rawCard.type
     : CARD_TYPES.BASIC;
 
   if (inferredType === CARD_TYPES.BASIC) {
-    if (hasClozeSyntax(front) || hasClozeSyntax(term) || hasClozeSyntax(back)) {
+    if (masks.length > 0) {
+      inferredType = CARD_TYPES.IMAGE_OCCLUSION;
+    } else if (hasClozeSyntax(front) || hasClozeSyntax(term) || hasClozeSyntax(back)) {
       inferredType = CARD_TYPES.CLOZE;
     }
   }
@@ -179,7 +214,7 @@ export function normalizeCard(rawCard, fallbackId = 1) {
       ? rawCard.answers.filter(a => typeof a === 'string') 
       : (typeof rawCard.answer === 'string' && rawCard.answer.length > 0 ? [rawCard.answer] : []),
     image: primaryImage,
-    masks: Array.isArray(rawCard.masks) ? rawCard.masks : [],
+    masks,
     mode: rawCard.mode || (inferredType === CARD_TYPES.IMAGE_OCCLUSION ? 'hide_all_guess_one' : null),
     media
   };

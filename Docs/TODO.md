@@ -9,19 +9,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 
 ---
 
-## 4. 🫀 Oclusión de Imágenes (Image Occlusion) — Crucial para Anatomía
-- [ ] **Estructura JSON de oclusión:**
-  - Definir campos: `image` (URL/path), `mode` (`hide_all_guess_one` o `hide_one_guess_one`).
-  - Definir arreglo `masks`: objetos con `id`, `x`, `y`, `width`, `height` (coordenadas relativas en porcentaje 0-100%) y `label`.
-- [ ] **Canvas / SVG Overlay responsivo:**
-  - Renderizar capas vectoriales (`<svg>` con elementos `<rect>`) escaladas porcentualmente sobre la imagen para adaptarse a cualquier resolución o pantalla móvil.
-- [ ] **Lógica de estudio de oclusión:**
-  - Clic en una máscara para alternar entre visible/oculta.
-  - Botón *"Revelar todas"* para repaso de contexto general anatómico.
-  - Modo fallback: la cara frontal muestra todas las cajas de oclusión; la trasera muestra la imagen sin ninguna máscara.
-
----
-
 ## 5. ⚙️ Renderizado Híbrido: Markdown + KaTeX / MathJax + Medios
 - [ ] **Aislamiento de renderizado:**
   - Asegurar que el parser de Markdown no rompa delimitadores de KaTeX (`$..$`, `$$..$$`).

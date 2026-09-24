@@ -61,6 +61,7 @@ graph TD
 - **[src/components/FlashCard.jsx](../src/components/FlashCard.jsx)**: Tarjeta interactiva con giro 3D, soporte multimedia (`CardMedia`), badges de subtema y secuencia de derivación por pasos (`Paso X de Y`), e insignias de tags transversales.
 - **[src/components/ClozeText.jsx](../src/components/ClozeText.jsx)**: Renderizador interactivo de texto con clozes mediante píldoras censuradas interactivas, alternancia de visibilidad individual y soporte matemático KaTeX.
 - **[src/components/TypeAnswerBox.jsx](../src/components/TypeAnswerBox.jsx)**: Módulo de entrada de texto interactivo con aislamiento de atajos de teclado, validación en tiempo real, desglose visual de diff y degradación a modo pasivo.
+- **[src/components/ImageOcclusion.jsx](../src/components/ImageOcclusion.jsx)**: Módulo de oclusión de imágenes para esquemas y anatomía con overlay SVG responsivo, coordenadas porcentuales y alternancia individual de máscaras.
 - **[src/components/CardMedia.jsx](../src/components/CardMedia.jsx)**: Renderizado de recursos multimedia con zoom en modal lightbox y pie de figura.
 - **[src/components/StudyNavigation.jsx](../src/components/StudyNavigation.jsx)**: Panel de control con los 5 botones requeridos (Tema Ant., Card Ant., Card Sig., Tema Sig., Tema Aleatorio) y atajos de teclado.
 - **[src/components/StudyDrawer.jsx](../src/components/StudyDrawer.jsx)**: Drawer lateral con acordeón temático, barra de filtro transversal por tags (`#definicion`, `#examen`), insignias de subtema y secuencias de derivación.

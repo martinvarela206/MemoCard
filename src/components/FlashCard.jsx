@@ -3,6 +3,7 @@ import { renderSlideLines } from '../utils/markdownParser';
 import { renderClozeBackText, hasClozeSyntax, parseClozeTokens } from '../utils/clozeParser';
 import ClozeText from './ClozeText';
 import TypeAnswerBox from './TypeAnswerBox';
+import ImageOcclusion from './ImageOcclusion';
 import CardMedia from './CardMedia';
 
 /**
@@ -14,6 +15,7 @@ import CardMedia from './CardMedia';
  *   pressing the spacebar or enter key reveals the next hidden token sequentially. Volumetric card flip
  *   occurs only after all active clozes have been revealed or if the card is already in the back face.
  * - Local state `revealedClozeIds` is purged upon card transition to prevent state leakage across slides.
+ * - Supports polymorphic card layouts: basic, cloze, input, and image_occlusion.
  */
 export default function FlashCard({ 
   card, 
@@ -133,6 +135,11 @@ export default function FlashCard({
                   ⌨️ Input
                 </span>
               )}
+              {card.type === 'image_occlusion' && (
+                <span className="occlusion-card-badge" title="Tarjeta interactiva de oclusión de imágenes">
+                  🫀 Oclusión
+                </span>
+              )}
             </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
@@ -164,7 +171,16 @@ export default function FlashCard({
               />
             )}
 
-            {frontMedia.map((asset, idx) => (
+            {card.type === 'image_occlusion' && (
+              <ImageOcclusion
+                card={card}
+                isBackFace={false}
+                interactive={interactiveMode}
+                onFlip={onFlip}
+              />
+            )}
+
+            {card.type !== 'image_occlusion' && frontMedia.map((asset, idx) => (
               <CardMedia key={`front-media-${idx}`} asset={asset} className="card-front-media" />
             ))}
 
@@ -179,7 +195,11 @@ export default function FlashCard({
 
           <div className="card-footer">
             <span className="flip-hint">
-              {card.type === 'input' && interactiveMode ? (
+              {card.type === 'image_occlusion' ? (
+                <>
+                  <span className="flip-icon">🫀</span> Haz clic en una máscara para revelarla, o presiona <kbd>Espacio</kbd> para voltear
+                </>
+              ) : card.type === 'input' && interactiveMode ? (
                 <>
                   <span className="flip-icon">⌨️</span> Escribe tu respuesta y presiona <kbd>Enter</kbd> para comprobar
                 </>
@@ -222,6 +242,11 @@ export default function FlashCard({
                   [c{activeClozeIndex}]
                 </span>
               )}
+              {card.type === 'image_occlusion' && (
+                <span className="occlusion-card-badge mini">
+                  🫀 Esquema Resuelto
+                </span>
+              )}
             </div>
             <span className="card-counter">
               {currentIndex + 1} / {totalCards}
@@ -229,10 +254,20 @@ export default function FlashCard({
           </div>
 
           <div className="card-body back-body">
+            {card.type === 'image_occlusion' && (
+              <ImageOcclusion
+                card={card}
+                isBackFace={true}
+                interactive={interactiveMode}
+                onFlip={onFlip}
+              />
+            )}
+
             <div className="card-answer">
               {renderSlideLines(displayBack)}
             </div>
-            {backMedia.map((asset, idx) => (
+
+            {card.type !== 'image_occlusion' && backMedia.map((asset, idx) => (
               <CardMedia key={`back-media-${idx}`} asset={asset} className="card-back-media" />
             ))}
           </div>
