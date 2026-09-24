@@ -1,1 +1,3 @@
-1. Añade responsividad, para que al usar el celular en landscape o incluso en portrait, se vea bien todo y sea fácil de usar la UI, porque actualmente no tiene nada de responsividad y se ve mal.
+# Tareas Pendientes (TODO)
+
+*(No hay tareas pendientes)*
