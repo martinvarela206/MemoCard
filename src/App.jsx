@@ -5,6 +5,7 @@ import SubjectSelector from './components/SubjectSelector';
 import FlashCard from './components/FlashCard';
 import StudyNavigation from './components/StudyNavigation';
 import StudyDrawer from './components/StudyDrawer';
+import GuidedStudyBanner from './components/GuidedStudyBanner';
 import './App.css';
 
 export default function App() {
@@ -33,6 +34,17 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('memocard_interactive_mode', String(interactiveMode));
   }, [interactiveMode]);
+
+  // Guided learning mode flag (persisted, defaults to false)
+  const [guidedMode, setGuidedMode] = useState(() => {
+    const saved = localStorage.getItem('memocard_guided_mode');
+    return saved !== null ? saved === 'true' : false;
+  });
+
+  // Persist guided mode state
+  useEffect(() => {
+    localStorage.setItem('memocard_guided_mode', String(guidedMode));
+  }, [guidedMode]);
 
   const subject = useMemo(() => {
     return selectedSubjectId ? getSubjectById(selectedSubjectId) : null;
@@ -111,6 +123,17 @@ export default function App() {
   const currentCard = cards[currentCardIndex] || null;
   const currentThemeName = currentCard?.theme || 'General';
   const currentThemeIndex = themesList.findIndex(t => t.name === currentThemeName);
+
+  // Filter cards strictly for the current theme to support sequential guided progression
+  const cardsInCurrentTheme = useMemo(() => {
+    return cards.filter(c => (c.theme || 'General') === currentThemeName);
+  }, [cards, currentThemeName]);
+
+  const cardIndexInTheme = useMemo(() => {
+    if (!currentCard) return 1;
+    const idx = cardsInCurrentTheme.findIndex(c => c.id === currentCard.id);
+    return idx >= 0 ? idx + 1 : 1;
+  }, [cardsInCurrentTheme, currentCard]);
 
   // Navigation handlers
   const handleSelectCard = useCallback((index) => {
@@ -209,6 +232,16 @@ export default function App() {
           </button>
 
           <button 
+            className={`btn-guided-toggle ${guidedMode ? 'active' : ''}`}
+            onClick={() => setGuidedMode(prev => !prev)}
+            aria-label={guidedMode ? "Modo Guiado activo. Cambiar a modo exploración libre" : "Modo Libre activo. Cambiar a aprendizaje guiado secuencial"}
+            title={guidedMode ? "Modo Guiado activo. Clic para cambiar a exploración libre" : "Modo Libre activo. Clic para activar Aprendizaje Guiado secuencial por temas"}
+          >
+            <span className="guided-toggle-icon">🎓</span>
+            <span className="guided-toggle-label">{guidedMode ? 'Guiado' : 'Libre'}</span>
+          </button>
+
+          <button 
             className={`btn-mode-toggle ${interactiveMode ? 'interactive' : 'classic'}`}
             onClick={() => setInteractiveMode(prev => !prev)}
             aria-label={interactiveMode ? "Modo interactivo activo. Cambiar a modo clásico pasivo" : "Modo clásico activo. Cambiar a modo interactivo"}
@@ -235,6 +268,20 @@ export default function App() {
       <div className="study-progress-wrapper" title={`Progreso: ${progressPercent}% (${currentCardIndex + 1} de ${cards.length})`}>
         <div className="study-progress-fill" style={{ width: `${progressPercent}%` }} />
       </div>
+
+      {/* Guided Sequential Learning Banner */}
+      {guidedMode && (
+        <GuidedStudyBanner
+          themeName={currentThemeName}
+          themeIndex={currentThemeIndex >= 0 ? currentThemeIndex : 0}
+          totalThemes={themesList.length}
+          cardIndexInTheme={cardIndexInTheme}
+          totalCardsInTheme={cardsInCurrentTheme.length}
+          onExitGuided={() => setGuidedMode(false)}
+          onNextTheme={handleNextTheme}
+          canNextTheme={currentThemeIndex >= 0 && currentThemeIndex < themesList.length - 1}
+        />
+      )}
 
       {/* Main Study Arena */}
       <main className="study-arena">
