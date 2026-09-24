@@ -1411,7 +1411,9 @@ kbd {
   }
 
   .front-body {
-    padding: 20px 10px;
+    padding: 14px 6px;
+    overflow-y: auto;
+    max-height: calc(56vh - 70px);
   }
 
   .back-body {
@@ -1531,6 +1533,45 @@ kbd {
     width: auto;
     max-width: 100%;
     object-fit: contain;
+  }
+
+  /* Rationale: Compact diff feedback panel for mobile portrait ensures that answer evaluation,
+     character diff comparison, and the flip button fit comfortably within the card face without
+     overflowing over the bottom card edge into the navigation toolbar. */
+  .type-answer-wrapper {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .type-answer-feedback {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .answer-status-badge {
+    font-size: 0.82rem;
+    padding: 3px 10px;
+  }
+
+  .diff-display-container {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .diff-row {
+    font-size: 0.88rem;
+  }
+
+  .diff-label {
+    width: 82px;
+    font-size: 0.74rem;
+  }
+
+  .btn-continue-card {
+    padding: 7px 12px;
+    font-size: 0.8rem;
   }
 }
 
