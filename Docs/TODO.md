@@ -10,10 +10,6 @@ Evolucionar el visor actual de tarjetas estáticas (doble cara, markdown + LaTeX
 ---
 
 ## 2. 🔀 Sistema Cloze Deletion (Ocultamiento & Censura)
-- [ ] **Renderizado interactivo de Clozes:**
-  - Componente visual de "píldora/bloque censurado" (placeholder clickeable con hover effect).
-  - Estado individual: toggle click/tap para revelar sin voltear la tarjeta.
-  - Atajo de teclado (p. ej., `Espacio` o tecla numérica) para revelar clozes progresivamente.
 - [ ] **Modo fallback (desactivación de interactividad):**
   - Switch/toggle global o por deck: *"Desactivar interacción / Modo clásico"*.
   - Comportamiento en modo clásico:
