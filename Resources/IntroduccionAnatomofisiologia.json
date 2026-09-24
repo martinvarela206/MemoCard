@@ -90,7 +90,7 @@
     "term": "Planos de Corte Seccional del Cuerpo Humano",
     "front": "Identifica los tres planos ortogonales fundamentales de corte en el cuerpo humano.",
     "back": "Planos ortogonales de corte anatómico:\n- **(a) Plano sagital medio:** Divide longitudinalmente en mitad derecha e izquierda simétricas.\n- **(b) Plano frontal (coronal):** Divide en mitad anterior (ventral) y posterior (dorsal).\n- **(c) Plano transversal (axial):** Divide en mitad superior (craneal) e inferior (caudal).",
-    "image": "IntroduccionAnatomofisiologia/planos_anatomicos_tridimensionales.png",
+    "image": "IntroduccionAnatomofisiologia_assets/planos_anatomicos_tridimensionales.png",
     "mode": "hide_all_guess_one",
     "masks": [
       {
@@ -132,7 +132,7 @@
     "term": "Puntos de Presión en Decúbito Supino (Escaras)",
     "front": "Identifica los focos óseos de hiperpresión y riesgo de úlceras en decúbito supino.",
     "back": "Puntos críticos de apoyo y riesgo de escaras en decúbito dorsal:\n1. Cabeza (prominencia occipital)\n2. Omóplato (borde escapular)\n3. Codos (olécranon cubital)\n4. Sacro (región sacrococcígea)\n5. Talones (tuberosidad calcánea)",
-    "image": "IntroduccionAnatomofisiologia/puntos_presion_decubito_supino.png",
+    "image": "IntroduccionAnatomofisiologia_assets/puntos_presion_decubito_supino.png",
     "mode": "hide_all_guess_one",
     "masks": [
       {
